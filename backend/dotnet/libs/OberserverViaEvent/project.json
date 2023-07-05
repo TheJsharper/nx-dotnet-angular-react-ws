@@ -1,0 +1,28 @@
+{
+  "name": "BackendDotnetLibs.OberserverViaEvent",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "backend/dotnet/libs/OberserverViaEvent",
+  "targets": {
+    "build": {
+      "executor": "@nx-dotnet/core:build",
+      "outputs": [
+        "{workspaceRoot}/dist/backend/dotnet/libs/OberserverViaEvent",
+        "{workspaceRoot}/dist/intermediates/backend/dotnet/libs/OberserverViaEvent"
+      ],
+      "options": {
+        "configuration": "Debug",
+        "noDependencies": true
+      },
+      "configurations": {
+        "production": {
+          "configuration": "Release"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx-dotnet/core:format"
+    }
+  },
+  "tags": []
+}
