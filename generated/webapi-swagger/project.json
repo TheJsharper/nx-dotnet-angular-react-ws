@@ -1,0 +1,19 @@
+{
+  "name": "webapi-swagger",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "targets": {
+    "build": {
+      "executor": "nx:noop",
+      "outputs": ["generated/webapi-swagger"]
+    },
+    "codegen": {
+      "executor": "@nx-dotnet/core:openapi-codegen",
+      "options": {
+        "openapiJsonPath": "generated/webapi-swagger/swagger.json",
+        "outputProject": "generated-webapi-types"
+      },
+      "dependsOn": ["^swagger"]
+    }
+  },
+  "implicitDependencies": ["BackendDotnetApps.webapi"]
+}
