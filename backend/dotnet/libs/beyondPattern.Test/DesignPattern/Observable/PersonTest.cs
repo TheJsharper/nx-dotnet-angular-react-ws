@@ -1,6 +1,8 @@
 using OberserverViaEvent.DesignPatterns;
 using Moq;
 using OberserverViaEvent.DesignPatterns.Observable;
+using OberserverViaEvent.DesignPatterns.ViaEvents;
+using OberserverViaEvent.DesignPatterns.Observable.ViaEvents;
 
 namespace Backend.Dotnet.Libs.OberserverViaEvent.Test;
 

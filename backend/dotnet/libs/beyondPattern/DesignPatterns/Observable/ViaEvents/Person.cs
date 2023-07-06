@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using OberserverViaEvent.DesignPatterns.Observable;
 
-namespace OberserverViaEvent.DesignPatterns
+using OberserverViaEvent.DesignPatterns.Observable.ViaEvents;
+
+namespace OberserverViaEvent.DesignPatterns.ViaEvents
 {
     public class IsIllEventArgs
     {
