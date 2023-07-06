@@ -1,5 +1,5 @@
 {
-  "name": "BackendDotnetLibs.OberserverViaEvent.Test",
+  "name": "backend-dotnet-libs-beyond-pattern.test",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "backend/dotnet/libs/OberserverViaEvent.Test",
