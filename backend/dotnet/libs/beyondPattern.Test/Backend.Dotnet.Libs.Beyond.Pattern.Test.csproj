@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../beyondPattern\Backend.Dotnet.Libs.OberserverViaEvent.csproj" />
+    <ProjectReference Include="../beyondPattern\Backend.Dotnet.Libs.Beyond.Pattern.csproj" />
   </ItemGroup>
 
 </Project>
