@@ -8,6 +8,7 @@ namespace OberserverViaEvent.DesignPatterns.Observable.ViaEvents
 {
     public interface IPerson
     {
+
         event EventHandler<IsIllEventArgs> IsIll;
          void CatchACold();
     }

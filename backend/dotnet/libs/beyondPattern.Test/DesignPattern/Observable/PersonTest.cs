@@ -23,6 +23,9 @@ public class PersonTest
         };
         p.CatchACold();
 
+        mock.Setup(p=> p.CatchACold()).Verifiable();
+
+      
 
     }
 
