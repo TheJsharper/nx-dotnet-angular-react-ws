@@ -4,7 +4,7 @@ using OberserverViaEvent.DesignPatterns.Observable;
 using OberserverViaEvent.DesignPatterns.ViaEvents;
 using OberserverViaEvent.DesignPatterns.Observable.ViaEvents;
 
-namespace Backend.Dotnet.Libs.OberserverViaEvent.Test;
+namespace Backend.Dotnet.Libs.Beyond.Pattern.Test.DesignPattern.Observable.ViaEvents;
 
 public class PersonTest
 {
@@ -18,14 +18,15 @@ public class PersonTest
         .Raises((p) => p.IsIll += null, new IsIllEventArgs { Address = "----->testing roading 123<-----" }).Verifiable();
 
         var p = new Person();
-        p.IsIll +=(sender,args)=>{
-          Console.WriteLine($"in case this person become ill {args.Address}");
+        p.IsIll += (sender, args) =>
+        {
+            Console.WriteLine($"in case this person become ill {args.Address}");
         };
         p.CatchACold();
 
-        mock.Setup(p=> p.CatchACold()).Verifiable();
+        mock.Setup(p => p.CatchACold()).Verifiable();
 
-      
+
 
     }
 
