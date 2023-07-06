@@ -16,6 +16,7 @@ namespace OberserverViaEvent.DesignPatterns
         public void CatchACold()
         {
             this.IsIll?.Invoke(this, new IsIllEventArgs { Address = "123 London Road" });
+        
         }
         public event EventHandler<IsIllEventArgs> ?IsIll;
     }
