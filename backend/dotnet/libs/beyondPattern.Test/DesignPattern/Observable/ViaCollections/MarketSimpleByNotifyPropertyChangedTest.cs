@@ -8,18 +8,19 @@ using System.Threading.Tasks;
 
 namespace Backend.Dotnet.Libs.Beyond.Pattern.Test.DesignPattern.Observable.ViaCollections
 {
-    public class MarketTest
+    public class MarketSimpleByNotifyPropertyChangedTest
     {
 
 
         [Fact]
         public void ValitilityTest()
-        {
 
-            var market = new Market();
+        {
+            var market = new MarketSimpleByNotifyPropertyChanged();
             market.PropertyChanged += Market_PropertyChanged;
-            market.Valitility = 123.01f;
-            Assert.Equal(123.01f, market.Valitility);
+            var value = 123.01f;
+            market.Valitility = value;
+            Assert.Equal(value, market.Valitility);
         }
 
         private void Market_PropertyChanged(object? sender, PropertyChangedEventArgs e)

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Backend.Dotnet.Libs.Beyond.Pattern.DesignPatterns.Observable.ViaCollections
 {
-    public class Market:INotifyPropertyChanged
+    public class MarketSimpleByNotifyPropertyChanged:INotifyPropertyChanged
     {
         private float valitility;
 
