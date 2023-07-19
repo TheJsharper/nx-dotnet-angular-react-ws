@@ -14,4 +14,3 @@ namespace Backend.Dotnet.Libs.SensorSem.Sensors
         }
     }
 }
-}
