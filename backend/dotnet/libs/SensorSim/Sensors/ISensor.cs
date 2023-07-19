@@ -12,6 +12,7 @@ namespace Backend.Dotnet.Libs.SensorSem.Sensors
     public interface ISensor
     {
         public bool EmptyPlaceSensor { get; set; }
+
         public bool FullPlaceSensor { get; set; }
 
         Task StartTimer(long delay, long period, TimerCallback callback);
