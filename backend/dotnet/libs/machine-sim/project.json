@@ -1,0 +1,28 @@
+{
+  "name": "backend-dotnet-libs-machine-sim",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "backend/dotnet/libs/machine-sim",
+  "targets": {
+    "build": {
+      "executor": "@nx-dotnet/core:build",
+      "outputs": [
+        "{workspaceRoot}/dist/backend/dotnet/libs/machine-sim",
+        "{workspaceRoot}/dist/intermediates/backend/dotnet/libs/machine-sim"
+      ],
+      "options": {
+        "configuration": "Debug",
+        "noDependencies": true
+      },
+      "configurations": {
+        "production": {
+          "configuration": "Release"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx-dotnet/core:format"
+    }
+  },
+  "tags": []
+}

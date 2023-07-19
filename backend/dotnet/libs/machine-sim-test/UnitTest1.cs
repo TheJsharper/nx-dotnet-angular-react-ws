@@ -1,4 +1,4 @@
-namespace Backend.Dotnet.Libs.SensorSem.Test;
+namespace Backend.Dotnet.Libs.MachineSim.Test;
 
 public class UnitTest1
 {
