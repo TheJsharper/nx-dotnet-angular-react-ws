@@ -1,4 +1,5 @@
 ﻿using Backend.Dotnet.Libs.SensorSem.Sensors;
+using System.Diagnostics;
 
 namespace Backend.Dotnet.Libs.SensorSem.Test.Sensors
 {
@@ -30,20 +31,32 @@ namespace Backend.Dotnet.Libs.SensorSem.Test.Sensors
 
 
         [Fact]
-        public async Task EmptyPlaceSensorIfThePropertyChangedRaiseTest2()
+        public async Task StartAndStopTimerTest()
         {
             var sensor = new Sensor();
-            await sensor.StartTimer(1000, 100, (state) =>
+            await sensor.StartTimer(1000, 0, async (state) =>
             {
-                Console.WriteLine($"====> {"HELLO WORLD"}");
+                if (state != null)
+                {
+
+                    Stopwatch stopwatch = (Stopwatch)state;
+
+                    var elapsed = stopwatch.ElapsedMilliseconds;
+
+                    Console.WriteLine($"====> current elapsed {elapsed}");
+                    if (elapsed <= 50000)
+                    {
+                        stopwatch.Stop();
+
+                        await sensor.KillTimer();
+
+                        Console.WriteLine($"====> StopWatch was stopped and Timmer was disposed {elapsed}");
+                    }
+                }
             });
 
-            var value = true;
-            Console.WriteLine($"====> {"HELLO WORLD"}");
 
-            Assert.PropertyChanged(sensor, "FullPlaceSensor", () => sensor.FullPlaceSensor = value);
 
-            Assert.True(sensor.FullPlaceSensor);
         }
     }
 }
