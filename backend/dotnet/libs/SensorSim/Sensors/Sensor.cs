@@ -9,8 +9,6 @@ namespace Backend.Dotnet.Libs.SensorSem.Sensors
 
         private bool fullPlaceSensor;
 
-        private readonly Stopwatch? stopwatch = null;
-
         private Timer? timer = null;
 
 
@@ -40,14 +38,7 @@ namespace Backend.Dotnet.Libs.SensorSem.Sensors
             }
         }
 
-
-        public Stopwatch? Stopwatch => stopwatch;
-        public Sensor()
-        {
-            stopwatch = new Stopwatch();
-        }
-
-        public async Task KillTimer(long id)
+        public async Task KillTimer()
         {
 
             if (this.timer != null)
@@ -56,9 +47,11 @@ namespace Backend.Dotnet.Libs.SensorSem.Sensors
 
         public async Task StartTimer(long delay, long period, TimerCallback callback)
         {
+            var state = new  Stopwatch();
 
+            state.Start();
 
-            await Task.Run(() => this.timer = new(callback, null, delay, period));
+            await Task.Run(() => this.timer = new(callback,state, delay, period));
 
         }
     }

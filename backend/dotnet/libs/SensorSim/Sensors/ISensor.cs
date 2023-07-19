@@ -16,7 +16,7 @@ namespace Backend.Dotnet.Libs.SensorSem.Sensors
 
         Task StartTimer(long delay, long period, TimerCallback callback);
 
-        Task KillTimer(long id);
+        Task KillTimer();
         void OnPlaceSensorChanged([CallerMemberName] string propertyName = "");
     }
 }

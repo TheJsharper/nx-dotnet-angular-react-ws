@@ -27,5 +27,23 @@ namespace Backend.Dotnet.Libs.SensorSem.Test.Sensors
 
             Assert.True(sensor.FullPlaceSensor);
         }
+
+
+        [Fact]
+        public async Task EmptyPlaceSensorIfThePropertyChangedRaiseTest2()
+        {
+            var sensor = new Sensor();
+            await sensor.StartTimer(1000, 100, (state) =>
+            {
+                Console.WriteLine($"====> {"HELLO WORLD"}");
+            });
+
+            var value = true;
+            Console.WriteLine($"====> {"HELLO WORLD"}");
+
+            Assert.PropertyChanged(sensor, "FullPlaceSensor", () => sensor.FullPlaceSensor = value);
+
+            Assert.True(sensor.FullPlaceSensor);
+        }
     }
 }
