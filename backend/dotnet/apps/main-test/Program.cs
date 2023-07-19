@@ -6,20 +6,24 @@ Console.WriteLine("Hello, World!");
 
 var sensor = new Sensor();
 
-    DateTime now = DateTime.Now;
-await sensor.StartTimer(100, 1000, async(state) =>
+DateTime now = DateTime.Now;
+await sensor.StartTimer(100, 1000, async (state) =>
 {
-    Stopwatch stopwatch = (Stopwatch)state;
-
-    
-    Console.WriteLine($"===>x{"HYEE"} =>{stopwatch.ElapsedMilliseconds} ===> {stopwatch.IsRunning} ===>{now.Second}" );
-
-    if(stopwatch.ElapsedMilliseconds > 60000)
+    if (state != null)
     {
-        stopwatch.Stop();
-       await sensor.KillTimer();
+        Stopwatch stopwatch = (Stopwatch)state;
+
+
+        Console.WriteLine($"===>x{"HYEE"} =>{stopwatch.ElapsedMilliseconds} ===> {stopwatch.IsRunning} ===>{now.Second}");
+
+        if (stopwatch.ElapsedMilliseconds > 60000)
+        {
+            stopwatch.Stop();
+            await sensor.KillTimer();
+        }
+
     }
-    
+
 });
 
 
