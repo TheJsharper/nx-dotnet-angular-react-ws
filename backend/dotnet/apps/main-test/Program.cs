@@ -17,7 +17,7 @@ await sensor.StartTimer(100, 1000, async(state) =>
     if(stopwatch.ElapsedMilliseconds > 60000)
     {
         stopwatch.Stop();
-       await sensor.KillTimer(100);
+       await sensor.KillTimer();
     }
     
 });
