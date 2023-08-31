@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { appRoutes } from './app.routes';
 import { GifsModule } from './gifs/gifs.module';
 import { SharedModule } from './shared/shared.module';
-
+import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -13,7 +11,8 @@ import { SharedModule } from './shared/shared.module';
     //RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
 
     GifsModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
 
   ],
   providers: [],
