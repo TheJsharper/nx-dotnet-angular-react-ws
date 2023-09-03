@@ -1,8 +1,11 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
+import { Gif } from "../../models/giphy-response.model";
 
 @Component({
-    selector:'gifs-card-list',
-    templateUrl:'./card-list.component.html',
-    styleUrls:['./card-list.component.scss']
+    selector: 'gifs-card-list',
+    templateUrl: './card-list.component.html',
+    styleUrls: ['./card-list.component.scss']
 })
-export class CardListComponent{}
+export class CardListComponent {
+    @Input('gifList') gifList: Gif[] = [];
+}
