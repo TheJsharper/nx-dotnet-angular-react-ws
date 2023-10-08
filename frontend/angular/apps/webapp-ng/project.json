@@ -19,7 +19,8 @@
           "frontend/angular/apps/webapp-ng/src/favicon.ico",
           "frontend/angular/apps/webapp-ng/src/assets"
         ],
-        "styles": ["frontend/angular/apps/webapp-ng/src/styles.scss"],
+        "styles": ["frontend/angular/apps/webapp-ng/src/styles.scss",
+      "node_modules/bootstrap/dist/css/bootstrap.min.css"],
         "scripts": []
       },
       "configurations": {
