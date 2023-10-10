@@ -13,7 +13,7 @@
 </div>
 <div class="row text-center">
     <div class="col">
-        <app-counter-simple-child [counter]="counter">
+        <app-counter-simple-child [counter]="counter" (changedCounter)="counter = $event">
             
         </app-counter-simple-child>
     </div>
