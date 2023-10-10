@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
 import { RouterModule, Routes } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
 
 export const routes: Routes = [
   {
@@ -15,11 +16,11 @@ export const routes: Routes = [
   },
 
   {
-    path: 'simple-counter-2',
+    path: 'ngrx-simple-counter',
 
     loadChildren: () =>
-      import('./counter-simple/counter-simple.module').then(
-        (m) => m.CounterSimpleModule
+      import('./ngrx-simple-counter/ngrx-simple-counter.module').then(
+        (m) => m.NgrxSimpleCounterModule
       ),
   },
   {
@@ -29,10 +30,12 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(routes),
+    StoreModule.forRoot({}),
   ],
-  imports: [BrowserModule, RouterModule.forRoot(routes)],
   providers: [],
   bootstrap: [AppComponent],
 })
