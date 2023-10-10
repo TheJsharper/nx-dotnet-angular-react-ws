@@ -8,3 +8,10 @@
         <button (click)="divide()" class="btn btn-success">Divide</button>
     </div>
 </div>
+
+<div class="row text-center">
+    <div class="col">
+        <app-counter-simple-grandchild [counter]="counter"
+            (changedCounter)="reset($event)"></app-counter-simple-grandchild>
+    </div>
+</div>

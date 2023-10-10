@@ -21,4 +21,7 @@ export class CounterSimpleChildComponent {
       this.counter /= 2;
     this.changedCounter.emit(this.counter);
   }
+  reset($event:number):void{
+    this.changedCounter.emit($event);
+  }
 }
