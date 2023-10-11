@@ -24,6 +24,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'ngrx-create-api-counter',
+
+    loadChildren: () =>
+      import('./ngrx-create-api-counter/ngrx-create-api-counter.module').then(
+        (m) => m.NgrxCreateApiCounterModule
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'simple-counter',
   },
@@ -39,4 +47,4 @@ export const routes: Routes = [
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
