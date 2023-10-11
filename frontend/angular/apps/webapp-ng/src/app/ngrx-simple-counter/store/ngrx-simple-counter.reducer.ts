@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { NgrxSimpleCounterDecrementAction, NgrxSimpleCounterIncrementAction } from "./ngrx-simple-counter.actions";
+import { NgrxSimpleCounterDecrementAction, NgrxSimpleCounterIncrementAction, NgrxSimpleCounterPatchAction } from "./ngrx-simple-counter.actions";
 
 
 export function NgRxSimpleCounterReducer(state: number = 0, action: Action): number {
@@ -19,6 +19,11 @@ export function NgRxSimpleCounterReducer(state: number = 0, action: Action): num
         case "DIVIDE":
             return state /= (<NgrxSimpleCounterDecrementAction>action).payload;
 
+        case "RESET":
+            return 0;
+
+        case "PATCH":
+            return state = (<NgrxSimpleCounterPatchAction>action).payload
 
         default:
             return state;
