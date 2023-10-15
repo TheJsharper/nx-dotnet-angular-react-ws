@@ -1,13 +1,21 @@
-import { getGifs } from "../services/gifs.service";
+import { useFetchGifs } from "../hooks/useFetchGifs";
+import { GifsReponse } from "../services/gifs.service";
 
 export const GifGrid = (props: { category: string }) => {
 
-  
-    getGifs();
+    const data: { gifs: Array<GifsReponse>, isLoading: boolean } = useFetchGifs({ category: props.category });
+
+    const { gifs, isLoading } = data;
+    if(isLoading)
+        return (<div>{isLoading} </div>)
+    
+
     return (
         <div>
-            <h3>{props.category}</h3>
-            <div>{props.category}</div>
+
+            <h1>Category: {props.category}</h1>
+            {gifs.map((value: GifsReponse) => (<div key={value.id}> <h1>{value.title}</h1> <img src={value.url} /> </div>))}
+
         </div>
     );
 } 

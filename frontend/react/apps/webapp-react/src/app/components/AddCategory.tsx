@@ -22,6 +22,7 @@ export const AddCategory = (props: AddCategory) => {
             return categories.includes(value) ? [...categories] : [value, ...categories]
         })
         setInput('');
+        
 
     }
     return (
