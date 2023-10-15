@@ -14,7 +14,7 @@ export const GifGrid = (props: { category: string }) => {
         <div>
 
             <h1>Category: {props.category}</h1>
-            {gifs.map((value: GifsReponse) => (<div key={value.id}> <h1>{value.title}</h1> <img src={value.url} /> </div>))}
+            {gifs.map((value: GifsReponse) => (<div key={value.id}> <h1>{value.title}</h1> <img src={value.url}  alt="testing"/> </div>))}
 
         </div>
     );
