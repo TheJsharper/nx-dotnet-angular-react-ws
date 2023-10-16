@@ -5,6 +5,8 @@ import { NgrxCreateApiCounterRoutingModule } from './ngrx-create-api-counter-rou
 import { NgrxCreateApiComponent } from './ngrx-create-api/ngrx-create-api.component';
 import { NgrxCreateApiCounterChildComponent } from './ngrx-create-api-counter-child/ngrx-create-api-counter-child.component';
 import { NgrxCreateApiCounterGrandchildComponent } from './ngrx-create-api-counter-grandchild/ngrx-create-api-counter-grandchild.component';
+import { StoreModule } from '@ngrx/store';
+import { NgrxCreateApiCounterReducer } from './store/ngrx-create-api-counter.reducers';
 
 @NgModule({
   declarations: [
@@ -12,6 +14,6 @@ import { NgrxCreateApiCounterGrandchildComponent } from './ngrx-create-api-count
     NgrxCreateApiCounterChildComponent,
     NgrxCreateApiCounterGrandchildComponent,
   ],
-  imports: [CommonModule, NgrxCreateApiCounterRoutingModule],
+  imports: [CommonModule, NgrxCreateApiCounterRoutingModule, StoreModule.forFeature("counterCreateApi", NgrxCreateApiCounterReducer)],
 })
-export class NgrxCreateApiCounterModule {}
+export class NgrxCreateApiCounterModule { }

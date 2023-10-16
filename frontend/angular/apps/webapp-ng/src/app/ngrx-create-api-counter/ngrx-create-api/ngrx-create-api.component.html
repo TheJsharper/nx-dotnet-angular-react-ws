@@ -1,1 +1,13 @@
-<p>ngrx-create-api works!</p>
+<div class="row text-center">
+    <div class="col">
+        <h2>Ngrx-Counter</h2>
+        <h3>{{counter$ | async}}</h3>
+    </div>
+</div>
+<div class="row text-center">
+    <div class="col">
+        <button (click)="increment()" class="btn btn-primary">Increment</button>
+        <button (click)="decrement()" class="btn btn-info">Decrement</button>
+    </div>
+</div>
+<app-ngrx-create-api-counter-child></app-ngrx-create-api-counter-child>

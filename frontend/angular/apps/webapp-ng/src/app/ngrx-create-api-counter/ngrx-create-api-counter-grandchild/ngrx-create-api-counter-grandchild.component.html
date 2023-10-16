@@ -1,1 +1,22 @@
-<p>ngrx-create-api-counter-grandchild works!</p>
+<hr/>
+<div class="row text-center">
+    <div class="col">
+        <h3>Ngrx grandchild counter</h3>
+        <h3>{{counter$| async}}</h3>
+    </div>
+</div>
+<div class="row text-center">
+    <div class="col">
+        <button (click)="reset()" class="btn btn-primary">Reset=>0</button>
+
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-4 ">
+                <div class="input-group mb-3">
+                    <input type="number" #inputValue class="form-control" (input)="path(inputValue.value)" placeholder="100" aria-label="1000" aria-describedby="basic-addon2">
+                    <span class="input-group-text btn btn-info" id="basic-addon2">Patch</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

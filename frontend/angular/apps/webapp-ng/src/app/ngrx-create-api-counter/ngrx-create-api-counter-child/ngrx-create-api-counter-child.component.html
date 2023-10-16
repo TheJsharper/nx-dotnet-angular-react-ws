@@ -1,1 +1,18 @@
-<p>ngrx-create-api-counter-child works!</p>
+<hr/>
+<div class="row text-center">
+    <div class="col">
+        <h3>Ngrx child counter</h3>
+    </div>
+</div>
+<div class="row text-center">
+    <div class="col">
+        <h3>{{counter$ | async}}</h3>
+    </div>
+</div>
+<div class="row text-center">
+    <div class="col">
+        <button (click)="multiply()" class="btn btn-primary">Multiply</button>
+        <button (click)="divide()" class="btn btn-info">Divide</button>
+    </div>
+</div>
+<app-ngrx-create-api-counter-grandchild> </app-ngrx-create-api-counter-grandchild>
