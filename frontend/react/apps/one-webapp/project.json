@@ -1,0 +1,74 @@
+{
+  "name": "frontend-react-apps--one-webapp",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "./frontend/react/apps//one-webapp/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/frontend/react/apps/one-webapp"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "frontend-react-apps--one-webapp:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "frontend-react-apps--one-webapp:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "frontend-react-apps--one-webapp:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "frontend-react-apps--one-webapp:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "frontend-react-apps--one-webapp:build:development"
+        },
+        "production": {
+          "buildTarget": "frontend-react-apps--one-webapp:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/frontend/react/apps/one-webapp"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../../coverage/frontend/react/apps/one-webapp"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "./frontend/react/apps//one-webapp/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
