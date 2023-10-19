@@ -32,6 +32,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'ngrx-create-api-plot',
+
+    loadChildren: () =>
+      import('./ngrx-create-api-plot/ngrx-create-api-plot.module').then(
+        (m) => m.NgrxCreateApiPlotModule
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'simple-counter',
   },
