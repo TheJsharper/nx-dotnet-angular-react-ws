@@ -1,4 +1,4 @@
-import { Injectable, Renderer2, RendererFactory2 } from "@angular/core";
+import { ElementRef, Injectable, Renderer2, RendererFactory2 } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Data, PlotlyHTMLElement, newPlot } from 'plotly.js-dist-min';
 import { Observable, map, of } from "rxjs";
@@ -9,7 +9,7 @@ import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selector
 export class NgrxCreateApliPlotService {
 
     private renderer: Renderer2;
-    constructor(private rendererFactory: RendererFactory2, private ngrxCreateApiPlotSelector: NgrxCreateApiPlotSelector, private store: Store<PlotModel>,) {
+    constructor(rendererFactory: RendererFactory2, private ngrxCreateApiPlotSelector: NgrxCreateApiPlotSelector, private store: Store<PlotModel>,) {
         this.renderer = rendererFactory.createRenderer(null, null);
     }
 
@@ -32,7 +32,7 @@ export class NgrxCreateApliPlotService {
 
         return of(plotModel);
     }
-    getPlotInstance(): Observable<Promise<PlotlyHTMLElement>> {
+    getPlotInstance(parent: ElementRef): Observable<Promise<PlotlyHTMLElement>> {
         const result = this.store.select(this.ngrxCreateApiPlotSelector.getPlotDataState()).pipe(map(
             async (data: Array<Partial<Data>>) => {
 
@@ -44,6 +44,7 @@ export class NgrxCreateApliPlotService {
 
                 const config = { responsive: true }
                 const root = this.renderer.createElement("div");
+                this.renderer.appendChild(parent.nativeElement, root);
                 return await newPlot(root, data, layout, config);
             }
         ));

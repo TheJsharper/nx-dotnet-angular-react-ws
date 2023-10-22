@@ -22,7 +22,7 @@ export class NgrxCreateApiMainComponent implements OnInit, AfterViewInit {
 
     constructor(private ngrxCreateApliPlotService: NgrxCreateApliPlotService, private ngrxCreateApiPlotSelector: NgrxCreateApiPlotSelector, private store: Store<PlotModel>, private el: ElementRef, private renderer: Renderer2) { }
     ngOnInit(): void {
-        this.plot$ = this.ngrxCreateApliPlotService.getPlotInstance();
+        this.plot$ = this.ngrxCreateApliPlotService.getPlotInstance(this.el);
     }
 
     ngAfterViewInit(): void {
