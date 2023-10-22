@@ -1,11 +1,17 @@
-import { Injectable } from "@angular/core";
-import { Data } from 'plotly.js-dist-min';
-import { Observable, of } from "rxjs";
+import { Injectable, Renderer2, RendererFactory2 } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { Data, PlotlyHTMLElement, newPlot } from 'plotly.js-dist-min';
+import { Observable, map, of } from "rxjs";
 import { PlotModel } from "../store/ngrx-create-api-plot.models";
+import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selectors";
 
 @Injectable()
 export class NgrxCreateApliPlotService {
 
+    private renderer: Renderer2;
+    constructor(private rendererFactory: RendererFactory2, private ngrxCreateApiPlotSelector: NgrxCreateApiPlotSelector, private store: Store<PlotModel>,) {
+        this.renderer = rendererFactory.createRenderer(null, null);
+    }
 
     getPlotData(): Observable<PlotModel> {
 
@@ -17,13 +23,30 @@ export class NgrxCreateApliPlotService {
             y: yArray,
             type: "bar",
             orientation: "v",
-           // marker: { color: "rgba(0,0,255)" }
+            // marker: { color: "rgba(0,0,255)" }
         }];
 
         const plotModel: PlotModel = {
             data, selected: data[0]
         }
 
-        return of(plotModel );
+        return of(plotModel);
+    }
+    getPlotInstance(): Observable<Promise<PlotlyHTMLElement>> {
+        const result = this.store.select(this.ngrxCreateApiPlotSelector.getPlotDataState()).pipe(map(
+            async (data: Array<Partial<Data>>) => {
+
+
+                const layout = {
+                    title: 'Responsive to window\'s size!',
+                    font: { size: 18 }
+                };
+
+                const config = { responsive: true }
+                const root = this.renderer.createElement("div");
+                return await newPlot(root, data, layout, config);
+            }
+        ));
+        return result;
     }
 }

@@ -8,6 +8,8 @@ import { StoreModule } from "@ngrx/store";
 import { plotRedurcer } from "./store/ngrx-create-api-plot.reducers";
 import { EffectsModule } from "@ngrx/effects";
 import { NgrxCreateApiPlotSelector } from "./store/nrx-create-api-plot.selectors";
+import { NgrxCreateApiMainDirective } from "./ngrx-create-api-plot-main/ngrx-create-api-main.directive";
+import { CommonModule } from "@angular/common";
 
 const routes: Routes = [
     {
@@ -17,8 +19,10 @@ const routes: Routes = [
     }
 ]
 @NgModule({
-    declarations: [NgrxCreateApiMainComponent],
+    declarations: [NgrxCreateApiMainComponent,
+        NgrxCreateApiMainDirective],
     imports: [
+        CommonModule,
         RouterModule.forChild(routes),
         StoreModule.forFeature("plot", plotRedurcer),
         EffectsModule.forFeature([NgrxCreateApiPlotEffects])

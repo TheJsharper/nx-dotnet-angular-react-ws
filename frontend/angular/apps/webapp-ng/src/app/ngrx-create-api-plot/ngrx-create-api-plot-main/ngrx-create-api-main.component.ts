@@ -1,43 +1,35 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
-import { Data, newPlot } from 'plotly.js-dist-min';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from "@angular/core";
+import { Data, PlotlyHTMLElement, newPlot } from 'plotly.js-dist-min';
 import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selectors";
 import { Store } from "@ngrx/store";
 import { PlotModel } from "../store/ngrx-create-api-plot.models";
-import { tap } from "rxjs";
+import { Observable, map, tap } from "rxjs";
+import { NgrxCreateApliPlotService } from "../services/ngrx-create-api-plot.service";
 
 @Component({
     templateUrl: './ngrx-create-api-main.component.html'
 })
-export class NgrxCreateApiMainComponent implements AfterViewInit {
+export class NgrxCreateApiMainComponent implements OnInit, AfterViewInit {
 
 
-
-    constructor(private ngrxCreateApiPlotSelector: NgrxCreateApiPlotSelector, private store: Store<PlotModel>) { }
     private myDiv?: ElementRef;
+
+    plot$?: Observable<Promise<PlotlyHTMLElement>>;
 
     @ViewChild('myDiv') set content(content: ElementRef) {
         this.myDiv = content;
     }
+
+    constructor(private ngrxCreateApliPlotService: NgrxCreateApliPlotService, private ngrxCreateApiPlotSelector: NgrxCreateApiPlotSelector, private store: Store<PlotModel>, private el: ElementRef, private renderer: Renderer2) { }
+    ngOnInit(): void {
+        this.plot$ = this.ngrxCreateApliPlotService.getPlotInstance();
+    }
+
     ngAfterViewInit(): void {
-        this.store.select(this.ngrxCreateApiPlotSelector.getPlotFeatureSelector()).subscribe(console.log)
-        this.store.select(this.ngrxCreateApiPlotSelector.getPlotDataState()).subscribe(console.log)
-        this.store.select(this.ngrxCreateApiPlotSelector.getPlotSelctedDataState()).subscribe(console.log)
-
-
-
         this.store.select(this.ngrxCreateApiPlotSelector.getPlotDataState()).pipe(tap(
-            async (data2: Array<Partial<Data>>) => {
+            async (data: Array<Partial<Data>>) => {
 
-                const xArray = ["Italy", "France", "Spain", "USA", "Argentina"];
-                const yArray = [55, 49, 44, 24, 15];
 
-                const data: Array<Partial<Data>> = [{
-                    x: xArray,
-                    y: yArray,
-                    type: "bar",
-                    orientation: "v",
-                    marker: { color: "rgba(0,0,255)" }
-                }];
                 const layout = {
                     title: 'Responsive to window\'s size!',
                     font: { size: 18 }
@@ -45,7 +37,7 @@ export class NgrxCreateApiMainComponent implements AfterViewInit {
 
                 const config = { responsive: true }
 
-                await newPlot(this.myDiv?.nativeElement, data2, layout, config);
+                await newPlot(this.myDiv?.nativeElement, data, layout, config);
             }
         )).subscribe();
 
