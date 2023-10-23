@@ -33,17 +33,17 @@ export class NgrxCreateApliPlotService {
             y: yArray,
             type: "bar",
             orientation: "v",
-        
+
             // marker: { color: "rgba(0,0,255)" }
         }];
 
         const plotModel: PlotModel = {
-            data, selected: data[0]
+            data, selected: { key: xArray[0], value: yArray[0] }
         }
 
         return of(plotModel);
     }
-   private getPlotInstance(parent: ElementRef): Observable<Promise<PlotlyHTMLElement>> {
+    private getPlotInstance(parent: ElementRef): Observable<Promise<PlotlyHTMLElement>> {
         const result = this.store.select(this.ngrxCreateApiPlotSelector.getPlotDataState()).pipe(map(
             async (data: Array<Partial<Data>>) => {
 
@@ -54,8 +54,11 @@ export class NgrxCreateApliPlotService {
                 };
 
                 const config = { responsive: true }
+
                 const root = this.renderer.createElement("div");
+
                 this.renderer.appendChild(parent.nativeElement, root);
+
                 return await newPlot(root, data, layout, config);
             }
         ));

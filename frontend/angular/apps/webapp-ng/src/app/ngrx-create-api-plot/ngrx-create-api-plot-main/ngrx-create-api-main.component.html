@@ -1,3 +1,9 @@
-<ng-container *ngIf="(plot$|async) as p">
-    <div *ngrxCreateApiMain="p "></div>
-</ng-container>
+<div *ngIf="(plot$|async) as p">
+
+    <ngrx-create-api-plot-menu-bar [plotInstance]="p ">
+
+    </ngrx-create-api-plot-menu-bar>
+    <ng-container>
+        <div *ngrxCreateApiMain="p "></div>
+    </ng-container>
+</div>
