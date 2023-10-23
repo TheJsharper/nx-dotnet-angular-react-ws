@@ -8,7 +8,17 @@ import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selector
 @Injectable()
 export class NgrxCreateApliPlotService {
 
+    private plotlyElementInstance$?: Observable<Promise<PlotlyHTMLElement>>;
+
+    getPlotlyElementInstance$(parent: ElementRef): Observable<Promise<PlotlyHTMLElement>> {
+        if (!this.plotlyElementInstance$) {
+            this.plotlyElementInstance$ = this.getPlotInstance(parent);
+        }
+        return this.plotlyElementInstance$;
+    }
+
     private renderer: Renderer2;
+
     constructor(rendererFactory: RendererFactory2, private ngrxCreateApiPlotSelector: NgrxCreateApiPlotSelector, private store: Store<PlotModel>,) {
         this.renderer = rendererFactory.createRenderer(null, null);
     }
@@ -23,6 +33,7 @@ export class NgrxCreateApliPlotService {
             y: yArray,
             type: "bar",
             orientation: "v",
+        
             // marker: { color: "rgba(0,0,255)" }
         }];
 
@@ -32,7 +43,7 @@ export class NgrxCreateApliPlotService {
 
         return of(plotModel);
     }
-    getPlotInstance(parent: ElementRef): Observable<Promise<PlotlyHTMLElement>> {
+   private getPlotInstance(parent: ElementRef): Observable<Promise<PlotlyHTMLElement>> {
         const result = this.store.select(this.ngrxCreateApiPlotSelector.getPlotDataState()).pipe(map(
             async (data: Array<Partial<Data>>) => {
 
