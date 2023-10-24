@@ -1,8 +1,8 @@
 
-import { Data } from 'plotly.js-dist-min';
+import { Data, PlotData } from 'plotly.js-dist-min';
 
 export interface PlotModel {
-    data: Array<Partial<Data>>
+    data: Array<Partial<PlotData>>
     selected: Selection;
 }
 export interface Selection {

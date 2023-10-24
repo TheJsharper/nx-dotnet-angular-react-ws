@@ -1,6 +1,6 @@
 import { ElementRef, Injectable, Renderer2, RendererFactory2 } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { Data, PlotlyHTMLElement, newPlot } from 'plotly.js-dist-min';
+import { Config, Data, Layout, PlotData, PlotlyHTMLElement, newPlot } from 'plotly.js-dist-min';
 import { Observable, map, of } from "rxjs";
 import { PlotModel } from "../store/ngrx-create-api-plot.models";
 import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selectors";
@@ -28,7 +28,7 @@ export class NgrxCreateApliPlotService {
         const xArray = ["Italy", "France", "Spain", "USA", "Argentina"];
         const yArray = [55, 49, 44, 24, 15];
 
-        const data: Array<Partial<Data>> = [{
+        const data: Array<Partial<PlotData>> = [{
             x: xArray,
             y: yArray,
             type: "bar",
@@ -48,12 +48,13 @@ export class NgrxCreateApliPlotService {
             async (data: Array<Partial<Data>>) => {
 
 
-                const layout = {
+                const layout:Partial<Layout> = {
                     title: 'Responsive to window\'s size!',
-                    font: { size: 18 }
+                    font: { size: 18 },
+                    
                 };
 
-                const config = { responsive: true }
+                const config:Partial<Config> = { responsive: true }
 
                 const root = this.renderer.createElement("div");
 

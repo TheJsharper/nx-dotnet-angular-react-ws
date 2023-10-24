@@ -99,6 +99,7 @@
     "@swc/helpers": "~0.5.0",
     "axios": "^1.0.0",
     "bootstrap": "^5.3.2",
+    "bootstrap-icons": "^1.11.1",
     "plotly.js": "^2.26.2",
     "plotly.js-dist": "^2.26.2",
     "plotly.js-dist-min": "^2.26.2",
