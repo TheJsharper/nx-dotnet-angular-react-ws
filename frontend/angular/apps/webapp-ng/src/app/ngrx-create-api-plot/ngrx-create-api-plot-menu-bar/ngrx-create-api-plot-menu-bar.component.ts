@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { PlotMouseEvent, PlotlyHTMLElement } from "plotly.js";
 import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selectors";
-import { PlotModel } from "../store/ngrx-create-api-plot.models";
+import { PlotModel, initialPlotModel } from "../store/ngrx-create-api-plot.models";
 import { Store } from "@ngrx/store";
-import { Observable, map, take } from "rxjs";
+import { Observable, first, last, map, take } from "rxjs";
 import { Selection } from '../store/ngrx-create-api-plot.models';
 import { FormControl, FormGroup } from "@angular/forms";
 import { SelectedPlotDataAction } from "../store/ngrx-create-api-plot.actions";
@@ -17,7 +17,9 @@ export class NgrxCreateApiMenubarComponent implements OnInit {
     @Input() plotInstance?: Promise<PlotlyHTMLElement>;
     selected: Observable<Selection>;
     formGroup: FormGroup;
-    lastSelectedKey: string = "";
+    selection: Selection = initialPlotModel.selected;
+    coordenateXY: Array<{ x: string; y: number; }> = []
+
 
 
     constructor(private ngrxCreateApiPlotSelector: NgrxCreateApiPlotSelector,
@@ -30,11 +32,11 @@ export class NgrxCreateApiMenubarComponent implements OnInit {
     }
 
     async ngOnInit(): Promise<void> {
-        this.store.select(this.ngrxCreateApiPlotSelector.getPlotArrayXY()).subscribe(console.log)
+        this.store.select(this.ngrxCreateApiPlotSelector.getPlotArrayXY()).pipe(first()).subscribe(
+            (next) => this.coordenateXY = next)
         this.store.select(this.ngrxCreateApiPlotSelector.getPlotSelctedDataState()).subscribe((value) => {
 
-            //this.store.dispatch(SelectedPlotDataAction({ key: value.key }))
-            this.lastSelectedKey = value.key;
+            this.selection = value;
         });
 
         this.selected.subscribe(value => {
@@ -50,18 +52,24 @@ export class NgrxCreateApiMenubarComponent implements OnInit {
 
 
     }
-    incrementLeft(): void {
-        /*    this.store.select(this.ngrxCreateApiPlotSelector.getPlotSelctedDataState()).pipe(take(2)).subscribe((value)=>{
-   
-               this.store.dispatch(SelectedPlotDataAction({ key: value.key }))
-           }); */
-        
-           this.store.dispatch(SelectedPlotDataAction({ key: this.lastSelectedKey }))
+    navegateToNextLeft(): void {
+        if (0 <= this.selection.index - 1) {
+            const key = this.coordenateXY[this.selection.index - 1].x;
+            this.store.dispatch(SelectedPlotDataAction({ key }))
+        }
     }
-    incrementRight(): void {
-        /*   this.store.select(this.ngrxCreateApiPlotSelector.getPlotSelctedDataState()).subscribe((value)=>{
-  
-              this.store.dispatch(SelectedPlotDataAction({ key: value.key }))
-          }); */
+    navegateToNextRight(): void {
+        if (0 <= this.selection.index + 1 && this.selection.index + 1 < this.coordenateXY.length) {
+            const key = this.coordenateXY[this.selection.index + 1].x;
+            this.store.dispatch(SelectedPlotDataAction({ key }));
+        }
+    }
+    navegateToFirstElement(): void {
+        const key = this.coordenateXY[0].x;
+        this.store.dispatch(SelectedPlotDataAction({ key }));
+    }
+    navegateToLastElement(): void {
+        const key = this.coordenateXY[this.coordenateXY.length - 1].x;
+        this.store.dispatch(SelectedPlotDataAction({ key }));
     }
 }

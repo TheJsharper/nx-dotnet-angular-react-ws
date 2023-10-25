@@ -11,7 +11,7 @@ export const plotRedurcer = createReducer<PlotModel, LOADED_ACTION_ALIAS_TYPING>
 
             const key: string = <string>state.data[0].x![index];
             const value: number = <number>state.data[0].y![index];
-            const selected: Selection = { key, value };
+            const selected: Selection = { key, value, index };
             return { ...state, selected };
         }
         return { ...state };

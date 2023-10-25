@@ -1,4 +1,4 @@
-import { ElementRef, Injectable, Renderer2, RendererFactory2 } from "@angular/core";
+import { ElementRef, Injectable, RendererFactory2 } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Config, Data, Layout, PlotData, PlotlyHTMLElement, newPlot } from 'plotly.js-dist-min';
 import { Observable, map, of } from "rxjs";
@@ -8,19 +8,10 @@ import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selector
 @Injectable()
 export class NgrxCreateApliPlotService {
 
-    private plotlyElementInstance$?: Observable<Promise<PlotlyHTMLElement>>;
 
-    getPlotlyElementInstance$(parent: ElementRef): Observable<Promise<PlotlyHTMLElement>> {
-        if (!this.plotlyElementInstance$) {
-            this.plotlyElementInstance$ = this.getPlotInstance(parent);
-        }
-        return this.plotlyElementInstance$;
-    }
 
-    private renderer: Renderer2;
+    constructor(private ngrxCreateApiPlotSelector: NgrxCreateApiPlotSelector, private store: Store<PlotModel>,) {
 
-    constructor(rendererFactory: RendererFactory2, private ngrxCreateApiPlotSelector: NgrxCreateApiPlotSelector, private store: Store<PlotModel>,) {
-        this.renderer = rendererFactory.createRenderer(null, null);
     }
 
     getPlotData(): Observable<PlotModel> {
@@ -38,29 +29,27 @@ export class NgrxCreateApliPlotService {
         }];
 
         const plotModel: PlotModel = {
-            data, selected: { key: xArray[0], value: yArray[0] }
+            data, selected: { key: xArray[0], value: yArray[0], index:0 }
         }
 
         return of(plotModel);
     }
-    private getPlotInstance(parent: ElementRef): Observable<Promise<PlotlyHTMLElement>> {
+    public getPlotInstance(parent: ElementRef): Observable<Promise<PlotlyHTMLElement>> {
         const result = this.store.select(this.ngrxCreateApiPlotSelector.getPlotDataState()).pipe(map(
             async (data: Array<Partial<Data>>) => {
 
 
-                const layout:Partial<Layout> = {
+                const layout: Partial<Layout> = {
                     title: 'Responsive to window\'s size!',
                     font: { size: 18 },
-                    
+
                 };
 
-                const config:Partial<Config> = { responsive: true }
+                const config: Partial<Config> = { responsive: true }
 
-                const root = this.renderer.createElement("div");
 
-                this.renderer.appendChild(parent.nativeElement, root);
 
-                return await newPlot(root, data, layout, config);
+                return await newPlot(parent.nativeElement, data, layout, config);
             }
         ));
         return result;

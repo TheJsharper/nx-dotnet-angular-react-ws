@@ -21,11 +21,12 @@ export class NgrxCreateApiPlotSelector {
         return createSelector(this.getPlotFeatureSelector(), (state: PlotModel) => state.selected)
     }
 
-    getPlotArrayXY(): MemoizedSelector<PlotModel, { x: Array<string>, y: Array<number> }> {
+    getPlotArrayXY(): MemoizedSelector<PlotModel, Array<{ x: string; y: number; }>> {
         return createSelector(this.getPlotFeatureSelector(), (state: PlotModel) => {
             const x = <string[]>state.data[0].x;
             const y = <number[]>state.data[0].y;
-            return { x, y };
+            const values = x.map((key: string, index: number) => ({ x: key, y: y[index] }));
+            return values;
         })
     }
 }

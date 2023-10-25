@@ -15,7 +15,7 @@ export class NgrxCreateApiMainComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.plot$ = this.ngrxCreateApliPlotService.getPlotlyElementInstance$(this.el);
+        this.plot$ = this.ngrxCreateApliPlotService.getPlotInstance(this.el);
     }
 
 }
