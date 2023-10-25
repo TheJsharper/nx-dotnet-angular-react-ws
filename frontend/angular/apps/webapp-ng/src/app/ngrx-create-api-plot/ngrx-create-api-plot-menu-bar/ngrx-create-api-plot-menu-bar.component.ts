@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Store } from "@ngrx/store";
 import { PlotMouseEvent, PlotlyHTMLElement } from "plotly.js";
@@ -11,7 +11,7 @@ import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selector
     selector: 'ngrx-create-api-plot-menu-bar',
     templateUrl: './ngrx-create-api-plot-menu-bar.component.html'
 })
-export class NgrxCreateApiMenubarComponent implements OnInit {
+export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
     @Input() plotInstance?: Promise<PlotlyHTMLElement>;
 
@@ -43,6 +43,7 @@ export class NgrxCreateApiMenubarComponent implements OnInit {
             value: new FormControl<number>(-1)
         })
     }
+   
 
     async ngOnInit(): Promise<void> {
         this.store.select(this.ngrxCreateApiPlotSelector.getPlotArrayXY())
@@ -91,5 +92,12 @@ export class NgrxCreateApiMenubarComponent implements OnInit {
         const key = this.coordenateXY[this.coordenateXY.length - 1].x;
         this.store.dispatch(SelectedPlotDataAction({ key }));
 
+    }
+    ngOnDestroy(): void {
+      if(!this.signalDestroyer$.closed){
+        this.signalDestroyer$.next();
+        this.signalDestroyer$.complete();
+        this.signalDestroyer$.unsubscribe();
+      }
     }
 }
