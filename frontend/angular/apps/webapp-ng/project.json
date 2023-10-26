@@ -11,7 +11,8 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "allowedCommonJsDependencies": [
-          "plotly.js-dist-min"
+          "plotly.js-dist-min",
+          "lodash"
         ],
         "outputPath": "dist/frontend/angular/apps/webapp-ng",
         "index": "frontend/angular/apps/webapp-ng/src/index.html",
