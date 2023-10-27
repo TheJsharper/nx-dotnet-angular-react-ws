@@ -42,12 +42,30 @@ export class NgrxCreateApliPlotService {
 
 
                 const layout: Partial<Layout> = {
+
+                   
                     font: { size: 18 },
+                    scene:{
+                        camera:{
+                            eye:{
+                                x: 2,
+                                y:2,
+                                z:2
+                            }
+                        },
+                        aspectmode: "manual",
+                        aspectratio:{
+    
+                            x:2,
+                            y:3
+                        }
+                    }
 
                 };
 
                 const config: Partial<Config> = { responsive: true }
-                const newData = data.map((value: Partial<Data>) => cloneDeep(value))
+                const newData = data.map((value: Partial<Data>) => cloneDeep(value));
+                console.log("DATA", data);
 
                 return await newPlot(parent.nativeElement, newData, layout, config);
             }

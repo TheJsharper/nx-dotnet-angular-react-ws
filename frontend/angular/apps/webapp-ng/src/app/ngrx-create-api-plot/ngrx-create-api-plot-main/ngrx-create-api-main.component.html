@@ -1,6 +1,6 @@
 <div *ngIf="(plot$|async) as p">
 
-    <ngrx-create-api-plot-menu-bar [plotInstance]="p ">
+    <ngrx-create-api-plot-menu-bar [plotInstance]="p "[root]="root">
 
     </ngrx-create-api-plot-menu-bar>
     <ng-container>

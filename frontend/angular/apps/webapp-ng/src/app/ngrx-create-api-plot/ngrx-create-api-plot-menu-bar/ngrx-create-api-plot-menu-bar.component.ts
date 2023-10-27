@@ -1,7 +1,7 @@
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Component, ElementRef, Input, NgZone, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Store } from "@ngrx/store";
-import { PlotMouseEvent, PlotlyHTMLElement } from "plotly.js";
+import { PlotMouseEvent, PlotRelayoutEvent, PlotlyHTMLElement, relayout } from "plotly.js-dist-min";
 import { Observable, Subject, first, takeUntil, tap } from "rxjs";
 import { SelectedPlotDataAction } from "../store/ngrx-create-api-plot.actions";
 import { PlotModel, Selection, initialPlotModel } from "../store/ngrx-create-api-plot.models";
@@ -13,7 +13,9 @@ import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selector
 })
 export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
+
     @Input() plotInstance?: Promise<PlotlyHTMLElement>;
+    @Input("root") root?: ElementRef;
 
     formGroup: FormGroup;
 
@@ -28,7 +30,7 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
 
     constructor(private ngrxCreateApiPlotSelector: NgrxCreateApiPlotSelector,
-        private store: Store<PlotModel>) {
+        private store: Store<PlotModel>, private zone: NgZone) {
 
         this.coordenateXY = [];
 
@@ -43,7 +45,7 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
             value: new FormControl<number>(-1)
         })
     }
-   
+
 
     async ngOnInit(): Promise<void> {
         this.store.select(this.ngrxCreateApiPlotSelector.getPlotArrayXY())
@@ -61,11 +63,12 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
 
         (await this.plotInstance)?.on('plotly_click', (event: PlotMouseEvent) => {
-           
+
             const key = <string>event.points[0].x;
             this.store.dispatch(SelectedPlotDataAction({ key }))
         });
 
+        (await this.plotInstance)?.on("plotly_relayout", this.monitorRelayout)
 
     }
     navegateToNextLeft(): void {
@@ -93,11 +96,72 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
         this.store.dispatch(SelectedPlotDataAction({ key }));
 
     }
+    async monitorRelayout(event: PlotRelayoutEvent): Promise<void> {
+        console.log("===>", event);
+    }
+
+    private minusX = 0.5;
+    private minusY = 5;
+   
+    async zoomMinusX(): Promise<void> {
+        this.zone.runOutsideAngular(() => {
+
+            if (this.root)
+                relayout(this.root.nativeElement, {
+                    "xaxis.range[0]": this.minusX,
+                    "xaxis.range[1]": this.minusY
+                })
+            this.minusX -= 1;
+            this.minusY += 1;
+        })
+    }
+    private plusX = 0.5;
+    private plusY = 5;
+    async zoomPlusX(): Promise<void> {
+        this.zone.runOutsideAngular(() => {
+
+            if (this.root)
+                relayout(this.root.nativeElement, {
+                    "xaxis.range[0]": this.plusX,
+                    "xaxis.range[1]": this.plusY
+                })
+            this.plusX += 1;
+            this.plusY -= 1;
+        })
+    }
+    private minusXY = 0.5;
+    private minusYY = 5;
+    async zoomMinusY(): Promise<void> {
+        this.zone.runOutsideAngular(() => {
+
+            if (this.root)
+                relayout(this.root.nativeElement, {
+                    "yaxis.range[0]": this.minusXY,
+                    "yaxis.range[1]": this.minusYY
+                })
+            this.minusXY -= 1;
+            this.minusYY += 1;
+        })
+    }
+    private plusXY = 0.5;
+    private plusYY = 5;
+    async zoomPlusY(): Promise<void> {
+        this.zone.runOutsideAngular(() => {
+
+            if (this.root)
+                relayout(this.root.nativeElement, {
+                    "yaxis.range[0]": this.plusXY,
+                    "yaxis.range[1]": this.plusYY
+                })
+            this.plusXY += 1;
+            this.plusYY -= 1;
+        })
+    }
     ngOnDestroy(): void {
-      if(!this.signalDestroyer$.closed){
-        this.signalDestroyer$.next();
-        this.signalDestroyer$.complete();
-        this.signalDestroyer$.unsubscribe();
-      }
+        if (!this.signalDestroyer$.closed) {
+            this.signalDestroyer$.next();
+            this.signalDestroyer$.complete();
+            this.signalDestroyer$.unsubscribe();
+        }
     }
 }
