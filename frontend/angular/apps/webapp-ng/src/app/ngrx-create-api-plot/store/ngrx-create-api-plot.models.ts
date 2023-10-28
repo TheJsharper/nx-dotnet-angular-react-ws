@@ -1,9 +1,10 @@
 
-import { PlotData } from 'plotly.js-dist-min';
+import { Layout, PlotData } from 'plotly.js-dist-min';
 
 export interface PlotModel {
     data: Array<Partial<PlotData>>
     selected: Selection;
+    layout:Partial<Layout>;
 }
 export interface Selection {
     key: string;
@@ -11,4 +12,4 @@ export interface Selection {
     index:number;
 }
 
-export const initialPlotModel: PlotModel = { data: [], selected: {key:"", value:0, index:0} }
+export const initialPlotModel: PlotModel = { data: [], selected: {key:"", value:0, index:0}, layout:{} }

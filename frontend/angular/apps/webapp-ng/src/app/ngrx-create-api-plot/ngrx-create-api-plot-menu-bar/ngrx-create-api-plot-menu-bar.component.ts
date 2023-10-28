@@ -68,7 +68,10 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
             this.store.dispatch(SelectedPlotDataAction({ key }))
         });
 
-        (await this.plotInstance)?.on("plotly_relayout", this.monitorRelayout)
+        (await this.plotInstance)?.on("plotly_relayout", this.monitorRelayout);
+        (await this.plotInstance)?.on("plotly_event", (data)=>{console.log("DATA EVENT", data)});
+        (await this.plotInstance)?.on("plotly_beforeplot", (data)=>{console.log(" BEFORE PLOT DATA EVENT", data); return true;});
+        console.log("AFTER DATA",(await this.plotInstance)?.layout)
 
     }
     navegateToNextLeft(): void {

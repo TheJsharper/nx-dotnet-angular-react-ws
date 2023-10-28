@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { LOADED_ACTION_ALIAS_TYPING, LoadedPlotDataAction, SelectedPlotDataAction } from './ngrx-create-api-plot.actions';
+import { LOADED_ACTION_ALIAS_TYPING, LoadedLayoutDataAction, LoadedPlotDataAction, SelectedPlotDataAction } from './ngrx-create-api-plot.actions';
 import { PlotModel, initialPlotModel, Selection } from "./ngrx-create-api-plot.models";
 
 export const plotRedurcer = createReducer<PlotModel, LOADED_ACTION_ALIAS_TYPING>(initialPlotModel,
@@ -16,5 +16,6 @@ export const plotRedurcer = createReducer<PlotModel, LOADED_ACTION_ALIAS_TYPING>
         }
         return { ...state };
     }),
+    on(LoadedLayoutDataAction, (state: PlotModel, action) => ({ ...state, layout: action.layout }))
 
 );

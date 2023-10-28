@@ -31,7 +31,8 @@ export class NgrxCreateApliPlotService {
         }];
 
         const plotModel: PlotModel = {
-            data, selected: { key: xArray[0], value: yArray[0], index: 0 }
+            data, selected: { key: xArray[0], value: yArray[0], index: 0 },
+            layout:{}
         }
 
         return of(plotModel);
@@ -43,21 +44,21 @@ export class NgrxCreateApliPlotService {
 
                 const layout: Partial<Layout> = {
 
-                   
+
                     font: { size: 18 },
-                    scene:{
-                        camera:{
-                            eye:{
+                    scene: {
+                        camera: {
+                            eye: {
                                 x: 2,
-                                y:2,
-                                z:2
+                                y: 2,
+                                z: 2
                             }
                         },
                         aspectmode: "manual",
-                        aspectratio:{
-    
-                            x:2,
-                            y:3
+                        aspectratio: {
+
+                            x: 2,
+                            y: 3
                         }
                     }
 
@@ -65,7 +66,7 @@ export class NgrxCreateApliPlotService {
 
                 const config: Partial<Config> = { responsive: true }
                 const newData = data.map((value: Partial<Data>) => cloneDeep(value));
-                console.log("DATA", data);
+        
 
                 return await newPlot(parent.nativeElement, newData, layout, config);
             }
