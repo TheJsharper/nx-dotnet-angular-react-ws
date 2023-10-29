@@ -1,13 +1,15 @@
-import { Component, ElementRef, NgZone, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit } from "@angular/core";
+import { Store } from "@ngrx/store";
 import { PlotlyHTMLElement } from 'plotly.js-dist-min';
 import { Observable, tap } from "rxjs";
 import { NgrxCreateApliPlotService } from "../services/ngrx-create-api-plot.service";
-import { Store } from "@ngrx/store";
-import { PlotModel } from "../store/ngrx-create-api-plot.models";
 import { LoadedLayoutDataAction } from "../store/ngrx-create-api-plot.actions";
+import { PlotModel } from "../store/ngrx-create-api-plot.models";
 
 @Component({
-    templateUrl: './ngrx-create-api-main.component.html'
+    selector: 'main',
+    templateUrl: './ngrx-create-api-main.component.html',
+    styleUrls:['./ngrx-create-api-main.component.scss']
 })
 export class NgrxCreateApiMainComponent implements OnInit {
 
@@ -25,7 +27,7 @@ export class NgrxCreateApiMainComponent implements OnInit {
             .pipe(tap(async (plotlyEl: Promise<PlotlyHTMLElement>) => {
                 const layout = (await plotlyEl).layout;
                 console.log("LAYOUT", layout)
-               // this.store.dispatch(LoadedLayoutDataAction({ layout }))
+                this.store.dispatch(LoadedLayoutDataAction({ layout }))
             }));
     }
 

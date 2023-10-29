@@ -43,7 +43,7 @@ export class NgrxCreateApliPlotService {
 
 
                 const layout: Partial<Layout> = {
-
+                    clickmode: "event+select",
 
                     font: { size: 18 },
                     scene: {
