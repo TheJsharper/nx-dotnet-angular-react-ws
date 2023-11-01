@@ -27,7 +27,7 @@ export class NgrxCreateApiMainComponent implements OnInit {
             .pipe(tap(async (plotlyEl: Promise<PlotlyHTMLElement>) => {
                 const layout = (await plotlyEl).layout;
                 console.log("LAYOUT", layout)
-                this.store.dispatch(LoadedLayoutDataAction({ layout }))
+             //   this.store.dispatch(LoadedLayoutDataAction({ layout }))
             }));
     }
 

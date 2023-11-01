@@ -1,17 +1,5 @@
-<div [formGroup]="formGroup">
-    <div class="mb-3 row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">Country</label>
-        <div class="col-sm-10">
-            <input type="text" [formControlName]="'key'" readonly class="form-control-plaintext" id="staticEmail"
-                value="email@example.com">
-        </div>
-    </div>
-    <div class="mb-3 row">
-        <label for="inputPassword" class="col-sm-2 col-form-label">Value</label>
-        <div class="col-sm-10">
-            <input type="number" [formControlName]="'value'" class="form-control" id="inputPassword">
-        </div>
-    </div>
+<div>
+
     <div class="row">
 
         <div class="col-2">
@@ -25,6 +13,7 @@
                             d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
                     </svg>
                 </button>
+
                 <button type="button" class="btn btn-default btn-sm" (click)="navegateToNextLeft()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-chevron-left" viewBox="0 0 16 16">
@@ -55,7 +44,7 @@
                     <button type="button" class="btn btn-default btn-sm" (click)="zoomMinusX()">
                         -x
                     </button>
-                    <button type="button" class="btn btn-default btn-sm"  (click)="zoomPlusX()">
+                    <button type="button" class="btn btn-default btn-sm" (click)="zoomPlusX()">
                         +x
                     </button>
                     <button type="button" class="btn btn-default btn-sm" (click)="zoomMinusY()">
