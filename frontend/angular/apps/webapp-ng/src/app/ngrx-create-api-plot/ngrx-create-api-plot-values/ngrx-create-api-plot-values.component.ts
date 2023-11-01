@@ -54,4 +54,11 @@ export class NgrxCreateApiPlotValuesComponent implements OnInit {
         });
 
     }
+    ngOnDestroy(): void {
+        if (!this.signalDestroyer$.closed) {
+            this.signalDestroyer$.next();
+            this.signalDestroyer$.complete();
+            this.signalDestroyer$.unsubscribe();
+        }
+    }
 }

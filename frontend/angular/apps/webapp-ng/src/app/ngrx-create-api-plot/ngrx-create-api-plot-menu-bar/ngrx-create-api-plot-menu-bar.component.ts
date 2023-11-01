@@ -19,7 +19,6 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
     @Input("root") root?: ElementRef;
 
-    private selected: Observable<Selection>;
 
     private selection: Selection;
 
@@ -31,16 +30,13 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
 
 
-    constructor(private ngrxCreateApiPlotSelector: NgrxCreateApiPlotSelector,
-        private store: Store<PlotModel>, private zone: NgZone) {
+    constructor(     private zone: NgZone) {
 
         this.coordenateXY = [];
 
         this.selection = initialPlotModel.selected;
 
         this.signalDestroyer$ = new Subject<void>();
-
-        this.selected = this.store.select(this.ngrxCreateApiPlotSelector.getPlotSelctedDataState());
 
 
     }
@@ -52,18 +48,7 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
         this.currentLayout = (await this.plotInstance)?.layout;
         this.minusX = <number>this.currentLayout!["xaxis.range[0]"];
-        this.minusY = <number>this.currentLayout!["xaxis.range[1]"]
-
-        this.store.select(this.ngrxCreateApiPlotSelector.getPlotArrayXY())
-            .pipe(takeUntil(this.signalDestroyer$), first(), tap(next => this.coordenateXY = next)).subscribe()
-
-        this.store.select(this.ngrxCreateApiPlotSelector.getPlotSelctedDataState())
-            .pipe(takeUntil(this.signalDestroyer$), tap((value) => this.selection = value))
-            .subscribe();
-
-
-
-
+        this.minusY = <number>this.currentLayout!["xaxis.range[1]"];
 
         (await this.plotInstance)?.on("plotly_relayout", this.monitorRelayout);
         (await this.plotInstance)?.on("plotly_event", (data) => { console.log("DATA EVENT", data) });
@@ -73,31 +58,7 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
         console.log("AFTER DATA", (await this.plotInstance)?.layout)
 
     }
-    navegateToNextLeft(): void {
 
-        if (0 <= this.selection.index - 1) {
-            const key = this.coordenateXY[this.selection.index - 1].x;
-            this.store.dispatch(SelectedPlotDataAction({ key }))
-        }
-    }
-    navegateToNextRight(): void {
-
-        if (0 <= this.selection.index + 1 && this.selection.index + 1 < this.coordenateXY.length) {
-            const key = this.coordenateXY[this.selection.index + 1].x;
-            this.store.dispatch(SelectedPlotDataAction({ key }));
-        }
-    }
-    navegateToFirstElement(): void {
-
-        const key = this.coordenateXY[0].x;
-        this.store.dispatch(SelectedPlotDataAction({ key }));
-    }
-    navegateToLastElement(): void {
-
-        const key = this.coordenateXY[this.coordenateXY.length - 1].x;
-        this.store.dispatch(SelectedPlotDataAction({ key }));
-
-    }
     async monitorRelayout(event: PlotRelayoutEvent): Promise<void> {
         console.log("===>", event);
     }

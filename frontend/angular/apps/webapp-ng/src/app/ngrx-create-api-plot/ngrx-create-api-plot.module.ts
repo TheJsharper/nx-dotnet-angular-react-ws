@@ -12,6 +12,7 @@ import { NgrxCreateApiMainDirective } from "./ngrx-create-api-plot-main/ngrx-cre
 import { CommonModule } from "@angular/common";
 import {NgrxCreateApiMenubarModule} from './ngrx-create-api-plot-menu-bar/ngrx-create-api-plot-menu-bar.module';
 import { NgrxCreateApiPlotValuesComponent } from "./ngrx-create-api-plot-values/ngrx-create-api-plot-values.component";
+import { NgrxCreateApiPlotNavComponent } from "./ngrx-create-api-plot-nav/ngrx-create-api-plot-nav.component";
 
 const routes: Routes = [
     {
@@ -29,7 +30,8 @@ const routes: Routes = [
         StoreModule.forFeature("plot", plotRedurcer),
         EffectsModule.forFeature([NgrxCreateApiPlotEffects]),
         NgrxCreateApiMenubarModule,
-        NgrxCreateApiPlotValuesComponent
+        NgrxCreateApiPlotValuesComponent,
+        NgrxCreateApiPlotNavComponent
     ],
     exports: [],
     providers: [NgrxCreateApliPlotService, NgrxCreateApiPlotEffects, NgrxCreateApiPlotSelector]

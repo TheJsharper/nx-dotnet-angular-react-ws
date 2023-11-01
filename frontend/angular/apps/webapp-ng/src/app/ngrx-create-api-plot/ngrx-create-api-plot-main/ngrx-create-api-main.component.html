@@ -1,6 +1,7 @@
 <div *ngIf="(plot$|async) as p">
 
     <nrgx-create-api-plot-values [plotInstance]="p"></nrgx-create-api-plot-values>
+    <ngrx-create-api-plot-nav></ngrx-create-api-plot-nav>
     <ngrx-create-api-plot-menu-bar [plotInstance]="p "[root]="root">
 
     </ngrx-create-api-plot-menu-bar>
