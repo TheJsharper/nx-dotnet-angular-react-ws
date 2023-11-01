@@ -1,12 +1,7 @@
 import { Component, ElementRef, Input, NgZone, OnDestroy, OnInit } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
-import { Store } from "@ngrx/store";
-import { Layout, PlotMouseEvent, PlotRelayoutEvent, PlotlyHTMLElement, relayout } from "plotly.js-dist-min";
-import { Observable, Subject, first, takeUntil, tap } from "rxjs";
-import { SelectedPlotDataAction } from "../store/ngrx-create-api-plot.actions";
-import { PlotModel, Selection, initialPlotModel } from "../store/ngrx-create-api-plot.models";
-import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selectors";
 import { cloneDeep } from "lodash";
+import { Layout, PlotRelayoutEvent, PlotlyHTMLElement, relayout } from "plotly.js-dist-min";
+import { Subject } from "rxjs";
 
 @Component({
     selector: 'ngrx-create-api-plot-menu-bar',
@@ -20,9 +15,6 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
     @Input("root") root?: ElementRef;
 
 
-    private selection: Selection;
-
-    private coordenateXY: Array<{ x: string; y: number; }>;
 
     private signalDestroyer$: Subject<void>;
 
@@ -30,15 +22,9 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
 
 
-    constructor(     private zone: NgZone) {
-
-        this.coordenateXY = [];
-
-        this.selection = initialPlotModel.selected;
+    constructor(private zone: NgZone) {
 
         this.signalDestroyer$ = new Subject<void>();
-
-
     }
 
     private minusX?: number;
