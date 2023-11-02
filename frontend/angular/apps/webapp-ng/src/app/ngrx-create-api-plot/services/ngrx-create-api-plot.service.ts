@@ -3,8 +3,9 @@ import { Store } from "@ngrx/store";
 import { cloneDeep } from 'lodash';
 import { Config, Data, Layout, PlotData, PlotlyHTMLElement, newPlot } from 'plotly.js-dist-min';
 import { Observable, map, of } from "rxjs";
-import { PlotModel } from "../store/ngrx-create-api-plot.models";
+import { Axis, PlotModel } from "../store/ngrx-create-api-plot.models";
 import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selectors";
+import { LoadedLayoutDataAction } from "../store/ngrx-create-api-plot.actions";
 
 @Injectable()
 export class NgrxCreateApliPlotService {
@@ -32,7 +33,7 @@ export class NgrxCreateApliPlotService {
 
         const plotModel: PlotModel = {
             data, selected: { key: xArray[0], value: yArray[0], index: 0 },
-            layout:{}
+            layout: {}
         }
 
         return of(plotModel);
@@ -66,9 +67,15 @@ export class NgrxCreateApliPlotService {
 
                 const config: Partial<Config> = { responsive: true }
                 const newData = data.map((value: Partial<Data>) => cloneDeep(value));
-        
 
-                return await newPlot(parent.nativeElement, newData, layout, config);
+
+                const el = await newPlot(parent.nativeElement, newData, layout, config);
+                if (el?.layout?.xaxis?.range && el?.layout?.yaxis?.range) {
+                    const xaxis: [number, number] = [el.layout.xaxis.range[0], el.layout.xaxis.range[1]];
+                    const yaxis: [number, number] = [el.layout.yaxis.range[0], el.layout.yaxis.range[1]];
+                    this.store.dispatch(LoadedLayoutDataAction({ layout: { xaxis, yaxis } }))
+                }
+                return el;
             }
         ));
         return result;

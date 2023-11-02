@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { MemoizedSelector, createFeatureSelector, createSelector } from "@ngrx/store";
-import { PlotModel } from "./ngrx-create-api-plot.models";
+import { Axis, PlotModel } from "./ngrx-create-api-plot.models";
 import { PlotData } from 'plotly.js-dist-min';
 import { Selection } from './ngrx-create-api-plot.models';
 
@@ -19,6 +19,10 @@ export class NgrxCreateApiPlotSelector {
 
     getPlotSelctedDataState(): MemoizedSelector<PlotModel, Selection> {
         return createSelector(this.getPlotFeatureSelector(), (state: PlotModel) => state.selected)
+    }
+    
+    getPlotLayoutState(): MemoizedSelector<PlotModel, Partial<Axis>> {
+        return createSelector(this.getPlotFeatureSelector(), (state: PlotModel) => state.layout)
     }
 
     getPlotArrayXY(): MemoizedSelector<PlotModel, Array<{ x: string; y: number; }>> {
