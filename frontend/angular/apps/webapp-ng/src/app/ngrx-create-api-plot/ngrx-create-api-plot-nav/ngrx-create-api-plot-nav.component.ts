@@ -14,11 +14,13 @@ import { CommonModule } from '@angular/common';
 })
 
 export class NgrxCreateApiPlotNavComponent implements OnInit {
+
     private selection: Selection;
 
     private coordenateXY: Array<{ x: string; y: number; }>;
 
     private signalDestroyer$: Subject<void>;
+    
     constructor(private ngrxCreateApiPlotSelector: NgrxCreateApiPlotSelector,
         private store: Store<PlotModel>,) {
         this.coordenateXY = [];

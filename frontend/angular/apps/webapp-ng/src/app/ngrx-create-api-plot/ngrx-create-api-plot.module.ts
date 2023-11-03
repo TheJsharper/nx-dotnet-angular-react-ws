@@ -10,9 +10,10 @@ import { EffectsModule } from "@ngrx/effects";
 import { NgrxCreateApiPlotSelector } from "./store/nrx-create-api-plot.selectors";
 import { NgrxCreateApiMainDirective } from "./ngrx-create-api-plot-main/ngrx-create-api-main.directive";
 import { CommonModule } from "@angular/common";
-import {NgrxCreateApiMenubarModule} from './ngrx-create-api-plot-menu-bar/ngrx-create-api-plot-menu-bar.module';
+import { NgrxCreateApiMenubarModule } from './ngrx-create-api-plot-menu-bar/ngrx-create-api-plot-menu-bar.module';
 import { NgrxCreateApiPlotValuesComponent } from "./ngrx-create-api-plot-values/ngrx-create-api-plot-values.component";
 import { NgrxCreateApiPlotNavComponent } from "./ngrx-create-api-plot-nav/ngrx-create-api-plot-nav.component";
+import { NgrxCreateApiPlotZoomService } from "./services/ngrx-create-api-plot-zoom.service";
 
 const routes: Routes = [
     {
@@ -34,6 +35,6 @@ const routes: Routes = [
         NgrxCreateApiPlotNavComponent
     ],
     exports: [],
-    providers: [NgrxCreateApliPlotService, NgrxCreateApiPlotEffects, NgrxCreateApiPlotSelector]
+    providers: [NgrxCreateApliPlotService, NgrxCreateApiPlotEffects, NgrxCreateApiPlotSelector, NgrxCreateApiPlotZoomService]
 })
 export class NgrxCreateApiPlotModule { }

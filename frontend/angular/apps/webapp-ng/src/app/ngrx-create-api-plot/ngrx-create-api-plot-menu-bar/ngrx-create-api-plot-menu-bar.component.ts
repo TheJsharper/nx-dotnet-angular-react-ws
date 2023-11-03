@@ -1,11 +1,7 @@
-import { Component, ElementRef, Input, NgZone, OnDestroy, OnInit } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { cloneDeep } from "lodash";
-import { Layout, PlotRelayoutEvent, PlotlyHTMLElement, relayout } from "plotly.js-dist-min";
-import { Subject, filter, tap } from "rxjs";
-import { PlotModel } from "../store/ngrx-create-api-plot.models";
-import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selectors";
-import { LoadedLayoutDataAction } from "../store/ngrx-create-api-plot.actions";
+import { Component, ElementRef, Input, OnDestroy, OnInit } from "@angular/core";
+import { PlotRelayoutEvent, PlotlyHTMLElement } from "plotly.js-dist-min";
+import { Subject, takeUntil } from "rxjs";
+import { NgrxCreateApiPlotZoomService } from "../services/ngrx-create-api-plot-zoom.service";
 
 @Component({
     selector: 'ngrx-create-api-plot-menu-bar',
@@ -18,15 +14,11 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
     @Input("root") root?: ElementRef;
 
-
-
     private signalDestroyer$: Subject<void>;
 
-    private currentLayout?: Layout;
-
-
-
-    constructor(private zone: NgZone, private store: Store<PlotModel>, private selector: NgrxCreateApiPlotSelector) {
+    constructor(
+        private ngrxCreateApiPlotZoomService: NgrxCreateApiPlotZoomService
+    ) {
 
         this.signalDestroyer$ = new Subject<void>();
     }
@@ -34,37 +26,13 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
     async ngOnInit(): Promise<void> {
 
-        this.store.select(this.selector.getPlotLayoutState()).pipe(
-            filter((value) => Object.keys(value).length > 0),
-            tap((layout) => {
-
-                this.zone.runOutsideAngular(() => {
-
-                    if (layout.xaxis && layout.yaxis) {
-
-                        const newData: Partial<Layout> = cloneDeep({
-                            "xaxis.range[0]": layout.xaxis[0],
-                            "xaxis.range[1]": layout.xaxis[1],
-                            "yaxis.range[0]": layout.yaxis[0],
-                            "yaxis.range[1]": layout.yaxis[1],
-                        })
-                        if (this.root)
-                            relayout(this.root.nativeElement, newData)
-                    }
-
-                })
-            })
-
-        ).subscribe();
-
+        if (this.root)
+            this.ngrxCreateApiPlotZoomService.updateLayout(this.root).pipe(takeUntil(this.signalDestroyer$)).subscribe();
 
 
         (await this.plotInstance)?.on("plotly_relayout", this.monitorRelayout);
         (await this.plotInstance)?.on("plotly_event", (data) => { console.log("DATA EVENT", data) });
         (await this.plotInstance)?.on("plotly_beforeplot", (data) => { console.log(" BEFORE PLOT DATA EVENT", data); return true; });
-
-
-
 
     }
 
@@ -75,40 +43,30 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
 
     async zoomMinusX(): Promise<void> {
-        if (this.currentLayout?.xaxis.range && this.currentLayout.yaxis.range) {
-            const xaxis: [number, number] = [this.currentLayout.xaxis.range[0], this.currentLayout.xaxis.range[1]];
-            const yaxis: [number, number] = [this.currentLayout.xaxis.range[0] + 1, this.currentLayout.xaxis.range[1] + 1];
-            this.store.dispatch(LoadedLayoutDataAction({ layout: { xaxis, yaxis } }))
-        }
+
+        if (this.plotInstance)
+            await this.ngrxCreateApiPlotZoomService.zoomX('minus', this.plotInstance);
     }
 
     async zoomPlusX(): Promise<void> {
-        this.currentLayout = (await this.plotInstance)?.layout;
-        if (this.currentLayout?.xaxis.range && this.currentLayout.yaxis.range) {
-            const xaxis: [number, number] = [this.currentLayout.xaxis.range[0] + 1, this.currentLayout.xaxis.range[1] + 1];
-            const yaxis: [number, number] = [this.currentLayout.xaxis.range[0], this.currentLayout.xaxis.range[1]];
-            this.store.dispatch(LoadedLayoutDataAction({ layout: { xaxis, yaxis } }))
-        }
+
+        if (this.plotInstance)
+            await this.ngrxCreateApiPlotZoomService.zoomX('plus', this.plotInstance);
     }
 
     async zoomMinusY(): Promise<void> {
-        this.currentLayout = (await this.plotInstance)?.layout;
-        if (this.currentLayout?.xaxis.range && this.currentLayout.yaxis.range) {
-            const xaxis: [number, number] = [this.currentLayout.xaxis.range[0], this.currentLayout.xaxis.range[1]];
-            const yaxis: [number, number] = [this.currentLayout.xaxis.range[0] - 1, this.currentLayout.xaxis.range[1] - 1];
-            this.store.dispatch(LoadedLayoutDataAction({ layout: { xaxis, yaxis } }))
-        }
+
+        if (this.plotInstance)
+            await this.ngrxCreateApiPlotZoomService.zoomY('minus', this.plotInstance);
     }
 
     async zoomPlusY(): Promise<void> {
-        this.currentLayout = (await this.plotInstance)?.layout;
 
-        if (this.currentLayout?.xaxis.range && this.currentLayout.yaxis.range) {
-            const xaxis: [number, number] = [this.currentLayout.xaxis.range[0], this.currentLayout.xaxis.range[1]];
-            const yaxis: [number, number] = [this.currentLayout.xaxis.range[0] + 1, this.currentLayout.xaxis.range[1] + 1];
-            this.store.dispatch(LoadedLayoutDataAction({ layout: { xaxis, yaxis } }))
-        }
+        if (this.plotInstance)
+            await this.ngrxCreateApiPlotZoomService.zoomY('plus', this.plotInstance);
     }
+
+
     ngOnDestroy(): void {
         if (!this.signalDestroyer$.closed) {
             this.signalDestroyer$.next();
