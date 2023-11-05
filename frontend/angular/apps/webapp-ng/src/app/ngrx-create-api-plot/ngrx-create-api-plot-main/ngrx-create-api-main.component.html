@@ -1,10 +1,19 @@
 <div *ngIf="(plot$|async) as p">
 
-    <nrgx-create-api-plot-values [plotInstance]="p"></nrgx-create-api-plot-values>
-    <ngrx-create-api-plot-nav></ngrx-create-api-plot-nav>
-    <ngrx-create-api-plot-menu-bar [plotInstance]="p "[root]="root">
+    <div class="row">
+        <div class="col">
+            <nrgx-create-api-plot-values [plotInstance]="p"></nrgx-create-api-plot-values>
 
-    </ngrx-create-api-plot-menu-bar>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <ngrx-create-api-plot-nav></ngrx-create-api-plot-nav>
+
+            <ngrx-create-api-plot-menu-bar [plotInstance]="p "[root]="root">
+            </ngrx-create-api-plot-menu-bar>
+        </div>
+    </div>
     <ng-container>
         <div *ngrxCreateApiMain="p "></div>
     </ng-container>

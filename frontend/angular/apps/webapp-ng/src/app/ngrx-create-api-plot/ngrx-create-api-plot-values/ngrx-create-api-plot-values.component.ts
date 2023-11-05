@@ -48,7 +48,7 @@ export class NgrxCreateApiPlotValuesComponent implements OnInit {
 
 
         (await this.plotInstance)?.on('plotly_click', (event: PlotMouseEvent) => {
-
+            console.log("Cliking", event)
             const key = <string>event.points[0].x;
             this.store.dispatch(SelectedPlotDataAction({ key }))
         });
