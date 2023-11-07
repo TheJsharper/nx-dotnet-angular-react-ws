@@ -17,15 +17,29 @@
         <i class="bi bi-zoom-in"></i>
         <span>Y</span>
     </button>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-        <label class="form-check-label" for="flexRadioDefault1">
-            X
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-        <label class="form-check-label" for="flexRadioDefault2">
-            Y
-        </label>
+    <button type="button" class="btn btn-default btn-sm d-flex">
+
+        <i class="bi bi-zoom-in"></i>
+    </button>
+    <button type="button" class="btn btn-default btn-sm d-flex">
+
+        <i class="bi bi-zoom-out"></i>
+    </button>
+    <div [formGroup]="form">
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="xaxeInput" name="axe" value="xaxe"
+                    formControlName="axe">
+                <label class="form-check-label" for="xaxeInput">
+                    X
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="yaxeInput" name="axe" value="yaxe"
+                    formControlName="axe">
+                <label class="form-check-label" for="yaxeInput">
+                    Y
+                </label>
+            </div>
+        </div>
     </div>

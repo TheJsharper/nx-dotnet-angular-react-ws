@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnDestroy, OnInit } from "@angular/core";
 import { PlotRelayoutEvent, PlotlyHTMLElement } from "plotly.js-dist-min";
 import { Subject, takeUntil } from "rxjs";
 import { NgrxCreateApiPlotZoomService } from "../services/ngrx-create-api-plot-zoom.service";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 
 @Component({
     selector: 'ngrx-create-api-plot-menu-bar',
@@ -14,13 +15,22 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
     @Input("root") root?: ElementRef;
 
+    form: FormGroup;
+
     private signalDestroyer$: Subject<void>;
 
     constructor(
-        private ngrxCreateApiPlotZoomService: NgrxCreateApiPlotZoomService
+        private ngrxCreateApiPlotZoomService: NgrxCreateApiPlotZoomService,
+        private fb: FormBuilder
     ) {
 
         this.signalDestroyer$ = new Subject<void>();
+
+        this.form = this.fb.group({
+            axe: new FormControl<'xaxe'| 'yaxe'>('xaxe', { nonNullable: true }),
+        });
+        this.form.valueChanges.subscribe(console.log)
+        this.form.get('axe')?.valueChanges.subscribe(console.log)
     }
 
 
