@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { StoreModule, } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { Observable } from 'rxjs';
 
 
 
@@ -39,14 +40,23 @@ export const routes: Routes = [
   {
     path: 'ngrx-create-api-plot',
 
-    loadChildren: () =>
+    //LoadChildrenCallback = () => Type<any> | NgModuleFactory<any> | Routes | Observable<Type<any> | Routes | DefaultExport<Type<any>> | DefaultExport<Routes>> | Promise<NgModuleFactory<any> | Type<any> | Routes | DefaultExport<Type<any>> | DefaultExport<Routes>>;
+    /* loadChildren: () =>
       import('./ngrx-create-api-plot/ngrx-create-api-plot.module').then(
         (m) =>{ 
          
           return  m.NgrxCreateApiPlotModule//.config();
           //return  m.NgrxCreateApiPlotModule.loadModule();
         }
-      ),
+      ), */
+      loadChildren : ()=>{
+        return new Observable((observer)=>{
+          import('./ngrx-create-api-plot/ngrx-create-api-plot.module').then((m)=>{
+            observer.next(m.NgrxCreateApiPlotModule);
+            observer.complete();
+          }, (error)=> observer.error(error))
+        })
+      }
   },
   {
     path: '**',
