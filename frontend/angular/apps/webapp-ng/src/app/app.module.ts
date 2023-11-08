@@ -7,6 +7,9 @@ import { StoreModule, } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
+
+
+
 export const routes: Routes = [
   {
     path: 'simple-counter',
@@ -38,7 +41,11 @@ export const routes: Routes = [
 
     loadChildren: () =>
       import('./ngrx-create-api-plot/ngrx-create-api-plot.module').then(
-        (m) => m.NgrxCreateApiPlotModule
+        (m) =>{ 
+         
+          return  m.NgrxCreateApiPlotModule//.config();
+          //return  m.NgrxCreateApiPlotModule.loadModule();
+        }
       ),
   },
   {

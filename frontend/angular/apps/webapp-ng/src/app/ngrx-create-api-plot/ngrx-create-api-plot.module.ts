@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { Compiler, ModuleWithProviders, NgModule, NgModuleFactory, OnInit } from "@angular/core";
 import { NgrxCreateApiMainComponent } from "./ngrx-create-api-plot-main/ngrx-create-api-main.component";
 import { RouterModule, Routes } from "@angular/router";
 import { NgrxCreateApiCanMatchGuard } from "./hooks/ngrx-create-api.plot.canMatch";
@@ -15,6 +15,14 @@ import { NgrxCreateApiPlotValuesComponent } from "./ngrx-create-api-plot-values/
 import { NgrxCreateApiPlotNavComponent } from "./ngrx-create-api-plot-nav/ngrx-create-api-plot-nav.component";
 import { NgrxCreateApiPlotZoomService } from "./services/ngrx-create-api-plot-zoom.service";
 
+export function factory() {
+    const platformModuleCreated = (factory as any)._platformModuleCreated || false;
+    if (platformModuleCreated) {
+        throw new Error('PlatformModule.forRoot imported to many times');
+    }
+    (factory as any)._platformModuleCreated = true;
+}
+
 const routes: Routes = [
     {
         path: '',
@@ -22,6 +30,12 @@ const routes: Routes = [
         canMatch: [NgrxCreateApiCanMatchGuard]
     }
 ]
+
+
+@NgModule({})
+export class NgrxCreateApiPlotModuleForRoot {
+    constructor() { }
+}
 @NgModule({
     declarations: [NgrxCreateApiMainComponent,
         NgrxCreateApiMainDirective],
@@ -37,4 +51,29 @@ const routes: Routes = [
     exports: [],
     providers: [NgrxCreateApliPlotService, NgrxCreateApiPlotEffects, NgrxCreateApiPlotSelector, NgrxCreateApiPlotZoomService]
 })
-export class NgrxCreateApiPlotModule { }
+export class NgrxCreateApiPlotModule implements OnInit {
+    constructor(private compiler: Compiler) { }
+    ngOnInit(): void {
+
+    }
+
+    lazyloadModuleFactory!: NgModuleFactory<any>;
+    lazyloadComponent!: any;
+    static config(): ModuleWithProviders<NgrxCreateApiPlotModuleForRoot> {
+        return {
+            providers: [/*{
+                provide: 'PlatformModuleInstance',
+                useFactory: factory
+            }*/],
+            ngModule: NgrxCreateApiPlotModuleForRoot
+
+        }
+    }
+    public loadModule(loadedModules: any, ModuleName: any): void {
+        const _lazyloadModule = loadedModules[ModuleName];
+        this.compiler.compileModuleAsync(_lazyloadModule).then(moduleFactory => {
+            this.lazyloadModuleFactory = moduleFactory;
+            this.lazyloadComponent = _lazyloadModule.EntryComponent;
+        });
+    }
+}
