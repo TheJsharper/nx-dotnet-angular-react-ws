@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { NgModule, InjectionToken, ModuleWithProviders, NgModuleFactory, Type, Injector, NgModuleRef, StaticProvider, Compiler } from "@angular/core";
+import { NgModule, InjectionToken, ModuleWithProviders, NgModuleFactory, Type, Injector, NgModuleRef, StaticProvider, Compiler, Provider } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
@@ -53,14 +53,14 @@ export class NgrxCreateApiPlotModuleForRoot {
 })
 export class NgrxCreateApiPlotModule {
 
-    static withOptions(foo = "foo"): ModuleWithProviders<NgrxCreateApiPlotModule> {
+    static withOptions(foo = "foo", parameterProvides: Array<Provider> ): ModuleWithProviders<NgrxCreateApiPlotModule> {
         return {
             ngModule: NgrxCreateApiPlotModule,
             providers: [
                 {
                     provide: FOO,
                     useValue: foo
-                }
+                }, ...parameterProvides
             ]
         };
     }

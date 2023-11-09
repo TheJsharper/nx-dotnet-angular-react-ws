@@ -3,10 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
 import { RouterModule, Routes } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule, } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
-import { Observable } from 'rxjs';
+import { NgrxCreateApiPlotMainService } from './services/ngrx-create-api-plot-main.service';
 
 
 
@@ -58,7 +58,7 @@ export const routes: Routes = [
         })
       } */
 
-      loadChildren : ()=> import('./ngrx-create-api-plot/ngrx-create-api-plot.module').then(m=> m.NgrxCreateApiPlotModule.asChild("bar"))
+      loadChildren : ()=> import('./ngrx-create-api-plot/ngrx-create-api-plot.module').then(m=> m.NgrxCreateApiPlotModule.asChild("bar",[NgrxCreateApiPlotMainService]))
   },
   {
     path: '**',
