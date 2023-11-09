@@ -49,14 +49,16 @@ export const routes: Routes = [
           //return  m.NgrxCreateApiPlotModule.loadModule();
         }
       ), */
-      loadChildren : ()=>{
+    /*   loadChildren : ()=>{
         return new Observable((observer)=>{
           import('./ngrx-create-api-plot/ngrx-create-api-plot.module').then((m)=>{
             observer.next(m.NgrxCreateApiPlotModule);
             observer.complete();
           }, (error)=> observer.error(error))
         })
-      }
+      } */
+
+      loadChildren : ()=> import('./ngrx-create-api-plot/ngrx-create-api-plot.module').then(m=> m.NgrxCreateApiPlotModule.asChild("bar"))
   },
   {
     path: '**',
