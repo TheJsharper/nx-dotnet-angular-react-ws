@@ -7,6 +7,7 @@ import { PlotModel, Selection } from '../store/ngrx-create-api-plot.models';
 import { NgrxCreateApiPlotSelector } from '../store/nrx-create-api-plot.selectors';
 import { PlotMouseEvent, PlotlyHTMLElement } from 'plotly.js-dist-min';
 import { SelectedPlotDataAction } from '../store/ngrx-create-api-plot.actions';
+import { NgrxCreateApiPlotMainService } from '../../services/ngrx-create-api-plot-main.service';
 
 @Component({
     selector: 'nrgx-create-api-plot-values',
@@ -17,7 +18,8 @@ import { SelectedPlotDataAction } from '../store/ngrx-create-api-plot.actions';
 
 export class NgrxCreateApiPlotValuesComponent implements OnInit {
 
-    @Input() plotInstance?: Promise<PlotlyHTMLElement>;
+    //@Input() plotInstance?: Promise<PlotlyHTMLElement>;
+    private  plotInstance: Promise<PlotlyHTMLElement>;
 
     formGroup: FormGroup;
 
@@ -27,9 +29,10 @@ export class NgrxCreateApiPlotValuesComponent implements OnInit {
 
     constructor(
         private ngrxCreateApiPlotSelector: NgrxCreateApiPlotSelector,
-        private store: Store<PlotModel>) {
+        private store: Store<PlotModel>,private ngrxCreateApiPlotMainService: NgrxCreateApiPlotMainService) {
 
         this.signalDestroyer$ = new Subject<void>();
+        this.plotInstance = this.ngrxCreateApiPlotMainService.plotInstance;
 
         this.selected = this.store.select(this.ngrxCreateApiPlotSelector.getPlotSelctedDataState());
 

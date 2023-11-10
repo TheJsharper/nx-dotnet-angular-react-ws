@@ -4,8 +4,17 @@ import { Config, Layout, PlotData, PlotlyHTMLElement, newPlot } from "plotly.js-
 @Injectable()
 export class NgrxCreateApiPlotMainService {
 
-    constructor(private rendererFactory: RendererFactory2) { }
-    public async getPlotInstance(): Promise<PlotlyHTMLElement> {
+    private _plotInstance: Promise<PlotlyHTMLElement>;
+
+
+    public get plotInstance(): Promise<PlotlyHTMLElement> {
+        return this._plotInstance;
+    }
+
+    constructor(private rendererFactory: RendererFactory2) {
+        this._plotInstance = this.getPlotInstance();
+    }
+private async getPlotInstance(): Promise<PlotlyHTMLElement> {
 
         const xArray = ["Italy", "France", "Spain", "USA", "Argentina"];
         const yArray = [55, 49, 44, 24, 15];

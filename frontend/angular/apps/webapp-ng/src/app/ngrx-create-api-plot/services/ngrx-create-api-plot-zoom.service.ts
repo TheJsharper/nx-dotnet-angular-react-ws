@@ -13,7 +13,7 @@ export class NgrxCreateApiPlotZoomService {
     constructor(private zone: NgZone, private store: Store<PlotModel>, private selector: NgrxCreateApiPlotSelector) { }
 
 
-    public updateLayout(root: ElementRef): Observable<Partial<Axis>> {
+    public updateLayout(/*root: ElementRef*/ root: HTMLElement): Observable<Partial<Axis>> {
         return this.store.select(this.selector.getPlotLayoutState()).pipe(
             filter((value) => Object.keys(value).length > 0),
             tap((layout) => {
@@ -29,7 +29,7 @@ export class NgrxCreateApiPlotZoomService {
                             "yaxis.range[1]": layout.yaxis[1],
                         })
                         if (root)
-                            relayout(root.nativeElement, newData)
+                            relayout(root, newData)
                     }
 
                 })

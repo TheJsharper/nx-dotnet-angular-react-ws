@@ -1,7 +1,7 @@
 import { ElementRef, Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { cloneDeep } from 'lodash';
-import { Config, Data, Layout, PlotData, PlotlyHTMLElement, newPlot } from 'plotly.js-dist-min';
+import { Config, Data, Layout, PlotData, PlotlyHTMLElement, newPlot, purge, update } from 'plotly.js-dist-min';
 import { Observable, map, of } from "rxjs";
 import { Axis, PlotModel } from "../store/ngrx-create-api-plot.models";
 import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selectors";
@@ -19,7 +19,7 @@ export class NgrxCreateApliPlotService {
     getPlotData(): Observable<PlotModel> {
 
         const xArray = ["Italy", "France", "Spain", "USA", "Argentina"];
-        const yArray = [55, 49, 44, 24, 15];
+        const yArray = [55, 49, 44, 24, 30];
 
 
         const data: Array<Partial<PlotData>> = [{
@@ -38,7 +38,8 @@ export class NgrxCreateApliPlotService {
 
         return of(plotModel);
     }
-    public getPlotInstance(parent: ElementRef): Observable<Promise<PlotlyHTMLElement>> {
+
+    public getPlotInstance(initial: PlotlyHTMLElement): Observable<Promise<PlotlyHTMLElement>> {
         const result = this.store.select(this.ngrxCreateApiPlotSelector.getPlotDataState()).pipe(map(
             async (data: Array<Partial<Data>>) => {
 
@@ -65,11 +66,12 @@ export class NgrxCreateApliPlotService {
 
                 };
 
-                const config: Partial<Config> = { responsive: true }
+                const config: Partial<Config> = { responsive: true };
                 const newData = data.map((value: Partial<Data>) => cloneDeep(value));
 
-
-                const el = await newPlot(parent.nativeElement, newData, layout, config);
+                const newRoot = initial.getRootNode() as HTMLElement;
+                purge(newRoot);
+                const el = await newPlot(newRoot, newData, layout, config);
                 if (el?.layout?.xaxis?.range && el?.layout?.yaxis?.range) {
                     const xaxis: [number, number] = [el.layout.xaxis.range[0], el.layout.xaxis.range[1]];
                     const yaxis: [number, number] = [el.layout.yaxis.range[0], el.layout.yaxis.range[1]];

@@ -3,6 +3,7 @@ import { PlotRelayoutEvent, PlotlyHTMLElement } from "plotly.js-dist-min";
 import { Subject, takeUntil } from "rxjs";
 import { NgrxCreateApiPlotZoomService } from "../services/ngrx-create-api-plot-zoom.service";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { NgrxCreateApiPlotMainService } from "../../services/ngrx-create-api-plot-main.service";
 
 @Component({
     selector: 'ngrx-create-api-plot-menu-bar',
@@ -10,24 +11,24 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 })
 export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
-
-    @Input() plotInstance?: Promise<PlotlyHTMLElement>;
-
-    @Input("root") root?: ElementRef;
-
     form: FormGroup;
+
+    private plotInstance: Promise<PlotlyHTMLElement>;
 
     private signalDestroyer$: Subject<void>;
 
     constructor(
         private ngrxCreateApiPlotZoomService: NgrxCreateApiPlotZoomService,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private ngrxCreateApiPlotMainService: NgrxCreateApiPlotMainService,
     ) {
 
         this.signalDestroyer$ = new Subject<void>();
+        this.plotInstance = this.ngrxCreateApiPlotMainService.plotInstance;
+
 
         this.form = this.fb.group({
-            axe: new FormControl<'xaxe'| 'yaxe'>('xaxe', { nonNullable: true }),
+            axe: new FormControl<'xaxe' | 'yaxe'>('xaxe', { nonNullable: true }),
         });
         this.form.valueChanges.subscribe(console.log)
         this.form.get('axe')?.valueChanges.subscribe(console.log)
@@ -36,8 +37,10 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
     async ngOnInit(): Promise<void> {
 
-        if (this.root)
-            this.ngrxCreateApiPlotZoomService.updateLayout(this.root).pipe(takeUntil(this.signalDestroyer$)).subscribe();
+
+        const root = (await this.plotInstance).getRootNode() as HTMLElement;
+        this.ngrxCreateApiPlotZoomService.updateLayout(root).pipe(takeUntil(this.signalDestroyer$)).subscribe();
+
 
 
         (await this.plotInstance)?.on("plotly_relayout", this.monitorRelayout);

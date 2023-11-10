@@ -1,8 +1,8 @@
-<div *ngIf="(plot$|async) as p">
+<div>
 
     <div class="row">
         <div class="col">
-            <nrgx-create-api-plot-values [plotInstance]="p"></nrgx-create-api-plot-values>
+            <nrgx-create-api-plot-values></nrgx-create-api-plot-values>
 
         </div>
     </div>
@@ -10,11 +10,16 @@
         <div class="col">
             <ngrx-create-api-plot-nav></ngrx-create-api-plot-nav>
 
-            <ngrx-create-api-plot-menu-bar [plotInstance]="p "[root]="root">
-            </ngrx-create-api-plot-menu-bar>
+            <ngrx-create-api-plot-menu-bar> </ngrx-create-api-plot-menu-bar>
         </div>
     </div>
-    <ng-container>
-        <div *ngrxCreateApiMain="p "></div>
-    </ng-container>
+    <div class="row">
+        <div class="col">
+
+            <div class="scene-plot" #scenePlot></div>
+
+        </div>
+    </div>
+
+
 </div>
