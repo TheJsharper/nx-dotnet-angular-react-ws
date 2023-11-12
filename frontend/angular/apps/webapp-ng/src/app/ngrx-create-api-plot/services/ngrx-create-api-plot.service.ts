@@ -1,11 +1,11 @@
-import { ElementRef, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { cloneDeep } from 'lodash';
 import { Config, Data, Layout, PlotData, PlotlyHTMLElement, newPlot, purge, update } from 'plotly.js-dist-min';
 import { Observable, map, of } from "rxjs";
-import { Axis, PlotModel } from "../store/ngrx-create-api-plot.models";
-import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selectors";
 import { LoadedLayoutDataAction } from "../store/ngrx-create-api-plot.actions";
+import { PlotModel } from "../store/ngrx-create-api-plot.models";
+import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selectors";
 
 @Injectable()
 export class NgrxCreateApliPlotService {
@@ -39,6 +39,90 @@ export class NgrxCreateApliPlotService {
         return of(plotModel);
     }
 
+    public getPlotInstance2(initial: PlotlyHTMLElement): void {
+        /*  const result = this.store.select(this.ngrxCreateApiPlotSelector.getPlotDataState()).pipe(map(
+             async (data: Array<Partial<PlotData>>) => {
+ 
+ 
+                 const layout: Partial<Layout> = {
+                     clickmode: "event+select",
+ 
+                     font: { size: 18 },
+                     scene: {
+                         camera: {
+                             eye: {
+                                 x: 2,
+                                 y: 2,
+                                 z: 2
+                             }
+                         },
+                         aspectmode: "manual",
+                         aspectratio: {
+ 
+                             x: 2,
+                             y: 3
+                         }
+                     }
+ 
+                 };
+ 
+                 const newData = data.map((value: Partial<PlotData>) => cloneDeep(initial.data));
+ 
+                 const newRoot = initial.getRootNode() as HTMLElement;
+                 newData.map(((value) => {
+                     const gg: number[] = [...Array(value.y?.length).keys()].map((_) => (Math.floor(Math.random() * 100) + 1));
+                     let newData = { ...value, y: gg };
+                     return newData;
+                 }))
+ 
+                     .forEach((value) => {
+ 
+                         update(newRoot, value, layout)
+                     })
+ 
+                 return el;
+             }
+         ));
+         return result; */
+
+        const layout: Partial<Layout> = {
+            clickmode: "event+select",
+
+            font: { size: 18 },
+            scene: {
+                camera: {
+                    eye: {
+                        x: 2,
+                        y: 2,
+                        z: 2
+                    }
+                },
+                aspectmode: "manual",
+                aspectratio: {
+
+                    x: 2,
+                    y: 3
+                }
+            }
+
+        };
+        const dataPlot = <PlotData[]>initial.data
+        const length: number = (dataPlot)[0].y.length;
+        //const gg: number[] = [...Array(length).keys()].map((_) => (Math.floor(Math.random() * 100) + 1));
+
+        const newRoot = initial.getRootNode() as HTMLElement;
+        dataPlot.map(((value) => {
+            const gg: number[] = [...Array(value.y?.length).keys()].map((_) => (Math.floor(Math.random() * 100) + 1));
+            let newData = { ...value, y: gg };
+            return newData;
+        }))
+
+            .forEach((value, index:number) => {
+
+                update(newRoot, value, layout, index)
+            })
+
+    }
     public getPlotInstance(initial: PlotlyHTMLElement): Observable<Promise<PlotlyHTMLElement>> {
         const result = this.store.select(this.ngrxCreateApiPlotSelector.getPlotDataState()).pipe(map(
             async (data: Array<Partial<Data>>) => {
