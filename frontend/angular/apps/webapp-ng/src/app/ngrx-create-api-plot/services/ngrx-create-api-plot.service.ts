@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { cloneDeep } from 'lodash';
-import { Config, Data, Layout, PlotData, PlotlyHTMLElement, newPlot, purge, update } from 'plotly.js-dist-min';
+import { Config, Data, Layout, PlotData, PlotlyHTMLElement, extendTraces, newPlot, purge, update } from 'plotly.js-dist-min';
 import { Observable, map, of } from "rxjs";
 import { LoadedLayoutDataAction } from "../store/ngrx-create-api-plot.actions";
 import { PlotModel } from "../store/ngrx-create-api-plot.models";
@@ -39,7 +39,7 @@ export class NgrxCreateApliPlotService {
         return of(plotModel);
     }
 
-    public getPlotInstance2(initial: PlotlyHTMLElement): void {
+    public async getPlotInstance2(initial: PlotlyHTMLElement): Promise<PlotlyHTMLElement> {
         /*  const result = this.store.select(this.ngrxCreateApiPlotSelector.getPlotDataState()).pipe(map(
              async (data: Array<Partial<PlotData>>) => {
  
@@ -111,16 +111,21 @@ export class NgrxCreateApliPlotService {
         //const gg: number[] = [...Array(length).keys()].map((_) => (Math.floor(Math.random() * 100) + 1));
 
         const newRoot = initial.getRootNode() as HTMLElement;
-        dataPlot.map(((value) => {
+        const values = dataPlot.map(((value) => {
             const gg: number[] = [...Array(value.y?.length).keys()].map((_) => (Math.floor(Math.random() * 100) + 1));
             let newData = { ...value, y: gg };
             return newData;
         }))
 
-            .forEach((value, index:number) => {
+        /*  .forEach((value, index:number) => {
 
-                update(newRoot, value, layout, index)
-            })
+             extendTraces(newRoot, value, index)
+         });
+*/
+        const gg: number[] = [...Array(5).keys()].map((_) => (Math.floor(Math.random() * 100) + 1));
+        console.log("===Y", values)
+        return await extendTraces(newRoot, values, [0, 100]);
+
 
     }
     public getPlotInstance(initial: PlotlyHTMLElement): Observable<Promise<PlotlyHTMLElement>> {

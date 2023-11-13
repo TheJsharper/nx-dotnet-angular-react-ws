@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, Renderer2, ViewChild } from "@angular/core";
-import { Subject, interval, takeUntil, timeInterval } from "rxjs";
+import { Subject, interval, map, mergeMap, takeUntil, tap, timeInterval } from "rxjs";
 import { NgrxCreateApiPlotMainService } from "../../services/ngrx-create-api-plot-main.service";
 import { NgrxCreateApliPlotService } from "../services/ngrx-create-api-plot.service";
+import { PlotlyHTMLElement } from "plotly.js";
 
 @Component({
     selector: 'main',
@@ -28,13 +29,26 @@ export class NgrxCreateApiMainComponent implements AfterViewInit, OnDestroy {
 
             const elPlot = await this.ngrxCreateApiPlotMainService.plotInstance;
 
-            this.ngrxCreateApliPlotService.getPlotInstance(elPlot).pipe(takeUntil(this.signalDestroyer$)).subscribe();
-
             const seconds = interval(1000);
 
-            seconds
-                .pipe(timeInterval(), /* tap((_)=> this.ngrxCreateApliPlotService.getPlotInstance2(elPlot)) */)
-                .subscribe(value => console.log(value));
+            const next = seconds
+                .pipe(timeInterval(), mergeMap((_) => this.ngrxCreateApliPlotService.getPlotInstance2(elPlot)))
+            //  .subscribe(value => console.log(value));
+            this.ngrxCreateApliPlotService.getPlotInstance(elPlot).pipe(
+                takeUntil(this.signalDestroyer$),
+                /*   tap((value) => {
+  
+                  }), */
+                mergeMap(async(value: Promise<PlotlyHTMLElement>) => {
+                   /*  return value.then((v: PlotlyHTMLElement) => {
+                        return next.pipe(map((val) => val))
+                    }); */
+                    await value;
+                    return next.pipe( tap((gg)=> console.log("ZZZZ", gg)));
+                })
+                , tap((value) => console.log("===>x", value))
+            ).subscribe();
+
             this.renderer.appendChild(this.scenePlot.nativeElement, elPlot);
 
         }
