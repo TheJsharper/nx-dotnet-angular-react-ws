@@ -19,8 +19,10 @@
           "frontend/angular/apps/gifs-app/src/favicon.ico",
           "frontend/angular/apps/gifs-app/src/assets"
         ],
-        "styles": ["frontend/angular/apps/gifs-app/src/styles.scss", 
-        "node_modules/bootstrap/dist/css/bootstrap.min.css"],
+        "styles": [
+          "frontend/angular/apps/gifs-app/src/styles.scss",
+          "node_modules/bootstrap/dist/css/bootstrap.min.css"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -54,10 +56,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "frontend-angular-apps-gifs-app:build:production"
+          "buildTarget": "frontend-angular-apps-gifs-app:build:production"
         },
         "development": {
-          "browserTarget": "frontend-angular-apps-gifs-app:build:development"
+          "buildTarget": "frontend-angular-apps-gifs-app:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -65,11 +67,11 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "frontend-angular-apps-gifs-app:build"
+        "buildTarget": "frontend-angular-apps-gifs-app:build"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
@@ -82,14 +84,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "frontend/angular/apps/gifs-app/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "frontend/angular/apps/gifs-app/jest.config.ts"
       }
     },
     "serve-static": {

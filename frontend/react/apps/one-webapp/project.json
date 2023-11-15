@@ -54,14 +54,14 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/frontend/react/apps/one-webapp"],
+      "outputs": ["{workspaceRoot}/coverage/frontend/react/apps/one-webapp"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../../../coverage/frontend/react/apps/one-webapp"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [

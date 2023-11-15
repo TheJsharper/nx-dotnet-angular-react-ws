@@ -4,7 +4,7 @@
   "targets": {
     "build": {
       "executor": "nx:noop",
-      "outputs": ["generated/webapi-swagger"]
+      "outputs": ["{projectRoot}"]
     },
     "codegen": {
       "executor": "@nx-dotnet/core:openapi-codegen",
