@@ -1,11 +1,11 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, Renderer2, ViewChild } from "@angular/core";
-import { Subject, interval, map, mergeMap, of, takeUntil, tap, timeInterval } from "rxjs";
+import { PlotlyHTMLElement } from "plotly.js";
+import { Subject, interval, mergeMap, of, takeUntil, tap, timeInterval } from "rxjs";
 import { NgrxCreateApiPlotMainService } from "../../services/ngrx-create-api-plot-main.service";
 import { NgrxCreateApliPlotService } from "../services/ngrx-create-api-plot.service";
-import { PlotlyHTMLElement } from "plotly.js";
 
 @Component({
-    selector: 'main',
+    selector: 'app-main',
     templateUrl: './ngrx-create-api-main.component.html',
     styleUrls: ['./ngrx-create-api-main.component.scss']
 })
@@ -32,7 +32,7 @@ export class NgrxCreateApiMainComponent implements AfterViewInit, OnDestroy {
             const uu = of(this.ngrxCreateApliPlotService.getPlotInstance2(elPlot));
             const seconds = interval(1000);
 
-            const next = uu.pipe(mergeMap((v) => seconds
+            const next = uu.pipe(mergeMap(() => seconds
                 .pipe(timeInterval())))
             //  .subscribe(value => console.log(value));
             this.ngrxCreateApliPlotService.getPlotInstance(elPlot).pipe(

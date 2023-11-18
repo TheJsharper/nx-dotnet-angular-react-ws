@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { cloneDeep } from 'lodash';
-import { Config, Data, Layout, PlotData, PlotlyHTMLElement, extendTraces, newPlot, purge, update } from 'plotly.js-dist-min';
+import { Config, Data, Layout, PlotData, PlotlyHTMLElement, extendTraces, newPlot, purge } from 'plotly.js-dist-min';
 import { Observable, map, of } from "rxjs";
 import { LoadedLayoutDataAction } from "../store/ngrx-create-api-plot.actions";
 import { PlotModel } from "../store/ngrx-create-api-plot.models";
@@ -85,7 +85,7 @@ export class NgrxCreateApliPlotService {
          ));
          return result; */
 
-        const layout: Partial<Layout> = {
+    /*     const layout: Partial<Layout> = {
             clickmode: "event+select",
 
             font: { size: 18 },
@@ -105,15 +105,14 @@ export class NgrxCreateApliPlotService {
                 }
             }
 
-        };
-        const dataPlot = <PlotData[]>initial.data
-        const length: number = (dataPlot)[0].y.length;
+        }; */
+        const dataPlot = <PlotData[]>initial.data;
         //const gg: number[] = [...Array(length).keys()].map((_) => (Math.floor(Math.random() * 100) + 1));
 
         const newRoot = initial.getRootNode() as HTMLElement;
         const values = dataPlot.map(((value) => {
-            const gg: number[] = [...Array(value.y?.length).keys()].map((_) => (Math.floor(Math.random() * 100) + 1));
-            let newData = { ...value, y: gg };
+            const gg: number[] = [...Array(value.y?.length).keys()].map(() => (Math.floor(Math.random() * 100) + 1));
+            const newData = { ...value, y: gg };
             return newData;
         }))
 
@@ -122,7 +121,7 @@ export class NgrxCreateApliPlotService {
              extendTraces(newRoot, value, index)
          });
 */
-        const gg: number[] = [...Array(5).keys()].map((_) => (Math.floor(Math.random() * 100) + 1));
+    //    const gg: number[] = [...Array(5).keys()].map((_) => (Math.floor(Math.random() * 100) + 1));
         console.log("===Y", values)
         return await extendTraces(newRoot, values, [0, 100]);
 

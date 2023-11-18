@@ -1,22 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { PlotMouseEvent, PlotlyHTMLElement } from 'plotly.js-dist-min';
 import { Observable, Subject, takeUntil, tap } from 'rxjs';
+import { NgrxCreateApiPlotMainService } from '../../services/ngrx-create-api-plot-main.service';
+import { SelectedPlotDataAction } from '../store/ngrx-create-api-plot.actions';
 import { PlotModel, Selection } from '../store/ngrx-create-api-plot.models';
 import { NgrxCreateApiPlotSelector } from '../store/nrx-create-api-plot.selectors';
-import { PlotMouseEvent, PlotlyHTMLElement } from 'plotly.js-dist-min';
-import { SelectedPlotDataAction } from '../store/ngrx-create-api-plot.actions';
-import { NgrxCreateApiPlotMainService } from '../../services/ngrx-create-api-plot-main.service';
 
 @Component({
-    selector: 'nrgx-create-api-plot-values',
+    selector: 'app-nrgx-create-api-plot-values',
     templateUrl: 'ngrx-create-api-plot-values.component.html',
     imports: [CommonModule, ReactiveFormsModule],
     standalone: true
 })
 
-export class NgrxCreateApiPlotValuesComponent implements OnInit {
+export class NgrxCreateApiPlotValuesComponent implements OnInit, OnDestroy {
 
     //@Input() plotInstance?: Promise<PlotlyHTMLElement>;
     private  plotInstance: Promise<PlotlyHTMLElement>;

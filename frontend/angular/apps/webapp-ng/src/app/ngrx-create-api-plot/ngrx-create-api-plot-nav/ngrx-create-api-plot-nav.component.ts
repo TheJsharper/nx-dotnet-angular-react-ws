@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgrxCreateApiPlotSelector } from '../store/nrx-create-api-plot.selectors';
 import { PlotModel, Selection, initialPlotModel } from '../store/ngrx-create-api-plot.models';
 import { Store } from '@ngrx/store';
@@ -7,20 +7,20 @@ import { Subject, first, takeUntil, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'ngrx-create-api-plot-nav',
+    selector: 'app-ngrx-create-api-plot-nav',
     templateUrl: './ngrx-create-api-plot-nav.component.html',
     standalone: true,
     imports: [CommonModule]
 })
 
-export class NgrxCreateApiPlotNavComponent implements OnInit {
+export class NgrxCreateApiPlotNavComponent implements OnInit, OnDestroy {
 
     private selection: Selection;
 
     private coordenateXY: Array<{ x: string; y: number; }>;
 
     private signalDestroyer$: Subject<void>;
-    
+
     constructor(private ngrxCreateApiPlotSelector: NgrxCreateApiPlotSelector,
         private store: Store<PlotModel>,) {
         this.coordenateXY = [];

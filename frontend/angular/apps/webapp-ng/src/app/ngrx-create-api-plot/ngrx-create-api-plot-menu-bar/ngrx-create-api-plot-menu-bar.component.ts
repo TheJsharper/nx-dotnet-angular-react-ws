@@ -1,12 +1,12 @@
-import { Component, ElementRef, Input, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { PlotRelayoutEvent, PlotlyHTMLElement } from "plotly.js-dist-min";
 import { Subject, takeUntil } from "rxjs";
-import { NgrxCreateApiPlotZoomService } from "../services/ngrx-create-api-plot-zoom.service";
-import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { NgrxCreateApiPlotMainService } from "../../services/ngrx-create-api-plot-main.service";
+import { NgrxCreateApiPlotZoomService } from "../services/ngrx-create-api-plot-zoom.service";
 
 @Component({
-    selector: 'ngrx-create-api-plot-menu-bar',
+    selector: 'app-ngrx-create-api-plot-menu-bar',
     templateUrl: './ngrx-create-api-plot-menu-bar.component.html'
 })
 export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
