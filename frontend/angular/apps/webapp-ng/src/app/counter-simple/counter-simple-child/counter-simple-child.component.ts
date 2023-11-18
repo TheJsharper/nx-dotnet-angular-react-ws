@@ -7,9 +7,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class CounterSimpleChildComponent {
 
-  @Input('counter') counter?: number;
+  @Input({} ) counter?: number;
 
-  @Output('changedCounter') changedCounter = new EventEmitter<number>();
+  @Output() changedCounter = new EventEmitter<number>();
 
   multiply(): void {
     if (this.counter)

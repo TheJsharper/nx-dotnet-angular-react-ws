@@ -6,8 +6,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./counter-simple-grandchild.component.scss'],
 })
 export class CounterSimpleGrandchildComponent {
-  @Input('counter') counter?: number;
-  @Output('changedCounter') changedCounter = new EventEmitter<number>();
+  @Input() counter?: number;
+  @Output() changedCounter = new EventEmitter<number>();
 
   reset(): void {
     this.counter = 0;

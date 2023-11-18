@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { CounterState, selectValue } from '../store/ngrx-create-api-counter.reducers';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { decrement, increment } from '../store/ngrx-create-api-counter.actions';
-import { Observable, tap } from 'rxjs';
+import { CounterState, selectValue } from '../store/ngrx-create-api-counter.reducers';
 
 @Component({
   selector: 'app-ngrx-create-api',
