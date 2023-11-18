@@ -39,91 +39,18 @@ export class NgrxCreateApliPlotService {
         return of(plotModel);
     }
 
-    public async getPlotInstance2(initial: PlotlyHTMLElement): Promise<PlotlyHTMLElement> {
-        /*  const result = this.store.select(this.ngrxCreateApiPlotSelector.getPlotDataState()).pipe(map(
-             async (data: Array<Partial<PlotData>>) => {
- 
- 
-                 const layout: Partial<Layout> = {
-                     clickmode: "event+select",
- 
-                     font: { size: 18 },
-                     scene: {
-                         camera: {
-                             eye: {
-                                 x: 2,
-                                 y: 2,
-                                 z: 2
-                             }
-                         },
-                         aspectmode: "manual",
-                         aspectratio: {
- 
-                             x: 2,
-                             y: 3
-                         }
-                     }
- 
-                 };
- 
-                 const newData = data.map((value: Partial<PlotData>) => cloneDeep(initial.data));
- 
-                 const newRoot = initial.getRootNode() as HTMLElement;
-                 newData.map(((value) => {
-                     const gg: number[] = [...Array(value.y?.length).keys()].map((_) => (Math.floor(Math.random() * 100) + 1));
-                     let newData = { ...value, y: gg };
-                     return newData;
-                 }))
- 
-                     .forEach((value) => {
- 
-                         update(newRoot, value, layout)
-                     })
- 
-                 return el;
-             }
-         ));
-         return result; */
+    public async getPlotNextInstance(initial: PlotlyHTMLElement): Promise<PlotlyHTMLElement> {
 
-    /*     const layout: Partial<Layout> = {
-            clickmode: "event+select",
 
-            font: { size: 18 },
-            scene: {
-                camera: {
-                    eye: {
-                        x: 2,
-                        y: 2,
-                        z: 2
-                    }
-                },
-                aspectmode: "manual",
-                aspectratio: {
-
-                    x: 2,
-                    y: 3
-                }
-            }
-
-        }; */
         const dataPlot = <PlotData[]>initial.data;
-        //const gg: number[] = [...Array(length).keys()].map((_) => (Math.floor(Math.random() * 100) + 1));
 
         const newRoot = initial.getRootNode() as HTMLElement;
-        const values = dataPlot.map(((value) => {
+        const values: PlotData[] = dataPlot.map(((value) => {
             const gg: number[] = [...Array(value.y?.length).keys()].map(() => (Math.floor(Math.random() * 100) + 1));
             const newData = { ...value, y: gg };
             return newData;
-        }))
-
-        /*  .forEach((value, index:number) => {
-
-             extendTraces(newRoot, value, index)
-         });
-*/
-    //    const gg: number[] = [...Array(5).keys()].map((_) => (Math.floor(Math.random() * 100) + 1));
-        console.log("===Y", values)
-        return await extendTraces(newRoot, values, [0, 100]);
+        }));
+        return await extendTraces(newRoot, values, [0, 1, 2, 3, 4]);
 
 
     }

@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, Renderer2, ViewChild } from "@angular/core";
-import { PlotlyHTMLElement } from "plotly.js";
-import { Subject, interval, mergeMap, of, takeUntil, tap, timeInterval } from "rxjs";
+import { Subject, interval, takeUntil, tap, timeInterval } from "rxjs";
 import { NgrxCreateApiPlotMainService } from "../../services/ngrx-create-api-plot-main.service";
 import { NgrxCreateApliPlotService } from "../services/ngrx-create-api-plot.service";
 
@@ -29,28 +28,24 @@ export class NgrxCreateApiMainComponent implements AfterViewInit, OnDestroy {
 
             const elPlot = await this.ngrxCreateApiPlotMainService.plotInstance;
 
-            const uu = of(this.ngrxCreateApliPlotService.getPlotInstance2(elPlot));
-            const seconds = interval(1000);
 
-            const next = uu.pipe(mergeMap(() => seconds
-                .pipe(timeInterval())))
-            //  .subscribe(value => console.log(value));
+
             this.ngrxCreateApliPlotService.getPlotInstance(elPlot).pipe(
                 takeUntil(this.signalDestroyer$),
-                /*   tap((value) => {
-  
-                  }), */
-                mergeMap(async (value: Promise<PlotlyHTMLElement>) => {
-                    /*  return value.then((v: PlotlyHTMLElement) => {
-                         return next.pipe(map((val) => val))
-                     }); */
-                    await value;
-                    return next.pipe(tap((gg) => console.log("ZZZZ", gg)));
-                })
-                , tap((value) => console.log("TAP===>x", value))
             ).subscribe();
-
             this.renderer.appendChild(this.scenePlot.nativeElement, elPlot);
+
+            const seconds = interval(1000);
+
+            const next = seconds
+                .pipe(timeInterval());
+            next.
+                pipe(tap(async () => {
+                    await this.ngrxCreateApliPlotService.getPlotNextInstance(elPlot);
+
+
+                })).
+                subscribe();
 
         }
     }
