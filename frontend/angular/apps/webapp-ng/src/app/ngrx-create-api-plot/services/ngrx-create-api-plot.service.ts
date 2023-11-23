@@ -50,7 +50,8 @@ export class NgrxCreateApliPlotService {
             const newData = { ...value, y: gg };
             return newData;
         }));
-        return await extendTraces(newRoot, values, [0, 1, 2, 3, 4]);
+        console.log("ARRRAY", values[0].y)
+        return await extendTraces(newRoot, { y: [[Math.floor(Math.random() * 100) + 1], [Math.floor(Math.random() * 100) + 1], [Math.floor(Math.random() * 100) + 1], [Math.floor(Math.random() * 100) + 1], [Math.floor(Math.random() * 100) + 1]], x:values[0].x}, [0]);
 
 
     }
@@ -96,5 +97,39 @@ export class NgrxCreateApliPlotService {
             }
         ));
         return result;
+    }
+
+
+
+
+    public getSimpleCoord(): void {
+        this.getInitialData().then((trace) => {
+            newPlot("root", [trace]).then(
+                () => {
+
+                    setInterval(() => {
+                        const update = {
+                            x: [[Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1]],
+                            y: [[Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1]]
+                        };
+
+                        extendTraces("root", update, [0]);
+                    }, 1000);
+                }
+            );
+        })
+    }
+
+    private sleep(ms: number) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    private async getInitialData(): Promise<Partial<Plotly.PlotData>> {
+        // simulate HTTP call
+        await this.sleep(2000);
+        return {
+            x: [1, 2, 3, 4],
+            y: [10, 15, 13, 17],
+            type: 'scatter'
+        };
     }
 }

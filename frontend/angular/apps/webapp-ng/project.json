@@ -10,7 +10,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "allowedCommonJsDependencies": ["plotly.js-dist-min", "lodash"],
+        "allowedCommonJsDependencies": ["plotly.js-dist-min", "lodash", "plotly.js"],
         "outputPath": "dist/frontend/angular/apps/webapp-ng",
         "index": "frontend/angular/apps/webapp-ng/src/index.html",
         "main": "frontend/angular/apps/webapp-ng/src/main.ts",
@@ -44,6 +44,8 @@
           "outputHashing": "all"
         },
         "development": {
+          "verbose": true,
+          "allowedCommonJsDependencies": ["plotly.js-dist-min", "lodash", "plotly.js"],
           "buildOptimizer": false,
           "optimization": false,
           "vendorChunk": true,
