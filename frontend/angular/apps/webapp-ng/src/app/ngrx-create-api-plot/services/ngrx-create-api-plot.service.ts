@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { cloneDeep } from 'lodash';
-import { Config, Data, Layout, PlotData, PlotlyHTMLElement, extendTraces, newPlot, purge } from 'plotly.js-dist-min';
+import { Config, Data, Layout, PlotData, PlotlyHTMLElement, extendTraces, newPlot, purge, restyle } from 'plotly.js-dist-min';
 import { Observable, map, of } from "rxjs";
 import { LoadedLayoutDataAction } from "../store/ngrx-create-api-plot.actions";
 import { PlotModel } from "../store/ngrx-create-api-plot.models";
@@ -42,16 +42,11 @@ export class NgrxCreateApliPlotService {
     public async getPlotNextInstance(initial: PlotlyHTMLElement): Promise<PlotlyHTMLElement> {
 
 
-        const dataPlot = <PlotData[]>initial.data;
+        const update = {
+            y: [[Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1]]
+        };
 
-        const newRoot = initial.getRootNode() as HTMLElement;
-        const values: PlotData[] = dataPlot.map(((value) => {
-            const gg: number[] = [...Array(value.y?.length).keys()].map(() => (Math.floor(Math.random() * 100) + 1));
-            const newData = { ...value, y: gg };
-            return newData;
-        }));
-        console.log("ARRRAY", values[0].y)
-        return await extendTraces(newRoot, { y: [[Math.floor(Math.random() * 100) + 1], [Math.floor(Math.random() * 100) + 1], [Math.floor(Math.random() * 100) + 1], [Math.floor(Math.random() * 100) + 1], [Math.floor(Math.random() * 100) + 1]], x:values[0].x}, [0]);
+        return await restyle(initial, update, [0]);
 
 
     }
