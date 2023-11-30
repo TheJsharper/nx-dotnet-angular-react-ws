@@ -18,8 +18,8 @@ import { NgrxCreateApiPlotSelector } from '../store/nrx-create-api-plot.selector
 
 export class NgrxCreateApiPlotValuesComponent implements OnInit, OnDestroy {
 
-    //@Input() plotInstance?: Promise<PlotlyHTMLElement>;
-    private  plotInstance: Promise<PlotlyHTMLElement>;
+
+    private plotInstance: Promise<PlotlyHTMLElement>;
 
     formGroup: FormGroup;
 
@@ -29,7 +29,7 @@ export class NgrxCreateApiPlotValuesComponent implements OnInit, OnDestroy {
 
     constructor(
         private ngrxCreateApiPlotSelector: NgrxCreateApiPlotSelector,
-        private store: Store<PlotModel>,private ngrxCreateApiPlotMainService: NgrxCreateApiPlotMainService) {
+        private store: Store<PlotModel>, private ngrxCreateApiPlotMainService: NgrxCreateApiPlotMainService) {
 
         this.signalDestroyer$ = new Subject<void>();
         this.plotInstance = this.ngrxCreateApiPlotMainService.plotInstance;

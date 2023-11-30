@@ -1,11 +1,11 @@
-import { ElementRef, Injectable, NgZone } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { cloneDeep } from 'lodash';
+import { Layout, PlotlyHTMLElement, relayout } from 'plotly.js-dist-min';
+import { Observable, filter, tap } from 'rxjs';
+import { LoadedLayoutDataAction } from '../store/ngrx-create-api-plot.actions';
 import { Axis, PlotModel } from '../store/ngrx-create-api-plot.models';
 import { NgrxCreateApiPlotSelector } from '../store/nrx-create-api-plot.selectors';
-import { Layout, PlotlyHTMLElement, relayout } from 'plotly.js-dist-min';
-import { LoadedLayoutDataAction } from '../store/ngrx-create-api-plot.actions';
-import { Observable, filter, tap } from 'rxjs';
-import { cloneDeep } from 'lodash';
 
 
 @Injectable()

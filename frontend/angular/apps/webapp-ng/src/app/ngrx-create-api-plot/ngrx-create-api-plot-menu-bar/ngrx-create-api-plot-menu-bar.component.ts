@@ -39,6 +39,7 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
 
         const root = (await this.plotInstance).getRootNode() as HTMLElement;
+        
         this.ngrxCreateApiPlotZoomService.updateLayout(root).pipe(takeUntil(this.signalDestroyer$)).subscribe();
 
 

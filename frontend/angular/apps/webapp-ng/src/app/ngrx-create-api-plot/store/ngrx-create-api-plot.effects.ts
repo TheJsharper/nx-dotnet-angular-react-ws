@@ -15,6 +15,7 @@ export class NgrxCreateApiPlotEffects {
         this.plotLoaded = createEffect(() => {
             return this.actions$.pipe(
                 ofType(LoadingPlotDataAction),
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 mergeMap((_: TypedAction<string>) =>
                     this.ngrxCreateApiPlotService.getPlotData().pipe(map((data: PlotModel) => LoadedPlotDataAction({ plotModel: data })))
                 ))

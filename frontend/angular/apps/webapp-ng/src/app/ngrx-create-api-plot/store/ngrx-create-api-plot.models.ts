@@ -1,5 +1,5 @@
 
-import { Layout, PlotData } from 'plotly.js-dist-min';
+import { PlotData } from 'plotly.js-dist-min';
 
 export interface PlotModel {
     data: Array<Partial<PlotData>>

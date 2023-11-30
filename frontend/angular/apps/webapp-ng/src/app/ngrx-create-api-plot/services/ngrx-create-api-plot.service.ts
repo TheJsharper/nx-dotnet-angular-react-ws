@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { cloneDeep } from 'lodash';
-import { Config, Data, Layout, PlotData, PlotlyHTMLElement, extendTraces, newPlot, purge, restyle } from 'plotly.js-dist-min';
+import { Config, Data, Datum, Layout, PlotData, PlotlyHTMLElement, extendTraces, newPlot, purge, restyle } from 'plotly.js-dist-min';
 import { Observable, map, of } from "rxjs";
-import { LoadedLayoutDataAction } from "../store/ngrx-create-api-plot.actions";
+import { LoadedLayoutDataAction, UpdatePlotDataAction } from "../store/ngrx-create-api-plot.actions";
 import { PlotModel } from "../store/ngrx-create-api-plot.models";
 import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selectors";
 
@@ -41,10 +41,22 @@ export class NgrxCreateApliPlotService {
 
     public async getPlotNextInstance(initial: PlotlyHTMLElement): Promise<PlotlyHTMLElement> {
 
+        const data = <number[]>(<Partial<PlotData>>initial.data[0]).y;
+
+        const dataY = data.map((value: number) => value === 60 ? 1 : (value + 1));
 
         const update = {
-            y: [[Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1]]
+            //  y: [[Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1]]
+            y: [[...dataY]]
         };
+        const updateState = (<Partial<PlotData>>initial.data[0]);
+
+        const updateNew = { ...updateState, y: [...<Datum[]>dataY] };
+
+        const plotModel: Pick<PlotModel, "data"> = {
+            data: [updateNew]
+        }
+        this.store.dispatch(UpdatePlotDataAction({ plotModel }));
 
         return await restyle(initial, update, [0]);
 

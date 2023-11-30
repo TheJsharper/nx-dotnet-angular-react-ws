@@ -4,8 +4,12 @@ import { Axis, PlotModel } from "./ngrx-create-api-plot.models";
 
 export type LOADED_ACTION_ALIAS_TYPING = { plotModel: PlotModel; } & TypedAction<string>;
 
+export type UPDATED_ACTION_ALIAS_TYPING = { plotModel: Pick<PlotModel, "data">; } & TypedAction<string>;
+
 
 export type LOADED_ACTION_FNC_ALIAS_TYPING = ActionCreator<string, (props: { plotModel: PlotModel; }) => { plotModel: PlotModel; } & TypedAction<string>>
+
+export type UPDATE_ACTION_FNC_ALIAS_TYPING = ActionCreator<string, (props: { plotModel: Pick<PlotModel, "data">; }) => { plotModel: Pick<PlotModel, "data">; } & TypedAction<string>>
 
 export type SELECTED_ACTION_FNC_ALIAS_TYPING = ActionCreator<string, (props: { key: string; }) => { key:string } & TypedAction<string>>
 
@@ -14,6 +18,8 @@ export type LOADED_LAYOUT_ACTION_FNC_ALIAS_TYPING = ActionCreator<string, (props
 export const LoadingPlotDataAction: ActionCreator<string, () => TypedAction<string>> = createAction("[PLOT ROUTER MATCH] Loading PlotData");
 
 export const LoadedPlotDataAction: LOADED_ACTION_FNC_ALIAS_TYPING = createAction("[PLOT MAIN COMPONENT] Success Loaded PlotData", props<{ plotModel: PlotModel; }>());
+
+export const UpdatePlotDataAction: UPDATE_ACTION_FNC_ALIAS_TYPING = createAction("[PLOT MAIN COMPONENT] Success Update PlotData", props<{ plotModel: Pick<PlotModel, "data">; }>());
 
 export const LoadedLayoutDataAction: LOADED_LAYOUT_ACTION_FNC_ALIAS_TYPING = createAction("[PLOT MAIN COMPONENT] Success Loaded PlotLayout", props<{ layout: Partial<Axis>; }>());
 
