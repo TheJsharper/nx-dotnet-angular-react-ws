@@ -13,7 +13,7 @@ export class NgrxCreateApiPlotZoomService {
     constructor(private zone: NgZone, private store: Store<PlotModel>, private selector: NgrxCreateApiPlotSelector) { }
 
 
-    public updateLayout(/*root: ElementRef*/ root: HTMLElement): Observable<Partial<Axis>> {
+    public updateLayout(root: PlotlyHTMLElement): Observable<Partial<Axis>> {
         return this.store.select(this.selector.getPlotLayoutState()).pipe(
             filter((value) => Object.keys(value).length > 0),
             tap((layout) => {

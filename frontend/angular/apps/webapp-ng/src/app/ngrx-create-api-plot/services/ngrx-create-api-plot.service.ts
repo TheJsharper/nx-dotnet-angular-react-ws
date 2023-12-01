@@ -105,9 +105,7 @@ export class NgrxCreateApliPlotService {
 
                 const newData = data.map((value: Partial<Data>) => cloneDeep(value));
 
-                const newRoot = initial.getRootNode() as HTMLElement;
-
-                const el = await Plotly.newPlot(newRoot, newData, layout, config);
+                const el = await Plotly.newPlot(initial, newData, layout, config);
 
                 if (el?.layout?.xaxis?.range && el?.layout?.yaxis?.range) {
 

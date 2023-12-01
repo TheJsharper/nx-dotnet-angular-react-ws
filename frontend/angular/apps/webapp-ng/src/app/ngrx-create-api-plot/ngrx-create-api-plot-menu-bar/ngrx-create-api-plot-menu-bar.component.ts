@@ -38,15 +38,15 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
     async ngOnInit(): Promise<void> {
 
 
-        const root = (await this.plotInstance).getRootNode() as HTMLElement;
+        const root = await this.plotInstance;
 
         this.ngrxCreateApiPlotZoomService.updateLayout(root).pipe(takeUntil(this.signalDestroyer$)).subscribe();
 
-        (await this.plotInstance)?.on("plotly_relayout", this.monitorRelayout);
+        root.on("plotly_relayout", this.monitorRelayout);
 
-        (await this.plotInstance)?.on("plotly_event", (data) => { console.log("DATA EVENT", data) });
+        root.on("plotly_event", (data) => { console.log("DATA EVENT", data) });
 
-        (await this.plotInstance)?.on("plotly_beforeplot", (data) => { console.log(" BEFORE PLOT DATA EVENT", data); return true; });
+        root.on("plotly_beforeplot", (data) => { console.log(" BEFORE PLOT DATA EVENT", data); return true; });
 
     }
 
@@ -82,11 +82,13 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
 
     async ngOnDestroy(): Promise<void> {
-        (await this.plotInstance)?.removeAllListeners("plotly_beforeplot");
+        const root = await this.plotInstance
 
-        (await this.plotInstance)?.removeAllListeners("plotly_event");
+        root.removeAllListeners("plotly_beforeplot");
 
-        (await this.plotInstance)?.removeAllListeners("plotly_relayout");
+        root.removeAllListeners("plotly_event");
+
+        root.removeAllListeners("plotly_relayout");
 
         if (!this.signalDestroyer$.closed) {
 
