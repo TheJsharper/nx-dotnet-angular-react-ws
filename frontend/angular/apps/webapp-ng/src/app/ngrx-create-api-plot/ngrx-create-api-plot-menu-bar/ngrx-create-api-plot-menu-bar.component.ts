@@ -24,13 +24,15 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
     ) {
 
         this.signalDestroyer$ = new Subject<void>();
-        this.plotInstance = this.ngrxCreateApiPlotMainService.plotInstance;
 
+        this.plotInstance = this.ngrxCreateApiPlotMainService.plotInstance;
 
         this.form = this.fb.group({
             axe: new FormControl<'xaxe' | 'yaxe'>('xaxe', { nonNullable: true }),
         });
+
         this.form.valueChanges.subscribe(console.log)
+
         this.form.get('axe')?.valueChanges.subscribe(console.log)
     }
 

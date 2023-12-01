@@ -11,10 +11,14 @@ export class NgrxCreateApiPlotMainService {
         return this._plotInstance;
     }
 
+    public set plotInstance(value: Promise<PlotlyHTMLElement>) {
+        this._plotInstance = value;
+    }
+
     constructor(private rendererFactory: RendererFactory2) {
         this._plotInstance = this.getPlotInstance();
     }
-private async getPlotInstance(): Promise<PlotlyHTMLElement> {
+    private async getPlotInstance(): Promise<PlotlyHTMLElement> {
 
         const xArray = ["Italy", "France", "Spain", "USA", "Argentina"];
         const yArray = [55, 49, 44, 24, 15];
@@ -31,7 +35,6 @@ private async getPlotInstance(): Promise<PlotlyHTMLElement> {
 
         const layout: Partial<Layout> = {
             clickmode: "event+select",
-
             font: { size: 18 },
             scene: {
                 camera: {
@@ -41,7 +44,7 @@ private async getPlotInstance(): Promise<PlotlyHTMLElement> {
                         z: 2
                     }
                 },
-                aspectmode: "manual",
+                //aspectmode: "manual",
                 aspectratio: {
 
                     x: 2,

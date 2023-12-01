@@ -30,14 +30,9 @@ export class NgrxCreateApiMainComponent implements AfterViewInit, OnDestroy {
 
             this.ngrxCreateApliPlotService.getPlotInstance(elPlot).pipe(
                 takeUntil(this.signalDestroyer$),
-                tap(async(value) => {
-                   /*  value.then(async (vv) => {
-                        this.renderer.appendChild(this.scenePlot!.nativeElement, vv);
-                    }).catch((err) => {
-                        console.log("=========", err)
-                    }); */
-                  const el =  await value;
-                  this.renderer.appendChild(this.scenePlot!.nativeElement, el);
+                tap(async (value) => {
+                    const el = await value;
+                    this.renderer.appendChild(this.scenePlot!.nativeElement, el);
                 })
             ).subscribe();
 
@@ -46,8 +41,12 @@ export class NgrxCreateApiMainComponent implements AfterViewInit, OnDestroy {
             const next = seconds
                 .pipe(timeInterval());
             next.
-                pipe(tap(async () =>
-                    await this.ngrxCreateApliPlotService.getPlotNextInstance(elPlot)
+                pipe(tap(async () => {
+
+                    const nextInstance = await this.ngrxCreateApliPlotService.getPlotNextInstance(elPlot);
+
+                    this.ngrxCreateApiPlotMainService.plotInstance = Promise.resolve(nextInstance);
+                }
                 )).
                 subscribe();
 

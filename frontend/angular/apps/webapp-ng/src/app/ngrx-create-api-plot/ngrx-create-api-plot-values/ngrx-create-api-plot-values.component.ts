@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { PlotMouseEvent, PlotlyHTMLElement } from 'plotly.js-dist-min';
+import { PlotHoverEvent, PlotMouseEvent, PlotSelectionEvent, PlotlyHTMLElement } from 'plotly.js-dist-min';
 import { Observable, Subject, takeUntil, tap } from 'rxjs';
 import { NgrxCreateApiPlotMainService } from '../../services/ngrx-create-api-plot-main.service';
 import { SelectedPlotDataAction } from '../store/ngrx-create-api-plot.actions';
@@ -32,6 +32,7 @@ export class NgrxCreateApiPlotValuesComponent implements OnInit, OnDestroy {
         private store: Store<PlotModel>, private ngrxCreateApiPlotMainService: NgrxCreateApiPlotMainService) {
 
         this.signalDestroyer$ = new Subject<void>();
+
         this.plotInstance = this.ngrxCreateApiPlotMainService.plotInstance;
 
         this.selected = this.store.select(this.ngrxCreateApiPlotSelector.getPlotSelctedDataState());
@@ -55,10 +56,19 @@ export class NgrxCreateApiPlotValuesComponent implements OnInit, OnDestroy {
             const key = <string>event.points[0].x;
             this.store.dispatch(SelectedPlotDataAction({ key }))
         });
+        (await this.plotInstance)?.on('plotly_selecting', (event: PlotSelectionEvent) => {
+            console.log("Cliking", event)
+            const key = <string>event.points[0].x;
+            this.store.dispatch(SelectedPlotDataAction({ key }))
+        });
+        (await this.plotInstance)?.on('plotly_hover', (event: PlotHoverEvent) => {
+            console.log("Cliking", event)
+            const key = <string>event.points[0].x;
+            this.store.dispatch(SelectedPlotDataAction({ key }))
+        });
 
     }
     ngOnDestroy(): void {
-        console.log("ngOnDestroy");
         if (!this.signalDestroyer$.closed) {
             this.signalDestroyer$.next();
             this.signalDestroyer$.complete();

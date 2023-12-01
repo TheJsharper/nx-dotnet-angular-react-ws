@@ -91,7 +91,7 @@ export class NgrxCreateApliPlotService {
                                 z: 2
                             }
                         },
-                        aspectmode: "manual",
+                     //   aspectmode: "manual",
                         aspectratio: {
 
                             x: 2,
