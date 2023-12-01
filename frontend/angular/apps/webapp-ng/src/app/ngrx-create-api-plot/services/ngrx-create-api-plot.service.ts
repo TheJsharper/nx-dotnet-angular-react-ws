@@ -6,14 +6,16 @@ import { Observable, map, of } from "rxjs";
 import { LoadedLayoutDataAction, UpdatePlotDataAction } from "../store/ngrx-create-api-plot.actions";
 import { PlotModel } from "../store/ngrx-create-api-plot.models";
 import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selectors";
+import { Selection } from '../store/ngrx-create-api-plot.models';
 
 @Injectable()
 export class NgrxCreateApliPlotService {
 
 
-
+    private selectedNode?: Selection;
     constructor(private ngrxCreateApiPlotSelector: NgrxCreateApiPlotSelector, private store: Store<PlotModel>,) {
-
+        this.store.select(
+            this.ngrxCreateApiPlotSelector.getPlotSelctedDataState()).subscribe((value: Selection) => this.selectedNode = value)
     }
 
     getPlotData(): Observable<PlotModel> {
@@ -46,17 +48,27 @@ export class NgrxCreateApliPlotService {
         const dataY = data.map((value: number) => value === 60 ? 1 : (value + 1));
 
         const update = {
-            //  y: [[Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1, Math.floor(Math.random() * 50) + 1]]
             y: [[...dataY]]
         };
+
         const updateState = (<Partial<PlotData>>initial.data[0]);
 
         const updateNew = { ...updateState, y: [...<Datum[]>dataY] };
 
-        const plotModel: Pick<PlotModel, "data"> = {
-            data: [updateNew]
+        if (this.selectedNode) {
+            const dataX = <string[]>(<Partial<PlotData>>initial.data[0]).x;
+
+            const index = dataX.findIndex((value: string) => value === this.selectedNode?.key);
+
+            const value = dataY[index];
+
+            const plotModel: Pick<PlotModel, "data" | "selected"> = {
+                data: [updateNew],
+                selected: { index: this.selectedNode.index, key: this.selectedNode.key, value }
+
+            }
+            this.store.dispatch(UpdatePlotDataAction({ plotModel }));
         }
-        this.store.dispatch(UpdatePlotDataAction({ plotModel }));
 
         return await restyle(initial, update, [0]);
 
