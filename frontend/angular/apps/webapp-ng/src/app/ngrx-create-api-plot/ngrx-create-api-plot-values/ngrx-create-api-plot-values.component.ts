@@ -58,6 +58,7 @@ export class NgrxCreateApiPlotValuesComponent implements OnInit, OnDestroy {
 
     }
     ngOnDestroy(): void {
+        console.log("ngOnDestroy");
         if (!this.signalDestroyer$.closed) {
             this.signalDestroyer$.next();
             this.signalDestroyer$.complete();

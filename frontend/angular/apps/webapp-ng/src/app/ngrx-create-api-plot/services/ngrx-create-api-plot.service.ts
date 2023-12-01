@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { cloneDeep } from 'lodash';
-import { Config, Data, Datum, Layout, PlotData, PlotlyHTMLElement, extendTraces, newPlot, purge, restyle } from 'plotly.js-dist-min';
+import { Config, Data, Datum, Layout, PlotData, PlotlyHTMLElement, extendTraces, newPlot, restyle } from 'plotly.js-dist-min';
+import * as Plotly from 'plotly.js-dist-min';
 import { Observable, map, of } from "rxjs";
 import { LoadedLayoutDataAction, UpdatePlotDataAction } from "../store/ngrx-create-api-plot.actions";
-import { PlotModel } from "../store/ngrx-create-api-plot.models";
+import { PlotModel, Selection } from "../store/ngrx-create-api-plot.models";
 import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selectors";
-import { Selection } from '../store/ngrx-create-api-plot.models';
 
 @Injectable()
 export class NgrxCreateApliPlotService {
@@ -102,14 +102,19 @@ export class NgrxCreateApliPlotService {
                 };
 
                 const config: Partial<Config> = { responsive: true };
+
                 const newData = data.map((value: Partial<Data>) => cloneDeep(value));
 
                 const newRoot = initial.getRootNode() as HTMLElement;
-                purge(newRoot);
-                const el = await newPlot(newRoot, newData, layout, config);
+
+                const el = await Plotly.newPlot(newRoot, newData, layout, config);
+
                 if (el?.layout?.xaxis?.range && el?.layout?.yaxis?.range) {
+
                     const xaxis: [number, number] = [el.layout.xaxis.range[0], el.layout.xaxis.range[1]];
+
                     const yaxis: [number, number] = [el.layout.yaxis.range[0], el.layout.yaxis.range[1]];
+
                     this.store.dispatch(LoadedLayoutDataAction({ layout: { xaxis, yaxis } }))
                 }
                 return el;

@@ -30,12 +30,14 @@ export class NgrxCreateApiMainComponent implements AfterViewInit, OnDestroy {
 
             this.ngrxCreateApliPlotService.getPlotInstance(elPlot).pipe(
                 takeUntil(this.signalDestroyer$),
-                tap((value) => {
-                    value.then(async (vv) => {
+                tap(async(value) => {
+                   /*  value.then(async (vv) => {
                         this.renderer.appendChild(this.scenePlot!.nativeElement, vv);
                     }).catch((err) => {
                         console.log("=========", err)
-                    });
+                    }); */
+                  const el =  await value;
+                  this.renderer.appendChild(this.scenePlot!.nativeElement, el);
                 })
             ).subscribe();
 

@@ -39,13 +39,13 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
 
         const root = (await this.plotInstance).getRootNode() as HTMLElement;
-        
+
         this.ngrxCreateApiPlotZoomService.updateLayout(root).pipe(takeUntil(this.signalDestroyer$)).subscribe();
 
-
-
         (await this.plotInstance)?.on("plotly_relayout", this.monitorRelayout);
+
         (await this.plotInstance)?.on("plotly_event", (data) => { console.log("DATA EVENT", data) });
+
         (await this.plotInstance)?.on("plotly_beforeplot", (data) => { console.log(" BEFORE PLOT DATA EVENT", data); return true; });
 
     }
@@ -81,10 +81,19 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
     }
 
 
-    ngOnDestroy(): void {
+    async ngOnDestroy(): Promise<void> {
+        (await this.plotInstance)?.removeAllListeners("plotly_beforeplot");
+
+        (await this.plotInstance)?.removeAllListeners("plotly_event");
+
+        (await this.plotInstance)?.removeAllListeners("plotly_relayout");
+
         if (!this.signalDestroyer$.closed) {
+
             this.signalDestroyer$.next();
+
             this.signalDestroyer$.complete();
+
             this.signalDestroyer$.unsubscribe();
         }
     }
