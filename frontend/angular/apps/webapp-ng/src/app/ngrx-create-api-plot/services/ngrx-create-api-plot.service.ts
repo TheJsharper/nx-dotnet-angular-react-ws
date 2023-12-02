@@ -1,9 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { cloneDeep } from 'lodash';
-import { Config, Data, Datum, Layout, PlotData, PlotlyHTMLElement, extendTraces, newPlot, restyle } from 'plotly.js-dist-min';
 import * as Plotly from 'plotly.js-dist-min';
-import { Observable, map, of } from "rxjs";
+import { Datum, PlotData, PlotlyHTMLElement, extendTraces, newPlot, restyle } from 'plotly.js-dist-min';
+import { Observable, of } from "rxjs";
 import { LoadedLayoutDataAction, UpdatePlotDataAction } from "../store/ngrx-create-api-plot.actions";
 import { PlotModel, Selection } from "../store/ngrx-create-api-plot.models";
 import { NgrxCreateApiPlotSelector } from "../store/nrx-create-api-plot.selectors";
@@ -74,51 +73,18 @@ export class NgrxCreateApliPlotService {
 
 
     }
-    public getPlotInstance(initial: PlotlyHTMLElement): Observable<Promise<PlotlyHTMLElement>> {
-        const result = this.store.select(this.ngrxCreateApiPlotSelector.getPlotDataState()).pipe(map(
-            async (data: Array<Partial<Data>>) => {
+    public getPlotInstance(initial: PlotlyHTMLElement): void {
 
 
-                const layout: Partial<Layout> = {
-                    clickmode: "event+select",
+        if (initial?.layout?.xaxis?.range && initial?.layout?.yaxis?.range) {
 
-                    font: { size: 18 },
-                    scene: {
-                        camera: {
-                            eye: {
-                                x: 2,
-                                y: 2,
-                                z: 2
-                            }
-                        },
-                     //   aspectmode: "manual",
-                        aspectratio: {
+            const xaxis: [number, number] = [initial.layout.xaxis.range[0], initial.layout.xaxis.range[1]];
 
-                            x: 2,
-                            y: 3
-                        }
-                    }
+            const yaxis: [number, number] = [initial.layout.yaxis.range[0], initial.layout.yaxis.range[1]];
 
-                };
+            this.store.dispatch(LoadedLayoutDataAction({ layout: { xaxis, yaxis } }))
+        }
 
-                const config: Partial<Config> = { responsive: true };
-
-                const newData = data.map((value: Partial<Data>) => cloneDeep(value));
-
-                const el = await Plotly.newPlot(initial, newData, layout, config);
-
-                if (el?.layout?.xaxis?.range && el?.layout?.yaxis?.range) {
-
-                    const xaxis: [number, number] = [el.layout.xaxis.range[0], el.layout.xaxis.range[1]];
-
-                    const yaxis: [number, number] = [el.layout.yaxis.range[0], el.layout.yaxis.range[1]];
-
-                    this.store.dispatch(LoadedLayoutDataAction({ layout: { xaxis, yaxis } }))
-                }
-                return el;
-            }
-        ));
-        return result;
     }
 
 

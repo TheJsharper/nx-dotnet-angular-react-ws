@@ -18,10 +18,10 @@ import { NgrxCreateApiPlotSelector } from '../store/nrx-create-api-plot.selector
 
 export class NgrxCreateApiPlotValuesComponent implements OnInit, OnDestroy {
 
+    public formGroup: FormGroup;
 
     private plotInstance: Promise<PlotlyHTMLElement>;
 
-    formGroup: FormGroup;
 
     private selected: Observable<Selection>;
 
@@ -43,6 +43,8 @@ export class NgrxCreateApiPlotValuesComponent implements OnInit, OnDestroy {
         })
     }
 
+
+
     async ngOnInit(): Promise<void> {
         this.selected.
             pipe(takeUntil(this.signalDestroyer$), tap((value) => {
@@ -50,28 +52,42 @@ export class NgrxCreateApiPlotValuesComponent implements OnInit, OnDestroy {
                 this.formGroup.get("value")?.setValue(value.value);
             })).subscribe();
 
+        const instance = await this.plotInstance;
 
-        (await this.plotInstance)?.on('plotly_click', (event: PlotMouseEvent) => {
-            console.log("Cliking", event)
+        instance.on('plotly_click', (event: PlotMouseEvent) => {
             const key = <string>event.points[0].x;
+
             this.store.dispatch(SelectedPlotDataAction({ key }))
         });
-        (await this.plotInstance)?.on('plotly_selecting', (event: PlotSelectionEvent) => {
-            console.log("Cliking", event)
+        instance.on('plotly_selecting', (event: PlotSelectionEvent) => {
             const key = <string>event.points[0].x;
+
             this.store.dispatch(SelectedPlotDataAction({ key }))
         });
-        (await this.plotInstance)?.on('plotly_hover', (event: PlotHoverEvent) => {
-            console.log("Cliking", event)
+        instance.on('plotly_hover', (event: PlotHoverEvent) => {
             const key = <string>event.points[0].x;
+
             this.store.dispatch(SelectedPlotDataAction({ key }))
         });
+
+
 
     }
-    ngOnDestroy(): void {
+    async ngOnDestroy(): Promise<void> {
+        const instance = await this.plotInstance;
+
+        instance.removeAllListeners('plotly_click');
+
+        instance.removeAllListeners('plotly_selecting');
+
+        instance.removeAllListeners('plotly_hover');
+
         if (!this.signalDestroyer$.closed) {
+
             this.signalDestroyer$.next();
+
             this.signalDestroyer$.complete();
+
             this.signalDestroyer$.unsubscribe();
         }
     }

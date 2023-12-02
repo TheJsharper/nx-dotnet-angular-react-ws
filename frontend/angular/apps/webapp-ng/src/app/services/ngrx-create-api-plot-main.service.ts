@@ -36,27 +36,16 @@ export class NgrxCreateApiPlotMainService {
         const layout: Partial<Layout> = {
             clickmode: "event+select",
             font: { size: 18 },
-            scene: {
-                camera: {
-                    eye: {
-                        x: 2,
-                        y: 2,
-                        z: 2
-                    }
-                },
-                //aspectmode: "manual",
-                aspectratio: {
 
-                    x: 2,
-                    y: 3
-                }
-            }
 
         };
 
         const config: Partial<Config> = { responsive: true };
+
         const renderer = this.rendererFactory.createRenderer(null, null);
+
         const parent: HTMLDivElement = renderer.createElement("div");
+
         parent.classList.add('main-test-container');
 
 

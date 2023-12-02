@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, Renderer2, ViewChild } from "@angular/core";
-import { Subject, interval, takeUntil, tap, timeInterval } from "rxjs";
+import { Subject, interval, tap, timeInterval } from "rxjs";
 import { NgrxCreateApiPlotMainService } from "../../services/ngrx-create-api-plot-main.service";
 import { NgrxCreateApliPlotService } from "../services/ngrx-create-api-plot.service";
 
@@ -28,18 +28,14 @@ export class NgrxCreateApiMainComponent implements AfterViewInit, OnDestroy {
 
             const elPlot = await this.ngrxCreateApiPlotMainService.plotInstance;
 
-            this.ngrxCreateApliPlotService.getPlotInstance(elPlot).pipe(
-                takeUntil(this.signalDestroyer$),
-                tap(async (value) => {
-                    const el = await value;
-                    this.renderer.appendChild(this.scenePlot!.nativeElement, el);
-                })
-            ).subscribe();
+            this.ngrxCreateApliPlotService.getPlotInstance(elPlot);
+
+            this.renderer.appendChild(this.scenePlot!.nativeElement, elPlot);
 
             const seconds = interval(2000);
 
-            const next = seconds
-                .pipe(timeInterval());
+            const next = seconds.pipe(timeInterval());
+
             next.
                 pipe(tap(async () => {
 
