@@ -66,8 +66,13 @@ export class NgrxCreateApiPlotValuesComponent implements OnInit, OnDestroy {
         });
         instance.on('plotly_hover', (event: PlotHoverEvent) => {
             const key = <string>event.points[0].x;
+            (<SVGElement>event.event.target).style.cursor = 'pointer';
 
             this.store.dispatch(SelectedPlotDataAction({ key }))
+        });
+        instance.on('plotly_unhover', (event: PlotMouseEvent) => {
+            (<SVGElement>event.event.target).style.cursor = 'crosshair';
+
         });
 
 
