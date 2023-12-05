@@ -1,27 +1,10 @@
 <div class="btn-group">
-    <button type="button" class="btn btn-default btn-sm d-flex" (click)="zoomMinusX()">
 
-        <i class="bi bi-zoom-out"></i>
-        <span>Y</span>
-    </button>
-    <button type="button" class="btn btn-default btn-sm d-flex" (click)="zoomPlusX()">
-        <i class="bi bi-zoom-in"></i>
-        <span>X</span>
-    </button>
-    <button type="button" class="btn btn-default btn-sm d-flex" (click)="zoomMinusY()">
-        <i class="bi bi-zoom-out"></i>
-        <span>Y</span>
-    </button>
-    <button type="button" class="btn btn-default btn-sm d-flex" (click)="zoomPlusY()">
-
-        <i class="bi bi-zoom-in"></i>
-        <span>Y</span>
-    </button>
-    <button type="button" class="btn btn-default btn-sm d-flex" #zoomIn>
+    <button type="button" class="btn btn-default btn-sm d-flex" (click)="zoomIn()">
 
         <i class="bi bi-zoom-in"></i>
     </button>
-    <button type="button" class="btn btn-default btn-sm d-flex" #zoomOut>
+    <button type="button" class="btn btn-default btn-sm d-flex" (click)="zoomOut()">
 
         <i class="bi bi-zoom-out"></i>
     </button>
