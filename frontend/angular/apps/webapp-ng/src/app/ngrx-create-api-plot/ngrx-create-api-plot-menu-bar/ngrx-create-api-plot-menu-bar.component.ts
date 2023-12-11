@@ -8,7 +8,8 @@ import { NgrxCreateApiPlotZoomService } from "../services/ngrx-create-api-plot-z
 
 @Component({
     selector: 'app-ngrx-create-api-plot-menu-bar',
-    templateUrl: './ngrx-create-api-plot-menu-bar.component.html'
+    templateUrl: './ngrx-create-api-plot-menu-bar.component.html',
+    styleUrl:'./ngrx-create-api-plot-menu-bar.component.scss'
 })
 export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
