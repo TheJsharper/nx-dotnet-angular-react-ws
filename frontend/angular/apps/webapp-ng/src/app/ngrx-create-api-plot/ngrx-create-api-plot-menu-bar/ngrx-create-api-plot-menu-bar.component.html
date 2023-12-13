@@ -41,10 +41,10 @@
     </div>
 
     <div class="d-flex switch-labels">
-        <label class="form-check-label" for="includeInput" [ngClass]="takeSelect === 'include'? 'checked':''" >
+        <label class="form-check-label" for="includeInput" [ngClass]="formTake.get('take')?.value === 'include'? 'checked':''" >
             INCLUDE
         </label>
-        <label class="form-check-label" for="excludeInput" [ngClass]="takeSelect === 'exclude'? 'checked':''" >
+        <label class="form-check-label" for="excludeInput" [ngClass]="formTake.get('take')?.value === 'exclude'? 'checked':''" >
             EXCLUDE
         </label>
     </div>
