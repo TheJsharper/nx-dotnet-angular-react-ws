@@ -1,17 +1,44 @@
-:host{
+:host {
 
-    .check-box-container{
+    .check-box-container {
         display: flex;
         width: 100px;
         justify-content: space-between;
         align-items: center;
-        input{
+
+        input {
             border-radius: 0%;
             width: 20px;
             height: 20px;
-            &:checked{
-                background-image:none;
-            } 
+
+            &:checked {
+                background-image: none;
+            }
+        }
     }
+
+    .switch {
+        justify-content: space-between;
+
+        input {
+            border-radius: 0%;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+
+            &:nth-child(2) {
+                background-color: aliceblue;
+
+                &:checked {
+                    background-image: none;
+                    background-color: #fff;
+                }
+            }
+
+            &:checked {
+                background-image: none;
+            }
+
+        }
     }
 }
