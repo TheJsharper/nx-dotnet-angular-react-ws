@@ -19,19 +19,21 @@
 
     .switch {
         justify-content: space-between;
+        width: 250px;
 
         input {
             border-radius: 0%;
             width: 30px;
             height: 20px;
             cursor: pointer;
+            box-shadow: none;
 
             &:nth-child(2) {
-                background-color: aliceblue;
 
                 &:checked {
                     background-image: none;
                     background-color: #fff;
+                    border-color: rgb(222, 226, 230);
                 }
             }
 
@@ -39,6 +41,10 @@
                 background-image: none;
             }
 
+        }
+
+        .switch-labels {
+            gap: 5px;
         }
     }
 }
