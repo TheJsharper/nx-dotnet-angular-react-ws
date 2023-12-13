@@ -45,6 +45,16 @@
 
         .switch-labels {
             gap: 5px;
+
+            label{
+
+                &.checked{
+                    background-color: #c3c3c3;
+                    color: white;
+                    padding-left: 1px;
+                    padding-right: 1px;
+                }
+            }
         }
     }
 }

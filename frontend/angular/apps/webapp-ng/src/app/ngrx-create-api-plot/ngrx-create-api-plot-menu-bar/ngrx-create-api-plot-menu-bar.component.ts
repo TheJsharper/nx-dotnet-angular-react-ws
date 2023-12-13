@@ -9,11 +9,12 @@ import { NgrxCreateApiPlotZoomService } from "../services/ngrx-create-api-plot-z
 @Component({
     selector: 'app-ngrx-create-api-plot-menu-bar',
     templateUrl: './ngrx-create-api-plot-menu-bar.component.html',
-    styleUrl:'./ngrx-create-api-plot-menu-bar.component.scss'
+    styleUrl: './ngrx-create-api-plot-menu-bar.component.scss'
 })
 export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
     form: FormGroup;
+    formTake: FormGroup;
 
 
 
@@ -22,6 +23,8 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
     private signalDestroyer$: Subject<void>;
 
     private curSelected: 'xaxe' | 'yaxe';
+
+    public takeSelect: 'exclude' | 'include' | 'default';
 
 
 
@@ -37,8 +40,15 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
 
         this.form = this.fb.group({
             axe: new FormControl<'xaxe' | 'yaxe'>('xaxe', { nonNullable: true }),
+
         });
         this.curSelected = this.form.get('axe')?.value;
+
+        this.formTake = this.fb.group({
+            take: new FormControl<'include' | 'exclude' | 'default'>('default', { nonNullable: true }),
+        });
+
+        this.takeSelect = this.formTake.get('take')?.value;
 
 
     }
@@ -59,6 +69,9 @@ export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {
         root.on("plotly_beforeplot", (data) => { console.log(" BEFORE PLOT DATA EVENT", data); return true; });
 
         this.form.get('axe')?.valueChanges.pipe(takeUntil(this.signalDestroyer$), tap((value: 'xaxe' | 'yaxe') => this.curSelected = value))
+            .subscribe()
+
+        this.formTake.get('take')?.valueChanges.pipe(takeUntil(this.signalDestroyer$), tap((value: 'include' | 'exclude' | 'default') => this.takeSelect = value))
             .subscribe()
 
     }
