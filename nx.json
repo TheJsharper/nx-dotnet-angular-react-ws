@@ -1,6 +1,9 @@
 {
   "defaultBase": "master",
-  "plugins": ["@nx-dotnet/core"],
+  "plugins": [
+    "@nx-dotnet/core",
+    "@nxrocks/nx-spring-boot"
+  ],
   "generators": {
     "@nx/angular:application": {
       "style": "scss",
@@ -33,7 +36,11 @@
   },
   "targetDefaults": {
     "test": {
-      "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"]
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/jest.preset.js"
+      ]
     },
     "lint": {
       "inputs": [
@@ -43,7 +50,10 @@
       ]
     },
     "build": {
-      "dependsOn": ["codegen", "^codegen"]
+      "dependsOn": [
+        "codegen",
+        "^codegen"
+      ]
     },
     "codegen": {
       "cache": true
@@ -52,12 +62,20 @@
       "cache": true
     },
     "@nx/vite:test": {
-      "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"],
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/jest.preset.js"
+      ],
       "cache": true
     },
     "@nx/jest:jest": {
       "cache": true,
-      "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"],
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/jest.preset.js"
+      ],
       "options": {
         "passWithNoTests": true
       },
@@ -67,6 +85,9 @@
           "codeCoverage": true
         }
       }
+    },
+    "install": {
+      "cache": true
     }
   }
 }
