@@ -1,5 +1,6 @@
 package com.jsharper.start.up.app.services;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class UserApiImpl implements IUserApi {
                 new User("FirstName_1", "LastName_1"),
                 new User("FirstName_2", "LastName_2"),
                 new User("FirstName_3", "LastName_3"));
-        this.users = data;
+        this.users = new ArrayList<>( data);
 
     }
 

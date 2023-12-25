@@ -6,27 +6,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jsharper.start.up.app.models.User;
 import com.jsharper.start.up.app.services.IUserApi;
 
 @RestController()
-@RequestMapping(path = "/users")
 public class UserController {
 
     @Autowired
     private IUserApi userService;
 
-    @GetMapping(path = "/")
+    @GetMapping(path = "/users/")
     public ResponseEntity<List<User>> getUser() {
 
         return this.userService.getAll();
     }
 
-    @PostMapping(path = "/")
-    public ResponseEntity<Void> createUser(User user) {
+    @PostMapping(path = "/users/")
+    public ResponseEntity<Void> createUser(@RequestBody User user) {
         System.out.println("Request===>x" + user.firstName());
         return this.userService.addUser(user);
     }
