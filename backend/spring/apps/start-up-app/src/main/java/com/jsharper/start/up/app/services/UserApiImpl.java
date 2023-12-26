@@ -56,4 +56,19 @@ public class UserApiImpl implements IUserApi {
         return response;
     }
 
+    @Override
+    public ResponseEntity<User> getByIdUser(String id) {
+        throw new UnsupportedOperationException("Unimplemented method 'getByIdUser'");
+    }
+
+    @Override
+    public ResponseEntity<Void> modifyUser(User user, String id) {
+        throw new UnsupportedOperationException("Unimplemented method 'modifyUser'");
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteUser(String id) {
+        throw new UnsupportedOperationException("Unimplemented method 'deleteUser'");
+    }
+
 }
