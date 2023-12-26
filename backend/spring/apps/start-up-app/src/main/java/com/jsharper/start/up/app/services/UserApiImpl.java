@@ -1,8 +1,10 @@
 package com.jsharper.start.up.app.services;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +19,10 @@ public class UserApiImpl implements IUserApi {
 
     public UserApiImpl() {
         var data = Arrays.asList(
-                new User("FirstName_1", "LastName_1"),
-                new User("FirstName_2", "LastName_2"),
-                new User("FirstName_3", "LastName_3"));
-        this.users = new ArrayList<>( data);
+                new User(UUID.randomUUID().toString(), "FirstName_1", "LastName_1"),
+                new User(UUID.randomUUID().toString(), "FirstName_2", "LastName_2"),
+                new User(UUID.randomUUID().toString(), "FirstName_3", "LastName_3"));
+        this.users = new ArrayList<>(data);
 
     }
 
@@ -38,8 +40,19 @@ public class UserApiImpl implements IUserApi {
 
     @Override
     public ResponseEntity<Void> addUser(User user) {
+        boolean isAny = this.users.stream().anyMatch((User uu) -> uu.id().equals(user.id()));
+
+        if (isAny) {
+            var message = MessageFormat.format("User id====> {0}", user.id());
+
+            return ResponseEntity.status(409).eTag(message).build();
+        }
         this.users.add(user);
-        ResponseEntity<Void> response = ResponseEntity.status(201).build();
+
+        var message = MessageFormat.format("User {0} stored succesfully", user.toString());
+
+        ResponseEntity<Void> response = ResponseEntity.status(201).eTag(message)
+                .build();
         return response;
     }
 
