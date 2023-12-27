@@ -36,6 +36,17 @@ public class UserController {
         return this.userService.getAll();
     }
 
+    @GetMapping(path = "/users/{id}")
+    @Operation(summary = "Fetch user", description = "fetches user entities by id and its data from data source")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "successful operation"),
+            @ApiResponse(responseCode = "404", description = "NOT FOUND user")
+    })
+    public ResponseEntity<User> getUserById(@PathVariable String id) {
+
+        return this.userService.getByIdUser(id);
+    }
+
     @PostMapping(path = "/users/")
     @Operation(summary = "add an user", description = "Adds a user to the list of users")
     @ApiResponses(value = {

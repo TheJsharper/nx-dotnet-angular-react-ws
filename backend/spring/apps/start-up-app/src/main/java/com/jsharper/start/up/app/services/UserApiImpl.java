@@ -59,7 +59,21 @@ public class UserApiImpl implements IUserApi {
 
     @Override
     public ResponseEntity<User> getByIdUser(String id) {
-        throw new UnsupportedOperationException("Unimplemented method 'getByIdUser'");
+        boolean isAny = this.users.stream().anyMatch((User uu) -> uu.id().equals(id));
+
+        if (!isAny) {
+            var message = MessageFormat.format("User id====> {0} NOT FOUND", id);
+
+            return ResponseEntity.status(404).eTag(message).build();
+        }
+        var user = this.users.stream().filter((User u) -> u.id().equals(id)).findFirst().get();
+
+        var message = MessageFormat.format("User {0} find succesfully", user.toString());
+
+        ResponseEntity<User> response = ResponseEntity.status(200).eTag(message)
+                .body(user);
+
+        return response;
     }
 
     @Override
