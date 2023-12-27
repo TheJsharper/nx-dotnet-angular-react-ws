@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,6 +65,17 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "not found user") })
     public ResponseEntity<Void> modifyUser(@RequestBody User user, @PathVariable String id) {
         return this.userService.modifyUser(user, id);
+    }
+
+    @DeleteMapping(path = "/users/{id}")
+    @Operation(summary = "Delete an user", description = "delete user entities by id and its data from data source")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "successful operation"),
+            @ApiResponse(responseCode = "404", description = "NOT FOUND user")
+    })
+    public ResponseEntity<Void> deleteUserById(@PathVariable String id) {
+
+        return this.userService.deleteUser(id);
     }
 
 }

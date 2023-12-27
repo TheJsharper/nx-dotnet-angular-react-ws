@@ -101,7 +101,23 @@ public class UserApiImpl implements IUserApi {
 
     @Override
     public ResponseEntity<Void> deleteUser(String id) {
-        throw new UnsupportedOperationException("Unimplemented method 'deleteUser'");
+        boolean isAny = this.users.stream().anyMatch((User uu) -> uu.id().equals(id));
+
+        if (!isAny) {
+            var message = MessageFormat.format("User id====> {0} NOT FOUND", id);
+
+            return ResponseEntity.status(404).eTag(message).build();
+        }
+        this.users = this.users.stream().filter((User u) -> {
+            return !u.id().equals(id);
+
+        }).collect(Collectors.toList());
+
+        var message = MessageFormat.format("User {0} deleted succesfully", id);
+
+        ResponseEntity<Void> response = ResponseEntity.status(200).eTag(message)
+                .build();
+        return response;
     }
 
 }
