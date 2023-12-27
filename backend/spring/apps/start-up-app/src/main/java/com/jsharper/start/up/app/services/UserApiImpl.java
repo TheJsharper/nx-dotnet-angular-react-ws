@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -63,7 +64,25 @@ public class UserApiImpl implements IUserApi {
 
     @Override
     public ResponseEntity<Void> modifyUser(User user, String id) {
-        throw new UnsupportedOperationException("Unimplemented method 'modifyUser'");
+        boolean isAny = this.users.stream().anyMatch((User uu) -> uu.id().equals(id));
+
+        if (!isAny) {
+            var message = MessageFormat.format("User id====> {0} NOT FOUND", user.id());
+
+            return ResponseEntity.status(404).eTag(message).build();
+        }
+        this.users = this.users.stream().map((User u) -> {
+            if (u.id().equals(id))
+                return new User(user.id(), user.firstName(), user.lastName());
+            else
+                return u;
+        }).collect(Collectors.toList());
+
+        var message = MessageFormat.format("User {0} modify succesfully", user.toString());
+
+        ResponseEntity<Void> response = ResponseEntity.status(201).eTag(message)
+                .build();
+        return response;
     }
 
     @Override
