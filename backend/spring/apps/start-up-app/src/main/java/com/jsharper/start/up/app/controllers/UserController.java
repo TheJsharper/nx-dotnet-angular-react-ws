@@ -15,64 +15,38 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jsharper.start.up.app.models.User;
 import com.jsharper.start.up.app.services.IUserApi;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController()
 @Tag(name = "User", description = "the User Api")
-public class UserController {
+public class UserController implements IUserApiDoc {
 
     @Autowired
     private IUserApi userService;
 
     @GetMapping(path = "/users/")
-    @Operation(summary = "Fetch all users", description = "fetches all user entities and their data from data source")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
-    })
     public ResponseEntity<List<User>> getUser() {
 
         return this.userService.getAll();
     }
 
     @GetMapping(path = "/users/{id}")
-    @Operation(summary = "Fetch user", description = "fetches user entities by id and its data from data source")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation"),
-            @ApiResponse(responseCode = "404", description = "NOT FOUND user")
-    })
     public ResponseEntity<User> getUserById(@PathVariable String id) {
 
         return this.userService.getByIdUser(id);
     }
 
     @PostMapping(path = "/users/")
-    @Operation(summary = "add an user", description = "Adds a user to the list of users")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "successfully added an user"),
-            @ApiResponse(responseCode = "409", description = "duplicate users")
-    })
     public ResponseEntity<Void> createUser(@RequestBody User user) {
         return this.userService.addUser(user);
     }
 
     @PutMapping(path = "/users/{id}")
-    @Operation(summary = "modify an user", description = "Modify a user to the list of users")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "successfully added an user"),
-            @ApiResponse(responseCode = "404", description = "not found user") })
     public ResponseEntity<Void> modifyUser(@RequestBody User user, @PathVariable String id) {
         return this.userService.modifyUser(user, id);
     }
 
     @DeleteMapping(path = "/users/{id}")
-    @Operation(summary = "Delete an user", description = "delete user entities by id and its data from data source")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation"),
-            @ApiResponse(responseCode = "404", description = "NOT FOUND user")
-    })
     public ResponseEntity<Void> deleteUserById(@PathVariable String id) {
 
         return this.userService.deleteUser(id);
