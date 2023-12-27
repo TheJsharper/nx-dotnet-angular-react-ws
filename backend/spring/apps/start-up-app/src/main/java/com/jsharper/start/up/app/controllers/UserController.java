@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jsharper.start.up.app.models.User;
 import com.jsharper.start.up.app.services.IUserApi;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
-
 @RestController()
-@Tag(name = "User", description = "the User Api")
 public class UserController implements IUserApiDoc {
 
     @Autowired

@@ -11,7 +11,9 @@ import com.jsharper.start.up.app.models.User;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name = "User", description = "the User Api ")
 public interface IUserApiDoc {
     @Operation(summary = "Fetch all users", description = "fetches all user entities and their data from data source")
     @ApiResponses(value = {
