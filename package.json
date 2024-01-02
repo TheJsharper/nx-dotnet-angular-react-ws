@@ -4,8 +4,9 @@
   "description": "simple frontend and backend workspace",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "nx g @nx-dotnet/core:restore"
+    "prepare": "nx g @nx-dotnet/core:restore",
+    "generated-spring-start-up-app": "openapi-generator-cli generate -i http://localhost:8080/v3/api-docs -g typescript-fetch -o generated/spring-start-up-app-openapi"
+
   },
   "author": "Pedro Salomon",
   "license": "ISC",
@@ -38,12 +39,14 @@
     "@nx/web": "17.2.6",
     "@nx/webpack": "17.2.6",
     "@nxrocks/nx-spring-boot": "^9.2.2",
+    "@openapitools/openapi-generator-cli": "^2.7.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@schematics/angular": "17.0.7",
     "@svgr/webpack": "^8.1.0",
     "@swc/cli": "~0.1.63",
     "@swc/core": "~1.3.101",
     "@testing-library/react": "14.1.2",
+    "@trumbitta/nx-plugin-openapi": "^1.12.1",
     "@types/jest": "^29.5.11",
     "@types/lodash": "^4.14.202",
     "@types/node": "20.10.5",

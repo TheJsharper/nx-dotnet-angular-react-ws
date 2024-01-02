@@ -1,1 +1,1 @@
-export * from './lib/generated-webapi-types';
+export * from './interfaces/weather-forecast';
