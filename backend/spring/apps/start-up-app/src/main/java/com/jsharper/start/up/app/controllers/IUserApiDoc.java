@@ -15,38 +15,41 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "User", description = "the User Api ")
 public interface IUserApiDoc {
-    @Operation(summary = "Fetch all users", description = "fetches all user entities and their data from data source")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation")
-    })
+        @Operation(summary = "Fetch all users", description = "Fetches all user entities and their data from data source")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "200", description = "successful operation")
+        })
 
-    ResponseEntity<List<User>> getUser();
+        ResponseEntity<List<User>> getUser();
 
-    @Operation(summary = "Fetch user", description = "fetches user entities by id and its data from data source")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation"),
-            @ApiResponse(responseCode = "404", description = "NOT FOUND user")
-    })
-    ResponseEntity<User> getUserById(@PathVariable String id);
+        @Operation(summary = "Fetch user", description = "Fetches user entities by id and its data from data source")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "200", description = "Successful operation"),
+                        @ApiResponse(responseCode = "404", description = "NOT FOUND user")
+        })
+        ResponseEntity<User> getUserById(@PathVariable String id);
 
-    @Operation(summary = "add an user", description = "Adds a user to the list of users")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "successfully added an user"),
-            @ApiResponse(responseCode = "409", description = "duplicate users")
-    })
-    ResponseEntity<Void> createUser(@RequestBody User user);
+        @Operation(summary = "add an user", description = "Adds a user to the list of users")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "201", description = "Successfully added an user"),
+                        @ApiResponse(responseCode = "409", description = "Duplicate users"),
+                        @ApiResponse(responseCode = "422", description = "Unprocessable Entity")
+        })
+        ResponseEntity<Void> createUser(@RequestBody User user);
 
-    @Operation(summary = "modify an user", description = "Modify a user to the list of users")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "successfully added an user"),
-            @ApiResponse(responseCode = "404", description = "not found user") })
-    ResponseEntity<Void> modifyUser(@RequestBody User user, @PathVariable String id);
+        @Operation(summary = "modify an user", description = "Modify a user to the list of users")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "201", description = "Successfully added an user"),
+                        @ApiResponse(responseCode = "404", description = "Not found user"),
+                        @ApiResponse(responseCode = "422", description = "Unprocessable Entity")
+        })
+        ResponseEntity<Void> modifyUser(@RequestBody User user, @PathVariable String id);
 
-    @Operation(summary = "Delete an user", description = "delete user entities by id and its data from data source")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation"),
-            @ApiResponse(responseCode = "404", description = "NOT FOUND user")
-    })
+        @Operation(summary = "Delete an user", description = "Delete user entities by id and its data from data source")
+        @ApiResponses(value = {
+                        @ApiResponse(responseCode = "200", description = "Successful operation"),
+                        @ApiResponse(responseCode = "404", description = "NOT FOUND user")
+        })
 
-    ResponseEntity<Void> deleteUserById(@PathVariable String id);
+        ResponseEntity<Void> deleteUserById(@PathVariable String id);
 }

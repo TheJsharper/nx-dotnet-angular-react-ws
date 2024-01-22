@@ -48,7 +48,13 @@ public class UserApiImpl implements IUserApi {
 
             return ResponseEntity.status(409).eTag(message).build();
         }
-        this.users.add(user);
+        if (user.firstName() == null || user.firstName().length() == 1 || user.lastName() == null
+                || user.lastName().length() == 1) {
+            var message = MessageFormat.format("User id====> {0}", "none Match Schema wellforming");
+
+            return ResponseEntity.status(422).eTag(message).build();
+        }
+        this.users.add(new User(UUID.randomUUID().toString(), user.firstName(), user.lastName()));
 
         var message = MessageFormat.format("User {0} stored succesfully", user.toString());
 
@@ -78,6 +84,13 @@ public class UserApiImpl implements IUserApi {
 
     @Override
     public ResponseEntity<Void> modifyUser(User user, String id) {
+        if (user.firstName() == null || user.firstName().length() == 1 || user.lastName() == null
+                || user.lastName().length() == 1) {
+            var message = MessageFormat.format("User id====> {0} message details {1}", user.id(),
+                    "none Match Schema wellforming");
+
+            return ResponseEntity.status(422).eTag(message).build();
+        }
         boolean isAny = this.users.stream().anyMatch((User uu) -> uu.id().equals(id));
 
         if (!isAny) {
