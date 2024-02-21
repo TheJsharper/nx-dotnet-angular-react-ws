@@ -40,9 +40,8 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["backend/nest/apps/webapi-nest/**/*.ts"]
+        "lintFilePatterns": ["{projectRoot}/**/*.ts"]
       }
     },
     "test": {

@@ -62,7 +62,6 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
           "./frontend/react/apps//one-webapp/**/*.{ts,tsx,js,jsx}"

@@ -16,9 +16,8 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["generated/webapi-types/**/*.ts"]
+        "lintFilePatterns": ["{projectRoot}/**/*.ts"]
       }
     },
     "test": {

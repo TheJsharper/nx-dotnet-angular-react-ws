@@ -72,12 +72,8 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "frontend/angular/apps/gifs-app/**/*.ts",
-          "frontend/angular/apps/gifs-app/**/*.html"
-        ]
+        "lintFilePatterns": ["{projectRoot}/**/*.ts", "{projectRoot}/**/*.html"]
       }
     },
     "test": {

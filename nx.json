@@ -70,6 +70,14 @@
     },
     "install": {
       "cache": true
+    },
+    "@nx/eslint:lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore"
+      ],
+      "cache": true
     }
   },
   "nxCloudAccessToken": "MTMxYzM1YWMtNzBiNS00YTZjLWEzNGMtNzUzODhlNWFmOWEwfHJlYWQtd3JpdGU="
