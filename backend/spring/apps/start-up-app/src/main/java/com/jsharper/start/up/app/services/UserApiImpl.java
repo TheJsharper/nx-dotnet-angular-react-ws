@@ -54,7 +54,10 @@ public class UserApiImpl implements IUserApi {
 
             return ResponseEntity.status(422).eTag(message).build();
         }
-        this.users.add(new User(UUID.randomUUID().toString(), user.firstName(), user.lastName()));
+        if(user.id() == null && user.id().length() > 4)
+            this.users.add(new User(UUID.randomUUID().toString(), user.firstName(), user.lastName()));
+        else
+            this.users.add(user);
 
         var message = MessageFormat.format("User {0} stored succesfully", user.toString());
 
