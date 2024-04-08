@@ -3,24 +3,20 @@ import styles from './app.module.scss';
 
 import { Route, Routes, Link } from 'react-router-dom';
 import { WithoutQuery } from './components/without-query/without-query.component';
+import { WithQuery } from './components/with-query/with-query.component';
 
 export function App() {
   return (
     <div>
 
-      {/* START: routes */}
-      {/* These routes and navigation have been generated for you */}
-      {/* Feel free to move and update them to fit your needs */}
-      <br />
-      <hr />
-      <br />
+      
       <div role="navigation">
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/">WITHOUT QUERY</Link>
           </li>
           <li>
-            <Link to="/page-2">Page 2</Link>
+            <Link to="/with-query">WITH QUERY</Link>
           </li>
         </ul>
       </div>
@@ -32,11 +28,9 @@ export function App() {
           }
         />
         <Route
-          path="/page-2"
+          path="/with-query"
           element={
-            <div>
-              <Link to="/">Click here to go back to root page.</Link>
-            </div>
+            <WithQuery />
           }
         />
       </Routes>
