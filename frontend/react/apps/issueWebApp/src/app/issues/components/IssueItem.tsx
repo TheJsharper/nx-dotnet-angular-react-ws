@@ -15,6 +15,7 @@ export const IssueItem: FC<IssueItemProps> = ({ issue }) => {
 
     const queryClient = useQueryClient();
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const onMouseEnter = () => {
         console.log("===> Mouse Enter");
         queryClient.prefetchQuery({
@@ -30,13 +31,14 @@ export const IssueItem: FC<IssueItemProps> = ({ issue }) => {
 
     }
     const preSetData = ()=>{
-       /*  queryClient.setQueryData(
-            queryKey: ['issue', issue.number],
-            queryFn: () => getIssue(issue.number) 
-            ["issues"]
-
-        
-        )*/
+       
+        queryClient.setQueryData(
+            ['issue', issue.number],
+            issue,
+            {
+                updatedAt: new Date().getTime() +100000
+            }
+        )
     }
 
     const diference = (): number => {
@@ -53,7 +55,7 @@ export const IssueItem: FC<IssueItemProps> = ({ issue }) => {
     return (
         <div className="card mb-2 issue"
             onClick={() => navigate(`/issues/issue/${issue.number}`)}
-            onMouseEnter={onMouseEnter}
+            onMouseEnter={preSetData}
         >
             <div className="card-body d-flex align-items-center">
 
