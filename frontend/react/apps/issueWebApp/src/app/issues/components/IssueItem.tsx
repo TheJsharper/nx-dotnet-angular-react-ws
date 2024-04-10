@@ -2,13 +2,32 @@ import { FiInfo, FiMessageSquare, FiCheckCircle, } from 'react-icons/fi';
 import { Issue } from '../models';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
+import { getIssue, getIssueComments } from '../hooks/useIssue';
 
 interface IssueItemProps {
     issue: Issue;
 }
 
 export const IssueItem: FC<IssueItemProps> = ({ issue }) => {
+
     const navigate = useNavigate();
+
+    const queryClient = useQueryClient();
+
+    const onMouseEnter = () => {
+        console.log("===> Mouse Enter");
+        queryClient.prefetchQuery({
+            queryKey: ['issue', issue.number],
+            queryFn: () => getIssue(issue.number)
+        });
+
+        queryClient.prefetchQuery({
+            queryKey: ['issues', issue.number, "comments"],
+            queryFn: () => getIssueComments(issue.number)
+        });
+
+    }
 
     const diference = (): number => {
         const createdAt = new Date(issue.created_at).getTime();
@@ -23,7 +42,8 @@ export const IssueItem: FC<IssueItemProps> = ({ issue }) => {
 
     return (
         <div className="card mb-2 issue"
-            onClick={()=> navigate(`/issues/issue/${issue.number}`)}
+            onClick={() => navigate(`/issues/issue/${issue.number}`)}
+            onMouseEnter={onMouseEnter}
         >
             <div className="card-body d-flex align-items-center">
 
