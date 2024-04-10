@@ -26,7 +26,17 @@ export const IssueItem: FC<IssueItemProps> = ({ issue }) => {
             queryKey: ['issues', issue.number, "comments"],
             queryFn: () => getIssueComments(issue.number)
         });
+        
 
+    }
+    const preSetData = ()=>{
+       /*  queryClient.setQueryData(
+            queryKey: ['issue', issue.number],
+            queryFn: () => getIssue(issue.number) 
+            ["issues"]
+
+        
+        )*/
     }
 
     const diference = (): number => {
