@@ -5,8 +5,11 @@ import { sleep } from "../../../helpers/sleep";
 
 const getLabels = async (): Promise<Label[]> => {
   await sleep(1);
-  const res = await gitHubApi.get<Array<Label>>('/labels');
-  console.log(res.data);
+  const res = await gitHubApi.get<Array<Label>>('/labels', {
+    headers: {
+      Authorization: null
+    }
+  });
   return res.data
 }
 
