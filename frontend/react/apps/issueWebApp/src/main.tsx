@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router';
 import { router } from './app/router';
-import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 //! Remover enable css source maps
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,8 +13,8 @@ const client = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={client}>
-    <ReactQueryDevtools initialIsOpen={false} />
-    <RouterProvider router={ router } />
+      <ReactQueryDevtools initialIsOpen={false} />
+      <RouterProvider router={router} />
     </QueryClientProvider>
   </React.StrictMode>
 )
