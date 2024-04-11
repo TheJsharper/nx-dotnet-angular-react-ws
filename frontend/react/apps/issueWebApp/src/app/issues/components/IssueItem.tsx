@@ -1,5 +1,5 @@
 import { FiInfo, FiMessageSquare, FiCheckCircle, } from 'react-icons/fi';
-import { Issue } from '../models';
+import { Issue, Label } from '../models';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
@@ -27,16 +27,16 @@ export const IssueItem: FC<IssueItemProps> = ({ issue }) => {
             queryKey: ['issues', issue.number, "comments"],
             queryFn: () => getIssueComments(issue.number)
         });
-        
+
 
     }
-    const preSetData = ()=>{
-       
+    const preSetData = () => {
+
         queryClient.setQueryData(
             ['issue', issue.number],
             issue,
             {
-                updatedAt: new Date().getTime() +100000
+                updatedAt: new Date().getTime() + 100000
             }
         )
     }
@@ -69,6 +69,11 @@ export const IssueItem: FC<IssueItemProps> = ({ issue }) => {
                 <div className="d-flex flex-column flex-fill px-2">
                     <span>{issue.title}</span>
                     <span className="issue-subinfo">#{issue.number} opened {diference()} days ago by <span className='fw-bold'>{issue.user.login}</span></span>
+                    <div>
+                        {
+                            issue.labels.map((value: Label) => (<span key={value.id} className='badge rounded-pill m-1 ' style={{ backgroundColor: `#${value.color}`, color: 'black' }} > {value.name}</span>))
+                        }
+                    </div>
                 </div>
 
                 <div className='d-flex align-items-center'>
