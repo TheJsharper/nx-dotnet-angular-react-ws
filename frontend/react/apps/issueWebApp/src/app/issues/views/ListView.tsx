@@ -7,6 +7,8 @@ import { LoadingIcon } from '../../../shared/components/loadingIcon';
 
 export const ListView = () => {
   const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
+  
+  const [state, setState] = useState<string>("");
 
   const { issuesQuery } = useIssues();
 
@@ -27,7 +29,10 @@ export const ListView = () => {
         {
           issuesQuery.isLoading
             ? <LoadingIcon />
-            : <IssueList issues={issuesQuery.data || []} />
+            : <IssueList issues={issuesQuery.data || []}
+              state={state}
+              onStateChange={(newState: string) => setState(newState)}
+            />
         }
       </div>
 
