@@ -7,10 +7,10 @@ import { LoadingIcon } from '../../../shared/components/loadingIcon';
 
 export const ListView = () => {
   const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
-  
+
   const [state, setState] = useState<string>("");
 
-  const { issuesQuery } = useIssues({state,labels:selectedLabels});
+  const { issuesQuery, page, nextPage, prevPage } = useIssues({ state, labels: selectedLabels });
 
   const onChangeLabel = (labelName: string): void => {
     (selectedLabels.includes(labelName))
@@ -34,6 +34,11 @@ export const ListView = () => {
               onStateChange={(newState: string) => setState(newState)}
             />
         }
+        <div className='d-flex mt-2 justify-content-between align-items-center'>
+          <button className='btn btn-outline-primary' onClick={prevPage} disabled={issuesQuery.isFetching || page === 1} >Prev</button>
+          <span>{page}</span>
+          <button className='btn btn-outline-primary' onClick={nextPage} disabled={issuesQuery.isFetching}>Next</button>
+        </div>
       </div>
 
       <div className="col-4">
