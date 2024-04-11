@@ -9,7 +9,7 @@ interface issuesProps {
     labels: string[];
 
 }
-const getParams = (state: string, labels: string[]):  {
+const getParams = (state: string, labels: string[]): {
     [key: string]: string;
 } => {
     const map = new Map<string, string>();
@@ -21,6 +21,9 @@ const getParams = (state: string, labels: string[]):  {
         const labelsString = labels.join(",");
         map.set("labels", labelsString);
     }
+
+    map.set('page', "1");
+
     map.set('per_page', "100");
     return Object.fromEntries(map.entries());
 }
@@ -28,9 +31,8 @@ const getIssues = async (state: string, labels: string[] = []): Promise<Issue[]>
 
     await sleep(2);
 
-   const params = getParams(state, labels);
+    const params = getParams(state, labels);
 
-    console.log("params", params)
     const { data } = await gitHubApi.get<Issue[]>('/issues', { params });
 
     return data;

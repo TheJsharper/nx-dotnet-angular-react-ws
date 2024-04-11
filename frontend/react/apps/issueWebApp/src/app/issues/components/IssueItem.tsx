@@ -4,6 +4,7 @@ import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { getIssue, getIssueComments } from '../hooks/useIssue';
+import { timeSince } from '../../../helpers/time-since';
 
 interface IssueItemProps {
     issue: Issue;
@@ -41,16 +42,6 @@ export const IssueItem: FC<IssueItemProps> = ({ issue }) => {
         )
     }
 
-    const diference = (): number => {
-        const createdAt = new Date(issue.created_at).getTime();
-
-        const today = new Date().getTime();
-
-        const between = today - createdAt;
-
-        return Math.round(between / (1000 * 3600 * 24))
-
-    }
 
     return (
         <div className="card mb-2 issue"
@@ -68,7 +59,7 @@ export const IssueItem: FC<IssueItemProps> = ({ issue }) => {
 
                 <div className="d-flex flex-column flex-fill px-2">
                     <span>{issue.title}</span>
-                    <span className="issue-subinfo">#{issue.number} opened {diference()} days ago by <span className='fw-bold'>{issue.user.login}</span></span>
+                    <span className="issue-subinfo">#{issue.number} {timeSince(issue.created_at)} ago by <span className='fw-bold'>{issue.user.login}</span></span>
                     <div>
                         {
                             issue.labels.map((value: Label) => (<span key={value.id} className='badge rounded-pill m-1 ' style={{ backgroundColor: `#${value.color}`, color: 'black' }} > {value.name}</span>))
