@@ -1,0 +1,6 @@
+{
+  "name": "building-rest-api-with-sb",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "backend/spring/apps/building-rest-api-with-sb/src",
+  "tags": []
+}
