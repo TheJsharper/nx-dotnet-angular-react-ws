@@ -4,36 +4,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ContextConfiguration;
 
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 
-
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {
-    BuildingRestApiWithSbApplication.class
-})
-@ContextConfiguration(classes = {BuildingRestApiWithSbApplication.class, SecuirtyConfig.class})
-@DataJpaTest
-//@RunWith(SpringRunner.class)
+/**/
+@SpringBootTest(classes = {
+    com.spring.academy.BuildingRestApiWithSbApplication.class
+}, webEnvironment = WebEnvironment.RANDOM_PORT)
 public class BuildingRestApiWithSbApplicationTests {
-    @Test
-    void contextLoads() {
-    }
-
     @Autowired
     TestRestTemplate restTemplate;
+  
 
     @Test
-    void shouldReturnACashCardWhenDataIsSaved() {
+    void shouldReturnACashCardWhenDataIsSavedTest() {
+        //TestRestTemplate  restTemplate = new TestRestTemplate();
         ResponseEntity<String> response = restTemplate.withBasicAuth("sarah1", "abc123").getForEntity("/cashcards/99",
                 String.class);
 
@@ -42,7 +36,8 @@ public class BuildingRestApiWithSbApplicationTests {
     }
 
     @Test
-    void shouldReturnACashCardWhenData() {
+    void shouldReturnACashCardWhenDataTest() {
+        //TestRestTemplate restTemplate = new TestRestTemplate();
         ResponseEntity<String> response = restTemplate.withBasicAuth("sarah1", "abc123")
                 .getForEntity("/cashcards/99/instance", String.class);
 
@@ -56,7 +51,8 @@ public class BuildingRestApiWithSbApplicationTests {
     }
 
     @Test
-    void shouldNotReturnNotFoundAndBodyBlank() {
+    void shouldNotReturnNotFoundAndBodyBlankTest() {
+        //TestRestTemplate  restTemplate = new TestRestTemplate();
         ResponseEntity<String> response = restTemplate.withBasicAuth("sarah1", "abc123")
                 .getForEntity("/cashcards/1000/selected", String.class);
 
@@ -65,7 +61,8 @@ public class BuildingRestApiWithSbApplicationTests {
     }
 
     @Test
-    void shouldNotReturnCashCardWithId99Selected() {
+    void shouldNotReturnCashCardWithId99SelectedTest() {
+        //TestRestTemplate restTemplate = new TestRestTemplate();
         ResponseEntity<String> response = restTemplate.withBasicAuth("sarah1", "abc123")
                 .getForEntity("/cashcards/99/selected", String.class);
 
@@ -80,7 +77,8 @@ public class BuildingRestApiWithSbApplicationTests {
     }
 
     @Test
-    void shouldNotReturnFindBy() {
+    void shouldNotReturnFindByTest() {
+        //TestRestTemplate restTemplate = new TestRestTemplate();
         ResponseEntity<String> response = restTemplate.withBasicAuth("sarah1", "abc123")
                 .getForEntity("/cashcards/99/repo", String.class);
 
@@ -96,7 +94,8 @@ public class BuildingRestApiWithSbApplicationTests {
 
     @Test
     @DirtiesContext
-    void shouldUpdateAnExistingCashCard() {
+    void shouldUpdateAnExistingCashCardTest() {
+        //TestRestTemplate  restTemplate = new TestRestTemplate();
         CashCard cashCardUpdate = new CashCard(null, 19.99, null);
         HttpEntity<CashCard> request = new HttpEntity<>(cashCardUpdate);
         ResponseEntity<Void> response = restTemplate

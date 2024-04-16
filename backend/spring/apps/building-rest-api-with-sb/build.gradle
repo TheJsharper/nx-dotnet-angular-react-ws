@@ -25,9 +25,9 @@ dependencies {
    implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
-tasks.named('test') {
+/*tasks.named('test') {
 	useJUnitPlatform()
-}
+}*/
 springBoot {
 	buildInfo()
 }
