@@ -23,7 +23,7 @@ public class CashCardJsonTest {
 
     @Test
     void cashCardSerializationTest() throws IOException {
-        CashCard cashCard = new CashCard(99L, 123.45);
+        CashCard cashCard = new CashCard(99L, 123.45, "");
         File file = new File("./src/test/resources/expected.json");
         FileInputStream is =  new FileInputStream(file);   
         assertThat(json.write(cashCard)).isStrictlyEqualToJson(is);
@@ -41,11 +41,12 @@ public class CashCardJsonTest {
         String expected = """
                 {
                     "id":99,
-                    "amount":123.45
+                    "amount":123.45,
+                    "owner": ""
                 }
                 """;
         assertThat(json.parse(expected))
-                .isEqualTo(new CashCard(99L, 123.45));
+                .isEqualTo(new CashCard(99L, 123.45, ""));
         assertThat(json.parseObject(expected).id()).isEqualTo(99);
         assertThat(json.parseObject(expected).amount()).isEqualTo(123.45);
     }
