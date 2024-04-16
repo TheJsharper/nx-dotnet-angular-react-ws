@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "BuildingRestApiWithSbApplication",
+            "request": "launch",
+            "mainClass": "com.spring.academy.BuildingRestApiWithSbApplication",
+            "projectName": "build-rest-api-with-sb"
+        },
+        {
+            "type": "java",
             "name": "StartUpAppApplication",
             "request": "launch",
             "mainClass": "com.jsharper.start.up.app.StartUpAppApplication",

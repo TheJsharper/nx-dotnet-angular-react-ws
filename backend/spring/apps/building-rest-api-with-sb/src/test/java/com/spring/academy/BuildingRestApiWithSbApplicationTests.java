@@ -26,14 +26,41 @@ class BuildingRestApiWithSbApplicationTests {
         ResponseEntity<String> response = restTemplate.getForEntity("/cashcards/99", String.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        /*
-         * DocumentContext documentContext = JsonPath.parse(response.getBody());
-         * Number id = documentContext.read("$.id");
-         * assertThat(id).isEqualTo(99);
-         * 
-         * Double amount = documentContext.read("$.amount");
-         * assertThat(amount).isEqualTo(123.45);
-         */
+
+    }
+
+    @Test
+    void shouldReturnACashCardWhenData() {
+        ResponseEntity<String> response = restTemplate.getForEntity("/cashcards/99/instance", String.class);
+
+        DocumentContext documentContext = JsonPath.parse(response.getBody());
+        Number id = documentContext.read("$.id");
+        assertThat(id).isEqualTo(99);
+
+        Double amount = documentContext.read("$.amount");
+        assertThat(amount).isEqualTo(123.45);
+
+    }
+
+    @Test
+    void shouldNotReturnNotFoundAndBodyBlank() {
+        ResponseEntity<String> response = restTemplate.getForEntity("/cashcards/1000/selected", String.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+        assertThat(response.getBody()).isBlank();
+    }
+    @Test
+    void shouldNotReturnCashCardWithId99Selected() {
+        ResponseEntity<String> response = restTemplate.getForEntity("/cashcards/99/selected", String.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        
+        DocumentContext documentContext = JsonPath.parse(response.getBody());
+        Number id = documentContext.read("$.id");
+        assertThat(id).isEqualTo(99);
+
+        Double amount = documentContext.read("$.amount");
+        assertThat(amount).isEqualTo(123.45);
     }
 
 }
