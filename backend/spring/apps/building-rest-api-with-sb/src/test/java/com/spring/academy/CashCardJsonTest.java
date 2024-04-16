@@ -5,8 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +25,7 @@ public class CashCardJsonTest {
     void cashCardSerializationTest() throws IOException {
         CashCard cashCard = new CashCard(99L, 123.45);
         File file = new File("./src/test/resources/expected.json");
-       // Arrays.asList(file.list()).forEach((name)-> System.out.println("name ===> "+name));
-        FileInputStream is =  new FileInputStream(file);// getClass().getClassLoader().getResourceAsStream("expected.json");         
+        FileInputStream is =  new FileInputStream(file);   
         assertThat(json.write(cashCard)).isStrictlyEqualToJson(is);
         assertThat(json.write(cashCard)).hasJsonPathNumberValue("@.id");
         assertThat(json.write(cashCard)).extractingJsonPathNumberValue("@.id")
