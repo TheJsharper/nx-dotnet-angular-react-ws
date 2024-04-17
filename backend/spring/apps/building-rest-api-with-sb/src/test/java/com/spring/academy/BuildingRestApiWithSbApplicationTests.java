@@ -16,18 +16,15 @@ import org.springframework.test.annotation.DirtiesContext;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 
-/**/
 @SpringBootTest(classes = {
-    com.spring.academy.BuildingRestApiWithSbApplication.class
+        com.spring.academy.BuildingRestApiWithSbApplication.class
 }, webEnvironment = WebEnvironment.RANDOM_PORT)
 public class BuildingRestApiWithSbApplicationTests {
     @Autowired
     TestRestTemplate restTemplate;
-  
 
     @Test
     void shouldReturnACashCardWhenDataIsSavedTest() {
-        //TestRestTemplate  restTemplate = new TestRestTemplate();
         ResponseEntity<String> response = restTemplate.withBasicAuth("sarah1", "abc123").getForEntity("/cashcards/99",
                 String.class);
 
@@ -37,7 +34,6 @@ public class BuildingRestApiWithSbApplicationTests {
 
     @Test
     void shouldReturnACashCardWhenDataTest() {
-        //TestRestTemplate restTemplate = new TestRestTemplate();
         ResponseEntity<String> response = restTemplate.withBasicAuth("sarah1", "abc123")
                 .getForEntity("/cashcards/99/instance", String.class);
 
@@ -52,7 +48,6 @@ public class BuildingRestApiWithSbApplicationTests {
 
     @Test
     void shouldNotReturnNotFoundAndBodyBlankTest() {
-        //TestRestTemplate  restTemplate = new TestRestTemplate();
         ResponseEntity<String> response = restTemplate.withBasicAuth("sarah1", "abc123")
                 .getForEntity("/cashcards/1000/selected", String.class);
 
@@ -62,7 +57,6 @@ public class BuildingRestApiWithSbApplicationTests {
 
     @Test
     void shouldNotReturnCashCardWithId99SelectedTest() {
-        //TestRestTemplate restTemplate = new TestRestTemplate();
         ResponseEntity<String> response = restTemplate.withBasicAuth("sarah1", "abc123")
                 .getForEntity("/cashcards/99/selected", String.class);
 
@@ -78,7 +72,7 @@ public class BuildingRestApiWithSbApplicationTests {
 
     @Test
     void shouldNotReturnFindByTest() {
-        //TestRestTemplate restTemplate = new TestRestTemplate();
+
         ResponseEntity<String> response = restTemplate.withBasicAuth("sarah1", "abc123")
                 .getForEntity("/cashcards/99/repo", String.class);
 
@@ -95,7 +89,6 @@ public class BuildingRestApiWithSbApplicationTests {
     @Test
     @DirtiesContext
     void shouldUpdateAnExistingCashCardTest() {
-        //TestRestTemplate  restTemplate = new TestRestTemplate();
         CashCard cashCardUpdate = new CashCard(null, 19.99, null);
         HttpEntity<CashCard> request = new HttpEntity<>(cashCardUpdate);
         ResponseEntity<Void> response = restTemplate

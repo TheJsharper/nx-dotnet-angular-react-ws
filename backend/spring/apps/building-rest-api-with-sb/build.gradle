@@ -19,18 +19,17 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.springframework.boot:spring-boot-starter-test'
-	 // Add the two dependencies below
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'//, name: 'spring-boot-starter-test', version: '3.2.4'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher' // See https://docs.gradle.org/8.3/userguide/upgrading_version_8.html#test_framework_implementation_dependencies
+	// Add the two dependencies below
    implementation 'org.springframework.data:spring-data-jdbc'
    implementation 'com.h2database:h2'
    implementation 'org.springframework.boot:spring-boot-starter-security'
-  // classpath("com.android.tools.build:gradle:3.6.3") 
 }
 
-/*tasks.named('test') {
+/**/tasks.named('test') {
 	useJUnitPlatform()
-}*/
+}
 
 springBoot {
 	buildInfo()
