@@ -1,0 +1,6 @@
+{
+  "name": "ai-playground",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "backend/spring/apps/ai-playground/src",
+  "tags": []
+}
