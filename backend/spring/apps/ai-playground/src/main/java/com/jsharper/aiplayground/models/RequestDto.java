@@ -1,8 +1,9 @@
 package com.jsharper.aiplayground.models;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import main.java.com.jsharper.aiplayground.models.RequestMessageDto;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor  

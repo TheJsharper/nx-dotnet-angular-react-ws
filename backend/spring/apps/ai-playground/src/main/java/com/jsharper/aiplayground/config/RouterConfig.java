@@ -1,4 +1,4 @@
-package main.java.com.jsharper.aiplayground.config;
+package com.jsharper.aiplayground.config;
 
 
 /* import java.util.function.BiFunction;
