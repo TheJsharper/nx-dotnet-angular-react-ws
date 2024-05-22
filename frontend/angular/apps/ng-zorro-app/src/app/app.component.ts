@@ -24,7 +24,6 @@ export class IConModule { }
     RouterModule, NzButtonModule, NgZorroTableComponent, NzLayoutModule, NzSliderModule,
     NzBreadCrumbModule,
     IConModule, NzMenuModule
-
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',
