@@ -9,7 +9,6 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
-import { NgZorroTableComponent } from "ng-zorro-table";
 
 const icons: IconDefinition[] = [AccountBookFill, AlertOutline, AlertFill, MenuFoldOutline, MenuUnfoldOutline, TeamOutline, UserOutline];
 @NgModule({
@@ -21,7 +20,7 @@ export class IConModule { }
 @Component({
   standalone: true,
   imports: [
-    RouterModule, NzButtonModule, NgZorroTableComponent, NzLayoutModule, NzSliderModule,
+    RouterModule, NzButtonModule,NzLayoutModule, NzSliderModule,
     NzBreadCrumbModule,
     IConModule, NzMenuModule
   ],
