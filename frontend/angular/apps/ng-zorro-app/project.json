@@ -8,19 +8,31 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/frontend/angular/apps/ng-zorro-app",
         "index": "frontend/angular/apps/ng-zorro-app/src/index.html",
         "browser": "frontend/angular/apps/ng-zorro-app/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "frontend/angular/apps/ng-zorro-app/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           "frontend/angular/apps/ng-zorro-app/src/favicon.ico",
-          "frontend/angular/apps/ng-zorro-app/src/assets"
+          "frontend/angular/apps/ng-zorro-app/src/assets",
+          {
+            "glob": "**/*",
+            "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+            "output": "/assets/"
+          }
         ],
-        "styles": ["frontend/angular/apps/ng-zorro-app/src/styles.scss","node_modules/ng-zorro-antd/ng-zorro-antd.min.css"],
+        "styles": [
+          "frontend/angular/apps/ng-zorro-app/src/styles.scss",
+          "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -67,7 +79,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "frontend/angular/apps/ng-zorro-app/jest.config.ts"
       }
