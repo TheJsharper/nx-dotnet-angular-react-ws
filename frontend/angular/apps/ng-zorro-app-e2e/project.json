@@ -1,0 +1,8 @@
+{
+  "name": "ng-zorro-app-e2e",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "frontend/angular/apps/ng-zorro-app-e2e/src",
+  "targets": {},
+  "implicitDependencies": ["ng-zorro-app"]
+}

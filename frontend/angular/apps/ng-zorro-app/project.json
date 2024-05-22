@@ -1,0 +1,76 @@
+{
+  "name": "ng-zorro-app",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "frontend/angular/apps/ng-zorro-app/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/frontend/angular/apps/ng-zorro-app",
+        "index": "frontend/angular/apps/ng-zorro-app/src/index.html",
+        "browser": "frontend/angular/apps/ng-zorro-app/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "frontend/angular/apps/ng-zorro-app/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "frontend/angular/apps/ng-zorro-app/src/favicon.ico",
+          "frontend/angular/apps/ng-zorro-app/src/assets"
+        ],
+        "styles": ["frontend/angular/apps/ng-zorro-app/src/styles.scss","node_modules/ng-zorro-antd/ng-zorro-antd.min.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "ng-zorro-app:build:production"
+        },
+        "development": {
+          "buildTarget": "ng-zorro-app:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "ng-zorro-app:build"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "frontend/angular/apps/ng-zorro-app/jest.config.ts"
+      }
+    }
+  }
+}

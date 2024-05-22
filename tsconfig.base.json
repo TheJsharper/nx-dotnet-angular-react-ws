@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "generated/webapi-types": ["generated/webapi-types/src/index.ts"]
+      "generated/webapi-types": ["generated/webapi-types/src/index.ts"],
+      "ng-zorro-table": ["frontend/angular/views/ng-zorro-table/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
