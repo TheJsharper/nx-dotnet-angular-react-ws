@@ -4,14 +4,14 @@
     <ul nz-menu nzTheme="dark" nzMode="inline">
       <li nz-submenu nzTitle="Table" nzIcon="user">
         <ul>
-          <li nz-menu-item  [routerLink]="['/ng-zorro-table']"  >Basics</li>
+          <li nz-menu-item [routerLink]="['/ng-zorro-table']">Basics</li>
           <li nz-menu-item>Bill</li>
           <li nz-menu-item>Alex</li>
         </ul>
       </li>
       <li nz-submenu nzTitle="List" nzIcon="team">
         <ul>
-          <li nz-menu-item>Team 1</li>
+          <li nz-menu-item [routerLink]="['/basics-list']">Basics </li>
           <li nz-menu-item>Team 2</li>
         </ul>
       </li>
@@ -32,12 +32,11 @@
         <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
       </nz-breadcrumb>
       <div class="inner-content">
-       <!--  <lib-ng-zorro-table/> -->
-       <router-outlet></router-outlet>
-      
+        <router-outlet></router-outlet>
+
       </div>
     </nz-content>
-    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+    <nz-footer>Ant Design ©2024 Implement By Angular  and testing by Pedro Salomon</nz-footer>
   </nz-layout>
 </nz-layout>
 
