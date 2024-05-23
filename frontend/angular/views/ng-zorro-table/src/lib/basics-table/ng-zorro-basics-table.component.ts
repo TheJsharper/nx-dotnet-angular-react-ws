@@ -21,7 +21,7 @@ export class NgZorroBasicsTableComponent implements OnInit, OnDestroy {
         this.intervalRef = setInterval(() => {
             this.listOfData = [...this.listOfData, this.createRandomUser()]
             console.log(this.listOfData);
-            if (this.listOfData.length > 200)
+            if (this.listOfData.length > 100)
                 this.clearSetInterval();
 
         }, 5000);
