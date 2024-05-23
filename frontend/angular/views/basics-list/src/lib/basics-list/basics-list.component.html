@@ -1,18 +1,25 @@
-<div style="margin-bottom: 8px;"><button nz-button (click)="change()">Switch Data</button></div>
+<div style="margin-bottom: 8px;"><button nz-button (click)="change()">{{ fakeData.length === 0?'Refill list':'Empty list'}}</button></div>
 <nz-list nzItemLayout="horizontal" [nzLoading]="loading">
-  @for (item of data; track item) {
+  @for (item of fakeData; track item) {
     <nz-list-item>
       <nz-list-item-meta
-        nzAvatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-        nzDescription="Ant Design, a design language for background applications, is refined by Ant UED Team"
+        [nzAvatar]="item.avatar"
+        [nzDescription]="item.description"
       >
         <nz-list-item-meta-title>
-          <a href="https://ng.ant.design">{{ item.title }}</a>
+          <a [href]="item.avatar">{{ item.content }}</a>
         </nz-list-item-meta-title>
       </nz-list-item-meta>
     </nz-list-item>
   }
-  @if (data.length === 0) {
-    <nz-list-empty />
+  @if (fakeData.length === 0) {
+    <nz-list-empty [nzNoResult]="noResult" />
+
+    <ng-template #noResult>
+      <div style="color:red"> NOOOOO RESULT </div>
+      <span nz-icon nzType="reload" nzTheme="outline"></span>
+
+    </ng-template>
+    
   }
 </nz-list>
