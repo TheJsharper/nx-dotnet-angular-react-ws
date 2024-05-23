@@ -1,0 +1,26 @@
+<nz-table #basicTable [nzData]="listOfData" [nzPageIndex]="listOfData.length" >
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        @for (item of basicTable.data; track item.key) {
+        
+        <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.address}}</td>
+            <td>
+                <a>Action 一 {{item.name}}</a>
+                <nz-divider nzType="vertical"></nz-divider>
+                <a>Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</nz-table>
