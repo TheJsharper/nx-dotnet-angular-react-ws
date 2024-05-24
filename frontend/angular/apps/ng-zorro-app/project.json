@@ -31,7 +31,9 @@
         ],
         "styles": [
           "frontend/angular/apps/ng-zorro-app/src/styles.scss",
-          "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
+          "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+          "node_modules/material-icons/iconfont/material-icons.css",
+          "node_modules/material-symbols/outlined.css"
         ],
         "scripts": []
       },
