@@ -16,6 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "basics-list": ["frontend/angular/views/basics-list/src/index.ts"],
+      "dashboard-table": [
+        "frontend/angular/views/dashboard-table/src/index.ts"
+      ],
       "generated/webapi-types": ["generated/webapi-types/src/index.ts"],
       "ng-zorro-table": ["frontend/angular/views/ng-zorro-table/src/index.ts"]
     }
