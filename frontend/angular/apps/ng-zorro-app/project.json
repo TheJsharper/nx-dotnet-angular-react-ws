@@ -35,7 +35,7 @@
           "node_modules/material-icons/iconfont/material-icons.css",
           "node_modules/material-symbols/outlined.css"
         ],
-        "scripts": []
+        "scripts": ["node_modules/jquery/dist/jquery.min.js" ]
       },
       "configurations": {
         "production": {

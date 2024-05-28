@@ -13,6 +13,10 @@ export const appRoutes: Route[] = [
         loadComponent: ()=> import('basics-list').then(m => m.BasicsListComponent ),
     },
     {
+        path:'dashboard-drag-and-dropable', 
+        loadComponent: ()=> import('dashboard-drag-and-dropable').then(m => m.DashboardDragAndDropableComponent ),
+    },
+    {
         path: '',
         redirectTo: 'ng-zorro-table',
         pathMatch: 'full'

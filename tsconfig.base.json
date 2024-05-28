@@ -16,6 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "basics-list": ["frontend/angular/views/basics-list/src/index.ts"],
+      "dashboard-drag-and-dropable": [
+        "frontend/angular/views/dashboard-drag-and-dropable/src/index.ts"
+      ],
       "dashboard-table": [
         "frontend/angular/views/dashboard-table/src/index.ts"
       ],
