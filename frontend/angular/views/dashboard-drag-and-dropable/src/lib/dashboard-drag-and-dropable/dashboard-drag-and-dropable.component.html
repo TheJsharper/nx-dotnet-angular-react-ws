@@ -41,7 +41,9 @@
 <gridster [options]="options">
   @for (item of dashboard; track item) {
     <gridster-item [item]="item">
-      <div class="button-holder">
+     <!--  <div class="button-holder">
+
+        
         <button
           mat-mini-fab
           (mousedown)="removeItem($event, item)"
@@ -49,6 +51,22 @@
         >
           <mat-icon>delete</mat-icon>
         </button>
+      </div> -->
+
+      <div style="width:150px; height: 150px; background-color: aqua;">
+        <ul>
+          <li>1-text</li>
+          <li>2-text</li>
+          <li>3-text</li>
+          <li>4-text</li>
+          <li>5-text</li>
+          <li>6-text</li>
+          <li>7-text</li>
+          <li>8-text</li>
+          <li>9-text</li>
+          <li>10-text</li>
+        </ul>
+
       </div>
     </gridster-item>
   }

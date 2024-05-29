@@ -88,13 +88,13 @@ export class DashboardDragAndDropableComponent implements OnInit {
       { cols: 1, rows: 1, y: 2, x: 5 },
       { cols: 1, rows: 1, y: 1, x: 0 },
       { cols: 1, rows: 1, y: 1, x: 0 },
-      {
+       {
         cols: 1,
         rows: 1,
         y: 3,
         x: 5,
-        minItemRows: 2,
-        minItemCols: 2,
+        minItemRows: 1,
+        minItemCols: 1,
         label: 'Min rows & cols = 2'
       },
       {
@@ -102,10 +102,10 @@ export class DashboardDragAndDropableComponent implements OnInit {
         rows: 1,
         y: 2,
         x: 0,
-        maxItemRows: 2,
-        maxItemCols: 2,
+        maxItemRows: 1,
+        maxItemCols: 1,
         label: 'Max rows & cols = 2'
-      },
+      }, /**/
       {
         cols: 1,
         rows: 1,
@@ -115,16 +115,16 @@ export class DashboardDragAndDropableComponent implements OnInit {
         resizeEnabled: true, */
         label: 'Drag&Resize Enabled'
       },
-      {
+    /* */ {
         cols: 1,
         rows: 1,
         y: 2,
         x: 4,
-      /*   dragEnabled: true,
-        resizeEnabled: true, */
+         dragEnabled: true,
+        resizeEnabled: true,
         label: 'Drag&Resize Disabled'
-      },
-      { cols: 1, rows: 1, y: 2, x: 6 }
+      }, 
+     /**/  { cols: 1, rows: 1, y: 2, x: 5 } 
     ];
   }
 
