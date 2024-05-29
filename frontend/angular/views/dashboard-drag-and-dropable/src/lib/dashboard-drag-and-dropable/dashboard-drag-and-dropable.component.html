@@ -13,16 +13,15 @@
     <mat-form-field>
       <mat-select
         aria-label="Permisssion"
-        [(ngModel)]="options.draggable.enabled"
-        (ngModelChange)="changedOptions()"
+        [(ngModel)]="permission"
+        (ngModelChange)="changeUserPermission()"
         placeholder="Permission"
       >
-        <mat-option [value]="false"> asUser</mat-option>
-        <mat-option [value]="true"> asAdmin</mat-option>
+        <mat-option [value]="'user'"> asUser</mat-option>
+        <mat-option [value]="'admin'"> asAdmin</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
- <!--  <markdown [src]="'assets/compact.md'"></markdown> -->
 </div>
 <div class="options-header">
   <mat-form-field>
@@ -47,25 +46,31 @@
       <mat-option value="compactRight&Down">Compact Right & Down</mat-option>
     </mat-select>
   </mat-form-field>
-  <button mat-mini-fab (click)="addItem()" class="add-button cols-2">
-    <mat-icon>add</mat-icon>
-  </button>
+  @if (permission === 'admin') {
+
+    <button mat-mini-fab (click)="addItem()" class="add-button cols-2">
+      <mat-icon>add</mat-icon>
+    </button>
+  }
 </div>
 
 <gridster [options]="options">
   @for (item of dashboard; track item) {
     <gridster-item [item]="item" style="cursor:pointer" >
-      <div class="button-holder">
+      @if (permission ==='admin') {
 
-        
-        <button
-          mat-mini-fab
-          (mousedown)="removeItem($event, item)"
-          (touchstart)="removeItem($event, item)"
-        >
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
+        <div class="button-holder">
+  
+          
+          <button
+            mat-mini-fab
+            (mousedown)="removeItem($event, item)"
+            (touchstart)="removeItem($event, item)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      }
 
     </gridster-item>
   }
