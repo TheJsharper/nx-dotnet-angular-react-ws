@@ -1,71 +1,144 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DisplayGrid, GridType, GridsterComponent, GridsterConfig, GridsterItem, GridsterItemComponent, GridsterItemComponentInterface } from 'angular-gridster2';
+import { CompactType, DisplayGrid, Draggable, GridType, GridsterComponent, GridsterConfig, GridsterItem, GridsterItemComponent, GridsterItemComponentInterface, PushDirections, Resizable } from 'angular-gridster2';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatIconModule} from '@angular/material/icon';
-import {MatMenuModule} from '@angular/material/menu'
+import {MatMenuModule} from '@angular/material/menu';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 import {FormsModule} from '@angular/forms';
+interface Safe extends GridsterConfig {
+  draggable: Draggable;
+  resizable: Resizable;
+  pushDirections: PushDirections;
+}
 @Component({
   selector: 'lib-dashboard-drag-and-dropable',
   standalone: true,
-  imports: [CommonModule, GridsterComponent, GridsterItemComponent, MatCheckboxModule, MatIconModule, MatMenuModule, FormsModule],
+  imports: [CommonModule, GridsterComponent, GridsterItemComponent, MatCheckboxModule, MatIconModule, MatMenuModule, FormsModule, MatFormFieldModule, MatSelectModule],
   templateUrl: './dashboard-drag-and-dropable.component.html',
   styleUrl: './dashboard-drag-and-dropable.component.scss',
 })
 export class DashboardDragAndDropableComponent implements OnInit {
-
-  options!: GridsterConfig;
+  options!: Safe;
   dashboard!: Array<GridsterItem>;
 
-  // noinspection DuplicatedCode
   ngOnInit(): void {
     this.options = {
       gridType: GridType.Fit,
-      displayGrid: DisplayGrid.Always,
-      pushItems: false,
-      swap: true,
-      allowMultiLayer: true,
-      defaultLayerIndex: 1,
-      baseLayerIndex: 2,
-      maxLayerIndex: 2,
-      swapWhileDragging: false,
+      compactType: CompactType.None,
+      margin: 10,
+      outerMargin: true,
+      outerMarginTop: null,
+      outerMarginRight: null,
+      outerMarginBottom: null,
+      outerMarginLeft: null,
+      useTransformPositioning: true,
+      mobileBreakpoint: 640,
+      useBodyForBreakpoint: false,
+      minCols: 1,
+      maxCols: 100,
+      minRows: 1,
+      maxRows: 100,
+      maxItemCols: 100,
+      minItemCols: 1,
+      maxItemRows: 100,
+      minItemRows: 1,
+      maxItemArea: 2500,
+      minItemArea: 1,
+      defaultItemCols: 1,
+      defaultItemRows: 1,
+      fixedColWidth: 105,
+      fixedRowHeight: 105,
+      keepFixedHeightInMobile: false,
+      keepFixedWidthInMobile: false,
+      scrollSensitivity: 10,
+      scrollSpeed: 20,
+      enableEmptyCellClick: false,
+      enableEmptyCellContextMenu: false,
+      enableEmptyCellDrop: false,
+      enableEmptyCellDrag: false,
+      enableOccupiedCellDrop: false,
+      emptyCellDragMaxCols: 50,
+      emptyCellDragMaxRows: 50,
+      ignoreMarginInRow: false,
       draggable: {
         enabled: true
       },
       resizable: {
         enabled: true
-      }
+      },
+      swap: false,
+      pushItems: true,
+      disablePushOnDrag: false,
+      disablePushOnResize: false,
+      pushDirections: { north: true, east: true, south: true, west: true },
+      pushResizeItems: false,
+      displayGrid: DisplayGrid.Always,
+      disableWindowResize: false,
+      disableWarnings: false,
+      scrollToNewItems: false
     };
 
     this.dashboard = [
-      { cols: 2, rows: 1, y: 0, x: 0, layerIndex: 2 },
-      { cols: 2, rows: 2, y: 0, x: 2 },
+      { cols: 1, rows: 1, y: 0, x: 0 },
+      { cols: 2, rows: 2, y: 0, x: 2, hasContent: true },
       { cols: 1, rows: 1, y: 0, x: 4 },
-      { cols: 3, rows: 2, y: 1, x: 4 },
-      { cols: 1, rows: 1, y: 4, x: 5 },
-      { cols: 1, rows: 1, y: 2, x: 1 },
-      { cols: 2, rows: 2, y: 5, x: 5 },
-      { cols: 2, rows: 2, y: 3, x: 2 },
-      { cols: 2, rows: 1, y: 2, x: 2 },
-      { cols: 1, rows: 1, y: 3, x: 4 },
-      { cols: 1, rows: 1, y: 0, x: 6 }
+      { cols: 1, rows: 1, y: 2, x: 5 },
+      { cols: 1, rows: 1, y: 1, x: 0 },
+      { cols: 1, rows: 1, y: 1, x: 0 },
+      {
+        cols: 2,
+        rows: 2,
+        y: 3,
+        x: 5,
+        minItemRows: 2,
+        minItemCols: 2,
+        label: 'Min rows & cols = 2'
+      },
+      {
+        cols: 2,
+        rows: 2,
+        y: 2,
+        x: 0,
+        maxItemRows: 2,
+        maxItemCols: 2,
+        label: 'Max rows & cols = 2'
+      },
+      {
+        cols: 2,
+        rows: 1,
+        y: 2,
+        x: 2,
+        dragEnabled: true,
+        resizeEnabled: true,
+        label: 'Drag&Resize Enabled'
+      },
+      {
+        cols: 1,
+        rows: 1,
+        y: 2,
+        x: 4,
+        dragEnabled: false,
+        resizeEnabled: false,
+        label: 'Drag&Resize Disabled'
+      },
+      { cols: 1, rows: 1, y: 2, x: 6 }
     ];
   }
 
   changedOptions(): void {
-    if (this.options.api && this.options.api.optionsChanged) {
-      this.options.api.optionsChanged();
+    if (this.options!.api && this.options!.api.optionsChanged) {
+      this.options!.api.optionsChanged();
     }
   }
 
-  removeItem($event: MouseEvent | TouchEvent, item: GridsterItem): void {
+  removeItem($event: MouseEvent | TouchEvent, item:GridsterItem): void {
     $event.preventDefault();
     $event.stopPropagation();
-    this.dashboard.splice(this.dashboard.indexOf(item), 1);
+    this.dashboard!.splice(this.dashboard!.indexOf(item), 1);
   }
 
   addItem(): void {
-    this.dashboard.push({ x: 0, y: 0, cols: 2, rows: 1 });
   }
-
 }
