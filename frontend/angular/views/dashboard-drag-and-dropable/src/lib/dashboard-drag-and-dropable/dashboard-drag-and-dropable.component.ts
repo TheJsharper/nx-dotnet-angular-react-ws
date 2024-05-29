@@ -6,6 +6,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
 import {FormsModule} from '@angular/forms';
 interface Safe extends GridsterConfig {
   draggable: Draggable;
@@ -15,7 +16,7 @@ interface Safe extends GridsterConfig {
 @Component({
   selector: 'lib-dashboard-drag-and-dropable',
   standalone: true,
-  imports: [CommonModule, GridsterComponent, GridsterItemComponent, MatCheckboxModule, MatIconModule, MatMenuModule, FormsModule, MatFormFieldModule, MatSelectModule],
+  imports: [CommonModule, GridsterComponent, GridsterItemComponent, MatCheckboxModule, MatIconModule, MatMenuModule, FormsModule, MatFormFieldModule, MatSelectModule, MatButtonModule],
   templateUrl: './dashboard-drag-and-dropable.component.html',
   styleUrl: './dashboard-drag-and-dropable.component.scss',
 })
@@ -82,14 +83,14 @@ export class DashboardDragAndDropableComponent implements OnInit {
 
     this.dashboard = [
       { cols: 1, rows: 1, y: 0, x: 0 },
-      { cols: 2, rows: 2, y: 0, x: 2, hasContent: true },
+      { cols: 1, rows: 1, y: 0, x: 2, hasContent: true },
       { cols: 1, rows: 1, y: 0, x: 4 },
       { cols: 1, rows: 1, y: 2, x: 5 },
       { cols: 1, rows: 1, y: 1, x: 0 },
       { cols: 1, rows: 1, y: 1, x: 0 },
       {
-        cols: 2,
-        rows: 2,
+        cols: 1,
+        rows: 1,
         y: 3,
         x: 5,
         minItemRows: 2,
@@ -97,8 +98,8 @@ export class DashboardDragAndDropableComponent implements OnInit {
         label: 'Min rows & cols = 2'
       },
       {
-        cols: 2,
-        rows: 2,
+        cols: 1,
+        rows: 1,
         y: 2,
         x: 0,
         maxItemRows: 2,
@@ -106,12 +107,12 @@ export class DashboardDragAndDropableComponent implements OnInit {
         label: 'Max rows & cols = 2'
       },
       {
-        cols: 2,
+        cols: 1,
         rows: 1,
         y: 2,
         x: 2,
-        dragEnabled: true,
-        resizeEnabled: true,
+       /*  dragEnabled: true,
+        resizeEnabled: true, */
         label: 'Drag&Resize Enabled'
       },
       {
@@ -119,8 +120,8 @@ export class DashboardDragAndDropableComponent implements OnInit {
         rows: 1,
         y: 2,
         x: 4,
-        dragEnabled: false,
-        resizeEnabled: false,
+      /*   dragEnabled: true,
+        resizeEnabled: true, */
         label: 'Drag&Resize Disabled'
       },
       { cols: 1, rows: 1, y: 2, x: 6 }
