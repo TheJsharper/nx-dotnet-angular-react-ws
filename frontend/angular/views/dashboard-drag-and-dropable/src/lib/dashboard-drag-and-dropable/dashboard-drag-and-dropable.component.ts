@@ -65,7 +65,7 @@ export class DashboardDragAndDropableComponent implements OnInit {
       emptyCellDragMaxRows: 50,
       ignoreMarginInRow: false,
       draggable: {
-        enabled: true
+        enabled: true, 
       },
       resizable: {
         enabled: true
@@ -106,17 +106,15 @@ export class DashboardDragAndDropableComponent implements OnInit {
         maxItemRows: 1,
         maxItemCols: 1,
         label: 'Max rows & cols = 2'
-      }, /**/
+      }, 
       {
         cols: 1,
         rows: 1,
         y: 2,
         x: 2,
-       /*  dragEnabled: true,
-        resizeEnabled: true, */
         label: 'Drag&Resize Enabled'
       },
-    /* */ {
+    {
         cols: 1,
         rows: 1,
         y: 2,
@@ -125,16 +123,24 @@ export class DashboardDragAndDropableComponent implements OnInit {
         resizeEnabled: true,
         label: 'Drag&Resize Disabled'
       }, 
-     /**/  { cols: 1, rows: 1, y: 2, x: 5 } 
+      { cols: 1, rows: 1, y: 2, x: 5 } 
     ];
   }
 
   changedOptions(): void {
     if (this.options!.api && this.options!.api.optionsChanged) {
       this.options!.api.optionsChanged();
+      console.log("===>", this.options.draggable)
     }
   }
 
+  changeUserPermission(personmssion:'admin'| 'user'):void{
+    if(personmssion === "admin"){
+      this.options.draggable = {...this.options.draggable, enabled:true}
+    }else{
+      this.options.draggable = {...this.options.draggable, enabled:false}
+    }
+  }
   removeItem($event: MouseEvent | TouchEvent, item:GridsterItem): void {
     $event.preventDefault();
     $event.stopPropagation();
@@ -142,5 +148,6 @@ export class DashboardDragAndDropableComponent implements OnInit {
   }
 
   addItem(): void {
-  }
+    console.log("added")
+   }
 }

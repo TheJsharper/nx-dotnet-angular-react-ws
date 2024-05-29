@@ -8,6 +8,20 @@
     <mat-icon>open_in_new</mat-icon>
     Source
   </a>
+
+  <div>
+    <mat-form-field>
+      <mat-select
+        aria-label="Permisssion"
+        [(ngModel)]="options.draggable.enabled"
+        (ngModelChange)="changedOptions()"
+        placeholder="Permission"
+      >
+        <mat-option [value]="false"> asUser</mat-option>
+        <mat-option [value]="true"> asAdmin</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
  <!--  <markdown [src]="'assets/compact.md'"></markdown> -->
 </div>
 <div class="options-header">
