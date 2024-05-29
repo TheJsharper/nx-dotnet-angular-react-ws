@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CompactType, DisplayGrid, Draggable, GridType, GridsterComponent, GridsterConfig, GridsterItem, GridsterItemComponent, GridsterItemComponentInterface, PushDirections, Resizable } from 'angular-gridster2';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatIconModule} from '@angular/material/icon';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
-import {MatButtonModule} from '@angular/material/button';
-import {FormsModule} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
+import { CompactType, DisplayGrid, Draggable, GridType, GridsterComponent, GridsterConfig, GridsterItem, GridsterItemComponent, PushDirections, Resizable } from 'angular-gridster2';
 interface Safe extends GridsterConfig {
   draggable: Draggable;
   resizable: Resizable;
@@ -130,9 +130,8 @@ export class DashboardDragAndDropableComponent implements OnInit {
   }
 
   changedOptions(): void {
-    if (this.options!.api && this.options!.api.optionsChanged) {
-      this.options!.api.optionsChanged();
-      console.log("===>", this.options.draggable)
+    if (this.options.api && this.options.api.optionsChanged) {
+      this.options.api.optionsChanged();
     }
   }
 
@@ -250,9 +249,8 @@ export class DashboardDragAndDropableComponent implements OnInit {
         disableWarnings: false,
         scrollToNewItems: false
       }
-      if (this.options!.api && this.options!.api.optionsChanged) {
-        this.options!.api.optionsChanged();
-        console.log("===>", this.options.draggable)
+      if (this.options.api && this.options.api.optionsChanged) {
+        this.options.api.optionsChanged();
       }
     }
   }
