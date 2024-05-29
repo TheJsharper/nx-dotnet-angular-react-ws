@@ -8,6 +8,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {FormsModule} from '@angular/forms';
+import { RouterModule } from '@angular/router';
 interface Safe extends GridsterConfig {
   draggable: Draggable;
   resizable: Resizable;
@@ -16,7 +17,7 @@ interface Safe extends GridsterConfig {
 @Component({
   selector: 'lib-dashboard-drag-and-dropable',
   standalone: true,
-  imports: [CommonModule, GridsterComponent, GridsterItemComponent, MatCheckboxModule, MatIconModule, MatMenuModule, FormsModule, MatFormFieldModule, MatSelectModule, MatButtonModule],
+  imports: [CommonModule, GridsterComponent, GridsterItemComponent, MatCheckboxModule, MatIconModule, MatMenuModule, FormsModule, MatFormFieldModule, MatSelectModule, MatButtonModule, RouterModule],
   templateUrl: './dashboard-drag-and-dropable.component.html',
   styleUrl: './dashboard-drag-and-dropable.component.scss',
 })
@@ -84,7 +85,7 @@ export class DashboardDragAndDropableComponent implements OnInit {
     this.dashboard = [
       { cols: 1, rows: 1, y: 0, x: 0 },
       { cols: 1, rows: 1, y: 0, x: 2, hasContent: true },
-      { cols: 1, rows: 1, y: 0, x: 4 },
+      { cols: 1, rows: 1, y: 0, x: 4, name:""},
       { cols: 1, rows: 1, y: 2, x: 5 },
       { cols: 1, rows: 1, y: 1, x: 0 },
       { cols: 1, rows: 1, y: 1, x: 0 },
