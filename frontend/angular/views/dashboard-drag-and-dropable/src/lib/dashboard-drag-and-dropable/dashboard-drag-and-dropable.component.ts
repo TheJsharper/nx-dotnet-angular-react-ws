@@ -257,7 +257,7 @@ export class DashboardDragAndDropableComponent implements OnInit {
   removeItem($event: MouseEvent | TouchEvent, item:GridsterItem): void {
     $event.preventDefault();
     $event.stopPropagation();
-    this.dashboard!.splice(this.dashboard!.indexOf(item), 1);
+    this.dashboard.splice(this.dashboard.indexOf(item), 1);
   }
 
   addItem(): void {
