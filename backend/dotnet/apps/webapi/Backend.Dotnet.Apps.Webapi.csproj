@@ -11,6 +11,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.6">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -19,8 +20,18 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
   <PropertyGroup>
-    <!-- NOTE: Must be set before imporing Sdk.props -->
-    <BaseIntermediateOutputPath>$(MSBuildProjectDirectory)/obj/</BaseIntermediateOutputPath>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(MSBuildProjectDirectory)/obj/**/*</DefaultItemExcludes>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(MSBuildProjectDirectory)/bin/**/*</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(DOTNET_RUNNING_IN_CONTAINER)' == 'true'">
+    <BaseIntermediateOutputPath>$(MSBuildProjectDirectory)/obj/container/</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(MSBuildProjectDirectory)/bin/container/</BaseOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(DOTNET_RUNNING_IN_CONTAINER)' != 'true'">
+    <BaseIntermediateOutputPath>$(MSBuildProjectDirectory)/obj/local/</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(MSBuildProjectDirectory)/bin/local/</BaseOutputPath>
   </PropertyGroup>
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
 

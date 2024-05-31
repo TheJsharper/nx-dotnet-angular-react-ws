@@ -6,9 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.Configure<JwtConfig>( builder.Configuration.GetSection("JwtConfig"));
-
+/*
 builder.Services.AddDbContext<ApiContext>(options=>
   options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))  
+);*/
+builder.Services.AddDbContext<ApiContext>(options=>
+  options.UseInMemoryDatabase(Guid.NewGuid().ToString())  
 );
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
