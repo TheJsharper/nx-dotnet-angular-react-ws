@@ -1,0 +1,17 @@
+{
+  "name": "svg-editor",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "frontend/angular/views/svg-editor/src",
+  "prefix": "lib",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "frontend/angular/views/svg-editor/jest.config.ts"
+      }
+    }
+  }
+}

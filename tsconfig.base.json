@@ -23,7 +23,8 @@
         "frontend/angular/views/dashboard-table/src/index.ts"
       ],
       "generated/webapi-types": ["generated/webapi-types/src/index.ts"],
-      "ng-zorro-table": ["frontend/angular/views/ng-zorro-table/src/index.ts"]
+      "ng-zorro-table": ["frontend/angular/views/ng-zorro-table/src/index.ts"],
+      "svg-editor": ["frontend/angular/views/svg-editor/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -21,10 +21,13 @@
           <li nz-menu-item [routerLink]="['/dashboard-drag-and-dropable']"> Dashboard drop and drop </li>
         </ul>
       </li>
-     <!--  <li nz-menu-item>
-        <span nz-icon nzType="file"></span>
-        <span>File</span>
-      </li> -->
+
+      <li nz-submenu nzTitle="Editor" nzIcon="dashboard">
+        <ul>
+          <li nz-menu-item [routerLink]="['/svg-editor']"> Dashboard drop and drop </li>
+        </ul>
+      </li>
+    
     </ul>
   </nz-sider>
   <nz-layout>

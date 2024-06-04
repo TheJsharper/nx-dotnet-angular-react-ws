@@ -17,8 +17,12 @@ export const appRoutes: Route[] = [
         loadComponent: ()=> import('dashboard-drag-and-dropable').then(m => m.DashboardDragAndDropableComponent ),
     },
     {
+        path:'svg-editor', 
+        loadComponent: ()=> import('svg-editor').then(m => m.SvgEditorComponent ),
+    },
+    {
         path: '',
         redirectTo: 'ng-zorro-table',
         pathMatch: 'full'
-      }
+      },
 ];
