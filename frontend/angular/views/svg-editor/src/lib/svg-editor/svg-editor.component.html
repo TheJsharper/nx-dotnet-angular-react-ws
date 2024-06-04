@@ -1,3 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" (mouseleave)="leave()" (mousemove)="move($event)">
-    <circle *ngFor="let d of drawings" r="3" fill="red" [attr.cx]="d.x" [attr.cy]="d.y" (mousedown)="down($event, d)" (mouseup)="up()"></circle>
-</svg>
+
+<div style="display: flex; flex-direction: column;">
+    
+  
+    
+      <nz-radio-group [(ngModel)]="size">
+        <label nz-radio-button nzValue="large"><span>Rect</span></label>
+        <label nz-radio-button nzValue="default"><span>Circle</span></label>
+        <label nz-radio-button nzValue="small"><span>Path</span></label>
+      </nz-radio-group>
+    
+    
+    <svg xmlns="http://www.w3.org/2000/svg" width="80vw" height="100vh" (mouseleave)="leave()" (mousemove)="move($event)" style="border: 1px dashed red;" (click)="click($event)" >
+        <circle *ngFor="let d of drawings"  r="3" fill="red" [attr.cx]="d.x" [attr.cy]="d.y" (mousedown)="down($event, d)" (mouseup)="up()" ></circle>
+       
+    </svg>
+</div>
