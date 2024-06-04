@@ -18,23 +18,6 @@ export class SvgEditorComponent {
   size: NzSelectSizeType = 'default';
   circle:string = "";
   drawings: { x: number, y: number }[] = [
-    {
-      x: 10,
-      y: 20,
-    },
-    {
-      x: 20,
-      y: 40,
-    },
-    {
-      x: 30,
-      y: 60,
-    },
-    {
-      x: 40,
-      y: 60,
-    },
-
   ]
 
   leave(): void {
@@ -55,7 +38,6 @@ export class SvgEditorComponent {
   click($event: MouseEvent): void {
     console.log("click", $event);
     this.drawings.push({x:$event.offsetX  , y:   $event.offsetY});
-   // this.circle = `circle r="3" fill="red" [attr.cx]="d.x" [attr.cy]="d.y" (mousedown)="down($event, d)" (mouseup)="up()" ></circle>`;
   }
 
 }
