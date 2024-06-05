@@ -15,8 +15,8 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 })
 export class SvgEditorComponent {
   selectedValue = null;
-  selectItem: 'rect' | 'circle' | 'path' = 'circle';
-  circle: string = "";
+  selectItem: 'rect' | 'circle' | 'path' = 'rect';
+  circle = "";
   circles: { x: number, y: number }[] = [];
   rects: { x?: number, y?: number, width?: number, heigth?: number }[] = [];
 
@@ -42,19 +42,25 @@ export class SvgEditorComponent {
     }
 
     if (this.selectItem == "rect" && this.rectCurrent.x && this.rectCurrent.y) {
-      let width = $event.offsetX - this.rectCurrent.x;
-      let height = $event.offsetY - this.rectCurrent.y;
-      if (width < 0) {
-        width = -width;
-        this.rectCurrent.width = width //+ $event.offsetX ;
-      } else
+      const width = Math.abs($event.offsetX - this.rectCurrent.x);
+      const height = Math.abs($event.offsetY - this.rectCurrent.y);
+   
+      if($event.offsetX - this.rectCurrent.x < 0){
+          this.rectCurrent.width =   Math.max($event.offsetX , this.rectCurrent.x)- $event.offsetX;
+      }else{
+
         this.rectCurrent.width = width;
-      if (height < 0) {
-        height = -height;
-        this.rectCurrent.heigth = height //+ $event.offsetY;
-      } else
-        this.rectCurrent.heigth = height;
-      console.log(this.rectCurrent.x, this.rectCurrent.y, width, height,  );
+      }
+
+      if($event.offsetY - this.rectCurrent.y < 0){
+        this.rectCurrent.heigth = Math.max($event.offsetY , this.rectCurrent.y) -$event.offsetY ;
+    }else{
+
+      this.rectCurrent.heigth = height;
+    }
+  
+      //console.log(this.rectCurrent.x, this.rectCurrent.y, width, height, "==> ",  this.rectCurrent.x - $event.offsetY, "==>x ", this.rectCurrent.x - this.rectCurrent.y  );
+      console.log("=>x", this.rectCurrent.width, this.rectCurrent.heigth)
     }
   }
 
@@ -78,8 +84,6 @@ export class SvgEditorComponent {
       } else {
         this.rectCurrent = { x: $event.offsetX, y: $event.offsetY };
       }
-
-      console.log("Click", this.selectItem);
     } else {
       if (this.lineCurrent && this.lineCurrent.x2 && this.lineCurrent.y2 && this.lineCurrent.x1 && this.lineCurrent.y1) {
 
