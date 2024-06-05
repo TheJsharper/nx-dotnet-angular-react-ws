@@ -27,14 +27,15 @@
              [attr.y2]="line.y2" stroke-width="2" stroke="green" 
              /> 
           }
-          @if (lineCurrent &&  lineCurrent.x1 && lineCurrent.y1 &&  lineCurrent.x2 && lineCurrent.y2) {
+          
 
-            <line id="line2"   [attr.x1]="lineCurrent.x1"   
-             [attr.y1]="lineCurrent.y1"  [attr.x2]="lineCurrent.x2"  
-             [attr.y2]="lineCurrent.y2" stroke-width="2" stroke="green" 
-             /> 
-          }
+        }
+        @if (lineCurrent &&  lineCurrent.x1 && lineCurrent.y1 &&  lineCurrent.x2 && lineCurrent.y2) {
 
+          <line id="line2"   [attr.x1]="lineCurrent.x1"   
+           [attr.y1]="lineCurrent.y1"  [attr.x2]="lineCurrent.x2"  
+           [attr.y2]="lineCurrent.y2" stroke-width="2" stroke="green" 
+           /> 
         }
     </svg>
 </div>
