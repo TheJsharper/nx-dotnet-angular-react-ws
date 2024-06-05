@@ -26,6 +26,10 @@ export class SvgEditorComponent {
   lineCurrent?: { x1?: number, y1?: number, x2?: number, y2?: number } = {};
 
   leave(): void {
+    if(this.selectItem === "rect" && this.rectCurrent.x && this.rectCurrent.y && this.rectCurrent.width && this.rectCurrent.heigth){
+      this.rects.push({ ...this.rectCurrent });
+      this.rectCurrent = {};
+    }
     console.log("leaving")
   }
 
@@ -50,7 +54,7 @@ export class SvgEditorComponent {
         this.rectCurrent.heigth = height //+ $event.offsetY;
       } else
         this.rectCurrent.heigth = height;
-      console.log(width, height, height + height, $event.offsetY + this.rectCurrent.y);
+      console.log(this.rectCurrent.x, this.rectCurrent.y, width, height,  );
     }
   }
 
