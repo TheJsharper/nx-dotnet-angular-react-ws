@@ -5,11 +5,12 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+//import { DataTableComponent} from 'angular-components-core-ui-0.0.1-124147/package'
 
 @Component({
   selector: 'lib-svg-editor',
   standalone: true,
-  imports: [CommonModule, NzMenuModule, NzButtonModule, NzSelectModule, FormsModule, NzRadioModule],
+  imports: [CommonModule, NzMenuModule, NzButtonModule, NzSelectModule, FormsModule, NzRadioModule/* , DataTableComponent */],
   templateUrl: './svg-editor.component.html',
   styleUrl: './svg-editor.component.scss',
 })
@@ -34,7 +35,7 @@ export class SvgEditorComponent {
   }
 
   move($event: MouseEvent): void {
-
+    const e  = $event;
     if (this.selectItem === "path" && this.lineCurrent && this.lineCurrent.x1 && this.lineCurrent.y1) {
 
       this.lineCurrent.x2 = $event.offsetX;
@@ -60,7 +61,7 @@ export class SvgEditorComponent {
     }
   
       //console.log(this.rectCurrent.x, this.rectCurrent.y, width, height, "==> ",  this.rectCurrent.x - $event.offsetY, "==>x ", this.rectCurrent.x - this.rectCurrent.y  );
-      console.log("=>x", this.rectCurrent.width, this.rectCurrent.heigth)
+     // console.log("=>x", e.)
     }
   }
 
