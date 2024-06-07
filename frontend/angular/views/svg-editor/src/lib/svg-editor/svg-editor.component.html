@@ -9,7 +9,7 @@
   </nz-radio-group>
 
 
-  <svg xmlns="http://www.w3.org/2000/svg" width="80vw" height="100vh" (mouseleave)="leave()" (mousemove)="move($event)"
+  <svg xmlns="http://www.w3.org/2000/svg" width="80vw" #svg height="100vh" (mouseleave)="leave()" (mousemove)="move($event, svg)"
     style="border: 1px dashed red;" (click)="click($event)">
     <circle *ngFor="let d of circles" r="30" fill="red" [attr.cx]="d.x" [attr.cy]="d.y" (mousedown)="down($event, d)"
       (mouseup)="up()"></circle>

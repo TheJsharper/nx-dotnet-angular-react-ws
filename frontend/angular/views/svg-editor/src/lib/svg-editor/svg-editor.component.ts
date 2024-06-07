@@ -33,7 +33,9 @@ export class SvgEditorComponent {
     console.log("leaving")
   }
 
-  move($event: MouseEvent): void {
+  move($event: MouseEvent, svg: HTMLElement): void {
+    const el = svg.getBoundingClientRect();
+
     const e = $event;
     if (this.selectItem === "path" && this.lineCurrent && this.lineCurrent.x1 && this.lineCurrent.y1) {
 
@@ -44,22 +46,28 @@ export class SvgEditorComponent {
     if (this.selectItem == "rect" && this.rectCurrent.x && this.rectCurrent.y) {
       const width = Math.abs($event.offsetX - this.rectCurrent.x);
       const height = Math.abs($event.offsetY - this.rectCurrent.y);
-
+/* 
       if ($event.offsetX - this.rectCurrent.x < 0) {
-        this.rectCurrent.width = Math.max($event.offsetX, this.rectCurrent.x) - $event.offsetX;
+        // this.rectCurrent.width = Math.max($event.offsetX, this.rectCurrent.x) - $event.offsetX;
+        this.rectCurrent.width =  $event.offsetX ;
       } else {
 
         this.rectCurrent.width = width;
       }
 
       if ($event.offsetY - this.rectCurrent.y < 0) {
-        this.rectCurrent.heigth = Math.max($event.offsetY, this.rectCurrent.y) - $event.offsetY;
+        //this.rectCurrent.heigth = Math.max($event.offsetY, this.rectCurrent.y) - $event.offsetY;
+        this.rectCurrent.heigth = $event.offsetY ;
       } else {
 
         this.rectCurrent.heigth = height;
       }
+ */
 
+      this.rectCurrent.heigth = $event.offsetY
+      this.rectCurrent.width = $event.offsetX
     }
+    console.log("", this.rectCurrent.x, $event.offsetX, el.bottom);
   }
 
   up(): void {
