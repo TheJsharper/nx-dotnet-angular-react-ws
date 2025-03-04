@@ -17,5 +17,3 @@ export const plotlyViewRoutes: Route[] = [
     resolve: { ploty: plotlyResolver }
   }
 ];
-
-export const plotlyStoreModule = StoreModule.forFeature('plotly', plotlyReducer);

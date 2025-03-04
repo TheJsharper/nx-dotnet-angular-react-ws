@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
-import { Layout, newPlot, PlotlyHTMLElement, PlotMouseEvent } from 'plotly.js';
-
+import { Layout, newPlot, PlotlyHTMLElement, PlotMouseEvent } from 'plotly.js-dist-min';
 @Component({
   selector: 'lib-plotly-view',
   standalone: true,
   imports: [
-    CommonModule
+    CommonModule, 
   ],
   templateUrl: './plotly-view.component.html',
   styleUrl: './plotly-view.component.scss',
