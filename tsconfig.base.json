@@ -27,6 +27,8 @@
       ],
       "generated/webapi-types": ["generated/webapi-types/src/index.ts"],
       "ng-zorro-table": ["frontend/angular/views/ng-zorro-table/src/index.ts"],
+      "plotly-view": ["frontend/angular/views/plotly-views/src/index.ts"],
+      "stats-view": ["frontend/angular/views/stats-view/src/index.ts"],
       "svg-editor": ["frontend/angular/views/svg-editor/src/index.ts"]
     }
   },

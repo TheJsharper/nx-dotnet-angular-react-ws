@@ -27,7 +27,7 @@ export const appRoutes: Route[] = [
       },
 
       {
-        path: 'dashboard-table',
-        loadChildren: () => import('footer-sticky-table').then(m => m.routes)
+        path: 'dashboard-stats',
+        loadChildren: () => import('stats-view').then(m => m.routes)
       }
 ];
