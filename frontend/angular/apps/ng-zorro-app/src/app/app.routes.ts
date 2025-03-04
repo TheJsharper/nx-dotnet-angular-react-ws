@@ -25,4 +25,9 @@ export const appRoutes: Route[] = [
         redirectTo: 'ng-zorro-table',
         pathMatch: 'full'
       },
+
+      {
+        path: 'dashboard-table',
+        loadChildren: () => import('footer-sticky-table').then(m => m.routes)
+      }
 ];
