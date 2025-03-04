@@ -21,13 +21,14 @@ export const appRoutes: Route[] = [
         loadComponent: ()=> import('svg-editor').then(m => m.SvgEditorComponent ),
     },
     {
+        path: 'dashboard-stats',
+        loadChildren: () => import('stats-view').then(m => m.routes)
+      },
+    {
         path: '',
         redirectTo: 'ng-zorro-table',
         pathMatch: 'full'
       },
 
-      {
-        path: 'dashboard-stats',
-        loadChildren: () => import('stats-view').then(m => m.routes)
-      }
+      
 ];
