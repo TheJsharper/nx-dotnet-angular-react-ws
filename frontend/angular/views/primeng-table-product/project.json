@@ -1,0 +1,17 @@
+{
+  "name": "primeng-table-product",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "frontend/angular/views/primeng-table-product/src",
+  "prefix": "lib",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "frontend/angular/views/primeng-table-product/jest.config.ts"
+      }
+    }
+  }
+}
