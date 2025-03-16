@@ -3,6 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "./frontend/react/apps//one-webapp/src",
   "projectType": "application",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
@@ -68,6 +69,5 @@
         ]
       }
     }
-  },
-  "tags": []
+  }
 }

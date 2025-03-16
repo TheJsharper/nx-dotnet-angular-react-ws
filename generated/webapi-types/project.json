@@ -3,6 +3,8 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "generated/webapi-types/src",
   "projectType": "library",
+  "tags": [],
+  "implicitDependencies": ["webapi-swagger"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -27,7 +29,5 @@
         "jestConfig": "generated/webapi-types/jest.config.ts"
       }
     }
-  },
-  "tags": [],
-  "implicitDependencies": ["webapi-swagger"]
+  }
 }

@@ -58,7 +58,11 @@
   },
   "targetDefaults": {
     "test": {
-      "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"]
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/jest.preset.js"
+      ]
     },
     "lint": {
       "inputs": [
@@ -68,7 +72,14 @@
       ]
     },
     "build": {
-      "dependsOn": ["codegen", "^codegen"]
+      "dependsOn": [
+        "codegen",
+        "^codegen"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     },
     "codegen": {
       "cache": true
@@ -77,12 +88,20 @@
       "cache": true
     },
     "@nx/vite:test": {
-      "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"],
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/jest.preset.js"
+      ],
       "cache": true
     },
     "@nx/jest:jest": {
       "cache": true,
-      "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"],
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/jest.preset.js"
+      ],
       "options": {
         "passWithNoTests": true
       },
@@ -106,14 +125,34 @@
     },
     "@nx/angular:ng-packagr-lite": {
       "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["default", "^default"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "default",
+        "^default"
+      ]
     },
     "@angular-devkit/build-angular:application": {
       "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["default", "^default"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "default",
+        "^default"
+      ]
     }
   },
-  "nxCloudAccessToken": "MTMxYzM1YWMtNzBiNS00YTZjLWEzNGMtNzUzODhlNWFmOWEwfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "MTMxYzM1YWMtNzBiNS00YTZjLWEzNGMtNzUzODhlNWFmOWEwfHJlYWQtd3JpdGU=",
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "sharedGlobals": [],
+    "production": [
+      "default"
+    ]
+  }
 }

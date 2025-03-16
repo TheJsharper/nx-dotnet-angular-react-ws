@@ -1,6 +1,7 @@
 {
   "name": "webapi-swagger",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "implicitDependencies": ["BackendDotnetApps.webapi"],
   "targets": {
     "build": {
       "executor": "nx:noop",
@@ -14,6 +15,5 @@
       },
       "dependsOn": ["^swagger"]
     }
-  },
-  "implicitDependencies": ["BackendDotnetApps.webapi"]
+  }
 }

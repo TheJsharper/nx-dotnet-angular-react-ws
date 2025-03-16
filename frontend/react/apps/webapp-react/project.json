@@ -3,6 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "./frontend/react/apps/webapp-react/src",
   "projectType": "application",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/webpack:webpack",
@@ -85,6 +86,5 @@
         "jestConfig": "frontend/react/apps/webapp-react/jest.config.ts"
       }
     }
-  },
-  "tags": []
+  }
 }
