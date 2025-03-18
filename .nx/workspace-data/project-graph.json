@@ -3356,9 +3356,9 @@
       "type": "npm",
       "name": "npm:sass",
       "data": {
-        "version": "1.85.1",
+        "version": "1.86.0",
         "packageName": "sass",
-        "hash": "sha512-Uk8WpxM5v+0cMR0XjX9KfRIacmSG86RH4DCCZjLU2rFh5tyutt9siAXJ7G+YfxQ99Q6wrRMbMlVl6KqUms71ag=="
+        "hash": "sha512-zV8vGUld/+mP4KbMLJMX7TyGCuUp7hnkOScgCMsWuHtns8CWBoz+vmEhoGMXsaJrbUP8gj+F1dLvVe79sK8UdA=="
       }
     },
     "npm:schema-utils@3.3.0": {
@@ -9035,9 +9035,9 @@
       "type": "npm",
       "name": "npm:@playwright/test",
       "data": {
-        "version": "1.51.0",
+        "version": "1.51.1",
         "packageName": "@playwright/test",
-        "hash": "sha512-dJ0dMbZeHhI+wb77+ljx/FeC8VBP6j/rj9OAojO08JI80wTZy6vRk9KvHKiDCUh4iMpEiseMgqRBIeW+eKX6RA=="
+        "hash": "sha512-nM+kEaTSAoVlXmMPH10017vn3FSiFqr/bh4fKg9vmAdMfd9SDqRZNvPSiAHADc/itWak+qPvMPZQOPwCBW7k7Q=="
       }
     },
     "npm:@plotly/d3": {
@@ -9683,9 +9683,9 @@
       "type": "npm",
       "name": "npm:@tanstack/query-core",
       "data": {
-        "version": "5.68.0",
+        "version": "5.69.0",
         "packageName": "@tanstack/query-core",
-        "hash": "sha512-r8rFYYo8/sY/LNaOqX84h12w7EQev4abFXDWy4UoDVUJzJ5d9Fbmb8ayTi7ScG+V0ap44SF3vNs/45mkzDGyGw=="
+        "hash": "sha512-Kn410jq6vs1P8Nm+ZsRj9H+U3C0kjuEkYLxbiCyn3MDEiYor1j2DGVULqAz62SLZtUZ/e9Xt6xMXiJ3NJ65WyQ=="
       }
     },
     "npm:@tanstack/query-devtools": {
@@ -9701,18 +9701,18 @@
       "type": "npm",
       "name": "npm:@tanstack/react-query",
       "data": {
-        "version": "5.68.0",
+        "version": "5.69.0",
         "packageName": "@tanstack/react-query",
-        "hash": "sha512-mMOdGDKlwTP/WV72QqSNf4PAMeoBp/DqBHQ222wBfb51Looi8QUqnCnb9O98ZgvNISmy6fzxRGBJdZ+9IBvX2Q=="
+        "hash": "sha512-Ift3IUNQqTcaFa1AiIQ7WCb/PPy8aexZdq9pZWLXhfLcLxH0+PZqJ2xFImxCpdDZrFRZhLJrh76geevS5xjRhA=="
       }
     },
     "npm:@tanstack/react-query-devtools": {
       "type": "npm",
       "name": "npm:@tanstack/react-query-devtools",
       "data": {
-        "version": "5.68.0",
+        "version": "5.69.0",
         "packageName": "@tanstack/react-query-devtools",
-        "hash": "sha512-h9ArHkfa7SD5eGnJ9h+9M5uYWBdeVeY+WalrtGLCAtJJvHx6/RrtbbzxeoEQbPyx3f0kPcwJ58DGQ+7CBXelpg=="
+        "hash": "sha512-sYklnou3IKAemqB5wJeBwjmG5bUGDKAL5/I4pVA+aqSnsNibVLt8/pAU976uuJ5K71w71bHtI/AMxiIs3gtkEA=="
       }
     },
     "npm:@testing-library/dom": {
@@ -12383,9 +12383,9 @@
       "type": "npm",
       "name": "npm:caniuse-lite",
       "data": {
-        "version": "1.0.30001705",
+        "version": "1.0.30001706",
         "packageName": "caniuse-lite",
-        "hash": "sha512-S0uyMMiYvA7CxNgomYBwwwPUnWzFD83f3B1ce5jHUfHTH//QL6hHsreI8RVC5606R4ssqravelYO5TU6t8sEyg=="
+        "hash": "sha512-3ZczoTApMAZwPKYWmwVbQMFpXBDds3/0VciVoUwPUbldlYyVLmRVuRs/PcUZtHpbLRpzzDvrvnFuREsGt6lUug=="
       }
     },
     "npm:canvas-fit": {
@@ -14525,9 +14525,9 @@
       "type": "npm",
       "name": "npm:electron-to-chromium",
       "data": {
-        "version": "1.5.119",
+        "version": "1.5.120",
         "packageName": "electron-to-chromium",
-        "hash": "sha512-Ku4NMzUjz3e3Vweh7PhApPrZSS4fyiCIbcIrG9eKrriYVLmbMepETR/v6SU7xPm98QTqMSYiCwfO89QNjXLkbQ=="
+        "hash": "sha512-oTUp3gfX1gZI+xfD2djr2rzQdHCwHzPQrrK0CD7WpTdF0nPdQ/INcRVjWgLdCT4a9W3jFObR9DAfsuyFQnI8CQ=="
       }
     },
     "npm:element-size": {
@@ -19070,9 +19070,9 @@
       "type": "npm",
       "name": "npm:mime-db",
       "data": {
-        "version": "1.53.0",
+        "version": "1.54.0",
         "packageName": "mime-db",
-        "hash": "sha512-oHlN/w+3MQ3rba9rqFr6V/ypF10LSkdwUysQL7GkXoTgIWeV+tcXGA852TBxH+gsh8UWoyhR1hKcoMJTuWflpg=="
+        "hash": "sha512-aU5EJuIN2WDemCcAp2vFBfp/m4EAhWJnUNSSw0ixs7/kXbd6Pg64EmwJkNdFhB8aWt1sH2CTXrLxo/iAGV3oPQ=="
       }
     },
     "npm:mime-db@1.52.0": {
@@ -19727,9 +19727,9 @@
       "type": "npm",
       "name": "npm:nwsapi",
       "data": {
-        "version": "2.2.18",
+        "version": "2.2.19",
         "packageName": "nwsapi",
-        "hash": "sha512-p1TRH/edngVEHVbwqWnxUViEmq5znDvyB+Sik5cmuLpGOIfDf/39zLiq3swPF8Vakqn+gvNiOQAZu8djYlQILA=="
+        "hash": "sha512-94bcyI3RsqiZufXjkr3ltkI86iEl+I7uiHVDtcq9wJUTwYQJ5odHDeSzkkrRzi80jJ8MaeZgqKjH1bAWAFw9bA=="
       }
     },
     "npm:object-assign": {
@@ -20240,18 +20240,18 @@
       "type": "npm",
       "name": "npm:playwright",
       "data": {
-        "version": "1.51.0",
+        "version": "1.51.1",
         "packageName": "playwright",
-        "hash": "sha512-442pTfGM0xxfCYxuBa/Pu6B2OqxqqaYq39JS8QDMGThUvIOCd6s0ANDog3uwA0cHavVlnTQzGCN7Id2YekDSXA=="
+        "hash": "sha512-kkx+MB2KQRkyxjYPc3a0wLZZoDczmppyGJIvQ43l+aZihkaVvmu/21kiyaHeHjiFxjxNNFnUncKmcGIyOojsaw=="
       }
     },
     "npm:playwright-core": {
       "type": "npm",
       "name": "npm:playwright-core",
       "data": {
-        "version": "1.51.0",
+        "version": "1.51.1",
         "packageName": "playwright-core",
-        "hash": "sha512-x47yPE3Zwhlil7wlNU/iktF7t2r/URR3VLbH6EknJd/04Qc/PSJ0EY3CMXipmglLG+zyRxW6HNo2EGbKLHPWMg=="
+        "hash": "sha512-/crRMj8+j/Nq5s8QcvegseuyeZPxpQCZb6HNk3Sos3BlZyAknRjoyJPFWkpNn8v0+P3WiwqFF8P+zQo4eqiNuw=="
       }
     },
     "npm:plotly.js": {
