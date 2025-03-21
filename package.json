@@ -5,7 +5,6 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "prepare": "nx g @nx-dotnet/core:restore",
     "generated-spring-start-up-app": "openapi-generator-cli generate -i http://localhost:8080/v3/api-docs -g typescript-fetch -o generated/spring-start-up-app-openapi",
     "start": " nx run start-up-app:serve && generated-spring-start-up-app"
   },
