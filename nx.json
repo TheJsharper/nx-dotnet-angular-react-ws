@@ -1,7 +1,6 @@
 {
   "defaultBase": "master",
   "plugins": [
-    "@nx-dotnet/core",
     "@nxrocks/nx-spring-boot",
     {
       "plugin": "@nx/vite/plugin",

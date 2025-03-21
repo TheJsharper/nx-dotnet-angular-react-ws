@@ -1,0 +1,2 @@
+ #rm -rvf node_modules/ && rm -rf package-lock.json && rm -rvf .nx && npm cache clean --force && npm cache verify &&  npm i --verbose && npm audit fix --force 
+rm -rvf node_modules/ && rm -rf package-lock.json && rm -rvf .nx && npm cache clean --force && npm cache verify &&  npm i --verbose && npm ci --verbose && npx nx reset && npx sync 

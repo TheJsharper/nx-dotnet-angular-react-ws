@@ -66,7 +66,8 @@
                 <td><img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.name" width="50" class="shadow-4" /></td>
                 <td>{{ product.price | currency: 'USD' }}</td>
                 <td>{{ product.category }}</td>
-                <td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+                <!--<td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating></td>-->
+                <td><p-rating [ngModel]="product.rating" [readonly]="true" ></p-rating></td>
                 <td>
                     <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)"></p-tag>
                 </td>
@@ -98,7 +99,7 @@
             <label for="inventoryStatus">Inventory Status</label>
             <p-dropdown [(ngModel)]="product.inventoryStatus" inputId="inventoryStatus" [options]="statuses">
                 <ng-template pTemplate="selectedItem">
-                    <p-tag [value]="product.inventoryStatus?.toUpperCase()" [severity]="getSeverity(product.inventoryStatus?.toUpperCase())"></p-tag>
+                    <p-tag [value]="product.inventoryStatus?.toUpperCase()" [severity]="getSeverity(product.inventoryStatus)"></p-tag>
                 </ng-template>
                 <ng-template let-option pTemplate="item">
                     <p-tag [value]="option.label" [severity]="getSeverity(option.label)"></p-tag>

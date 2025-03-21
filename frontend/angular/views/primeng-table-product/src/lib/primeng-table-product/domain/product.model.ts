@@ -6,7 +6,7 @@ export interface Product {
     description?: string;
     price?: number;
     quantity?: number;
-    inventoryStatus?: string;
+    inventoryStatus?: 'INSTOCK' | 'LOWSTOCK' | 'OUTOFSTOCK' | undefined;
     category?: string;
     image?: string;
     rating?: number;

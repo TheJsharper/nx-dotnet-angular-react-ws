@@ -34,9 +34,9 @@ export class PrimengTableProductComponent implements OnInit, ControlValueAccesso
     msg = '';
     productDialog = false;
 
-    products!: Product[];
+    products: Product[] = [ ];
 
-    product!: Product;
+    product: Product ={};
 
     selectedProducts!: Product[] | null;
 
@@ -66,7 +66,7 @@ export class PrimengTableProductComponent implements OnInit, ControlValueAccesso
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     private propagateChange = (_: any) => { };
     ngOnInit() {
-        this.productService.getProducts().then((data) => (this.products = data));
+        this.productService.getProducts().then((data:Product[]) => (this.products = data));
 
         this.statuses = [
             { label: 'INSTOCK', value: 'instock' },
@@ -158,12 +158,12 @@ export class PrimengTableProductComponent implements OnInit, ControlValueAccesso
         return id;
     }
 
-    getSeverity(status: string | undefined) {
+    getSeverity(status: 'INSTOCK' | 'LOWSTOCK' | 'OUTOFSTOCK' | undefined): "success" | "secondary" | "info" | "warn" | "danger" | "contrast" | undefined {
         switch (status) {
             case 'INSTOCK':
                 return 'success';
             case 'LOWSTOCK':
-                return 'warning';
+                return 'danger';
             case 'OUTOFSTOCK':
                 return 'danger';
             default: return undefined;
