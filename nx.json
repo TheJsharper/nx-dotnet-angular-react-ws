@@ -23,7 +23,8 @@
       "options": {
         "targetName": "e2e"
       }
-    }
+    },
+    "@nx-dotnet/core"
   ],
   "generators": {
     "@nx/angular:application": {
