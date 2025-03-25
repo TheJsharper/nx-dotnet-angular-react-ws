@@ -7,8 +7,10 @@ import { StoreDevtoolsModule, StoreDevtoolsOptions } from '@ngrx/store-devtools'
 export const route: Routes =[
 
     {
-        path: ' ',
-        loadComponent: ()=> import("./mf-todo/mf-todo.component").then( c => c.MfTodoComponent),
+        path: '',
+        loadComponent: ()=>{ 
+                console.log("CALLING MAIN TODO COMPONENT")
+            return import("./mf-todo/mf-todo.component").then( c => c.MfTodoComponent)},
         providers:[
             importProvidersFrom(
                 StoreModule.forFeature("todos", reducers),

@@ -143,6 +143,7 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.8.1",
     "three": "^0.165.0",
+    "todomvc-app-css": "^2.4.3",
     "tslib": "^2.6.2",
     "zone.js": "0.15.0"
   }

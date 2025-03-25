@@ -56,7 +56,9 @@ export const routes: Routes = [
   },
   {
     path:'micro-frontend-todo',
-    loadChildren: ()=> import('frontend/angular/micro-apps/mf-todo/src').then(c => c.route)
+    loadChildren: ()=> {
+      console.log("Call link")
+      return import('frontend/angular/micro-apps/mf-todo/src').then(c => c.route)}
   },
   {
     path: '**',

@@ -1,11 +1,11 @@
-import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { provideState, provideStore, Store } from '@ngrx/store';
-import { ToggleAllTodoAction } from './store/todo.actions';
-import { reducers, TodosState } from './store/todo.reducer';
+import { Component, Inject } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { AddComponent } from '../add';
 import { FooterComponent } from '../footer';
 import { ListComponent } from '../list';
+import { ToggleAllTodoAction } from './store/todo.actions';
+import { TodosState } from './store/todo.reducer';
 
 @Component({
   selector: 'lib-mf-todo',
