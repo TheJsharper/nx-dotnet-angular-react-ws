@@ -1,14 +1,16 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { PlotRelayoutEvent, PlotlyHTMLElement } from "plotly.js-dist-min";
 import { Subject, takeUntil } from "rxjs";
 import { tap } from 'rxjs/operators';
 import { NgrxCreateApiPlotMainService } from "../../services/ngrx-create-api-plot-main.service";
 import { NgrxCreateApiPlotZoomService } from "../services/ngrx-create-api-plot-zoom.service";
+import { NgClass } from "@angular/common";
 
 @Component({
     selector: 'app-ngrx-create-api-plot-menu-bar',
     templateUrl: './ngrx-create-api-plot-menu-bar.component.html',
+    imports:[ReactiveFormsModule, NgClass],
     styleUrl: './ngrx-create-api-plot-menu-bar.component.scss'
 })
 export class NgrxCreateApiMenubarComponent implements OnInit, OnDestroy {

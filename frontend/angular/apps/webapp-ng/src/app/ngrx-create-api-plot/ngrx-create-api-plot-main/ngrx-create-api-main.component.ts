@@ -1,11 +1,15 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, Renderer2, ViewChild } from "@angular/core";
 import { Subject, interval, tap, timeInterval } from "rxjs";
 import { NgrxCreateApiPlotMainService } from "../../services/ngrx-create-api-plot-main.service";
+import { NgrxCreateApiMenubarComponent } from "../ngrx-create-api-plot-menu-bar/ngrx-create-api-plot-menu-bar.component";
+import { NgrxCreateApiPlotNavComponent } from "../ngrx-create-api-plot-nav/ngrx-create-api-plot-nav.component";
+import { NgrxCreateApiPlotValuesComponent } from "../ngrx-create-api-plot-values/ngrx-create-api-plot-values.component";
 import { NgrxCreateApliPlotService } from "../services/ngrx-create-api-plot.service";
 
 @Component({
     selector: 'app-main',
     templateUrl: './ngrx-create-api-main.component.html',
+    imports:[NgrxCreateApiPlotValuesComponent, NgrxCreateApiPlotNavComponent, NgrxCreateApiMenubarComponent],
     styleUrls: ['./ngrx-create-api-main.component.scss']
 })
 export class NgrxCreateApiMainComponent implements AfterViewInit, OnDestroy {

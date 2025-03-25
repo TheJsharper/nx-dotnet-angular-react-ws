@@ -1,7 +1,7 @@
-import { Action, ActionReducer, ActionReducerMap } from '@ngrx/store';
-import { AppState } from '../../store/reducers/app.reducer';
-import { filterReducer } from './filter/filter.reducer';
-import { Todo } from './models/todo.model';
+import { ActionReducerMap } from '@ngrx/store';
+import { SetFilterAction } from '../../filter';
+import { filterReducer } from '../../filter/filter.reducer';
+import { Todo } from '../../models/todo.model';
 import {
   ADD_TODO,
   AddTodoAction,
@@ -15,9 +15,8 @@ import {
   ToggleAllTodoAction,
   ToggleTodoAction
 } from './todo.actions';
-import { SetFilterAction } from './filter';
 
-export interface TodosState extends AppState{
+export interface TodosState /*extends AppState*/{
   todos: Todo[];
   filter: 'completed' | 'pending' | 'all' ;
 }
@@ -100,12 +99,9 @@ export function todoReducer(state: Todo[] = initialState, action: TodoActions): 
   return state;
 }
 
-type todoReducerType = ActionReducer<Todo[], SetFilterAction>;
 
-type filterReducerType = ActionReducer<'completed' | 'pending' | 'all' , SetFilterAction>;
 
 export const reducers: ActionReducerMap<TodosState,SetFilterAction &TodoActions > = {
   todos: todoReducer,
-  //filter: (state: 'completed' | 'pending' | 'all' = 'all', action: Action<string>) => filterReducer(state, action as SetFilterAction)
   filter:  filterReducer
 }

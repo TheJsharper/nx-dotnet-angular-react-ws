@@ -1,7 +1,7 @@
-import { createAction, props } from "@ngrx/store";
-import { ActionCreator, TypedAction } from "@ngrx/store/src/models";
+import { Action, createAction, props } from "@ngrx/store";
+import { ActionCreator } from "@ngrx/store";
 
-export type ACTION_ALIAS_TYPING = ActionCreator<string, (props: { data: number; }) => { data: number; } & TypedAction<string>>
+export type ACTION_ALIAS_TYPING = ActionCreator<string, (props: { data: number; }) => { data: number; } & Action<string>>
 
 export const increment: ACTION_ALIAS_TYPING = createAction("[INCREMENT VALUE] value by argnument", props<{ data: number }>())
 

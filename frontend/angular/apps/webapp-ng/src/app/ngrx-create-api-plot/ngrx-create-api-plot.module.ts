@@ -25,10 +25,10 @@ export const FOO = new InjectionToken<string>("FOO");
 
 @NgModule({})
 export class NgrxCreateApiPlotModuleForRoot {
-    constructor() { }
+   
 }
 @NgModule({
-    declarations: [NgrxCreateApiMainComponent],
+    declarations: [],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
@@ -36,7 +36,8 @@ export class NgrxCreateApiPlotModuleForRoot {
         EffectsModule.forFeature([NgrxCreateApiPlotEffects]),
         NgrxCreateApiMenubarModule,
         NgrxCreateApiPlotValuesComponent,
-        NgrxCreateApiPlotNavComponent
+        NgrxCreateApiPlotNavComponent,
+        NgrxCreateApiMainComponent
     ],
     exports: [],
     providers: [NgrxCreateApliPlotService, NgrxCreateApiPlotEffects, NgrxCreateApiPlotSelector, NgrxCreateApiPlotZoomService]

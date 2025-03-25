@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { CounterSimpleChildComponent } from './counter-simple-child/counter-simple-child.component';
 
 @Component({
   selector: 'app-counter-simple',
   templateUrl: './counter-simple.component.html',
-  styleUrls: ['./counter-simple.component.scss'],
+  standalone:true, 
+  imports:[CounterSimpleChildComponent]
 })
 export class CounterSimpleComponent {
   counter: number;

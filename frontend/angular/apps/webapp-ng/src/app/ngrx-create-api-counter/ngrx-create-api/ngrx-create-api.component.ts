@@ -3,10 +3,14 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { decrement, increment } from '../store/ngrx-create-api-counter.actions';
 import { CounterState, selectValue } from '../store/ngrx-create-api-counter.reducers';
+import { NgrxCreateApiCounterChildComponent } from '../ngrx-create-api-counter-child/ngrx-create-api-counter-child.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-ngrx-create-api',
   templateUrl: './ngrx-create-api.component.html',
+  standalone:true,
+  imports:[NgrxCreateApiCounterChildComponent, AsyncPipe],
   styles: [],
 })
 export class NgrxCreateApiComponent {

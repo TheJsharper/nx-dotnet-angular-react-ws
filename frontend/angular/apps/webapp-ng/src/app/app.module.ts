@@ -16,8 +16,8 @@ export const routes: Routes = [
     path: 'simple-counter',
 
     loadChildren: () =>
-      import('./counter-simple/counter-simple.module').then(
-        (m) => m.CounterSimpleModule
+      import('./counter-simple/counter-simple.routes').then(
+        (m) => m.routes
       ),
   },
 
@@ -26,15 +26,15 @@ export const routes: Routes = [
 
     loadChildren: () =>
       import('./ngrx-simple-counter/ngrx-simple-counter.module').then(
-        (m) => m.NgrxSimpleCounterModule
+        (m) => m.routes
       ),
   },
   {
     path: 'ngrx-create-api-counter',
 
     loadChildren: () =>
-      import('./ngrx-create-api-counter/ngrx-create-api-counter.module').then(
-        (m) => m.NgrxCreateApiCounterModule
+      import('./ngrx-create-api-counter/ngrx-create-api-counter-routing.module').then(
+        (m) => m.routes
       ),
   },
   {
@@ -61,21 +61,26 @@ export const routes: Routes = [
       loadChildren : ()=> import('./ngrx-create-api-plot/ngrx-create-api-plot.module').then(m=> m.NgrxCreateApiPlotModule.asChild("bar",[NgrxCreateApiPlotMainService]))
   },
   {
+    path:'micro-frontend-todo',
+    loadChildren: ()=> import('frontend/angular/micro-apps/mf-todo/src').then(c => c.route)
+  },
+  {
     path: '**',
     redirectTo: 'simple-counter',
   },
 ];
-
+/*
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({ maxAge: 20 }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    AppComponent
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  //bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule { }*/

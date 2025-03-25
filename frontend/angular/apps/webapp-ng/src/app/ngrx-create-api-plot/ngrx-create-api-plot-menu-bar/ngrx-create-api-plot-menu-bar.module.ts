@@ -4,8 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgrxCreateApiMenubarComponent } from "./ngrx-create-api-plot-menu-bar.component";
 
 @NgModule({
-    declarations: [NgrxCreateApiMenubarComponent],
-    imports: [CommonModule, ReactiveFormsModule],
+    declarations: [],
+    imports: [CommonModule, ReactiveFormsModule, NgrxCreateApiMenubarComponent],
     exports: [NgrxCreateApiMenubarComponent]
 })
 export class NgrxCreateApiMenubarModule {

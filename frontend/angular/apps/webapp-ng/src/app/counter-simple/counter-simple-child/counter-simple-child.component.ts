@@ -1,8 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CounterSimpleGrandchildComponent } from '../counter-simple-grandchild/counter-simple-grandchild.component';
 
 @Component({
   selector: 'app-counter-simple-child',
   templateUrl: './counter-simple-child.component.html',
+  imports:[CounterSimpleGrandchildComponent],
+  standalone:true,
   styleUrls: ['./counter-simple-child.component.scss'],
 })
 export class CounterSimpleChildComponent {

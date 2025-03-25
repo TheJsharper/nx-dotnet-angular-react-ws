@@ -1,8 +1,8 @@
 import { createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store";
-import { TypedAction } from "@ngrx/store/src/models";
+import { Action } from "@ngrx/store";
 import { path, decrement, divide, increment, multiply } from "./ngrx-create-api-counter.actions";
 
-export type ACTION_ALIAS_TYPING_ARGS = { data: number; } & TypedAction<string> & { type: string; };
+export type ACTION_ALIAS_TYPING_ARGS = { data: number; } & Action<string> & { type: string; };
 
 export interface CounterState {
     data: number;

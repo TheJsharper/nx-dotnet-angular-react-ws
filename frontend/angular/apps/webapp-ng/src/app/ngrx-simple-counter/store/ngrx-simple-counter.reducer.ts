@@ -2,7 +2,7 @@ import { Action } from "@ngrx/store";
 import { NgrxSimpleCounterDecrementAction, NgrxSimpleCounterIncrementAction, NgrxSimpleCounterPatchAction } from "./ngrx-simple-counter.actions";
 
 
-export function NgRxSimpleCounterReducer(state: number = 100, action: Action): number {
+export function NgRxSimpleCounterReducer(state = 100, action: Action): number {
 
 
     switch (action.type) {

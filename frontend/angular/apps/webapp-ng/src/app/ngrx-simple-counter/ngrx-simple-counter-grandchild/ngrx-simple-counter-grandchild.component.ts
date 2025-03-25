@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { NgrxSimpleCounterPatchAction, NgrxSimpleCounterResetAction } from '../store/ngrx-simple-counter.actions';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-ngrx-simple-counter-grandchild',
   templateUrl: './ngrx-simple-counter-grandchild.component.html',
+  imports:[AsyncPipe],
   styles: [],
 })
 export class NgrxSimpleCounterGrandchildComponent {
