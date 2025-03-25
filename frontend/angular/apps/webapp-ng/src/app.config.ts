@@ -1,5 +1,5 @@
 import { ApplicationConfig, importProvidersFrom } from "@angular/core";
-import { routes } from "./app/app.module";
+import { routes } from "./app/app.routes";
 import { provideRouter, RouterModule } from "@angular/router";
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
