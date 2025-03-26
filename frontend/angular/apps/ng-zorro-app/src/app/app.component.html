@@ -12,7 +12,6 @@
       <li nz-submenu nzTitle="List" nzIcon="team">
         <ul>
           <li nz-menu-item [routerLink]="['/basics-list']">Basics </li>
-          <li nz-menu-item>Team 2</li>
         </ul>
       </li>
 
@@ -29,6 +28,15 @@
         <ul>
           <li nz-menu-item [routerLink]="['/dashboard-stats']"> Stats plolty table</li>
         </ul>
+      </li>
+
+      <li nz-submenu nzTitle="Micro-Apps" nzIcon="dashboard" >
+        <ul>
+          <li nz-menu-item [routerLink]="['/micro-apps-todo-list']"> Todo List </li>
+
+          <li nz-menu-item [routerLink]="['/lib-test']"> Test Lib </li>
+        </ul>
+        
       </li>
     
     </ul>
@@ -47,6 +55,6 @@
         <router-outlet></router-outlet>
       </div>
     </nz-content>
-    <nz-footer>Ant Design ©2024 Implement By Angular and testing by Pedro Salomon</nz-footer>
+    <nz-footer>Ant Design ©2025 Implement By Angular and testing by Pedro Salomon</nz-footer>
   </nz-layout>
 </nz-layout>

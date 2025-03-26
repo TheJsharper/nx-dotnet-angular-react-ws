@@ -1,4 +1,3 @@
-import { NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { faker } from '@faker-js/faker';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -11,7 +10,7 @@ export interface Data {
 @Component({
   selector: 'lib-basics-list',
   standalone: true,
-  imports: [NgFor, NgIf, NzListModule, NzButtonModule],
+  imports: [ NzListModule, NzButtonModule],
   templateUrl: './basics-list.component.html',
   styleUrl: './basics-list.component.scss',
 })

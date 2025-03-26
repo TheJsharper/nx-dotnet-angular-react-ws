@@ -30,7 +30,12 @@
       "e2eTestRunner": "cypress",
       "linter": "eslint",
       "style": "scss",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "build":{"dependsOn":["^build"]},
+      "serve":{
+        "dependsOn":["^build"]
+      }
+      
     },
     "@nx/angular:library": {
       "linter": "eslint",

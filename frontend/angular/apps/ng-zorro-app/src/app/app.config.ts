@@ -1,7 +1,17 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { appRoutes } from './app.routes';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideRouter } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from "@ngrx/effects";
+import { appRoutes } from './app.routes';
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(appRoutes), provideAnimations()],
+  providers: [provideRouter(appRoutes), 
+    provideAnimations(),
+    importProvidersFrom(
+      StoreModule.forRoot({}),
+      StoreDevtoolsModule.instrument({ maxAge: 20 }),
+      EffectsModule.forRoot([])
+  )
+  ],
 };
