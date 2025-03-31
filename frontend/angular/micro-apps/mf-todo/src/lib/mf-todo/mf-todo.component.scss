@@ -1,6 +1,12 @@
-:host{
+:host {
+    display: flex;
+    justify-content: center;
 
-    ::ng-deep .footer{
+    ::ng-deep .footer {
         height: 50px;
+    }
+
+    ::ng-deep .todoapp {
+        flex: 0 1 80%;
     }
 }

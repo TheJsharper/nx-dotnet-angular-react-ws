@@ -10,18 +10,26 @@
       "executor": "@nx/angular:ng-packagr-lite",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "frontend/angular/views/test-lib/ng-package.json",
-        "styles": [
-          "node_modules/bootstrap/dist/css/bootstrap.min.css",
-          "node_modules/bootstrap-icons/font/bootstrap-icons.css"
-        ]
+        "project": "frontend/angular/views/test-lib/ng-package.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "frontend/angular/views/test-lib/tsconfig.lib.prod.json"
         },
         "development": {
-          "tsConfig": "frontend/angular/views/test-lib/tsconfig.lib.json"
+          "tsConfig": "frontend/angular/views/test-lib/tsconfig.lib.json",
+          "styles": [
+            {
+              "input": "frontend/angular/views/test-lib/lib/test-lib.component.scss",
+              "inject": true,
+              "bundleName": "styles"
+            },
+            {
+              "input": "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "inject": true,
+              "bundleName": "styles"
+            }
+          ]
         }
       },
       "defaultConfiguration": "production"

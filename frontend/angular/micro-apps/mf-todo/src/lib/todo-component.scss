@@ -1,0 +1,7 @@
+
+@import '~node_modules/todomvc-app-css/index.css';
+@import '~node_modules/todomvc-common/base.css';
+:host {
+    display: block;     
+    background-color: red;
+}
