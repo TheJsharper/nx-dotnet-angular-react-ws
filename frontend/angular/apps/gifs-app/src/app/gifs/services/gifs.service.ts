@@ -3,15 +3,15 @@ import { Injectable } from "@angular/core";
 import { Gif, GiphyResponse } from "../models/giphy-response.model";
 
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 
 export class GifsService {
 
     private _tagsHistory: string[] = [];
 
-    private API_KEY: string = "DlyhUudrpjVFrMFoZ0y7GISYkLk0ABt5";
+    private API_KEY= "DlyhUudrpjVFrMFoZ0y7GISYkLk0ABt5";
 
-    private BASE_URL: string = 'http://api.giphy.com/v1/gifs';
+    private BASE_URL = 'http://api.giphy.com/v1/gifs';
 
 
     public gifList: Gif[] = [];
