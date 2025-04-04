@@ -27,16 +27,16 @@ const config/**/: ModuleFederationConfig = {
     }
 
     // Returning false means the library is not shared.
-    return defaultConfig;
+    return {...defaultConfig, eager: true};
   },
   additionalShared: [
     {
       libraryName: '@nx/angular/mf',
-      sharedConfig: { eager:false}, // also worked with your settings;
+      sharedConfig: { singleton:true, eager:true}, // also worked with your settings;
       
     }
   ],
-  remotes: [],
+  remotes: []
 };
 
 export default config;

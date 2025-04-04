@@ -15,4 +15,4 @@ export default withModuleFederation({
    */
 
 }, {
-  dts: false,});
+  dts: false, async: false});
