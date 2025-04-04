@@ -40,7 +40,17 @@
     },
     "@nx/angular:library": {
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "build": {
+        "dependsOn": [
+          "^build"
+        ]
+      },
+      "serve": {
+        "dependsOn": [
+          "^build"
+        ]
+      }
     },
     "@nx/angular:component": {
       "style": "scss"
@@ -148,6 +158,7 @@
         "^default"
       ]
     }
+    
   },
   "nxCloudAccessToken": "MTMxYzM1YWMtNzBiNS00YTZjLWEzNGMtNzUzODhlNWFmOWEwfHJlYWQtd3JpdGU=",
   "namedInputs": {

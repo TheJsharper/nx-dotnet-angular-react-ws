@@ -10,7 +10,16 @@
       "executor": "@nx/angular:ng-packagr-lite",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "frontend/angular/views/test-lib/ng-package.json"
+        "project": "frontend/angular/views/test-lib/ng-package.json",
+        "styles": [
+        "node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+        ],
+        "stylePreprocessorOptions": {
+          "includePaths": [ 
+          "node_modules/bootstrap/dist/css/bootstrap.min.css",
+          "node_modules/bootstrap-icons/font/bootstrap-icons.css"]
+        }
       },
       "configurations": {
         "production": {
