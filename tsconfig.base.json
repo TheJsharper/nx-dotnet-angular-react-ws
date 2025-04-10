@@ -27,6 +27,9 @@
       ],
       "generated/webapi-types": ["generated/webapi-types/src/index.ts"],
       "mf-todo": ["frontend/angular/micro-apps/mf-todo/src/index.ts"],
+      "myMfTodo/Routes": [
+        "frontend/angular/micro-apps/my-mf-todo/src/app/remote-entry/entry.routes.ts"
+      ],
       "ng-zorro-table": ["frontend/angular/views/ng-zorro-table/src/index.ts"],
       "plotly-view": ["frontend/angular/views/plotly-views/src/index.ts"],
       "primeng-table-product": [

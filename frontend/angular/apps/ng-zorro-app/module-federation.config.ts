@@ -1,12 +1,8 @@
 import { ModuleFederationConfig } from '@nx/module-federation';
 
-const coreLibraries = new Set([
-  'bootstrap',
-  'bootstrap-icons'
-]);
+const coreLibraries = new Set(['bootstrap', 'bootstrap-icons']);
 
-
-const config/**/: ModuleFederationConfig = {
+const config /**/ : ModuleFederationConfig = {
   name: 'ng-zorro-app',
   /**
    * To use a remote that does not exist in your current Nx Workspace
@@ -21,22 +17,22 @@ const config/**/: ModuleFederationConfig = {
    *
    */
   shared: (libraryName, defaultConfig) => {
-    console.log("RUNTIME Product  ===>", libraryName, defaultConfig)
+    console.log('RUNTIME Product  ===>', libraryName, defaultConfig);
     if (coreLibraries.has(libraryName)) {
       return defaultConfig;
     }
 
     // Returning false means the library is not shared.
-    return {...defaultConfig, eager: true};
+    return { ...defaultConfig, eager: true };
   },
   additionalShared: [
     {
       libraryName: '@nx/angular/mf',
-      sharedConfig: { singleton:true, eager:true}, // also worked with your settings;
-      
-    }
+      sharedConfig: { singleton: true, eager: true }, // also worked with your settings;
+    },
   ],
-  remotes: []
+  remotes: ['myMfTodo'],
+  disableNxRuntimeLibraryControlPlugin: true
 };
 
 export default config;
