@@ -22,7 +22,12 @@
                 "inlineStyleLanguage": "scss",
                 "assets": [
                     "frontend/angular/apps/ng-zorro-app/src/favicon.ico",
-                    "frontend/angular/apps/ng-zorro-app/src/assets"
+                    "frontend/angular/apps/ng-zorro-app/src/assets",
+                    {
+                        "glob": "**/*",
+                        "input": "frontend/angular/apps/ng-zorro-app/src/assets",
+                        "output": "./assets"
+                    }
                 ],
                 "styles": [
                     "frontend/angular/apps/ng-zorro-app/src/styles.scss",

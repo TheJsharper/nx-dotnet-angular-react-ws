@@ -1,5 +1,5 @@
 {
-  "name": "myMfTodo",
+  "name": "my-mf-todo",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
@@ -66,10 +66,10 @@
       },
       "configurations": {
         "production": {
-          "buildTarget": "myMfTodo:build:production"
+          "buildTarget": "my-mf-todo:build:production"
         },
         "development": {
-          "buildTarget": "myMfTodo:build:development"
+          "buildTarget": "my-mf-todo:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -77,7 +77,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "myMfTodo:build"
+        "buildTarget": "my-mf-todo:build"
       }
     },
     "lint": {
@@ -94,16 +94,16 @@
       "executor": "@nx/web:file-server",
       "defaultConfiguration": "production",
       "options": {
-        "buildTarget": "myMfTodo:build",
+        "buildTarget": "my-mf-todo:build",
         "port": 4201,
         "watch": false
       },
       "configurations": {
         "development": {
-          "buildTarget": "myMfTodo:build:development"
+          "buildTarget": "my-mf-todo:build:development"
         },
         "production": {
-          "buildTarget": "myMfTodo:build:production"
+          "buildTarget": "my-mf-todo:build:production"
         }
       }
     }
