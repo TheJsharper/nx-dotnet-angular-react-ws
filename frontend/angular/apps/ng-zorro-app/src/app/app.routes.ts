@@ -1,9 +1,11 @@
 import { Route } from '@angular/router';
+import { loadRemote } from '@module-federation/enhanced/runtime';
 
 export const appRoutes: Route[] = [
   {
     path: 'my-mf-todo',
-    loadChildren: () => import('myMfTodo/Routes').then((m) => m.remoteRoutes),
+   // loadChildren: () => import('myMfTodo/Routes').then((m) => m.remoteRoutes),
+   loadChildren: () => loadRemote<typeof import('myMfTodo/Routes')>('my-mf-todo/Routes').then((m) => m ? m.remoteRoutes : []),
   },
 
   {
