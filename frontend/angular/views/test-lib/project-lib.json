@@ -1,0 +1,57 @@
+{
+  "name": "test-lib",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "frontend/angular/views/test-lib/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "frontend/angular/views/test-lib/ng-package.json",
+        "styles": [
+        "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../../../../node_modules/bootstrap-icons/font/bootstrap-icons.css"
+        ],
+        "stylePreprocessorOptions": {
+          "includePaths": [ 
+          "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css",
+          "../../../../node_modules/bootstrap-icons/font/bootstrap-icons.css"]
+        }
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "frontend/angular/views/test-lib/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "frontend/angular/views/test-lib/tsconfig.lib.json",
+          "styles": [
+            {
+              "input": "frontend/angular/views/test-lib/lib/test-lib.component.scss",
+              "inject": true,
+              "bundleName": "styles"
+            },
+            {
+              "input": "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "inject": true,
+              "bundleName": "styles"
+            }
+          ]
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "frontend/angular/views/test-lib/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

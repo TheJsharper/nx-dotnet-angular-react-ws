@@ -15,7 +15,7 @@ const config: ModuleFederationConfig = {
    *
    */
 
-  remotes: [/*s'my-mf-todo'*/]
+  remotes: ['test-lib']
 }
 
 export default config;

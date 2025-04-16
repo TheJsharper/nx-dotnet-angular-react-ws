@@ -1,47 +1,87 @@
 {
   "name": "test-lib",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
   "sourceRoot": "frontend/angular/views/test-lib/src",
-  "prefix": "lib",
-  "projectType": "library",
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/angular:ng-packagr-lite",
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "project": "frontend/angular/views/test-lib/ng-package.json",
-        "styles": [
-        "node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+        "outputPath": "dist/frontend/angular/views/test-lib/test-lib",
+        "index": "frontend/angular/views/test-lib/src/index.html",
+        "main": "frontend/angular/views/test-lib/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "frontend/angular/views/test-lib/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "frontend/angular/views/test-lib/public"
+          }
         ],
-        "stylePreprocessorOptions": {
-          "includePaths": [ 
-          "node_modules/bootstrap/dist/css/bootstrap.min.css",
-          "node_modules/bootstrap-icons/font/bootstrap-icons.css"]
+        "styles": ["frontend/angular/views/test-lib/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "frontend/angular/views/test-lib/webpack.config.ts"
         }
       },
       "configurations": {
         "production": {
-          "tsConfig": "frontend/angular/views/test-lib/tsconfig.lib.prod.json"
-        },
-        "development": {
-          "tsConfig": "frontend/angular/views/test-lib/tsconfig.lib.json",
-          "styles": [
+          "budgets": [
             {
-              "input": "frontend/angular/views/test-lib/lib/test-lib.component.scss",
-              "inject": true,
-              "bundleName": "styles"
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
             },
             {
-              "input": "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "inject": true,
-              "bundleName": "styles"
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
             }
-          ]
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "frontend/angular/views/test-lib/webpack.prod.config.ts"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
         }
       },
       "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nx/angular:dev-server",
+      "options": {
+        "port": 4202,
+        "publicHost": "http://localhost:4202"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "test-lib:build:production"
+        },
+        "development": {
+          "buildTarget": "test-lib:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "test-lib:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
@@ -50,8 +90,22 @@
         "jestConfig": "frontend/angular/views/test-lib/jest.config.ts"
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint"
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "test-lib:build",
+        "port": 4202,
+        "watch": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "test-lib:build:development"
+        },
+        "production": {
+          "buildTarget": "test-lib:build:production"
+        }
+      }
     }
   }
 }

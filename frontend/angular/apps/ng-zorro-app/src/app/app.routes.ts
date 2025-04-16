@@ -40,7 +40,8 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'lib-test',
-    loadComponent: () => import('test-lib').then((m) => m.TestLibComponent),
+   // loadComponent: () => import('test-lib').then((m) => m.TestLibComponent),
+    loadChildren: () => import('test-lib').then((m) => m.remoteRoutes),
   },
   {
     path: '',

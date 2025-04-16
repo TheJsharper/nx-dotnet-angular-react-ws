@@ -37,7 +37,7 @@
       ],
       "stats-view": ["frontend/angular/views/stats-view/src/index.ts"],
       "svg-editor": ["frontend/angular/views/svg-editor/src/index.ts"],
-      "test-lib": ["frontend/angular/views/test-lib/src/index.ts"]
+      "test-lib": ["frontend/angular/views/test-lib/src/app/remote-entry/entry.routes.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
