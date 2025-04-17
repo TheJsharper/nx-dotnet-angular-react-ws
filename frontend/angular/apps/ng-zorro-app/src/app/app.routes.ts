@@ -37,7 +37,7 @@ export const appRoutes: Route[] = [
   {
     path: 'micro-apps-todo-list',
     loadChildren: () => import('mf-todo').then((m) => m.route),
-    //loadChildren: () => import('mf-todo').then((m) => m. remmoteRoutes),
+   // loadChildren: () => import('mf-todo').then((m) => m.remoteRoutes),
   },
   {
     path: 'lib-test',
