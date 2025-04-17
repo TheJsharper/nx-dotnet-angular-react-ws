@@ -131,7 +131,7 @@ exports.getGlobalFederationInstance = getGlobalFederationInstance;
 
 var moduleMap = {
 	"./Routes": () => {
-		return Promise.all(/*! __federation_expose_Routes */[__webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_common_angular_common"), __webpack_require__.e("default-frontend_angular_views_test-lib_src_app_remote-entry_entry_component_ts"), __webpack_require__.e("common")]).then(() => (() => ((__webpack_require__(/*! frontend/angular/views/test-lib/src/app/remote-entry/entry.routes.ts */ 6742)))));
+		return Promise.all(/*! __federation_expose_Routes */[__webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_common_angular_common"), __webpack_require__.e("common")]).then(() => (() => ((__webpack_require__(/*! frontend/angular/views/test-lib/src/app/remote-entry/entry.routes.ts */ 6742)))));
 	}
 };
 var get = (module, getScope) => {

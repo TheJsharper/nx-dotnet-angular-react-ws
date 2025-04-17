@@ -1,5 +1,8 @@
 import { ModuleFederationConfig } from '@nx/module-federation';
 
+const coreLibraries = new Set([
+  'bootstrap',
+]);
 const config: ModuleFederationConfig = {
   name: 'ng-zorro-app',
   /**
@@ -15,7 +18,19 @@ const config: ModuleFederationConfig = {
    *
    */
 
-  remotes: ['test-lib']
+  remotes: ['test-lib'],
+  shared: (libraryName, defaultConfig) => {
+    if (coreLibraries.has(libraryName)) {
+      console.log(`Shared library: =======>x${libraryName}`);
+      return defaultConfig;
+    }
+    //console.log(`Shared library: =======>x${libraryName}`);
+
+    // Returning false means the library is not shared.
+    return defaultConfig;
+  },
+  additionalShared: ['bootstrap'],
+  disableNxRuntimeLibraryControlPlugin: false,
 }
 
 export default config;

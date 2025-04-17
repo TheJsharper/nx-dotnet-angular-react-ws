@@ -22,7 +22,10 @@
             "input": "frontend/angular/views/test-lib/public"
           }
         ],
-        "styles": ["frontend/angular/views/test-lib/src/styles.scss"],
+        "styles": ["frontend/angular/views/test-lib/src/styles.scss", 
+       "node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+      ],
         "scripts": [],
         "customWebpackConfig": {
           "path": "frontend/angular/views/test-lib/webpack.config.ts"

@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { Component } from '@angular/core';
+import { TestLibComponent } from '../../lib/test-lib/test-lib.component';
 
 @Component({
-  imports: [CommonModule, NxWelcomeComponent],
+  imports: [CommonModule, TestLibComponent],
   selector: 'app-tes-lib-remote-entry',
-  template: `<app-nx-welcome></app-nx-welcome>`,
+  template: `<app-lib-test-lib-bootstrap/>`,
 })
 export class RemoteEntryComponent {}

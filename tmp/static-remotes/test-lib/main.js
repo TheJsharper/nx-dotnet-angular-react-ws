@@ -8,7 +8,7 @@
 
 
 
-Promise.all(/*! import() */[__webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_common_angular_common"), __webpack_require__.e("default-frontend_angular_views_test-lib_src_app_remote-entry_entry_component_ts"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_platform-browser_angular_platform-browser"), __webpack_require__.e("frontend_angular_views_test-lib_src_bootstrap_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./bootstrap */ 1372)).catch(err => console.error(err));
+Promise.all(/*! import() */[__webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_common_angular_common"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_platform-browser_angular_platform-browser"), __webpack_require__.e("common"), __webpack_require__.e("frontend_angular_views_test-lib_src_bootstrap_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./bootstrap */ 1372)).catch(err => console.error(err));
 
 /***/ }),
 
