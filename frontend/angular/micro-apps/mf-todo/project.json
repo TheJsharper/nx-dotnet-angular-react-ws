@@ -1,27 +1,111 @@
 {
   "name": "mf-todo",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
   "sourceRoot": "frontend/angular/micro-apps/mf-todo/src",
-  "prefix": "lib",
-  "projectType": "library",
   "tags": [],
   "targets": {
     "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "styles": [
-          "node_modules/todomvc-app-css/index.css"
-        ]
+        "outputPath": "dist/frontend/angular/micro-apps/my-mf-todo",
+        "index": "frontend/angular/micro-apps/mf-todo/src/index.html",
+        "main": "frontend/angular/micro-apps/mf-todo/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "frontend/angular/micro-apps/mf-todo/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "frontend/angular/micro-apps/mf-todo/public"
+          }
+        ],
+        "styles": ["frontend/angular/micro-apps/mf-todo/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "frontend/angular/micro-apps/mf-todo/webpack.config.ts"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "frontend/angular/micro-apps/mf-todo/webpack.prod.config.ts"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nx/angular:dev-server",
+      "options": {
+        "port": 4202,
+        "publicHost": "http://localhost:4202"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "my-mf-todo:build:production"
+        },
+        "development": {
+          "buildTarget": "my-mf-todo:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "my-mf-todo:build"
       }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "frontend/angular/micro-apps/mf-todo/jest.config.ts"      
+        "jestConfig": "frontend/angular/micro-apps/mf-todo/jest.config.ts"
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint"
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "my-mf-todo:build",
+        "port": 4202,
+        "watch": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "my-mf-todo:build:development"
+        },
+        "production": {
+          "buildTarget": "my-mf-todo:build:production"
+        }
+      }
     }
   }
 }

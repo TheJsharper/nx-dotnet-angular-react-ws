@@ -15,7 +15,7 @@ import { TodosState } from './store/todo.reducer';
   styleUrl: './mf-todo.component.scss',
 })
 export class MfTodoComponent {
-  constructor( @Inject(Store)private  store: Store<TodosState>) {
+  constructor( @Inject(Store) private  store: Store<TodosState>) {
   }
 
 
