@@ -26,7 +26,7 @@
         "frontend/angular/views/footer-sticky-table/src/index.ts"
       ],
       "generated/webapi-types": ["generated/webapi-types/src/index.ts"],
-      "mf-todo": ["frontend/angular/micro-apps/mf-todo/src/index.ts"],
+      "mf-todo": ["frontend/angular/micro-apps/mf-todo/src/lib/todo.router.ts"],
       "myMfTodo/Routes": [
         "frontend/angular/micro-apps/my-mf-todo/src/app/remote-entry/entry.routes.ts"
       ],

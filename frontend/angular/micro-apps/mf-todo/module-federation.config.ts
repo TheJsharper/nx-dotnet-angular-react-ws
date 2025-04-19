@@ -3,7 +3,7 @@ import { ModuleFederationConfig } from '@nx/module-federation';
 const config: ModuleFederationConfig = {
   name: 'mf-todo',
   exposes: {
-    './Routes': 'frontend/angular/micro-apps/my-mf-todo/src/app/remote-entry/entry.routes.ts',
+    './Routes': 'frontend/angular/micro-apps/mf-todo/src/lib/todo.router.ts',
   },
 };
 

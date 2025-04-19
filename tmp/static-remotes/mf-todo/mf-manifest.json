@@ -1,0 +1,419 @@
+{
+  "id": "mf_todo",
+  "name": "mf_todo",
+  "metaData": {
+    "name": "mf_todo",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "1.0.0",
+      "buildName": "nx-dotnet-angular-react-ws"
+    },
+    "remoteEntry": {
+      "name": "remoteEntry.mjs",
+      "path": "",
+      "type": "module"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "mf_todo",
+    "pluginVersion": "0.9.1",
+    "prefetchInterface": false,
+    "publicPath": "auto"
+  },
+  "shared": [
+    {
+      "id": "mf_todo:@angular/common/http",
+      "name": "@angular/common/http",
+      "version": "19.2.2",
+      "singleton": true,
+      "requiredVersion": "19.2.2",
+      "assets": {
+        "js": {
+          "async": [
+            "common.js",
+            "node_modules_angular_core_fesm2022_core_mjs.js",
+            "default-node_modules_rxjs_dist_esm_internal_operators_auditTime_js-node_modules_rxjs_dist_esm-9f2bd5.js",
+            "node_modules_rxjs_dist_esm_index_js.js",
+            "node_modules_rxjs_dist_esm_operators_index_js.js",
+            "default-node_modules_angular_common_fesm2022_common_mjs.js",
+            "default-node_modules_angular_core_fesm2022_primitives_signals_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_di_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_event-dispatch_mjs.js"
+          ],
+          "sync": [
+            "default-node_modules_angular_common_fesm2022_http_mjs.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "mf_todo:@angular/common",
+      "name": "@angular/common",
+      "version": "19.2.2",
+      "singleton": true,
+      "requiredVersion": "19.2.2",
+      "assets": {
+        "js": {
+          "async": [
+            "common.js",
+            "node_modules_angular_core_fesm2022_core_mjs.js",
+            "default-node_modules_rxjs_dist_esm_internal_operators_auditTime_js-node_modules_rxjs_dist_esm-9f2bd5.js",
+            "node_modules_rxjs_dist_esm_index_js.js",
+            "node_modules_rxjs_dist_esm_operators_index_js.js",
+            "default-node_modules_angular_core_fesm2022_primitives_signals_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_di_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_event-dispatch_mjs.js"
+          ],
+          "sync": [
+            "default-node_modules_angular_common_fesm2022_common_mjs.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "mf_todo:@angular/core/primitives/di",
+      "name": "@angular/core/primitives/di",
+      "version": "19.2.2",
+      "singleton": true,
+      "requiredVersion": "19.2.2",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "node_modules_angular_core_fesm2022_primitives_di_mjs.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "mf_todo:@angular/core/primitives/event-dispatch",
+      "name": "@angular/core/primitives/event-dispatch",
+      "version": "19.2.2",
+      "singleton": true,
+      "requiredVersion": "19.2.2",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "node_modules_angular_core_fesm2022_primitives_event-dispatch_mjs.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "mf_todo:@angular/core/primitives/signals",
+      "name": "@angular/core/primitives/signals",
+      "version": "19.2.2",
+      "singleton": true,
+      "requiredVersion": "19.2.2",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "default-node_modules_angular_core_fesm2022_primitives_signals_mjs.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "mf_todo:@angular/core/rxjs-interop",
+      "name": "@angular/core/rxjs-interop",
+      "version": "19.2.2",
+      "singleton": true,
+      "requiredVersion": "19.2.2",
+      "assets": {
+        "js": {
+          "async": [
+            "common.js",
+            "node_modules_angular_core_fesm2022_core_mjs.js",
+            "default-node_modules_rxjs_dist_esm_internal_operators_auditTime_js-node_modules_rxjs_dist_esm-9f2bd5.js",
+            "node_modules_rxjs_dist_esm_index_js.js",
+            "node_modules_rxjs_dist_esm_operators_index_js.js",
+            "default-node_modules_angular_core_fesm2022_primitives_signals_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_di_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_event-dispatch_mjs.js"
+          ],
+          "sync": [
+            "default-node_modules_angular_core_fesm2022_rxjs-interop_mjs.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "mf_todo:@angular/core",
+      "name": "@angular/core",
+      "version": "19.2.2",
+      "singleton": true,
+      "requiredVersion": "19.2.2",
+      "assets": {
+        "js": {
+          "async": [
+            "default-node_modules_rxjs_dist_esm_internal_operators_auditTime_js-node_modules_rxjs_dist_esm-9f2bd5.js",
+            "node_modules_rxjs_dist_esm_index_js.js",
+            "node_modules_rxjs_dist_esm_operators_index_js.js",
+            "default-node_modules_angular_core_fesm2022_primitives_signals_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_di_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_event-dispatch_mjs.js"
+          ],
+          "sync": [
+            "node_modules_angular_core_fesm2022_core_mjs.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "mf_todo:@angular/forms",
+      "name": "@angular/forms",
+      "version": "19.2.2",
+      "singleton": true,
+      "requiredVersion": "19.2.2",
+      "assets": {
+        "js": {
+          "async": [
+            "common.js",
+            "node_modules_angular_core_fesm2022_core_mjs.js",
+            "default-node_modules_rxjs_dist_esm_internal_operators_auditTime_js-node_modules_rxjs_dist_esm-9f2bd5.js",
+            "node_modules_rxjs_dist_esm_index_js.js",
+            "node_modules_rxjs_dist_esm_operators_index_js.js",
+            "default-node_modules_angular_common_fesm2022_common_mjs.js",
+            "default-node_modules_angular_core_fesm2022_primitives_signals_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_di_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_event-dispatch_mjs.js"
+          ],
+          "sync": [
+            "default-node_modules_angular_forms_fesm2022_forms_mjs.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "mf_todo:@angular/platform-browser",
+      "name": "@angular/platform-browser",
+      "version": "19.2.2",
+      "singleton": true,
+      "requiredVersion": "19.2.2",
+      "assets": {
+        "js": {
+          "async": [
+            "common.js",
+            "node_modules_angular_core_fesm2022_core_mjs.js",
+            "default-node_modules_angular_common_fesm2022_common_mjs.js",
+            "default-node_modules_angular_common_fesm2022_http_mjs.js",
+            "default-node_modules_rxjs_dist_esm_internal_operators_auditTime_js-node_modules_rxjs_dist_esm-9f2bd5.js",
+            "node_modules_rxjs_dist_esm_index_js.js",
+            "node_modules_rxjs_dist_esm_operators_index_js.js",
+            "default-node_modules_angular_core_fesm2022_primitives_signals_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_di_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_event-dispatch_mjs.js"
+          ],
+          "sync": [
+            "default-node_modules_angular_platform-browser_fesm2022_platform-browser_mjs.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "mf_todo:@angular/router",
+      "name": "@angular/router",
+      "version": "19.2.2",
+      "singleton": true,
+      "requiredVersion": "19.2.2",
+      "assets": {
+        "js": {
+          "async": [
+            "common.js",
+            "node_modules_angular_core_fesm2022_core_mjs.js",
+            "default-node_modules_rxjs_dist_esm_internal_operators_auditTime_js-node_modules_rxjs_dist_esm-9f2bd5.js",
+            "node_modules_rxjs_dist_esm_index_js.js",
+            "node_modules_rxjs_dist_esm_operators_index_js.js",
+            "default-node_modules_angular_common_fesm2022_common_mjs.js",
+            "default-node_modules_angular_platform-browser_fesm2022_platform-browser_mjs.js",
+            "default-node_modules_angular_core_fesm2022_primitives_signals_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_di_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_event-dispatch_mjs.js",
+            "default-node_modules_angular_common_fesm2022_http_mjs.js"
+          ],
+          "sync": [
+            "default-node_modules_angular_router_fesm2022_router_mjs.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "mf_todo:@ngrx/store-devtools",
+      "name": "@ngrx/store-devtools",
+      "version": "19.0.0",
+      "singleton": true,
+      "requiredVersion": "19.0.0",
+      "assets": {
+        "js": {
+          "async": [
+            "common.js",
+            "node_modules_angular_core_fesm2022_core_mjs.js",
+            "default-node_modules_ngrx_store_fesm2022_ngrx-store_mjs.js",
+            "default-node_modules_rxjs_dist_esm_internal_operators_auditTime_js-node_modules_rxjs_dist_esm-9f2bd5.js",
+            "node_modules_rxjs_dist_esm_index_js.js",
+            "node_modules_rxjs_dist_esm_operators_index_js.js",
+            "default-node_modules_angular_core_fesm2022_rxjs-interop_mjs.js",
+            "default-node_modules_angular_core_fesm2022_primitives_signals_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_di_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_event-dispatch_mjs.js"
+          ],
+          "sync": [
+            "default-node_modules_ngrx_store-devtools_fesm2022_ngrx-store-devtools_mjs.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "mf_todo:@ngrx/store",
+      "name": "@ngrx/store",
+      "version": "19.0.0",
+      "singleton": true,
+      "requiredVersion": "19.0.0",
+      "assets": {
+        "js": {
+          "async": [
+            "common.js",
+            "node_modules_angular_core_fesm2022_core_mjs.js",
+            "default-node_modules_rxjs_dist_esm_internal_operators_auditTime_js-node_modules_rxjs_dist_esm-9f2bd5.js",
+            "node_modules_rxjs_dist_esm_index_js.js",
+            "node_modules_rxjs_dist_esm_operators_index_js.js",
+            "default-node_modules_angular_core_fesm2022_rxjs-interop_mjs.js",
+            "default-node_modules_angular_core_fesm2022_primitives_signals_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_di_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_event-dispatch_mjs.js"
+          ],
+          "sync": [
+            "default-node_modules_ngrx_store_fesm2022_ngrx-store_mjs.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "mf_todo:rxjs/operators",
+      "name": "rxjs/operators",
+      "version": "7.8.2",
+      "singleton": true,
+      "requiredVersion": "~7.8.1",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "node_modules_rxjs_dist_esm_operators_index_js.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "mf_todo:rxjs",
+      "name": "rxjs",
+      "version": "7.8.2",
+      "singleton": true,
+      "requiredVersion": "~7.8.1",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "node_modules_rxjs_dist_esm_index_js.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "id": "mf_todo:Routes",
+      "name": "Routes",
+      "assets": {
+        "js": {
+          "sync": [
+            "__federation_expose_Routes.js"
+          ],
+          "async": [
+            "frontend_angular_micro-apps_mf-todo_src_lib_mf-todo_mf-todo_component_ts.js",
+            "common.js",
+            "node_modules_angular_core_fesm2022_core_mjs.js",
+            "default-node_modules_ngrx_store_fesm2022_ngrx-store_mjs.js",
+            "default-node_modules_ngrx_store-devtools_fesm2022_ngrx-store-devtools_mjs.js",
+            "default-node_modules_rxjs_dist_esm_internal_operators_auditTime_js-node_modules_rxjs_dist_esm-9f2bd5.js",
+            "node_modules_rxjs_dist_esm_index_js.js",
+            "default-node_modules_angular_common_fesm2022_common_mjs.js",
+            "default-node_modules_angular_forms_fesm2022_forms_mjs.js",
+            "node_modules_rxjs_dist_esm_operators_index_js.js",
+            "default-node_modules_angular_core_fesm2022_primitives_signals_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_di_mjs.js",
+            "node_modules_angular_core_fesm2022_primitives_event-dispatch_mjs.js",
+            "default-node_modules_angular_core_fesm2022_rxjs-interop_mjs.js"
+          ]
+        },
+        "css": {
+          "sync": [],
+          "async": []
+        }
+      },
+      "path": "./Routes"
+    }
+  ]
+}
