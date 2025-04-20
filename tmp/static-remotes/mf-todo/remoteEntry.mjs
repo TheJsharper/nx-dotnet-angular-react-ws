@@ -4583,7 +4583,7 @@ module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exp
 
 var moduleMap = {
 	"./Routes": () => {
-		return Promise.all(/*! __federation_expose_Routes */[__webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-webpack_sharing_consume_default_ngrx_store_ngrx_store"), __webpack_require__.e("__federation_expose_Routes")]).then(() => (() => ((__webpack_require__(/*! frontend/angular/micro-apps/mf-todo/src/lib/todo.router.ts */ 5286)))));
+		return Promise.all(/*! __federation_expose_Routes */[__webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_Observable_js"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_observable_innerFrom_js-node_modules_rxjs_dist_es-f32a11"), __webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_observable_of_js-node_modules_rxjs_dist_esm_inter-c766da"), __webpack_require__.e("common"), __webpack_require__.e("__federation_expose_Routes")]).then(() => (() => ((__webpack_require__(/*! frontend/angular/micro-apps/mf-todo/src/lib/todo.router.ts */ 5286)))));
 	}
 };
 var get = (module, getScope) => {
@@ -5128,7 +5128,7 @@ exports.typeDescMap = typeDescMap;
 /******/ 	if(!__webpack_require__.federation){
 /******/ 		__webpack_require__.federation = {
 /******/ 			initOptions: {"name":"mf_todo","remotes":[],"shareStrategy":"version-first"},
-/******/ 			chunkMatcher: function(chunkId) {return !/^default\-webpack_sharing_consume_default_(angular_(co(re_(angular_core|rxjs\-interop_angular_core_rxjs\-interop)|mmon_angular_common)|platform\-browser_angular_platform\-browser)|rxjs_(operators_rxjs_operator|rxj)s|ngrx_store_ngrx_store)$/.test(chunkId)},
+/******/ 			chunkMatcher: function(chunkId) {return !/^default\-webpack_sharing_consume_default_angular_co(mmon_angular_common|re_angular_core)$/.test(chunkId)},
 /******/ 			rootOutputDir: "",
 /******/ 			initialConsumes: undefined,
 /******/ 			bundlerRuntimeOptions: {}
@@ -5294,20 +5294,13 @@ exports.typeDescMap = typeDescMap;
 /******/ 		var promises = [];
 /******/ 		switch(name) {
 /******/ 			case "default": {
-/******/ 				register("@angular/common/http", "19.2.2", () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_common_angular_common"), __webpack_require__.e("default-node_modules_angular_common_fesm2022_http_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/common/fesm2022/http.mjs */ 6443))))));
-/******/ 				register("@angular/common", "19.2.2", () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-node_modules_angular_common_fesm2022_common_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/common/fesm2022/common.mjs */ 316))))));
+/******/ 				register("@angular/common/http", "19.2.2", () => (Promise.all([__webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_Observable_js"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_observable_innerFrom_js-node_modules_rxjs_dist_es-f32a11"), __webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_observable_of_js-node_modules_rxjs_dist_esm_inter-c766da"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_common_angular_common"), __webpack_require__.e("default-node_modules_angular_common_fesm2022_http_mjs"), __webpack_require__.e("common")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/common/fesm2022/http.mjs */ 6443))))));
+/******/ 				register("@angular/common", "19.2.2", () => (Promise.all([__webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_Observable_js"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-node_modules_angular_common_fesm2022_common_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/common/fesm2022/common.mjs */ 316))))));
 /******/ 				register("@angular/core/primitives/di", "19.2.2", () => (__webpack_require__.e("node_modules_angular_core_fesm2022_primitives_di_mjs").then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/core/fesm2022/primitives/di.mjs */ 2867))))));
 /******/ 				register("@angular/core/primitives/event-dispatch", "19.2.2", () => (__webpack_require__.e("node_modules_angular_core_fesm2022_primitives_event-dispatch_mjs").then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/core/fesm2022/primitives/event-dispatch.mjs */ 6745))))));
-/******/ 				register("@angular/core/primitives/signals", "19.2.2", () => (Promise.all([__webpack_require__.e("default-node_modules_angular_core_fesm2022_primitives_signals_mjs"), __webpack_require__.e("common")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/core/fesm2022/primitives/signals.mjs */ 5689))))));
-/******/ 				register("@angular/core/rxjs-interop", "19.2.2", () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-node_modules_angular_core_fesm2022_rxjs-interop_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/core/fesm2022/rxjs-interop.mjs */ 9074))))));
-/******/ 				register("@angular/core", "19.2.2", () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("common"), __webpack_require__.e("node_modules_angular_core_fesm2022_core_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/core/fesm2022/core.mjs */ 7580))))));
-/******/ 				register("@angular/forms", "19.2.2", () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_common_angular_common"), __webpack_require__.e("default-node_modules_angular_forms_fesm2022_forms_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/forms/fesm2022/forms.mjs */ 4456))))));
-/******/ 				register("@angular/platform-browser", "19.2.2", () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_common_angular_common"), __webpack_require__.e("default-node_modules_angular_platform-browser_fesm2022_platform-browser_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs */ 436))))));
-/******/ 				register("@angular/router", "19.2.2", () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_common_angular_common"), __webpack_require__.e("default-node_modules_angular_router_fesm2022_router_mjs"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_platform-browser_angular_platform-browser")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/router/fesm2022/router.mjs */ 5072))))));
-/******/ 				register("@ngrx/store-devtools", "19.0.0", () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_rxjs-interop_angular_core_rxjs-interop"), __webpack_require__.e("default-node_modules_ngrx_store-devtools_fesm2022_ngrx-store-devtools_mjs"), __webpack_require__.e("default-webpack_sharing_consume_default_ngrx_store_ngrx_store")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@ngrx/store-devtools/fesm2022/ngrx-store-devtools.mjs */ 1925))))));
-/******/ 				register("@ngrx/store", "19.0.0", () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_rxjs-interop_angular_core_rxjs-interop"), __webpack_require__.e("default-node_modules_ngrx_store_fesm2022_ngrx-store_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@ngrx/store/fesm2022/ngrx-store.mjs */ 1383))))));
-/******/ 				register("rxjs/operators", "7.8.2", () => (Promise.all([__webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_operators_auditTime_js-node_modules_rxjs_dist_esm-9f2bd5"), __webpack_require__.e("node_modules_rxjs_dist_esm_operators_index_js")]).then(() => (() => (__webpack_require__(/*! ./node_modules/rxjs/dist/esm/operators/index.js */ 8219))))));
-/******/ 				register("rxjs", "7.8.2", () => (Promise.all([__webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_operators_auditTime_js-node_modules_rxjs_dist_esm-9f2bd5"), __webpack_require__.e("node_modules_rxjs_dist_esm_index_js")]).then(() => (() => (__webpack_require__(/*! ./node_modules/rxjs/dist/esm/index.js */ 845))))));
+/******/ 				register("@angular/core/primitives/signals", "19.2.2", () => (Promise.all([__webpack_require__.e("default-node_modules_angular_core_fesm2022_primitives_signals_mjs"), __webpack_require__.e("node_modules_angular_core_fesm2022_weak_ref-DrMdAIDh_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/core/fesm2022/primitives/signals.mjs */ 5689))))));
+/******/ 				register("@angular/core/rxjs-interop", "19.2.2", () => (Promise.all([__webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_Observable_js"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_observable_innerFrom_js-node_modules_rxjs_dist_es-f32a11"), __webpack_require__.e("default-node_modules_angular_core_fesm2022_rxjs-interop_mjs"), __webpack_require__.e("common"), __webpack_require__.e("node_modules_rxjs_dist_esm_internal_Subject_js")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/core/fesm2022/rxjs-interop.mjs */ 9074))))));
+/******/ 				register("@angular/core", "19.2.2", () => (Promise.all([__webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_Observable_js"), __webpack_require__.e("default-node_modules_angular_core_fesm2022_core_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/core/fesm2022/core.mjs */ 7580))))));
 /******/ 			}
 /******/ 			break;
 /******/ 		}
@@ -5341,10 +5334,10 @@ exports.typeDescMap = typeDescMap;
 /******/ /* webpack/runtime/sharing */
 /******/ (() => {
 /******/ 	__webpack_require__.federation.initOptions.shared = {	"@angular/common/http": [{	version: "19.2.2",
-/******/ 			get: () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_common_angular_common"), __webpack_require__.e("default-node_modules_angular_common_fesm2022_http_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/common/fesm2022/http.mjs */ 6443))))),
+/******/ 			get: () => (Promise.all([__webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_Observable_js"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_observable_innerFrom_js-node_modules_rxjs_dist_es-f32a11"), __webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_observable_of_js-node_modules_rxjs_dist_esm_inter-c766da"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_common_angular_common"), __webpack_require__.e("default-node_modules_angular_common_fesm2022_http_mjs"), __webpack_require__.e("common")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/common/fesm2022/http.mjs */ 6443))))),
 /******/ 			scope: ["default"],
 /******/ 			shareConfig: {"eager":false,"requiredVersion":"19.2.2","strictVersion":true,"singleton":true}},],	"@angular/common": [{	version: "19.2.2",
-/******/ 			get: () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-node_modules_angular_common_fesm2022_common_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/common/fesm2022/common.mjs */ 316))))),
+/******/ 			get: () => (Promise.all([__webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_Observable_js"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-node_modules_angular_common_fesm2022_common_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/common/fesm2022/common.mjs */ 316))))),
 /******/ 			scope: ["default"],
 /******/ 			shareConfig: {"eager":false,"requiredVersion":"19.2.2","strictVersion":true,"singleton":true}},],	"@angular/core/primitives/di": [{	version: "19.2.2",
 /******/ 			get: () => (__webpack_require__.e("node_modules_angular_core_fesm2022_primitives_di_mjs").then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/core/fesm2022/primitives/di.mjs */ 2867))))),
@@ -5353,36 +5346,15 @@ exports.typeDescMap = typeDescMap;
 /******/ 			get: () => (__webpack_require__.e("node_modules_angular_core_fesm2022_primitives_event-dispatch_mjs").then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/core/fesm2022/primitives/event-dispatch.mjs */ 6745))))),
 /******/ 			scope: ["default"],
 /******/ 			shareConfig: {"eager":false,"requiredVersion":"19.2.2","strictVersion":true,"singleton":true}},],	"@angular/core/primitives/signals": [{	version: "19.2.2",
-/******/ 			get: () => (Promise.all([__webpack_require__.e("default-node_modules_angular_core_fesm2022_primitives_signals_mjs"), __webpack_require__.e("common")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/core/fesm2022/primitives/signals.mjs */ 5689))))),
+/******/ 			get: () => (Promise.all([__webpack_require__.e("default-node_modules_angular_core_fesm2022_primitives_signals_mjs"), __webpack_require__.e("node_modules_angular_core_fesm2022_weak_ref-DrMdAIDh_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/core/fesm2022/primitives/signals.mjs */ 5689))))),
 /******/ 			scope: ["default"],
 /******/ 			shareConfig: {"eager":false,"requiredVersion":"19.2.2","strictVersion":true,"singleton":true}},],	"@angular/core/rxjs-interop": [{	version: "19.2.2",
-/******/ 			get: () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-node_modules_angular_core_fesm2022_rxjs-interop_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/core/fesm2022/rxjs-interop.mjs */ 9074))))),
+/******/ 			get: () => (Promise.all([__webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_Observable_js"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_observable_innerFrom_js-node_modules_rxjs_dist_es-f32a11"), __webpack_require__.e("default-node_modules_angular_core_fesm2022_rxjs-interop_mjs"), __webpack_require__.e("common"), __webpack_require__.e("node_modules_rxjs_dist_esm_internal_Subject_js")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/core/fesm2022/rxjs-interop.mjs */ 9074))))),
 /******/ 			scope: ["default"],
 /******/ 			shareConfig: {"eager":false,"requiredVersion":"19.2.2","strictVersion":true,"singleton":true}},],	"@angular/core": [{	version: "19.2.2",
-/******/ 			get: () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("common"), __webpack_require__.e("node_modules_angular_core_fesm2022_core_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/core/fesm2022/core.mjs */ 7580))))),
+/******/ 			get: () => (Promise.all([__webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_Observable_js"), __webpack_require__.e("default-node_modules_angular_core_fesm2022_core_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/core/fesm2022/core.mjs */ 7580))))),
 /******/ 			scope: ["default"],
-/******/ 			shareConfig: {"eager":false,"requiredVersion":"19.2.2","strictVersion":true,"singleton":true}},],	"@angular/forms": [{	version: "19.2.2",
-/******/ 			get: () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_common_angular_common"), __webpack_require__.e("default-node_modules_angular_forms_fesm2022_forms_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/forms/fesm2022/forms.mjs */ 4456))))),
-/******/ 			scope: ["default"],
-/******/ 			shareConfig: {"eager":false,"requiredVersion":"19.2.2","strictVersion":true,"singleton":true}},],	"@angular/platform-browser": [{	version: "19.2.2",
-/******/ 			get: () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_common_angular_common"), __webpack_require__.e("default-node_modules_angular_platform-browser_fesm2022_platform-browser_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs */ 436))))),
-/******/ 			scope: ["default"],
-/******/ 			shareConfig: {"eager":false,"requiredVersion":"19.2.2","strictVersion":true,"singleton":true}},],	"@angular/router": [{	version: "19.2.2",
-/******/ 			get: () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_common_angular_common"), __webpack_require__.e("default-node_modules_angular_router_fesm2022_router_mjs"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_platform-browser_angular_platform-browser")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@angular/router/fesm2022/router.mjs */ 5072))))),
-/******/ 			scope: ["default"],
-/******/ 			shareConfig: {"eager":false,"requiredVersion":"19.2.2","strictVersion":true,"singleton":true}},],	"@ngrx/store-devtools": [{	version: "19.0.0",
-/******/ 			get: () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_rxjs-interop_angular_core_rxjs-interop"), __webpack_require__.e("default-node_modules_ngrx_store-devtools_fesm2022_ngrx-store-devtools_mjs"), __webpack_require__.e("default-webpack_sharing_consume_default_ngrx_store_ngrx_store")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@ngrx/store-devtools/fesm2022/ngrx-store-devtools.mjs */ 1925))))),
-/******/ 			scope: ["default"],
-/******/ 			shareConfig: {"eager":false,"requiredVersion":"19.0.0","strictVersion":true,"singleton":true}},],	"@ngrx/store": [{	version: "19.0.0",
-/******/ 			get: () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_angular_core"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_rxjs-interop_angular_core_rxjs-interop"), __webpack_require__.e("default-node_modules_ngrx_store_fesm2022_ngrx-store_mjs")]).then(() => (() => (__webpack_require__(/*! ./node_modules/@ngrx/store/fesm2022/ngrx-store.mjs */ 1383))))),
-/******/ 			scope: ["default"],
-/******/ 			shareConfig: {"eager":false,"requiredVersion":"19.0.0","strictVersion":true,"singleton":true}},],	"rxjs/operators": [{	version: "7.8.2",
-/******/ 			get: () => (Promise.all([__webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_operators_auditTime_js-node_modules_rxjs_dist_esm-9f2bd5"), __webpack_require__.e("node_modules_rxjs_dist_esm_operators_index_js")]).then(() => (() => (__webpack_require__(/*! ./node_modules/rxjs/dist/esm/operators/index.js */ 8219))))),
-/******/ 			scope: ["default"],
-/******/ 			shareConfig: {"eager":false,"requiredVersion":"~7.8.1","strictVersion":true,"singleton":true}},],	"rxjs": [{	version: "7.8.2",
-/******/ 			get: () => (Promise.all([__webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_operators_auditTime_js-node_modules_rxjs_dist_esm-9f2bd5"), __webpack_require__.e("node_modules_rxjs_dist_esm_index_js")]).then(() => (() => (__webpack_require__(/*! ./node_modules/rxjs/dist/esm/index.js */ 845))))),
-/******/ 			scope: ["default"],
-/******/ 			shareConfig: {"eager":false,"requiredVersion":"~7.8.1","strictVersion":true,"singleton":true}},],}
+/******/ 			shareConfig: {"eager":false,"requiredVersion":"19.2.2","strictVersion":true,"singleton":true}},],}
 /******/ 	__webpack_require__.S = {};
 /******/ 	var initPromises = {};
 /******/ 	var initTokens = {};
@@ -5412,7 +5384,7 @@ exports.typeDescMap = typeDescMap;
 /******/ 	var installedModules = {};
 /******/ 	var moduleToHandlerMapping = {
 /******/ 		3423: {
-/******/ 			getter: () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("common"), __webpack_require__.e("node_modules_angular_core_fesm2022_core_mjs")]).then(() => (() => (__webpack_require__(/*! @angular/core */ 7580))))),
+/******/ 			getter: () => (__webpack_require__.e("default-node_modules_angular_core_fesm2022_core_mjs").then(() => (() => (__webpack_require__(/*! @angular/core */ 7580))))),
 /******/ 			shareInfo: {
 /******/ 				shareConfig: {
 /******/ 				  "fixedDependencies": false,
@@ -5425,64 +5397,22 @@ exports.typeDescMap = typeDescMap;
 /******/ 			},
 /******/ 			shareKey: "@angular/core",
 /******/ 		},
-/******/ 		6999: {
-/******/ 			getter: () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_rxjs-interop_angular_core_rxjs-interop"), __webpack_require__.e("default-node_modules_ngrx_store_fesm2022_ngrx-store_mjs")]).then(() => (() => (__webpack_require__(/*! @ngrx/store */ 1383))))),
+/******/ 		3927: {
+/******/ 			getter: () => (__webpack_require__.e("default-node_modules_angular_core_fesm2022_rxjs-interop_mjs").then(() => (() => (__webpack_require__(/*! @angular/core/rxjs-interop */ 9074))))),
 /******/ 			shareInfo: {
 /******/ 				shareConfig: {
 /******/ 				  "fixedDependencies": false,
-/******/ 				  "requiredVersion": "19.0.0",
+/******/ 				  "requiredVersion": "19.2.2",
 /******/ 				  "strictVersion": true,
 /******/ 				  "singleton": true,
 /******/ 				  "eager": false
 /******/ 				},
 /******/ 				scope: ["default"],
 /******/ 			},
-/******/ 			shareKey: "@ngrx/store",
-/******/ 		},
-/******/ 		7514: {
-/******/ 			getter: () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("default-webpack_sharing_consume_default_angular_core_rxjs-interop_angular_core_rxjs-interop"), __webpack_require__.e("default-node_modules_ngrx_store-devtools_fesm2022_ngrx-store-devtools_mjs")]).then(() => (() => (__webpack_require__(/*! @ngrx/store-devtools */ 1925))))),
-/******/ 			shareInfo: {
-/******/ 				shareConfig: {
-/******/ 				  "fixedDependencies": false,
-/******/ 				  "requiredVersion": "19.0.0",
-/******/ 				  "strictVersion": true,
-/******/ 				  "singleton": true,
-/******/ 				  "eager": false
-/******/ 				},
-/******/ 				scope: ["default"],
-/******/ 			},
-/******/ 			shareKey: "@ngrx/store-devtools",
-/******/ 		},
-/******/ 		3063: {
-/******/ 			getter: () => (Promise.all([__webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_operators_auditTime_js-node_modules_rxjs_dist_esm-9f2bd5"), __webpack_require__.e("node_modules_rxjs_dist_esm_index_js")]).then(() => (() => (__webpack_require__(/*! rxjs */ 845))))),
-/******/ 			shareInfo: {
-/******/ 				shareConfig: {
-/******/ 				  "fixedDependencies": false,
-/******/ 				  "requiredVersion": "~7.8.1",
-/******/ 				  "strictVersion": true,
-/******/ 				  "singleton": true,
-/******/ 				  "eager": false
-/******/ 				},
-/******/ 				scope: ["default"],
-/******/ 			},
-/******/ 			shareKey: "rxjs",
-/******/ 		},
-/******/ 		8807: {
-/******/ 			getter: () => (Promise.all([__webpack_require__.e("default-node_modules_rxjs_dist_esm_internal_operators_auditTime_js-node_modules_rxjs_dist_esm-9f2bd5"), __webpack_require__.e("node_modules_rxjs_dist_esm_operators_index_js")]).then(() => (() => (__webpack_require__(/*! rxjs/operators */ 8219))))),
-/******/ 			shareInfo: {
-/******/ 				shareConfig: {
-/******/ 				  "fixedDependencies": false,
-/******/ 				  "requiredVersion": "~7.8.1",
-/******/ 				  "strictVersion": true,
-/******/ 				  "singleton": true,
-/******/ 				  "eager": false
-/******/ 				},
-/******/ 				scope: ["default"],
-/******/ 			},
-/******/ 			shareKey: "rxjs/operators",
+/******/ 			shareKey: "@angular/core/rxjs-interop",
 /******/ 		},
 /******/ 		6877: {
-/******/ 			getter: () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-node_modules_angular_common_fesm2022_common_mjs")]).then(() => (() => (__webpack_require__(/*! @angular/common */ 316))))),
+/******/ 			getter: () => (__webpack_require__.e("default-node_modules_angular_common_fesm2022_common_mjs").then(() => (() => (__webpack_require__(/*! @angular/common */ 316))))),
 /******/ 			shareInfo: {
 /******/ 				shareConfig: {
 /******/ 				  "fixedDependencies": false,
@@ -5536,62 +5466,6 @@ exports.typeDescMap = typeDescMap;
 /******/ 				scope: ["default"],
 /******/ 			},
 /******/ 			shareKey: "@angular/core/primitives/event-dispatch",
-/******/ 		},
-/******/ 		5230: {
-/******/ 			getter: () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_rxjs"), __webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("default-node_modules_angular_common_fesm2022_http_mjs")]).then(() => (() => (__webpack_require__(/*! @angular/common/http */ 6443))))),
-/******/ 			shareInfo: {
-/******/ 				shareConfig: {
-/******/ 				  "fixedDependencies": false,
-/******/ 				  "requiredVersion": "19.2.2",
-/******/ 				  "strictVersion": true,
-/******/ 				  "singleton": true,
-/******/ 				  "eager": false
-/******/ 				},
-/******/ 				scope: ["default"],
-/******/ 			},
-/******/ 			shareKey: "@angular/common/http",
-/******/ 		},
-/******/ 		2348: {
-/******/ 			getter: () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_angular_common_angular_common"), __webpack_require__.e("default-node_modules_angular_platform-browser_fesm2022_platform-browser_mjs")]).then(() => (() => (__webpack_require__(/*! @angular/platform-browser */ 436))))),
-/******/ 			shareInfo: {
-/******/ 				shareConfig: {
-/******/ 				  "fixedDependencies": false,
-/******/ 				  "requiredVersion": "19.2.2",
-/******/ 				  "strictVersion": true,
-/******/ 				  "singleton": true,
-/******/ 				  "eager": false
-/******/ 				},
-/******/ 				scope: ["default"],
-/******/ 			},
-/******/ 			shareKey: "@angular/platform-browser",
-/******/ 		},
-/******/ 		3927: {
-/******/ 			getter: () => (__webpack_require__.e("default-node_modules_angular_core_fesm2022_rxjs-interop_mjs").then(() => (() => (__webpack_require__(/*! @angular/core/rxjs-interop */ 9074))))),
-/******/ 			shareInfo: {
-/******/ 				shareConfig: {
-/******/ 				  "fixedDependencies": false,
-/******/ 				  "requiredVersion": "19.2.2",
-/******/ 				  "strictVersion": true,
-/******/ 				  "singleton": true,
-/******/ 				  "eager": false
-/******/ 				},
-/******/ 				scope: ["default"],
-/******/ 			},
-/******/ 			shareKey: "@angular/core/rxjs-interop",
-/******/ 		},
-/******/ 		1499: {
-/******/ 			getter: () => (Promise.all([__webpack_require__.e("default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators"), __webpack_require__.e("default-node_modules_angular_forms_fesm2022_forms_mjs")]).then(() => (() => (__webpack_require__(/*! @angular/forms */ 4456))))),
-/******/ 			shareInfo: {
-/******/ 				shareConfig: {
-/******/ 				  "fixedDependencies": false,
-/******/ 				  "requiredVersion": "19.2.2",
-/******/ 				  "strictVersion": true,
-/******/ 				  "singleton": true,
-/******/ 				  "eager": false
-/******/ 				},
-/******/ 				scope: ["default"],
-/******/ 			},
-/******/ 			shareKey: "@angular/forms",
 /******/ 		}
 /******/ 	};
 /******/ 	// no consumes in initial chunks
@@ -5599,37 +5473,16 @@ exports.typeDescMap = typeDescMap;
 /******/ 		"default-webpack_sharing_consume_default_angular_core_angular_core": [
 /******/ 			3423
 /******/ 		],
-/******/ 		"default-webpack_sharing_consume_default_ngrx_store_ngrx_store": [
-/******/ 			6999
-/******/ 		],
 /******/ 		"__federation_expose_Routes": [
-/******/ 			7514
-/******/ 		],
-/******/ 		"default-webpack_sharing_consume_default_rxjs_rxjs": [
-/******/ 			3063
-/******/ 		],
-/******/ 		"default-webpack_sharing_consume_default_rxjs_operators_rxjs_operators": [
-/******/ 			8807
+/******/ 			3927
 /******/ 		],
 /******/ 		"default-webpack_sharing_consume_default_angular_common_angular_common": [
 /******/ 			6877
 /******/ 		],
-/******/ 		"node_modules_angular_core_fesm2022_core_mjs": [
+/******/ 		"default-node_modules_angular_core_fesm2022_core_mjs": [
 /******/ 			2849,
 /******/ 			8161,
 /******/ 			8861
-/******/ 		],
-/******/ 		"default-node_modules_angular_platform-browser_fesm2022_platform-browser_mjs": [
-/******/ 			5230
-/******/ 		],
-/******/ 		"default-webpack_sharing_consume_default_angular_platform-browser_angular_platform-browser": [
-/******/ 			2348
-/******/ 		],
-/******/ 		"default-webpack_sharing_consume_default_angular_core_rxjs-interop_angular_core_rxjs-interop": [
-/******/ 			3927
-/******/ 		],
-/******/ 		"frontend_angular_micro-apps_mf-todo_src_lib_mf-todo_mf-todo_component_ts": [
-/******/ 			1499
 /******/ 		]
 /******/ 	};
 /******/ 	__webpack_require__.f.consumes = (chunkId, promises) => {
@@ -5664,7 +5517,7 @@ exports.typeDescMap = typeDescMap;
 /******/ 				if(installedChunkData) {
 /******/ 					promises.push(installedChunkData[2]);
 /******/ 				} else {
-/******/ 					if(!/^default\-webpack_sharing_consume_default_(angular_(co(re_(angular_core|rxjs\-interop_angular_core_rxjs\-interop)|mmon_angular_common)|platform\-browser_angular_platform\-browser)|rxjs_(operators_rxjs_operator|rxj)s|ngrx_store_ngrx_store)$/.test(chunkId)) {
+/******/ 					if(!/^default\-webpack_sharing_consume_default_angular_co(mmon_angular_common|re_angular_core)$/.test(chunkId)) {
 /******/ 						// setup Promise in chunk cache
 /******/ 						var promise = new Promise((resolve, reject) => (installedChunkData = installedChunks[chunkId] = [resolve, reject]));
 /******/ 						promises.push(installedChunkData[2] = promise);

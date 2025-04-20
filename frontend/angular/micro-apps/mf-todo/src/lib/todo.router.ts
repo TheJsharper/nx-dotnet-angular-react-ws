@@ -13,6 +13,7 @@ export const route: Routes =[
             return import("./mf-todo/mf-todo.component").then( c => c.MfTodoComponent)},
         providers:[
             importProvidersFrom(
+                StoreModule.forRoot({}),
                 StoreModule.forFeature("todos", reducers),
                 StoreDevtoolsModule.instrument({
                   maxAge: 25,

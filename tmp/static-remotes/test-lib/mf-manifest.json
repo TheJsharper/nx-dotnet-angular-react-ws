@@ -34,6 +34,7 @@
       "assets": {
         "js": {
           "async": [
+            "default-node_modules_rxjs_dist_esm_internal_Observable_js.js",
             "default-node_modules_angular_common_fesm2022_common_mjs.js",
             "common.js",
             "node_modules_angular_core_fesm2022_core_mjs.js",
@@ -148,63 +149,6 @@
           ],
           "sync": [
             "node_modules_angular_core_fesm2022_core_mjs.js"
-          ]
-        },
-        "css": {
-          "async": [],
-          "sync": []
-        }
-      }
-    },
-    {
-      "id": "test_lib:@angular/platform-browser",
-      "name": "@angular/platform-browser",
-      "version": "19.2.2",
-      "singleton": true,
-      "requiredVersion": "19.2.2",
-      "assets": {
-        "js": {
-          "async": [
-            "default-node_modules_rxjs_dist_esm_internal_Observable_js.js",
-            "default-node_modules_angular_common_fesm2022_common_mjs.js",
-            "common.js",
-            "node_modules_angular_core_fesm2022_core_mjs.js",
-            "default-node_modules_rxjs_dist_esm_internal_observable_of_js-node_modules_rxjs_dist_esm_inter-d7ec9d.js",
-            "default-node_modules_angular_common_fesm2022_http_mjs.js",
-            "default-node_modules_angular_core_fesm2022_primitives_signals_mjs.js",
-            "node_modules_angular_core_fesm2022_primitives_di_mjs.js",
-            "node_modules_angular_core_fesm2022_primitives_event-dispatch_mjs.js"
-          ],
-          "sync": [
-            "default-node_modules_angular_platform-browser_fesm2022_platform-browser_mjs.js"
-          ]
-        },
-        "css": {
-          "async": [],
-          "sync": []
-        }
-      }
-    },
-    {
-      "id": "test_lib:@angular/router",
-      "name": "@angular/router",
-      "version": "19.2.2",
-      "singleton": true,
-      "requiredVersion": "19.2.2",
-      "assets": {
-        "js": {
-          "async": [
-            "default-node_modules_angular_common_fesm2022_common_mjs.js",
-            "common.js",
-            "node_modules_angular_core_fesm2022_core_mjs.js",
-            "default-node_modules_angular_platform-browser_fesm2022_platform-browser_mjs.js",
-            "default-node_modules_angular_core_fesm2022_primitives_signals_mjs.js",
-            "node_modules_angular_core_fesm2022_primitives_di_mjs.js",
-            "node_modules_angular_core_fesm2022_primitives_event-dispatch_mjs.js",
-            "default-node_modules_angular_common_fesm2022_http_mjs.js"
-          ],
-          "sync": [
-            "default-node_modules_angular_router_fesm2022_router_mjs.js"
           ]
         },
         "css": {
