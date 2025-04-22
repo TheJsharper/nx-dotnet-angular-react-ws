@@ -1,12 +1,12 @@
+import { AsyncPipe, NgFor } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Store, select } from "@ngrx/store";
 import { Observable, of } from 'rxjs';
-import { Todo } from "../models/todo.model";
-import { selectFilter, selectTodos } from '../mf-todo/store/todo.selectors';
-import { ItemComponent } from '../item';
 import { FilterPipe } from '../filter';
-import { AsyncPipe, NgFor } from '@angular/common';
+import { ItemComponent } from '../item';
 import { TodosState } from '../mf-todo/store/todo.reducer';
+import { selectFilter, selectTodos } from '../mf-todo/store/todo.selectors';
+import { Todo } from "../models/todo.model";
 
 @Component({
     selector: 'lib-app-list',

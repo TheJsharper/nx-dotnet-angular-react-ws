@@ -3,8 +3,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { SetFilterAction } from '../filter/filter.actions';
-import { TodosState } from '../mf-todo/store/todo.reducer';
 import { DeleteAllCompletedTodoAction } from "../mf-todo/store/todo.actions";
+import { TodosState } from '../mf-todo/store/todo.reducer';
 import { selectFilter, selectPendingTodos } from '../mf-todo/store/todo.selectors';
 
 @Component({

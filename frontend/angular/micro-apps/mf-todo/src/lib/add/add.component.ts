@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from "@ngrx/store";
-import { TodosState } from '../mf-todo/store/todo.reducer';
 import { AddTodoAction } from "../mf-todo/store/todo.actions";
+import { TodosState } from '../mf-todo/store/todo.reducer';
 
 @Component({
     selector: 'lib-app-add',

@@ -8,9 +8,7 @@ export const route: Routes =[
 
     {
         path: '',
-        loadComponent: ()=>{ 
-                console.log("CALLING MAIN TODO COMPONENT")
-            return import("./mf-todo/mf-todo.component").then( c => c.MfTodoComponent)},
+        loadComponent: ()=> import("./mf-todo/mf-todo.component").then( c => c.MfTodoComponent),
         providers:[
             importProvidersFrom(
                 StoreModule.forFeature("todos", reducers),

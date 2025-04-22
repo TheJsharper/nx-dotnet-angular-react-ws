@@ -35,10 +35,8 @@ const config: ModuleFederationConfig = {
   remotes: ['test-lib', 'mf-todo'],
   shared: (libraryName, defaultConfig) => {
     if (coreLibraries.has(libraryName)) {
-      console.log(`Shared library: =======>x${libraryName}`);
       return defaultConfig;
     }
-    //console.log(`Shared library: =======>x${libraryName}`);
 
     // Returning false means the library is not shared.
     return false;
