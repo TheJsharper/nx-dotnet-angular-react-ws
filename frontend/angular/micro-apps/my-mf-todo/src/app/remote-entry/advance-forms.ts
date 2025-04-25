@@ -99,7 +99,7 @@ export class CustomTwoWayDataaBindingUsingFncModelComponent implements OnInit, O
 
     localCounter = input<number>(5);
 
-    timerRef: any | null = null;
+    timerRef: NodeJS.Timeout | null = null;
 
     lastName = "Doe";
     lastNameHandler(value: string) {
@@ -161,7 +161,7 @@ export class CustomTwoWayDataBindingUsingOwnBindingComponent implements OnInit, 
 
     @Output() startFromChange = new EventEmitter<number>();
 
-    timerRef: any | null = null;
+    timerRef: string | number | NodeJS.Timeout | undefined ;
 
 
     ngOnInit(): void {
