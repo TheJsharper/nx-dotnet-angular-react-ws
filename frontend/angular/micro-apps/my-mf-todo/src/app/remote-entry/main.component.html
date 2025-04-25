@@ -1,0 +1,27 @@
+<mat-tab-group>
+    <mat-tab label="First">
+        <div class="reuse-form">
+            <h1>Welcome to My Micro Frontend Todo App!</h1>
+            <p>This is a micro frontend application built with Angular.</p>
+            <p>We will see today how to resuse Angular form!</p>
+
+            <div [formGroup]="formGroup">
+                <div class="form-group">
+
+                    <label for="display">Display</label>
+                    <input id="display" formControlName="display" type="text" placeholder="Enter display name" />
+                </div>
+                <app-delivery [label]="'Delivery address'" [controlKey]="'deliveryAddess'"></app-delivery>
+                <app-delivery [label]="'Private address'" [controlKey]="'privateAddress'"></app-delivery>
+                <button (click)="submit()">Submit</button>
+                <div *ngIf="formGroup.value | json as formValue" class="form-value">
+                </div>
+
+
+            </div>
+
+        </div>
+    </mat-tab>
+    <mat-tab label="Second"> Content 2 </mat-tab>
+    <mat-tab label="Third"> Content 3 </mat-tab>
+</mat-tab-group>
