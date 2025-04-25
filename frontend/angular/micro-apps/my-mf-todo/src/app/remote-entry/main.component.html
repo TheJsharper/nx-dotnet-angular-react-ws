@@ -20,6 +20,31 @@
 
             </div>
 
+
+
+        </div>
+        <div class="reuse-form">
+            <h1>Welcome to My Micro Frontend Todo App!</h1>
+            <p>This is a micro frontend application built with Angular.</p>
+            <p>We will see today how to resuse Angular form!</p>
+
+            <div [formGroup]="formGroup">
+                <div class="form-group">
+
+                    <label for="display">Display</label>
+                    <input id="display" formControlName="display" type="text" placeholder="Enter display name" />
+                </div>
+                <app-delivery-with-input [form]="formGroupInput" [label]="'Delivery address'" />
+                <app-delivery-with-input [form]="formGroupInput" [label]="'Private address'" />
+                <button (click)="submit()">Submit</button>
+                <div *ngIf="formGroup.value | json as formValue" class="form-value">
+                </div>
+
+
+            </div>
+
+
+
         </div>
     </mat-tab>
     <mat-tab label="Second">
@@ -28,7 +53,7 @@
             <app-two-way-data-binding />
 
         </div>
-        <div class="section-two-way-data-binding" >
+        <div class="section-two-way-data-binding">
 
             <app-custom-two-way-data-binding-using-quick-binding [(startFrom)]="counter" />
             <p> Parent Local: {{counter}}!</p>
@@ -37,7 +62,7 @@
 
             <app-custom-two-way-data-binding-using-quick-binding [startFrom]="counterBindingClass"
                 (startFromChange)="counterBindingClassHandler($event)" />
-    
+
             <p> Parent Local classic binding: {{counterBindingClass}}!</p>
         </div>
 
