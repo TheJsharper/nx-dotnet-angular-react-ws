@@ -3,19 +3,26 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { DeliveryComponent } from './address/delivery.component';
 import { JsonPipe, NgIf } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
+import { TwoWayDataBindingComponent, CustomTwoWayDataBindingUsingOwnBindingComponent } from "./advance-forms";
 @Component({
   selector: 'app-main',
-  imports: [ReactiveFormsModule, DeliveryComponent, FormsModule, NgIf, JsonPipe, MatTabsModule],
+  imports: [ReactiveFormsModule, DeliveryComponent, FormsModule, NgIf, JsonPipe, MatTabsModule, TwoWayDataBindingComponent, CustomTwoWayDataBindingUsingOwnBindingComponent],
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class MainComponent {
 
+  counter = 15;
+  counterBindingClass = 10
   formGroup = new FormGroup({
 
     display: new FormControl
   });
+
+  counterBindingClassHandler(value: number) {
+    this.counterBindingClass = value;   
+  }
 
   submit() {
     console.log(this.formGroup.value);

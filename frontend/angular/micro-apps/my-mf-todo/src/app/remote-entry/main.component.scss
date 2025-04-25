@@ -37,6 +37,8 @@ app-main {
                     outline: none;
                 }
             }
+
+          
         }
 
         button {
@@ -53,5 +55,10 @@ app-main {
                 background-color: #0056b3;
             }
         }
+       
+    }
+    p {
+        font-size: 18px;
+        color: #2980b9;
     }
 }
