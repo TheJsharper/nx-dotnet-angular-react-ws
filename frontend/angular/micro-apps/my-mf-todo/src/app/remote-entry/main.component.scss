@@ -61,4 +61,19 @@ app-main {
         font-size: 18px;
         color: #2980b9;
     }
+
+    .section-two-way-data-binding {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 16px;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        
+    }
 }

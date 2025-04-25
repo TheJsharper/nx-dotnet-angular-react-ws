@@ -24,16 +24,22 @@
     </mat-tab>
     <mat-tab label="Second">
 
-        <app-two-way-data-binding>
+        <div class="section-two-way-data-binding">
+            <app-two-way-data-binding />
 
-        </app-two-way-data-binding>
-        <app-custom-two-way-data-binding-using-quick-binding [(startFrom)]="counter" />
-        <p> Parent Local: {{counter}}!</p>
+        </div>
+        <div class="section-two-way-data-binding" >
 
-        <app-custom-two-way-data-binding-using-quick-binding [startFrom]="counterBindingClass"
-            (startFromChange)="counterBindingClassHandler($event)" />
+            <app-custom-two-way-data-binding-using-quick-binding [(startFrom)]="counter" />
+            <p> Parent Local: {{counter}}!</p>
+        </div>
+        <div class="section-two-way-data-binding">
 
-        <p> Parent Local classic binding: {{counterBindingClass}}!</p>
+            <app-custom-two-way-data-binding-using-quick-binding [startFrom]="counterBindingClass"
+                (startFromChange)="counterBindingClassHandler($event)" />
+    
+            <p> Parent Local classic binding: {{counterBindingClass}}!</p>
+        </div>
 
     </mat-tab>
     <mat-tab label="Third"> Content 3 </mat-tab>
