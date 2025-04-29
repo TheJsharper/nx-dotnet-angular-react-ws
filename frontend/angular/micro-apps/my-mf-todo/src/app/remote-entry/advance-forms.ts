@@ -102,6 +102,8 @@ export class CustomTwoWayDataaBindingUsingFncModelComponent implements OnInit, O
     timerRef: NodeJS.Timeout | null = null;
 
     lastName = "Doe";
+
+    
     lastNameHandler(value: string) {
         this.lastName = value;
     }
