@@ -1,5 +1,5 @@
 <mat-tab-group>
-    <mat-tab label="First">
+    <mat-tab label="Reuseable Form with viewProvider">
         <div class="reuse-form">
             <h1>Welcome to My Micro Frontend Todo App!</h1>
             <p>This is a micro frontend application built with Angular.</p>
@@ -23,6 +23,9 @@
 
 
         </div>
+
+    </mat-tab>
+    <mat-tab label="Reuseable Form with Input ">
         <div class="reuse-form">
             <h1>Welcome to My Micro Frontend Todo App!</h1>
             <p>This is a micro frontend application built with Angular.</p>
@@ -39,25 +42,23 @@
                 <button (click)="submit()">Submit</button>
                 <div *ngIf="formGroup.value | json as formValue" class="form-value">
                 </div>
-
-
             </div>
-
-
-
         </div>
     </mat-tab>
-    <mat-tab label="Second">
+
+    <mat-tab label="Two Way Data Binding">
 
         <div class="section-two-way-data-binding">
             <app-two-way-data-binding />
 
         </div>
+        <hr>
         <div class="section-two-way-data-binding">
 
             <app-custom-two-way-data-binding-using-quick-binding [(startFrom)]="counter" />
             <p> Parent Local: {{counter}}!</p>
         </div>
+        <hr>
         <div class="section-two-way-data-binding">
 
             <app-custom-two-way-data-binding-using-quick-binding [startFrom]="counterBindingClass"
