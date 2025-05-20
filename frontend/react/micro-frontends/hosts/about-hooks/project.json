@@ -1,0 +1,94 @@
+{
+  "name": "about-hooks",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "frontend/react/micro-frontends/hosts/about-hooks/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/frontend/react/micro-frontends/hosts/about-hooks",
+        "index": "frontend/react/micro-frontends/hosts/about-hooks/src/index.html",
+        "baseHref": "/",
+        "main": "frontend/react/micro-frontends/hosts/about-hooks/src/main.ts",
+        "tsConfig": "frontend/react/micro-frontends/hosts/about-hooks/tsconfig.app.json",
+        "assets": [
+          "frontend/react/micro-frontends/hosts/about-hooks/src/favicon.ico",
+          "frontend/react/micro-frontends/hosts/about-hooks/src/assets"
+        ],
+        "styles": [
+          "frontend/react/micro-frontends/hosts/about-hooks/src/styles.scss"
+        ],
+        "scripts": [],
+        "webpackConfig": "frontend/react/micro-frontends/hosts/about-hooks/webpack.config.ts"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "frontend/react/micro-frontends/hosts/about-hooks/src/environments/environment.ts",
+              "with": "frontend/react/micro-frontends/hosts/about-hooks/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "frontend/react/micro-frontends/hosts/about-hooks/webpack.config.prod.ts"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/react:module-federation-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "about-hooks:build",
+        "hmr": true,
+        "port": 4200
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "about-hooks:build:development"
+        },
+        "production": {
+          "buildTarget": "about-hooks:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/react:module-federation-static-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "serveTarget": "about-hooks:serve"
+      },
+      "configurations": {
+        "development": {
+          "serveTarget": "about-hooks:serve:development"
+        },
+        "production": {
+          "serveTarget": "about-hooks:serve:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "frontend/react/micro-frontends/hosts/about-hooks/jest.config.ts"
+      }
+    }
+  }
+}

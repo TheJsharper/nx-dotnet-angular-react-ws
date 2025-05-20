@@ -142,6 +142,17 @@
           "env": "NX_MF_DEV_REMOTES"
         }
       ]
+    },
+    "@nx/webpack:webpack": {
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "env": "NX_MF_DEV_REMOTES"
+        }
+      ],
+      "dependsOn": ["^build"],
+      "cache": true
     }
   },
   "nxCloudAccessToken": "MTMxYzM1YWMtNzBiNS00YTZjLWEzNGMtNzUzODhlNWFmOWEwfHJlYWQtd3JpdGU=",
@@ -149,5 +160,13 @@
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "sharedGlobals": [],
     "production": ["default"]
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx-cloud",
+      "options": {
+        "accessToken": "YzM1MGMwMDEtYTNjYS00MmE5LTk3OWUtZTc1NmRhNjFmMmRmfHJlYWQtd3JpdGU="
+      }
+    }
   }
 }
