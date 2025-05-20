@@ -31,7 +31,8 @@
           "extractLicenses": false,
           "optimization": false,
           "sourceMap": true,
-          "vendorChunk": true
+          "vendorChunk": true,
+          "webpackConfig": "frontend/react/micro-frontends/hosts/about-hooks/webpack.config.ts"
         },
         "production": {
           "fileReplacements": [
@@ -60,7 +61,8 @@
       },
       "configurations": {
         "development": {
-          "buildTarget": "about-hooks:build:development"
+          "buildTarget": "about-hooks:build:development",
+          "hmr": false
         },
         "production": {
           "buildTarget": "about-hooks:build:production",

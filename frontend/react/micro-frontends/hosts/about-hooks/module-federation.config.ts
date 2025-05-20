@@ -15,7 +15,7 @@ const config: ModuleFederationConfig = {
    *
    */
   remotes:[ "use_state_app"],
- 
+
 }
 /**
  * Nx requires a default export of the config to allow correct resolution of the module federation graph.

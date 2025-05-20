@@ -7,6 +7,7 @@ import baseConfig from './module-federation.config';
 
 const config: ModuleFederationConfig = {
   ...baseConfig,
+  remotes:[]
 };
 
 // Nx plugins for webpack to build config object from Nx options and context.
@@ -16,7 +17,7 @@ const config: ModuleFederationConfig = {
  * Learn more about the DTS Plugin here: https://module-federation.io/configure/dts.html
  */
 export default composePlugins(
-  withNx(),
+  withNx({outputPath:'auto'}),
   withReact(),
   withModuleFederation(config, { dts: false }),
 );
