@@ -1,5 +1,6 @@
 
-import { Route, Routes, Link, Outlet, NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Route, Routes, Link, Outlet, useLocation,  } from 'react-router-dom';
 
 
 export function Dashboard() {
@@ -7,7 +8,7 @@ export function Dashboard() {
     return isActive ? 'list-group-item active' : 'list-group-item';
   }
   return (
-  
+
     <div>
       <h1>Dashboard</h1>
       <Outlet />
@@ -27,22 +28,31 @@ export const DashboardTasks = () => {
 }
 
 export function App() {
+    //const history = useHistory();
+    const location = useLocation();
+    useEffect(()=>{
+      location.pathname.replace('/use-state-app','')
+      window.history.pushState(null, '', '/');
+    },[location.pathname])
   return (
     <div>
       {/* Menu */}
       <nav style={{ padding: '1rem', background: '#f8f9fa', marginBottom: '1rem' }}>
-        <Link to="/use-state-app" style={{ marginRight: '1rem' }}>Dashboard</Link>
-        <Link to="/use-state-app/messages" style={{ marginRight: '1rem' }}>Messages</Link>
-        <Link to="/use-state-app/tasks">Tasks</Link>
+        <Link to="" style={{ marginRight: '1rem' }}>Dashboard</Link>
+        <Link to="messages" style={{ marginRight: '1rem' }}>Messages</Link>
+        <Link to="tasks">Tasks</Link>
       </nav>
       <Routes>
-        <Route  path="/use-state-app" element={<Dashboard />}>
+
+        <Route path="/" element={<Dashboard />} >
+
           <Route index
-            path="/use-state-app/messages"
+            path="messages"
             element={<DashboardMessages />}
           />
-          <Route path="/use-state-app/tasks" element={<DashboardTasks />} />
+          <Route path="/tasks" element={<DashboardTasks />} />
         </Route>
+
       </Routes>
     </div>
   );
