@@ -8,7 +8,7 @@
     "generated-spring-start-up-app": "openapi-generator-cli generate -i http://localhost:8080/v3/api-docs -g typescript-fetch -o generated/spring-start-up-app-openapi",
     "start": " nx run start-up-app:serve && generated-spring-start-up-app",
     "ngZorroApp": "nx serve ng-zorro-app --configuration=development --devRemotes=my-mf-todo",
-    "about-hooks": "npx nx run about-hooks:serve --configuration=development --devRemotes=use_state_app"
+    "about-hooks": "npx nx run about-hooks:serve --configuration=development --devRemotes=use_state_app, use_effect_app"
   },
   "author": "Pedro Salomon",
   "license": "ISC",

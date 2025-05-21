@@ -15,7 +15,7 @@ const config = {
  * Learn more about the DTS Plugin here: https://module-federation.io/configure/dts.html
  */
 export default composePlugins(
-  withNx(),
+  withNx({publicPath:'auto'}),
   withReact(),
   withModuleFederation(config, { dts: false }),
 );
