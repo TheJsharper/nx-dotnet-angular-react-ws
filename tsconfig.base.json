@@ -40,6 +40,9 @@
       "test-lib": [
         "frontend/angular/views/test-lib/src/app/remote-entry/entry.routes.ts"
       ],
+      "use_effect_app/Module": [
+        "frontend/react/micro-frontends/remotes/use-effect-app/src/remote-entry.ts"
+      ],
       "use_state_app/Module": [
         "frontend/react/micro-frontends/remotes/use-state-app/src/app/app.tsx"
       ]

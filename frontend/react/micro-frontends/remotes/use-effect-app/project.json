@@ -1,0 +1,94 @@
+{
+  "name": "use_effect_app",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "frontend/react/micro-frontends/remotes/use-effect-app/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/frontend/react/micro-frontends/remotes/use-effect-app",
+        "index": "frontend/react/micro-frontends/remotes/use-effect-app/src/index.html",
+        "baseHref": "/",
+        "main": "frontend/react/micro-frontends/remotes/use-effect-app/src/main.ts",
+        "tsConfig": "frontend/react/micro-frontends/remotes/use-effect-app/tsconfig.app.json",
+        "assets": [
+          "frontend/react/micro-frontends/remotes/use-effect-app/src/favicon.ico",
+          "frontend/react/micro-frontends/remotes/use-effect-app/src/assets"
+        ],
+        "styles": [
+          "frontend/react/micro-frontends/remotes/use-effect-app/src/styles.scss"
+        ],
+        "scripts": [],
+        "webpackConfig": "frontend/react/micro-frontends/remotes/use-effect-app/webpack.config.ts"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "frontend/react/micro-frontends/remotes/use-effect-app/src/environments/environment.ts",
+              "with": "frontend/react/micro-frontends/remotes/use-effect-app/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "frontend/react/micro-frontends/remotes/use-effect-app/webpack.config.prod.ts"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/react:module-federation-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "use_effect_app:build",
+        "hmr": true,
+        "port": 4202
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "use_effect_app:build:development"
+        },
+        "production": {
+          "buildTarget": "use_effect_app:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/react:module-federation-static-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "serveTarget": "use_effect_app:serve"
+      },
+      "configurations": {
+        "development": {
+          "serveTarget": "use_effect_app:serve:development"
+        },
+        "production": {
+          "serveTarget": "use_effect_app:serve:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "frontend/react/micro-frontends/remotes/use-effect-app/jest.config.ts"
+      }
+    }
+  }
+}

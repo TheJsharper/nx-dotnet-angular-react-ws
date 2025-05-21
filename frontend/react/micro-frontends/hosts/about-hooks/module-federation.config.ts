@@ -2,9 +2,9 @@ import { ModuleFederationConfig } from '@nx/module-federation';
 
 const coreLibraries = new Set([
   'bootstrap',
-  "react",
-  "react-router-dom",
-  "react-dom/client"
+  'react',
+  'react-router-dom',
+  'react-dom/client',
 ]);
 const config: ModuleFederationConfig = {
   name: 'about-hooks',
@@ -20,14 +20,13 @@ const config: ModuleFederationConfig = {
    * declare module 'my-external-remote';
    *
    */
-   shared: (libraryName, defaultConfig) => {
+  shared: (libraryName, defaultConfig) => {
     if (coreLibraries.has(libraryName)) {
       return defaultConfig;
     }
   },
-  remotes:[ "use_state_app"],
-
-}
+  remotes: ['use_state_app', 'use_effect_app'],
+};
 /**
  * Nx requires a default export of the config to allow correct resolution of the module federation graph.
  **/
