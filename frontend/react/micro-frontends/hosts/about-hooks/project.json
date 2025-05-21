@@ -21,7 +21,8 @@
           "frontend/react/micro-frontends/hosts/about-hooks/src/assets"
         ],
         "styles": [
-          "frontend/react/micro-frontends/hosts/about-hooks/src/styles.scss"
+          "frontend/react/micro-frontends/hosts/about-hooks/src/styles.scss",
+            "node_modules/bootstrap/dist/css/bootstrap.min.css"
         ],
         "scripts": [],
         "webpackConfig": "frontend/react/micro-frontends/hosts/about-hooks/webpack.config.ts"

@@ -1,50 +1,49 @@
-// Uncomment this line to use CSS modules
-// import styles from './app.module.scss';
-import NxWelcome from './nx-welcome';
 
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link, Outlet, NavLink } from 'react-router-dom';
+
+
+export function Dashboard() {
+  const navStyleClass: ({ isActive }: { isActive: boolean }) => string = ({ isActive }) => {
+    return isActive ? 'list-group-item active' : 'list-group-item';
+  }
+  return (
+  
+    <div>
+      <h1>Dashboard</h1>
+      <Outlet />
+    </div>
+  );
+}
+
+export const DashboardMessages = () => {
+  return (
+    <h1> Hello Dashboar Messages</h1>
+  )
+}
+export const DashboardTasks = () => {
+  return (
+    <h1> Hello Dashboar Tasks</h1>
+  )
+}
 
 export function App() {
   return (
     <div>
-      <NxWelcome title="use_state_app" />
-
-      {/* START: routes */}
-      {/* These routes and navigation have been generated for you */}
-      {/* Feel free to move and update them to fit your needs */}
-      <br />
-      <hr />
-      <br />
-      <div role="navigation">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/page-2">Page 2</Link>
-          </li>
-        </ul>
-      </div>
+      {/* Menu */}
+      <nav style={{ padding: '1rem', background: '#f8f9fa', marginBottom: '1rem' }}>
+        <Link to="/use-state-app" style={{ marginRight: '1rem' }}>Dashboard</Link>
+        <Link to="/use-state-app/messages" style={{ marginRight: '1rem' }}>Messages</Link>
+        <Link to="/use-state-app/tasks">Tasks</Link>
+      </nav>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              This is the generated root route.{' '}
-              <Link to="/page-2">Click here for page 2.</Link>
-            </div>
-          }
-        />
-        <Route
-          path="/page-2"
-          element={
-            <div>
-              <Link to="/">Click here to go back to root page.</Link>
-            </div>
-          }
-        />
+        <Route  path="/use-state-app" element={<Dashboard />}>
+          <Route index
+            path="/use-state-app/messages"
+            element={<DashboardMessages />}
+          />
+          <Route path="/use-state-app/tasks" element={<DashboardTasks />} />
+        </Route>
       </Routes>
-      {/* END: routes */}
     </div>
   );
 }
