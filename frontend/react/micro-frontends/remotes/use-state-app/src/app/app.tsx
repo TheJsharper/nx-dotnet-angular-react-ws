@@ -1,6 +1,6 @@
 
 import { useEffect } from 'react';
-import { Route, Routes, Link, Outlet, useLocation,  } from 'react-router-dom';
+import { Route, Routes, Link, Outlet, useLocation, createMemoryRouter, RouterProvider, createBrowserRouter, } from 'react-router-dom';
 
 
 export function Dashboard() {
@@ -26,36 +26,119 @@ export const DashboardTasks = () => {
     <h1> Hello Dashboar Tasks</h1>
   )
 }
-
-export function App() {
-    //const history = useHistory();
-    const location = useLocation();
-    useEffect(()=>{
-      location.pathname.replace('/use-state-app','')
-      window.history.pushState(null, '', '/');
-    },[location.pathname])
+/*
+ function App() {
+  //const history = useHistory();
+ 
   return (
-    <div>
-      {/* Menu */}
+     <div>
       <nav style={{ padding: '1rem', background: '#f8f9fa', marginBottom: '1rem' }}>
         <Link to="" style={{ marginRight: '1rem' }}>Dashboard</Link>
         <Link to="messages" style={{ marginRight: '1rem' }}>Messages</Link>
         <Link to="tasks">Tasks</Link>
       </nav>
-      <Routes>
+      <Routes >
 
         <Route path="/" element={<Dashboard />} >
 
           <Route index
-            path="messages"
+            path="/use-state-app/messages"
             element={<DashboardMessages />}
           />
-          <Route path="/tasks" element={<DashboardTasks />} />
+          <Route path="/use-state-app/tasks" element={<DashboardTasks />} />
         </Route>
 
-      </Routes>
+      </Routes >
     </div>
   );
 }
 
+
+const router  = createBrowserRouter([
+  {
+    path: '/',
+    element: <Dashboard />,
+    
+    children: [
+
+      {
+        path: 'messages',
+        index: true,
+        element: <DashboardMessages />
+      },
+
+      {
+        path: 'tasks',
+        element: <DashboardTasks />
+      },
+
+
+    ]
+  }
+
+
+], {basename:  "/"})
+
+
+const App = ()=>{
+  return (<RouterProvider router={router} />)
+}
 export default App;
+*/
+
+export const ContactInfo = () => {
+  return (<div>
+    <h1>Dashboard</h1>
+    <div> <Link to="form"> Contact Form</Link> </div>
+    <div> <Link to="chat"> Contact Chat</Link> </div>
+    <div> <Link to="messages"> Messages </Link> </div>
+
+    <div>
+      <Outlet />
+    </div>
+
+  </div>)
+}
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <ContactInfo />,
+
+    children: [
+
+      {
+        path: 'form',
+        index: true,
+        element: <Dashboard />
+      },
+      {
+        path: 'messages',
+        element: <DashboardMessages />
+      },
+
+      {
+        path: 'chat',
+        element: <DashboardTasks />
+      },
+
+
+    ]
+  }
+
+
+], { basename: "/" })
+
+
+export const ContactForm = () => {
+  return (
+    <div>
+      <h1>Contact Form</h1>
+    </div>
+  )
+}
+
+const Contact = () => {
+  return (<RouterProvider router={router} />)
+}
+
+export default Contact;

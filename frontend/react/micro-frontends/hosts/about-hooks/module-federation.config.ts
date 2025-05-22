@@ -3,9 +3,9 @@ import { ModuleFederationConfig } from '@nx/module-federation';
 const coreLibraries = new Set([
   'bootstrap',
   'react',
-  'react-router-dom',
-  'react-dom/client',
 ]);
+//'react-dom/client',
+//'react-router-dom',
 const config: ModuleFederationConfig = {
   name: 'about-hooks',
   /**
@@ -20,11 +20,43 @@ const config: ModuleFederationConfig = {
    * declare module 'my-external-remote';
    *
    */
-  shared: (libraryName, defaultConfig) => {
+  /*shared: (libraryName, defaultConfig) => {
     if (coreLibraries.has(libraryName)) {
       return defaultConfig;
     }
+  },*/
+  shared: (libraryName, defaultConfig) => {
+    return false;
   },
+
+  additionalShared: [
+
+    {
+      libraryName: 'react',
+      sharedConfig: {
+        eager: false,
+        singleton: true,
+        requiredVersion: '18.3.1'
+      }
+    },
+    {
+      libraryName: 'react-dom',
+      sharedConfig: {
+        eager: false,
+        singleton: true,
+        requiredVersion: '18.3.1'
+      }
+    }
+    ,
+    /*{
+      libraryName: 'react-router-dom',
+      sharedConfig: {
+        eager: false,
+        singleton: true,
+        requiredVersion: '6.29.0'
+      }
+    }*/
+  ],
   remotes: ['use_state_app', 'use_effect_app'],
 };
 /**

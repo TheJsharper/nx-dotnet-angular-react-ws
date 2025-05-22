@@ -12,11 +12,11 @@ const config: ModuleFederationConfig = {
     './Module': './src/remote-entry.ts',
   },
 
-  shared: (libraryName, defaultConfig) => {
+ /* shared: (libraryName, defaultConfig) => {
     if (coreLibraries.has(libraryName)) {
       return defaultConfig;
     }
-  },
+  },*/
 };
 
 /**
