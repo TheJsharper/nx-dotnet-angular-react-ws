@@ -137,8 +137,20 @@ export const ContactForm = () => {
   )
 }
 
-const Contact = () => {
+export const Contact = () => {
   return (<RouterProvider router={router} />)
 }
 
-export default Contact;
+export const App = () => {
+  return (
+    <Routes>
+      <Route index element={<ContactInfo />} />
+      <Route path="messages" element={<DashboardMessages />} />
+      <Route path="tasks" element={<DashboardTasks />} />
+
+      
+    </Routes>
+  )
+}
+
+//export default Contact;

@@ -16,6 +16,6 @@ const config = {
  */
 export default composePlugins(
   withNx({publicPath:'auto'}),
-  withReact(),
+  //withReact(),
   withModuleFederation(config, { dts: false }),
 );
