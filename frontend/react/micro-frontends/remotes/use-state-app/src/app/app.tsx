@@ -1,16 +1,30 @@
 
 import { createMemoryRouter, Link, Outlet, Route, RouterProvider, Routes } from 'react-router-dom';
 
-
+import { CopyBlock, dracula } from "react-code-blocks";
+import { useState } from 'react';
+import code from './code';
+import './app.module.scss';
 
 
 export function Form() {
-
+  const [language, changeLanguage] = useState("tsx");
+  const [languageDemo, changeDemo] = useState(code["tsx"]);
+  const [lineNumbers, toggleLineNumbers] = useState(true);
   return (
 
     <>
       <h1>Form</h1>
 
+      <div className="demo">
+        <CopyBlock
+          language={language}
+          text={languageDemo}
+          showLineNumbers={lineNumbers}
+          theme={dracula}
+          codeBlock
+        />
+      </div>
       <div >
         <Link to="../" >Back to Home</Link>
       </div>
