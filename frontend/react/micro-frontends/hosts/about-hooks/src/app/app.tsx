@@ -51,10 +51,10 @@ export function App() {
       <Routes>
         <Route path="/" element={<h1>Hola</h1>} />
 
-        <Route path="use-effect-app" element={<UseEffectApp />} />
+        <Route path="/use-effect-app/*" element={<UseEffectApp />} />
 
 
-        <Route path="/use-state-app" element={<UseStateApp />} />
+        <Route path="/use-state-app/*" element={<UseStateApp />} />
       </Routes>
     </React.Suspense>
   );

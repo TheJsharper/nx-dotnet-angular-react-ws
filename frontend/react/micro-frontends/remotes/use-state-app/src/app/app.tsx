@@ -1,97 +1,79 @@
 
 import { useEffect } from 'react';
-import { Route, Routes, Link, Outlet, useLocation, createMemoryRouter, RouterProvider, createBrowserRouter, } from 'react-router-dom';
+import { Route, Routes, Link, Outlet, useLocation, createMemoryRouter, RouterProvider, createBrowserRouter, useNavigate, } from 'react-router-dom';
+
+const useSyncGlobalRouter = ({ basename }: { basename: string }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const newPath = `${basename}${location.pathname === '/' ? '' : location.pathname}`;
+
+  useEffect(() => {
+
+    window.dispatchEvent(new CustomEvent('app', { detail: newPath }));
+    const appNavigated = ({ detail }: CustomEvent) => {
+      if (detail === location.pathname) {
+        return
+      }
+      navigate(detail);
+    };
+    window.addEventListener('about-hooks', appNavigated as EventListener);
+    return () => {
+      window.removeEventListener('about-hooks', appNavigated as EventListener);
+    }
+  }, [location]);
+
+  return { location, navigate };
+}
 
 
-export function Dashboard() {
+
+
+export function Form() {
   const navStyleClass: ({ isActive }: { isActive: boolean }) => string = ({ isActive }) => {
     return isActive ? 'list-group-item active' : 'list-group-item';
   }
   return (
 
-    <div>
-      <h1>Dashboard</h1>
-      <Outlet />
-    </div>
+    <>
+      <h1>Form</h1>
+
+      <div >
+        <Link to="../" >Back to Home</Link>
+      </div>
+    </>
   );
 }
 
-export const DashboardMessages = () => {
-  return (
-    <h1> Hello Dashboar Messages</h1>
-  )
-}
-export const DashboardTasks = () => {
-  return (
-    <h1> Hello Dashboar Tasks</h1>
-  )
-}
-/*
- function App() {
-  //const history = useHistory();
- 
-  return (
-     <div>
-      <nav style={{ padding: '1rem', background: '#f8f9fa', marginBottom: '1rem' }}>
-        <Link to="" style={{ marginRight: '1rem' }}>Dashboard</Link>
-        <Link to="messages" style={{ marginRight: '1rem' }}>Messages</Link>
-        <Link to="tasks">Tasks</Link>
-      </nav>
-      <Routes >
+export const Messages = () => {
+  return (<>
+    <h1>  Messages</h1>
 
-        <Route path="/" element={<Dashboard />} >
-
-          <Route index
-            path="/use-state-app/messages"
-            element={<DashboardMessages />}
-          />
-          <Route path="/use-state-app/tasks" element={<DashboardTasks />} />
-        </Route>
-
-      </Routes >
+    <div >
+      <Link to="../" >Back to Home</Link>
     </div>
-  );
+  </>
+  )
+}
+export const Chat = () => {
+  return (<>
+    <h1> Chat</h1>
+    <div >
+      <Link to="../" >Back to Home</Link>
+    </div>
+  </>
+  )
 }
 
 
-const router  = createBrowserRouter([
-  {
-    path: '/',
-    element: <Dashboard />,
-    
-    children: [
+export const Menu = () => {
 
-      {
-        path: 'messages',
-        index: true,
-        element: <DashboardMessages />
-      },
-
-      {
-        path: 'tasks',
-        element: <DashboardTasks />
-      },
-
-
-    ]
-  }
-
-
-], {basename:  "/"})
-
-
-const App = ()=>{
-  return (<RouterProvider router={router} />)
-}
-export default App;
-*/
-
-export const ContactInfo = () => {
+  //useSyncGlobalRouter({ basename: '/use-state' });
   return (<div>
-    <h1>Dashboard</h1>
-    <div> <Link to="form"> Contact Form</Link> </div>
-    <div> <Link to="chat"> Contact Chat</Link> </div>
+    <h1>Menu</h1>
+    <div> <Link to="form">  Form</Link> </div>
     <div> <Link to="messages"> Messages </Link> </div>
+    <div> <Link to="chat">  Chat</Link> </div>
 
     <div>
       <Outlet />
@@ -99,34 +81,34 @@ export const ContactInfo = () => {
 
   </div>)
 }
-const router = createBrowserRouter([
+const router = createMemoryRouter([
   {
     path: '/',
-    element: <ContactInfo />,
+    element: <Menu />,
 
     children: [
 
       {
         path: 'form',
         index: true,
-        element: <Dashboard />
+        element: <Form />
       },
       {
         path: 'messages',
-        element: <DashboardMessages />
+        element: <Messages />
       },
 
       {
         path: 'chat',
-        element: <DashboardTasks />
+        element: <Chat />
       },
 
 
-    ]
+    ],
   }
 
 
-], { basename: "/" })
+], { initialEntries: [window.location.pathname.replace('/use-state-app', '') ?? '/'], future: { v7_relativeSplatPath: true } });
 
 
 export const ContactForm = () => {
@@ -143,13 +125,17 @@ export const Contact = () => {
 
 export const App = () => {
   return (
-    <Routes>
-      <Route index element={<ContactInfo />} />
-      <Route path="messages" element={<DashboardMessages />} />
-      <Route path="tasks" element={<DashboardTasks />} />
+    <>
+      <Menu />
+      <Routes>
+        <Route index path="" element={<> <h1>Hello HOme</h1></>} />
+        <Route path="form" element={<Form />} />
+        <Route path="messages" element={<Messages />} />
+        <Route path="chat" element={<Chat />} />
 
-      
-    </Routes>
+
+      </Routes>
+    </>
   )
 }
 
