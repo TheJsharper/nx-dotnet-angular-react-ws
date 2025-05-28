@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     {isStandalone ? (
-      <BrowserRouter>
+      <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }} basename=''>
         <App />
       </BrowserRouter>
     ) : (
