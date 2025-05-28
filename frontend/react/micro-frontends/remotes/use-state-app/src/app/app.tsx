@@ -8,9 +8,9 @@ import './app.module.scss';
 
 
 export function Form() {
-  const [language, changeLanguage] = useState("tsx");
-  const [languageDemo, changeDemo] = useState(code["tsx"]);
-  const [lineNumbers, toggleLineNumbers] = useState(true);
+  const [language,/* changeLanguage*/] = useState("tsx");
+  const [languageDemo, /* changeDemo*/] = useState(code["tsx"]);
+  const [lineNumbers,/* toggleLineNumbers*/] = useState(true);
   return (
 
     <>
