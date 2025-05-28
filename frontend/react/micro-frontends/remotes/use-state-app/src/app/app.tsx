@@ -1,38 +1,11 @@
 
-import { useEffect } from 'react';
-import { Route, Routes, Link, Outlet, useLocation, createMemoryRouter, RouterProvider, createBrowserRouter, useNavigate, } from 'react-router-dom';
-
-const useSyncGlobalRouter = ({ basename }: { basename: string }) => {
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const newPath = `${basename}${location.pathname === '/' ? '' : location.pathname}`;
-
-  useEffect(() => {
-
-    window.dispatchEvent(new CustomEvent('app', { detail: newPath }));
-    const appNavigated = ({ detail }: CustomEvent) => {
-      if (detail === location.pathname) {
-        return
-      }
-      navigate(detail);
-    };
-    window.addEventListener('about-hooks', appNavigated as EventListener);
-    return () => {
-      window.removeEventListener('about-hooks', appNavigated as EventListener);
-    }
-  }, [location]);
-
-  return { location, navigate };
-}
+import { createMemoryRouter, Link, Outlet, Route, RouterProvider, Routes } from 'react-router-dom';
 
 
 
 
 export function Form() {
-  const navStyleClass: ({ isActive }: { isActive: boolean }) => string = ({ isActive }) => {
-    return isActive ? 'list-group-item active' : 'list-group-item';
-  }
+
   return (
 
     <>
@@ -128,7 +101,7 @@ export const App = () => {
     <>
       <Menu />
       <Routes>
-        <Route index path="" element={<> <h1>Hello HOme</h1></>} />
+        <Route index path="/" element={<> <h1>Hello HOme</h1></>} />
         <Route path="form" element={<Form />} />
         <Route path="messages" element={<Messages />} />
         <Route path="chat" element={<Chat />} />
@@ -138,5 +111,3 @@ export const App = () => {
     </>
   )
 }
-
-//export default Contact;
