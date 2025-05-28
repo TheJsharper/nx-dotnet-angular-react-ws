@@ -41,7 +41,6 @@ export const Chat = () => {
 
 export const Menu = () => {
 
-  //useSyncGlobalRouter({ basename: '/use-state' });
   return (<div>
     <h1>Menu</h1>
     <div> <Link to="form">  Form</Link> </div>
