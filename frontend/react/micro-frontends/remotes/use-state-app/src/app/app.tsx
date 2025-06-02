@@ -10,17 +10,17 @@ import { Messages } from './components/Messages';
 
 export const App = () => {
   return (
-    <>
-      <Menu />
-      <Routes>
-        <Route index path="/" element={<> <h1>Hello HOme</h1></>} />
-        <Route path="form" element={<Form />} />
-        <Route path="messages" element={<Messages />} />
-        <Route path="chat" element={<Chat />} />
-
-
-      </Routes>
-    </>
+    
+      <div className="d-flex flex-col">
+        <Menu />
+        <Routes>
+          <Route index path="/" element={<> <h1>Hello HOme</h1></>} />
+          <Route path="form" element={<Form  />} />
+          <Route path="messages" element={<Messages />} />
+          <Route path="chat" element={<Chat />} />
+        </Routes>
+      </div>
+   
   )
 }
-export {Contact} from './components/ContactForm'
+export {RouterChildren } from './components/RouterChildren'

@@ -3,8 +3,8 @@ import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
 //import App from './app/app';
-import  {App,} from './app/app';
-import { Contact } from './remote-entry';
+import { App, } from './app/app';
+import { RouterChildren } from './remote-entry';
 
 declare global {
   interface Window {
@@ -24,7 +24,7 @@ root.render(
         <App />
       </BrowserRouter>
     ) : (
-      <Contact />
+      <RouterChildren />
     )}
   </StrictMode>,
 );

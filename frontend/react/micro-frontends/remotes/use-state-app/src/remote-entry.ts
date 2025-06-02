@@ -1,1 +1,1 @@
-export { App, Contact } from './app/app';
+export { App, RouterChildren } from './app/app';

@@ -12,7 +12,7 @@ const UseEffectApp = React.lazy(() => import('use_effect_app/Module'));
 
 const UseStateApp = React.lazy(() =>
   import('use_state_app/Module').then(m => ({
-    default: isStandalone ? m.App : m.Contact, // Use ContactApp if not in standalone mode
+    default: isStandalone ? m.App : m.RouterChildren, // Use ContactApp if not in standalone mode
   }))
 );
 

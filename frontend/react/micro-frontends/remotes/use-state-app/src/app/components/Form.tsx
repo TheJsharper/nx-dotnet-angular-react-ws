@@ -9,7 +9,7 @@ export function Form() {
   const [lineNumbers,/* toggleLineNumbers*/] = useState(true);
   return (
 
-    <>
+    <div className="d-flex flex-column">
       <h1>Form</h1>
 
       <div className="demo">
@@ -24,6 +24,6 @@ export function Form() {
       <div >
         <Link to="../" >Back to Home</Link>
       </div>
-    </>
+    </div>
   );
 }

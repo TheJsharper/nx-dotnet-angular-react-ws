@@ -36,6 +36,6 @@ const router = createMemoryRouter([
 
 
 
-export const Contact = () => {
+export const RouterChildren = () => {
   return (<RouterProvider router={router} />)
 }
