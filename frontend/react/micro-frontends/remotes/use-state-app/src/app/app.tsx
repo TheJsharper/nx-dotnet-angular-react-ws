@@ -11,7 +11,7 @@ import { Messages } from './components/Messages';
 export const App = () => {
   return (
     
-      <div className="d-flex flex-col gap-2 m-2 ">
+      <div className="d-flex flex-col gap-2 m-2  min-vh-100">
         <Menu />
         <Routes>
           <Route index path="/" element={<> <h1>Hello HOme</h1></>} />
