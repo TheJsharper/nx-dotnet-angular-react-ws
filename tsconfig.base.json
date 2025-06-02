@@ -44,7 +44,8 @@
         "frontend/react/micro-frontends/remotes/use-effect-app/src/remote-entry.ts"
       ],
       "use_state_app/Module": [
-        "frontend/react/micro-frontends/remotes/use-state-app/src/app/app.tsx"
+        "frontend/react/micro-frontends/remotes/use-state-app/src/app/app.tsx",
+        "frontend/react/micro-frontends/remotes/use-state-app/src/app/components/ContactForm.tsx",
       ]
     }
   },

@@ -1,113 +1,12 @@
 
-import { createMemoryRouter, Link, Outlet, Route, RouterProvider, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
-import { CopyBlock, dracula } from "react-code-blocks";
-import { useState } from 'react';
-import code from './code';
+
 import './app.module.scss';
-
-
-export function Form() {
-  const [language,/* changeLanguage*/] = useState("tsx");
-  const [languageDemo, /* changeDemo*/] = useState(code["tsx"]);
-  const [lineNumbers,/* toggleLineNumbers*/] = useState(true);
-  return (
-
-    <>
-      <h1>Form</h1>
-
-      <div className="demo">
-        <CopyBlock
-          language={language}
-          text={languageDemo}
-          showLineNumbers={lineNumbers}
-          theme={dracula}
-          codeBlock
-        />
-      </div>
-      <div >
-        <Link to="../" >Back to Home</Link>
-      </div>
-    </>
-  );
-}
-
-export const Messages = () => {
-  return (<>
-    <h1>  Messages</h1>
-
-    <div >
-      <Link to="../" >Back to Home</Link>
-    </div>
-  </>
-  )
-}
-export const Chat = () => {
-  return (<>
-    <h1> Chat</h1>
-    <div >
-      <Link to="../" >Back to Home</Link>
-    </div>
-  </>
-  )
-}
-
-
-export const Menu = () => {
-
-  return (<div>
-    <h1>Menu</h1>
-    <div> <Link to="form">  Form</Link> </div>
-    <div> <Link to="messages"> Messages </Link> </div>
-    <div> <Link to="chat">  Chat</Link> </div>
-
-    <div>
-      <Outlet />
-    </div>
-
-  </div>)
-}
-const router = createMemoryRouter([
-  {
-    path: '/',
-    element: <Menu />,
-
-    children: [
-
-      {
-        path: 'form',
-        index: true,
-        element: <Form />
-      },
-      {
-        path: 'messages',
-        element: <Messages />
-      },
-
-      {
-        path: 'chat',
-        element: <Chat />
-      },
-
-
-    ],
-  }
-
-
-], { initialEntries: [window.location.pathname.replace('/use-state-app', '') ?? '/'], future: { v7_relativeSplatPath: true } });
-
-
-export const ContactForm = () => {
-  return (
-    <div>
-      <h1>Contact Form</h1>
-    </div>
-  )
-}
-
-export const Contact = () => {
-  return (<RouterProvider router={router} />)
-}
+import { Chat } from './components/Chat';
+import { Form } from './components/Form';
+import { Menu } from './components/Menu';
+import { Messages } from './components/Messages';
 
 export const App = () => {
   return (
@@ -124,3 +23,4 @@ export const App = () => {
     </>
   )
 }
+export {Contact} from './components/ContactForm'
