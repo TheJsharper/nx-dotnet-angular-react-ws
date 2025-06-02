@@ -21,7 +21,8 @@
           "frontend/react/micro-frontends/remotes/use-effect-app/src/assets"
         ],
         "styles": [
-          "frontend/react/micro-frontends/remotes/use-effect-app/src/styles.scss"
+          "frontend/react/micro-frontends/remotes/use-effect-app/src/styles.scss",
+            "node_modules/bootstrap/dist/css/bootstrap.min.css"
         ],
         "scripts": [],
         "webpackConfig": "frontend/react/micro-frontends/remotes/use-effect-app/webpack.config.ts"
