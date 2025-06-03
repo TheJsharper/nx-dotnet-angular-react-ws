@@ -1,9 +1,9 @@
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { Menu } from "./Menu";
 import { Form } from "./Form";
-import {  } from "use_state_app/Module";
 import { Messages } from "./Messages";
 import { Chat } from "./Chat";
+import Basic from "./Basics";
 
 const router = createMemoryRouter([
   {
@@ -25,6 +25,10 @@ const router = createMemoryRouter([
       {
         path: 'chat',
         element: <Chat />
+      },
+      {
+        path: 'basic',
+        element: <Basic />
       },
 
 

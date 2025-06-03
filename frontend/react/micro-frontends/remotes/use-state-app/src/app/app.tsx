@@ -9,6 +9,7 @@ import { Chat } from './components/Chat';
 import { Form } from './components/Form';
 import { Menu } from './components/Menu';
 import { Messages } from './components/Messages';
+import Basic from './components/Basics';
 
 export const App = () => {
   
@@ -21,6 +22,7 @@ export const App = () => {
           <Route path="form" element={<Form  />} />
           <Route path="messages" element={<Messages />} />
           <Route path="chat" element={<Chat />} />
+          <Route path="basic" element={<Basic />} />
         </Routes>
       </div>
    

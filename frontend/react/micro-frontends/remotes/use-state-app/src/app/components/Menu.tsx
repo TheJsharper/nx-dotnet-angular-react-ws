@@ -19,6 +19,10 @@ export const Menu = () => {
           <Link to="chat">  Chat</Link>
           <span className="badge bg-primary rounded-pill">1</span>
         </li>
+        <li className="list-group-item d-flex justify-content-between align-items-center">
+          <Link to="basic">  Basic UseState</Link>
+          <span className="badge bg-primary rounded-pill">1</span>
+        </li>
       </ul>
     </div>
 
