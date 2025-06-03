@@ -17,10 +17,10 @@ export const Menu = () => {
           <Link to="chat">  Chat</Link>
         </li>
         <li className="list-group-item d-flex justify-content-between align-items-center">
-          <Link to="basic">  Basic UseState Strong Typed</Link>
+          <Link to="basic">  Basic UseState</Link>
         </li>
         <li className="list-group-item d-flex justify-content-between align-items-center">
-          <Link to="basic-st">  Basic UseState</Link>
+          <Link to="basic-st">  Basic UseState Strong Typed</Link>
         </li>
       </ul>
     </div>
