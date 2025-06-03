@@ -12,6 +12,7 @@ import { Messages } from './components/Messages';
 import Basic from './components/Basics';
 import BasicsStrongTyped from './components/BasicsStrongTyped';
 import Counter from './components/Counter';
+import Text from './components/Text';
 
 export const App = () => {
   
@@ -27,6 +28,7 @@ export const App = () => {
           <Route path="basic" element={<Basic />} />
           <Route path="basic-st" element={<BasicsStrongTyped />} />
           <Route path="counter" element={<Counter />} />
+          <Route path="text" element={<Text />} />
         </Routes>
       </div>
    
