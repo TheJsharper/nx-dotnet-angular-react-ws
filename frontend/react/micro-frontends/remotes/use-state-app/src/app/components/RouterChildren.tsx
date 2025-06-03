@@ -4,6 +4,7 @@ import { Form } from "./Form";
 import { Messages } from "./Messages";
 import { Chat } from "./Chat";
 import Basic from "./Basics";
+import BasicsStrongTyped from "./BasicsStrongTyped";
 
 const router = createMemoryRouter([
   {
@@ -29,6 +30,10 @@ const router = createMemoryRouter([
       {
         path: 'basic',
         element: <Basic />
+      },
+      {
+        path: 'basic-st',
+        element: <BasicsStrongTyped />
       },
 
 

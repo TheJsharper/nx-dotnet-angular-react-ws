@@ -10,6 +10,7 @@ import { Form } from './components/Form';
 import { Menu } from './components/Menu';
 import { Messages } from './components/Messages';
 import Basic from './components/Basics';
+import BasicsStrongTyped from './components/BasicsStrongTyped';
 
 export const App = () => {
   
@@ -23,6 +24,7 @@ export const App = () => {
           <Route path="messages" element={<Messages />} />
           <Route path="chat" element={<Chat />} />
           <Route path="basic" element={<Basic />} />
+          <Route path="basic-st" element={<BasicsStrongTyped />} />
         </Routes>
       </div>
    
