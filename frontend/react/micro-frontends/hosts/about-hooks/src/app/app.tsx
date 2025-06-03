@@ -10,7 +10,7 @@ const isStandalone = !window.__POWERED_BY_FEDERATION__;
 
 const UseEffectApp = React.lazy(() => import('use_effect_app/Module'));
 
-const UseStateApp = React.lazy(() =>
+const UseStateApp: React.ComponentType<object> = React.lazy(() =>
   import('use_state_app/Module').then(m => ({
     default: isStandalone ? m.App : m.RouterChildren, // Use ContactApp if not in standalone mode
   }))
@@ -54,7 +54,7 @@ export function App() {
         <Route path="/use-effect-app/*" element={<UseEffectApp />} />
 
 
-        <Route path="/use-state-app/*" element={<UseStateApp />} />
+        <Route path="/use-state-app/*" element={<UseStateApp  />} />
       </Routes>
     </React.Suspense>
   );

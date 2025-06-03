@@ -1,5 +1,7 @@
 
 import { Route, Routes } from 'react-router-dom';
+import React from 'react';
+
 
 
 import './app.module.scss';
@@ -9,11 +11,12 @@ import { Menu } from './components/Menu';
 import { Messages } from './components/Messages';
 
 export const App = () => {
+  
   return (
     
-      <div className="d-flex flex-col gap-2 m-2  min-vh-100">
+      <div className="d-flex  flex-col gap-2 m-2  min-vh-100  "   >
         <Menu />
-        <Routes>
+        <Routes >
           <Route index path="/" element={<> <h1>Hello HOme</h1></>} />
           <Route path="form" element={<Form  />} />
           <Route path="messages" element={<Messages />} />

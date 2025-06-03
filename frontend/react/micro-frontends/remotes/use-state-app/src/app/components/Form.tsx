@@ -9,7 +9,7 @@ export function Form() {
   const [lineNumbers,/* toggleLineNumbers*/] = useState(true);
   return (
 
-    <div className="d-flex flex-column flex-1">
+    <div className="d-flex flex-column flex-2 flex-grow-1 ">
       <h1>Form</h1>
 
       <div className="demo">
