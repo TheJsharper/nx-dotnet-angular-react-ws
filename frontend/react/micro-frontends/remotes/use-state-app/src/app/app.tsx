@@ -11,6 +11,7 @@ import { Menu } from './components/Menu';
 import { Messages } from './components/Messages';
 import Basic from './components/Basics';
 import BasicsStrongTyped from './components/BasicsStrongTyped';
+import Counter from './components/Counter';
 
 export const App = () => {
   
@@ -25,6 +26,7 @@ export const App = () => {
           <Route path="chat" element={<Chat />} />
           <Route path="basic" element={<Basic />} />
           <Route path="basic-st" element={<BasicsStrongTyped />} />
+          <Route path="counter" element={<Counter />} />
         </Routes>
       </div>
    
