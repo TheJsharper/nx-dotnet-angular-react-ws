@@ -41,12 +41,28 @@ const Basic = () => {
             </button>
         </div>
     );
-}
-    
-    `
-    const [language,/* changeLanguage*/] = useState("tsx");
-    const [languageDemo, /* changeDemo*/] = useState(code);
-    const [lineNumbers,/* toggleLineNumbers*/] = useState(true);
+}  `;
+    const styling = `
+  const Example = () => {
+
+    return (
+        <div className="container">
+            <h1>Example UseState</h1>
+
+            <p>Current Count: 1</p>
+            <button
+                className="btn btn-primary"
+            >
+                Increment
+            </button>
+        </div>
+    );
+} 
+  `;
+
+    const [language,] = useState("tsx");
+    const [languageDemo,] = useState(code);
+    const [lineNumbers] = useState(true);
 
     return (
         <div className="container">
@@ -58,8 +74,8 @@ const Basic = () => {
                         <Tab eventKey="home" title="Looking at UseState">
                             <Example />
                         </Tab>
-                        <Tab eventKey="profile" title="Profile">
-                            <p>This is the profile tab content.</p>
+                        <Tab eventKey="code" title="Visual Code">
+                            <h1> Example Visual Code</h1>
                             <CopyBlock
                                 language={language}
                                 text={languageDemo}
@@ -68,8 +84,16 @@ const Basic = () => {
                                 codeBlock
                             />
                         </Tab>
-                        <Tab eventKey="contact" title="Contact">
-                            <p>This is the contact tab content.</p>
+                        <Tab eventKey="styling" title="styling">
+                            <h1>Styling</h1>
+                            <h1> Example Visual Code</h1>
+                            <CopyBlock
+                                language={'css'}
+                                text={styling}
+                                showLineNumbers={lineNumbers}
+                                theme={dracula}
+                                codeBlock
+                            />
                         </Tab>
                     </Tabs>
                 </Row>
