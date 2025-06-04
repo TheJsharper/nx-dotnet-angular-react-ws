@@ -13,6 +13,7 @@ import Basic from './components/Basics';
 import BasicsStrongTyped from './components/BasicsStrongTyped';
 import Counter from './components/Counter';
 import Text from './components/Text';
+import CounterUpdateBasedPrevious from './components/CounterUpdateBasedPrevious';
 
 export const App = () => {
   
@@ -29,6 +30,7 @@ export const App = () => {
           <Route path="basic-st" element={<BasicsStrongTyped />} />
           <Route path="counter" element={<Counter />} />
           <Route path="text" element={<Text />} />
+          <Route path="simple-counter-update" element={<CounterUpdateBasedPrevious />} />
         </Routes>
       </div>
    

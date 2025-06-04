@@ -28,6 +28,9 @@ export const Menu = () => {
         <li className="list-group-item d-flex justify-content-between align-items-center">
           <Link to="text"> Simple Text</Link>
         </li>
+        <li className="list-group-item d-flex justify-content-between align-items-center">
+          <Link to="simple-counter-update"> Simple Counter Update</Link>
+        </li>
       </ul>
     </div>
 
