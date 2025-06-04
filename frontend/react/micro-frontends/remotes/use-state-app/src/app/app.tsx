@@ -14,6 +14,7 @@ import BasicsStrongTyped from './components/BasicsStrongTyped';
 import Counter from './components/Counter';
 import Text from './components/Text';
 import CounterUpdateBasedPrevious from './components/CounterUpdateBasedPrevious';
+import FormObject from './components/FormObject';
 
 export const App = () => {
   
@@ -31,6 +32,7 @@ export const App = () => {
           <Route path="counter" element={<Counter />} />
           <Route path="text" element={<Text />} />
           <Route path="simple-counter-update" element={<CounterUpdateBasedPrevious />} />
+          <Route path="simple-form-object" element={<FormObject />} />
         </Routes>
       </div>
    
