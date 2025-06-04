@@ -16,28 +16,35 @@ const Example = () => {
         <div className="container">
 
             <h2>Text Component</h2>
-            <div className="row">
+            <div className="d-flex flex-column">
 
-                <div className="col">
-                    <p>Initial Text: {initialText}</p>
+                <div className="p-2">
+                    <h5>Initial Text: {initialText}</h5>
                 </div>
-                <div className="col">
-                    <p>Current Text: {text}</p>
+                <div className="p-2">
+                    <h5>Current Text: {text}</h5>
                 </div>
             </div>
-            <div className="row">
-                <div className="col">
+            <div className="d-flex flex-column">
+                <div className="p-2">
                     <label className='col-form-label' htmlFor="text"> Text</label>
                 </div>
-                <div className="col">
+                <div className="p-2">
                     <input className='form-control'
                         type="text"
                         value={text}
                         onChange={handleChange}
                         placeholder="Type something..." />
                 </div>
+
+                <div className='p-2'>
+                    
+                    <button className='btn btn-primary' onClick={() => setText(initialText)}>Reset Initial State</button>
+
+                </div>
             </div>
-            <p>{text}</p>
+
+
         </div>
     );
 }
@@ -46,6 +53,8 @@ const Example = () => {
 
 const Text = () => {
     const code = `  
+    import React, { useState } from 'react';
+
 const Example = () => {
 
     const initialText = 'Hello, World!';
@@ -56,77 +65,83 @@ const Example = () => {
         setText(event.target.value);
     }
     return (
-        <div className="text">
+        <div className="container">
 
             <h2>Text Component</h2>
-            <div className="row">
+            <div className="d-flex flex-column">
 
-                <div className="col">
-                    <p>Initial Text: {initialText}</p>
+                <div className="p-2">
+                    <h5>Initial Text: {initialText}</h5>
                 </div>
-                <div className="col">
-                    <p>Current Text: {text}</p>
+                <div className="p-2">
+                    <h5>Current Text: {text}</h5>
                 </div>
             </div>
-            <div className="row">
-
-
-
-                <div className="col">
+            <div className="d-flex flex-column">
+                <div className="p-2">
                     <label className='col-form-label' htmlFor="text"> Text</label>
                 </div>
-                <div className="col">
+                <div className="p-2">
                     <input className='form-control'
                         type="text"
                         value={text}
                         onChange={handleChange}
                         placeholder="Type something..." />
                 </div>
+
+                <div className='p-2'>
+                    
+                    <button className='btn btn-primary' onClick={() => setText(initialText)}>Reset Initial State</button>
+
+                </div>
             </div>
-            <p>{text}</p>
+
+
         </div>
     );
 }
-
 
 `;
     const styling = `
-  const Example = () => {
+const Example = () => {
 
-    
-
-    
+   
     return (
-        <div className="text">
+        <div className="container">
 
             <h2>Text Component</h2>
-            <div className="row">
+            <div className="d-flex flex-column">
 
-                <div className="col">
-                    <p>Initial Text: {"Text"}</p>
+                <div className="p-2">
+                    <h5>Initial Text: {"Hello World!"}</h5>
                 </div>
-                <div className="col">
-                    <p>Current Text: {"Text"}</p>
+                <div className="p-2">
+                    <h5>Current Text: {"Hello World"}</h5>
                 </div>
             </div>
-            <div className="row">
-
-
-
-                <div className="col">
+            <div className="d-flex flex-column">
+                <div className="p-2">
                     <label className='col-form-label' htmlFor="text"> Text</label>
                 </div>
-                <div className="col">
+                <div className="p-2">
                     <input className='form-control'
                         type="text"
-                        value={"text"}
+                        value={"Hello World"}
                         placeholder="Type something..." />
                 </div>
+
+                <div className='p-2'>
+                    
+                    <button className='btn btn-primary' >Reset Initial State</button>
+
+                </div>
             </div>
-            <p>{"text"}</p>
+
+
         </div>
     );
 }
+
 `;
     const [language,] = useState("tsx");
     const [languageDemo,] = useState(code);
