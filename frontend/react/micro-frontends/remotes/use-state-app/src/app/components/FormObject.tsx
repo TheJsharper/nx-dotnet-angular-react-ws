@@ -10,6 +10,7 @@ interface Form {
 }
 
 const Example = () => {
+
     const initialForm: Form = {
         firstName: '',
         lastName: '',
@@ -17,20 +18,38 @@ const Example = () => {
     };
     const [form, setForm] = useState<Form>(initialForm);
 
+   const handlleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        console.log("Form submitted:", form);
+    }
+
     return (
         <div>
             <h1>Form Object Example</h1>
-            <form>
-                <label htmlFor="firstName">Name:</label>
-                <input type="text" id="firstName" name="firstName" value={form.firstName} onChange={e => { setForm({ ...form, firstName: e.target.value }) }} />
 
-                <label htmlFor="lastName">Name:</label>
-                <input type="text" id="lastName" name="lastName" value={form.firstName} onChange={e => { setForm({ ...form, lastName: e.target.value }) }} />
+            <pre>
+                <code>
+                    {JSON.stringify(form, null, 2)}
+                </code>
+            </pre>
 
-                <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" value={form.email} onChange={e => { setForm({ ...form, email: e.target.value }) }} />
+            <form style={{marginRight:"0", marginLeft:"0", borderWidth:"1px", borderRadius:"var(--bs-border-radius)", borderStyle:"solid", padding:"50px"}}>
+                <div className="mb-3">
+                    <label className="form-label" htmlFor="firstName">First Name:</label>
+                    <input className="form-control" type="text" id="firstName" name="firstName" value={form.firstName} onChange={e => { setForm({ ...form, firstName: e.target.value }) }} />
+                </div>
 
-                <button type="submit">Submit</button>
+                <div className="mb-3">
+                    <label className="form-label" htmlFor="lastName">Last Name:</label>
+                    <input className="form-control" type="text" id="lastName" name="lastName" value={form.lastName} onChange={e => { setForm({ ...form, lastName: e.target.value }) }} />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label" htmlFor="email">Email:</label>
+                    <input className="form-control" type="email" id="email" name="email" value={form.email} onChange={e => { setForm({ ...form, email: e.target.value }) }} />
+                </div>
+
+                <button className="btn btn-success" type="submit" onClick={handlleSubmit} >Submit</button>
             </form>
         </div>
     );
