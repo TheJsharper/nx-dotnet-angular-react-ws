@@ -1,31 +1,44 @@
 import { useState } from "react";
 import { Container, Row, Tab, Tabs } from "react-bootstrap";
 import { CopyBlock, dracula } from "react-code-blocks";
+interface ArtWork {
+    title: string;
+    city: string;
+    imageUrl: string;
 
-interface Form {
+}
+
+
+interface PersonObject {
     firstName: string;
     lastName: string;
     email: string;
+    artwork: ArtWork;
 
 }
 
 const Example = () => {
 
-    const initialForm: Form = {
+    const initialForm: PersonObject = {
         firstName: '',
         lastName: '',
-        email: ''
+        email: '',
+        artwork: {
+            title: '',
+            city: '',
+            imageUrl: 'https://i.imgur.com/Sd1AgUOm.jpg'
+        }
     };
-    const [form, setForm] = useState<Form>(initialForm);
+    const [form, setForm] = useState<PersonObject>(initialForm);
 
-   const handlleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handlleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         console.log("Form submitted:", form);
     }
 
     return (
         <div>
-            <h1>Form Object Example</h1>
+            <h1>Form Nested Object Example</h1>
 
             <pre>
                 <code>
@@ -33,7 +46,7 @@ const Example = () => {
                 </code>
             </pre>
 
-            <form style={{marginRight:"0", marginLeft:"0", borderWidth:"1px", borderRadius:"var(--bs-border-radius)", borderStyle:"solid", padding:"50px"}}>
+            <form style={{ marginRight: "0", marginLeft: "0", borderWidth: "1px", borderRadius: "var(--bs-border-radius)", borderStyle: "solid", padding: "50px" }}>
                 <div className="mb-3">
                     <label className="form-label" htmlFor="firstName">First Name:</label>
                     <input className="form-control" type="text" id="firstName" name="firstName" value={form.firstName} onChange={e => { setForm({ ...form, firstName: e.target.value }) }} />
@@ -47,6 +60,29 @@ const Example = () => {
 
                     <label className="form-label" htmlFor="email">Email:</label>
                     <input className="form-control" type="email" id="email" name="email" value={form.email} onChange={e => { setForm({ ...form, email: e.target.value }) }} />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label" htmlFor="title">Title</label>
+                    <input className="form-control" type="text" id="title" name="title" value={form.artwork.title} onChange={e => { setForm({ ...form, artwork: { ...form.artwork, title: e.target.value } }) }} />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label" htmlFor="city">City:</label>
+                    <input className="form-control" type="city" id="city" name="city" value={form.artwork.city} onChange={e => { setForm({ ...form, artwork: { ...form.artwork, city: e.target.value } }) }} />
+                </div>
+                <div className="mb-3">
+
+                    <input className="form-control" type="imageUrl " id="imageUrl   " name="imageUrl   " value={form.artwork.imageUrl} onChange={e => {
+                        setForm({
+                            ...form, artwork: { ...form.artwork, imageUrl: e.target.value }
+                        })
+                    }} />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label" htmlFor="imageUrlView">Image Url</label>
+                    <img width="250" height="250"   src={form.artwork.imageUrl}  alt={form.artwork.title} />
                 </div>
 
                 <button className="btn btn-success" type="submit" onClick={handlleSubmit} >Submit</button>
