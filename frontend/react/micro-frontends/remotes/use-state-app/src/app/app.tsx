@@ -15,6 +15,7 @@ import Counter from './components/Counter';
 import Text from './components/Text';
 import CounterUpdateBasedPrevious from './components/CounterUpdateBasedPrevious';
 import FormObject from './components/FormObject';
+import FormNestedObject from './components/FormNestedObject';
 
 export const App = () => {
   
@@ -33,6 +34,7 @@ export const App = () => {
           <Route path="text" element={<Text />} />
           <Route path="simple-counter-update" element={<CounterUpdateBasedPrevious />} />
           <Route path="simple-form-object" element={<FormObject />} />
+          <Route path="simple-form-nested-object" element={<FormNestedObject />} />
         </Routes>
       </div>
    
