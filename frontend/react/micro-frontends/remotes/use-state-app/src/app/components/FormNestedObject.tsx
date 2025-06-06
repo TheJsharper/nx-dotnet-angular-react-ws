@@ -29,12 +29,29 @@ const Example = () => {
             imageUrl: 'https://i.imgur.com/Sd1AgUOm.jpg'
         }
     };
+
     const [form, setForm] = useState<PersonObject>(initialForm);
+
+    const[isSubmitted, setIsSubmitted] = useState(false);
 
     const handlleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
+        
         console.log("Form submitted:", form);
+
+        setForm(initialForm);
+
+        setIsSubmitted(true); 
     }
+
+    const styleFormContiner = {
+        marginRight: "0",
+        marginLeft: "0",
+        borderWidth: "1px",
+        borderRadius: "var(--bs-border-radius)",
+        borderStyle: "solid",
+        padding: "50px"
+    };
 
     return (
         <div>
@@ -46,7 +63,7 @@ const Example = () => {
                 </code>
             </pre>
 
-            <form style={{ marginRight: "0", marginLeft: "0", borderWidth: "1px", borderRadius: "var(--bs-border-radius)", borderStyle: "solid", padding: "50px" }}>
+            <form style={{ ...styleFormContiner }}>
                 <div className="mb-3">
                     <label className="form-label" htmlFor="firstName">First Name:</label>
                     <input className="form-control" type="text" id="firstName" name="firstName" value={form.firstName} onChange={e => { setForm({ ...form, firstName: e.target.value }) }} />
@@ -82,8 +99,15 @@ const Example = () => {
                 <div className="mb-3">
 
                     <label className="form-label" htmlFor="imageUrlView">Image Url</label>
-                    <img width="250" height="250"   src={form.artwork.imageUrl}  alt={form.artwork.title} />
+                    <img width="250" height="250" src={form.artwork.imageUrl} alt={form.artwork.title} />
                 </div>
+                
+                {isSubmitted && (
+                    <div className="alert alert-success" role="alert">
+                        Form submitted successfully!
+                    </div>
+                )}
+               
 
                 <button className="btn btn-success" type="submit" onClick={handlleSubmit} >Submit</button>
             </form>
@@ -94,106 +118,203 @@ const Example = () => {
 
 const FormNestedObject = () => {
     const code = `
-            import React, { useState } from 'react'; 
+ interface ArtWork {
+    title: string;
+    city: string;
+    imageUrl: string;
+
+}
 
 
-                const Example = () => {
+interface PersonObject {
+    firstName: string;
+    lastName: string;
+    email: string;
+    artwork: ArtWork;
 
-                    const initialForm: Form = {
-                        firstName: '',
-                        lastName: '',
-                        email: ''
-                    };
-                    const [form, setForm] = useState<Form>(initialForm);
+}
 
-                const handlleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
-                        event.preventDefault();
-                        console.log("Form submitted:", form);
-                    }
+const Example = () => {
 
-                    return (
-                        <div>
-                            <h1>Form Object Example</h1>
+    const initialForm: PersonObject = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        artwork: {
+            title: '',
+            city: '',
+            imageUrl: 'https://i.imgur.com/Sd1AgUOm.jpg'
+        }
+    };
 
-                            <pre>
-                                <code>
-                                    {JSON.stringify(form, null, 2)}
-                                </code>
-                            </pre>
+    const [form, setForm] = useState<PersonObject>(initialForm);
 
-                            <form style={{marginRight:"0", marginLeft:"0", borderWidth:"1px", borderRadius:"var(--bs-border-radius)", borderStyle:"solid", padding:"50px"}}>
-                                <div className="mb-3">
-                                    <label className="form-label" htmlFor="firstName">First Name:</label>
-                                    <input className="form-control" type="text" id="firstName" name="firstName" value={form.firstName} onChange={e => { setForm({ ...form, firstName: e.target.value }) }} />
-                                </div>
+    const[isSubmitted, setIsSubmitted] = useState(false);
 
-                                <div className="mb-3">
-                                    <label className="form-label" htmlFor="lastName">Last Name:</label>
-                                    <input className="form-control" type="text" id="lastName" name="lastName" value={form.lastName} onChange={e => { setForm({ ...form, lastName: e.target.value }) }} />
-                                </div>
-                                <div className="mb-3">
+    const handlleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        
+        console.log("Form submitted:", form);
 
-                                    <label className="form-label" htmlFor="email">Email:</label>
-                                    <input className="form-control" type="email" id="email" name="email" value={form.email} onChange={e => { setForm({ ...form, email: e.target.value }) }} />
-                                </div>
+        setForm(initialForm);
 
-                                <button className="btn btn-success" type="submit" onClick={handlleSubmit} >Submit</button>
-                            </form>
-                        </div>
-                    );
-                }
+        setIsSubmitted(true); 
+    }
+
+    const styleFormContiner = {
+        marginRight: "0",
+        marginLeft: "0",
+        borderWidth: "1px",
+        borderRadius: "var(--bs-border-radius)",
+        borderStyle: "solid",
+        padding: "50px"
+    };
+
+    return (
+        <div>
+            <h1>Form Nested Object Example</h1>
+
+            <pre>
+                <code>
+                    {JSON.stringify(form, null, 2)}
+                </code>
+            </pre>
+
+            <form style={{ ...styleFormContiner }}>
+                <div className="mb-3">
+                    <label className="form-label" htmlFor="firstName">First Name:</label>
+                    <input className="form-control" type="text" id="firstName" name="firstName" value={form.firstName} onChange={e => { setForm({ ...form, firstName: e.target.value }) }} />
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-label" htmlFor="lastName">Last Name:</label>
+                    <input className="form-control" type="text" id="lastName" name="lastName" value={form.lastName} onChange={e => { setForm({ ...form, lastName: e.target.value }) }} />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label" htmlFor="email">Email:</label>
+                    <input className="form-control" type="email" id="email" name="email" value={form.email} onChange={e => { setForm({ ...form, email: e.target.value }) }} />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label" htmlFor="title">Title</label>
+                    <input className="form-control" type="text" id="title" name="title" value={form.artwork.title} onChange={e => { setForm({ ...form, artwork: { ...form.artwork, title: e.target.value } }) }} />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label" htmlFor="city">City:</label>
+                    <input className="form-control" type="city" id="city" name="city" value={form.artwork.city} onChange={e => { setForm({ ...form, artwork: { ...form.artwork, city: e.target.value } }) }} />
+                </div>
+                <div className="mb-3">
+
+                    <input className="form-control" type="imageUrl " id="imageUrl   " name="imageUrl   " value={form.artwork.imageUrl} onChange={e => {
+                        setForm({
+                            ...form, artwork: { ...form.artwork, imageUrl: e.target.value }
+                        })
+                    }} />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label" htmlFor="imageUrlView">Image Url</label>
+                    <img width="250" height="250" src={form.artwork.imageUrl} alt={form.artwork.title} />
+                </div>
+                
+                {isSubmitted && (
+                    <div className="alert alert-success" role="alert">
+                        Form submitted successfully!
+                    </div>
+                )}
+               
+
+                <button className="btn btn-success" type="submit" onClick={handlleSubmit} >Submit</button>
+            </form>
+        </div>
+    );
+}
+`;
+const styling = `
+
+const Example = () => {
+
+  const styleFormContiner = {
+        marginRight: "0",
+        marginLeft: "0",
+        borderWidth: "1px",
+        borderRadius: "var(--bs-border-radius)",
+        borderStyle: "solid",
+        padding: "50px"
+    };
+    
+    return (
+        <div>
+            <h1>Form Nested Object Example</h1>
+
+            <pre>
+                <code>
+                    {JSON.stringify(form, null, 2)}
+                </code>
+            </pre>
+
+            <form style={{ ...styleFormContiner }}>
+                <div className="mb-3">
+                    <label className="form-label" htmlFor="firstName">First Name:</label>
+                    <input className="form-control" type="text" id="firstName" name="firstName"  />
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-label" htmlFor="lastName">Last Name:</label>
+                    <input className="form-control" type="text" id="lastName" name="lastName"  />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label" htmlFor="email">Email:</label>
+                    <input className="form-control" type="email" id="email" name="email" />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label" htmlFor="title">Title</label>
+                    <input className="form-control" type="text" id="title" name="title"  />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label" htmlFor="city">City:</label>
+                    <input className="form-control" type="city" id="city" name="city"  />
+                </div>
+                <div className="mb-3">
+
+                    <input className="form-control" type="imageUrl " id="imageUrl   " name="imageUrl"  />
+                </div>
+                <div className="mb-3">
+
+                    <label className="form-label" htmlFor="imageUrlView">Image Url</label>
+                    <img width="250" height="250"  />
+                </div>
+                
+                {isSubmitted && (
+                    <div className="alert alert-success" role="alert">
+                        Form submitted successfully!
+                    </div>
+                )}
+               
+
+                <button className="btn btn-success" type="submit" >Submit</button>
+            </form>
+        </div>
+    );
+}
+
+
+
+
+
+
+
+
+
+
+
 
 `;
-    const styling = `
-            import './FormObject.css';
-            import React, { useState } from 'react'; 
-
-
-                const Example = () => {
-
-                    const initialForm: Form = {
-                        firstName: '',
-                        lastName: '',
-                        email: ''
-                    };
-                    const [form, setForm] = useState<Form>(initialForm);
-
-             
-
-                    return (
-                        <div>
-                            <h1>Form Object Example</h1>
-
-                            <pre>
-                                <code>
-                                    {JSON.stringify(form, null, 2)}
-                                </code>
-                            </pre>
-
-                            <form style={{marginRight:"0", marginLeft:"0", borderWidth:"1px", borderRadius:"var(--bs-border-radius)", borderStyle:"solid", padding:"50px"}}>
-                                <div className="mb-3">
-                                    <label className="form-label" htmlFor="firstName">First Name:</label>
-                                    <input className="form-control" type="text" id="firstName" name="firstName"  />
-                                </div>
-
-                                <div className="mb-3">
-                                    <label className="form-label" htmlFor="lastName">Last Name:</label>
-                                    <input className="form-control" type="text" id="lastName" name="lastName" />
-                                </div>
-                                <div className="mb-3">
-
-                                    <label className="form-label" htmlFor="email">Email:</label>
-                                    <input className="form-control" type="email" id="email" name="email" />
-                                </div>
-
-                                <button className="btn btn-success" type="submit" >Submit</button>
-                            </form>
-                        </div>
-                    );
-                }
-
-`;
-
 
 
     const [language] = useState("tsx");
