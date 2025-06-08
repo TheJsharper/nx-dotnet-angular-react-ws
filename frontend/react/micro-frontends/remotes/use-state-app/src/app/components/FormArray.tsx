@@ -1,3 +1,4 @@
+import { downloadImage } from "plotly.js";
 import { useState } from "react";
 import { Container, Row, Tab, Tabs } from "react-bootstrap";
 import { CopyBlock, dracula } from "react-code-blocks";
@@ -52,7 +53,7 @@ const Task = ({ todo, OnChange, OnDelete }: { todo: Todo, OnChange: (todo: Todo)
     } else {
         todoContent = (
             <>
-                {todo.title}
+                {todo.title} {todo.done ? ' (Done)' : ''} { todo.id}
                 <button onClick={() => setIsEditing(true)}>Edit</button>
 
             </>
@@ -112,7 +113,14 @@ const Example = () => {
     }
 
     const handleChangeTodo = (updatedTodo: Todo) => {
-        setTodos(todos.map(todo => todo.id === updatedTodo.id ? updatedTodo : todo));
+        //setTodos(todos.map(todo => todo.id === updatedTodo.id ? updatedTodo : todo));
+         setTodos(todos.map(t => {
+      if (t.id === updatedTodo.id) {
+        return updatedTodo;
+      } else {
+        return t;
+      }
+    }));
     }
 
     const handleDeleteTodo = (id: number) => {
