@@ -1,21 +1,21 @@
 
 import { Route, Routes } from 'react-router-dom';
-import React from 'react';
 
 
 
 import './app.module.scss';
-import { Chat } from './components/Chat';
-import { Form } from './components/Form';
-import { Menu } from './components/Menu';
-import { Messages } from './components/Messages';
 import Basic from './components/Basics';
 import BasicsStrongTyped from './components/BasicsStrongTyped';
+import { Chat } from './components/Chat';
 import Counter from './components/Counter';
-import Text from './components/Text';
 import CounterUpdateBasedPrevious from './components/CounterUpdateBasedPrevious';
-import FormObject from './components/FormObject';
+import { Form } from './components/Form';
 import FormNestedObject from './components/FormNestedObject';
+import FormObject from './components/FormObject';
+import { Menu } from './components/Menu';
+import { Messages } from './components/Messages';
+import Text from './components/Text';
+import FormArray from './components/FormArray';
 
 export const App = () => {
   
@@ -35,9 +35,11 @@ export const App = () => {
           <Route path="simple-counter-update" element={<CounterUpdateBasedPrevious />} />
           <Route path="simple-form-object" element={<FormObject />} />
           <Route path="simple-form-nested-object" element={<FormNestedObject />} />
+          <Route path="simple-form-array-object" element={<FormArray />} />
         </Routes>
       </div>
    
   )
 }
-export {RouterChildren } from './components/RouterChildren'
+export { RouterChildren } from './components/RouterChildren';
+

@@ -37,6 +37,9 @@ export const Menu = () => {
         <li className="list-group-item d-flex justify-content-between align-items-center">
           <Link to="simple-form-nested-object"> Simple Form Nesteed Object</Link>
         </li>
+        <li className="list-group-item d-flex justify-content-between align-items-center">
+          <Link to="simple-form-array-object"> Simple Form Array Object</Link>
+        </li>
       </ul>
     </div>
 
