@@ -31,8 +31,11 @@ const AddTodo = ({ onAddTodo }: { onAddTodo: (title: string) => void }) => {
     );
 }
 
-const Tasks = ({ todo, OnChange, OnDelete }: { todo: Todo, OnChange: (todo: Todo) => void, OnDelete: (id: number) => void }) => {
+const Task = ({ todo, OnChange, OnDelete }: { todo: Todo, OnChange: (todo: Todo) => void, OnDelete: (id: number) => void }) => {
+    
     const [isEditing, setIsEditing] = useState(false);
+    
+    
     let todoContent;
 
     if (isEditing) {
@@ -67,12 +70,12 @@ const Tasks = ({ todo, OnChange, OnDelete }: { todo: Todo, OnChange: (todo: Todo
         );
     }
 }
-const TaskList = ({ todos, onToggleTodo: OnChange, OnDelete }: { todos: Todo[], onToggleTodo: (task: Todo) => void, OnDelete: (id: number) => void }) => {
+const TaskList = ({ todos, OnChange, OnDelete }: { todos: Todo[], OnChange: (task: Todo) => void, OnDelete: (id: number) => void }) => {
     return (
         <ul>
             {todos.map(todo => (
                 <li key={todo.id}>
-                    <Tasks
+                    <Task
                         todo={todo}
                         OnChange={OnChange}
                         OnDelete={OnDelete}
@@ -121,7 +124,7 @@ const Example = () => {
     return (
         <>
             <AddTodo onAddTodo={handleAddTodo} />
-            <TaskList todos={todos} onToggleTodo={handleChangeTodo} OnDelete={handleDeleteTodo} />
+            <TaskList todos={todos} OnChange={handleChangeTodo} OnDelete={handleDeleteTodo} />
 
 
         </>
