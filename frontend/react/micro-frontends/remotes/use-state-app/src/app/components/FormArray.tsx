@@ -8,9 +8,6 @@ interface Todo {
 }
 
 
-
-
-
 const AddTodo = ({ onAddTodo }: { onAddTodo: (title: string) => void }) => {
     const [title, setTitle] = useState('');
 
@@ -65,7 +62,7 @@ const Tasks = ({ todo, OnChange, OnDelete }: { todo: Todo, OnChange: (todo: Todo
                     onChange={(e) => OnChange({ ...todo, done: e.target.checked })}
                 />
                 {todoContent}
-                <button onClick={() => OnDelete(todo.id)}>Add</button>
+                <button onClick={() => OnDelete(todo.id)}>Delete</button>
             </label>
         );
     }
