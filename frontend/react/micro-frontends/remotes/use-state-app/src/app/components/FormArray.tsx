@@ -1,4 +1,3 @@
-import { downloadImage } from "plotly.js";
 import { useState } from "react";
 import { Container, Row, Tab, Tabs } from "react-bootstrap";
 import { CopyBlock, dracula } from "react-code-blocks";
@@ -59,15 +58,15 @@ const Task = ({ todo, OnChange, OnDelete }: { todo: Todo, OnChange: (todo: Todo)
             </>
         );
         return (
-            <label>
+            <>
                 <input
                     type="checkbox"
                     checked={todo.done}
                     onChange={(e) => OnChange({ ...todo, done: e.target.checked })}
                 />
-                {todoContent}
+                {todoContent}{' Content'}
                 <button onClick={() => OnDelete(todo.id)}>Delete</button>
-            </label>
+           /</>
         );
     }
 }
