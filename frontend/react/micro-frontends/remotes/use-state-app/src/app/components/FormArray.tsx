@@ -48,12 +48,7 @@ const Task = ({ todo, onChange, OnDelete }: { todo: Todo, onChange: (todo: Todo)
                     onChange={(e) => onChange({ ...todo, title: e.target.value })}
 
                 />
-                <pre>
-                    <code>
 
-                        {JSON.stringify(todo, null, 2)}
-                    </code>
-                </pre>
                 <button onClick={() => setIsEditing(false)}>Save</button>
             </div>
         );
