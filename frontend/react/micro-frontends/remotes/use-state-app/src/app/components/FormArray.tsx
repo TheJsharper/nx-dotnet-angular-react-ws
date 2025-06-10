@@ -31,53 +31,62 @@ const AddTodo = ({ onAddTodo }: { onAddTodo: (title: string) => void }) => {
     );
 }
 
-const Task = ({ todo, OnChange, OnDelete }: { todo: Todo, OnChange: (todo: Todo) => void, OnDelete: (id: number) => void }) => {
-    
+const Task = ({ todo, onChange, OnDelete }: { todo: Todo, onChange: (todo: Todo) => void, OnDelete: (id: number) => void }) => {
+
     const [isEditing, setIsEditing] = useState(false);
-    
-    
-    let todoContent;
+
+
+    let todoContent = (
+
+        <span>Loading...</span>)
 
     if (isEditing) {
         todoContent = (
-            <>
+            <div>
                 <input
                     value={todo.title}
-                    onChange={(e) => OnChange({ ...todo, title: e.target.value })}
+                    onChange={(e) => onChange({ ...todo, title: e.target.value })}
 
                 />
+                <pre>
+                    <code>
+
+                        {JSON.stringify(todo, null, 2)}
+                    </code>
+                </pre>
                 <button onClick={() => setIsEditing(false)}>Save</button>
-            </>
+            </div>
         );
     } else {
         todoContent = (
-            <>
-                {todo.title} {todo.done ? ' (Done)' : ''} { todo.id}
+            <div>
+                {todo.title}
                 <button onClick={() => setIsEditing(true)}>Edit</button>
 
-            </>
-        );
-        return (
-            <>
-                <input
-                    type="checkbox"
-                    checked={todo.done}
-                    onChange={(e) => OnChange({ ...todo, done: e.target.checked })}
-                />
-                {todoContent}{' Content'}
-                <button onClick={() => OnDelete(todo.id)}>Delete</button>
-           /</>
+            </div>
         );
     }
+    return (
+        <>
+            <input
+                type="checkbox"
+                checked={todo.done}
+                onChange={(e) => onChange({ ...todo, done: e.target.checked })}
+            />
+            {todoContent}
+            <button onClick={() => OnDelete(todo.id)}>Delete</button>
+        </>
+    );
 }
-const TaskList = ({ todos, OnChange, OnDelete }: { todos: Todo[], OnChange: (task: Todo) => void, OnDelete: (id: number) => void }) => {
+
+const TaskList = ({ todos, onChange, OnDelete }: { todos: Todo[], onChange: (task: Todo) => void, OnDelete: (id: number) => void }) => {
     return (
         <ul>
             {todos.map(todo => (
                 <li key={todo.id}>
                     <Task
                         todo={todo}
-                        OnChange={OnChange}
+                        onChange={onChange}
                         OnDelete={OnDelete}
 
                     />
@@ -113,13 +122,13 @@ const Example = () => {
 
     const handleChangeTodo = (updatedTodo: Todo) => {
         //setTodos(todos.map(todo => todo.id === updatedTodo.id ? updatedTodo : todo));
-         setTodos(todos.map(t => {
-      if (t.id === updatedTodo.id) {
-        return updatedTodo;
-      } else {
-        return t;
-      }
-    }));
+        setTodos(todos.map(t => {
+            if (t.id === updatedTodo.id) {
+                return updatedTodo;
+            } else {
+                return t;
+            }
+        }));
     }
 
     const handleDeleteTodo = (id: number) => {
@@ -131,7 +140,7 @@ const Example = () => {
     return (
         <>
             <AddTodo onAddTodo={handleAddTodo} />
-            <TaskList todos={todos} OnChange={handleChangeTodo} OnDelete={handleDeleteTodo} />
+            <TaskList todos={todos} onChange={handleChangeTodo} OnDelete={handleDeleteTodo} />
 
 
         </>
