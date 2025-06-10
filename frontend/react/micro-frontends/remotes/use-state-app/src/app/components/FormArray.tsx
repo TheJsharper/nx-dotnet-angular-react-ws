@@ -36,9 +36,7 @@ const Task = ({ todo, onChange, OnDelete }: { todo: Todo, onChange: (todo: Todo)
     const [isEditing, setIsEditing] = useState(false);
 
 
-    let todoContent = (
-
-        <span>Loading...</span>)
+    let todoContent = (<span>Loading...</span>)
 
     if (isEditing) {
         todoContent = (
