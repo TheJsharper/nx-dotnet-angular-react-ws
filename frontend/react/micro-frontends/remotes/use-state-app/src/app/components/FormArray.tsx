@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import { Container, Row, Tab, Tabs } from "react-bootstrap";
 import { CopyBlock, dracula } from "react-code-blocks";
+
 interface Todo {
     id: number;
     title: string;
@@ -36,7 +37,7 @@ const Task = ({ todo, onChange, OnDelete }: { todo: Todo, onChange: (todo: Todo)
     const [isEditing, setIsEditing] = useState(false);
 
 
-    let todoContent = (<span>Loading...</span>)
+    let todoContent:ReactElement = (<span>Loading...</span>)
 
     if (isEditing) {
         todoContent = (
