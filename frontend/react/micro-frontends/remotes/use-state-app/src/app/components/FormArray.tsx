@@ -40,7 +40,7 @@ const Task = ({ todo, onChange, OnDelete }: { todo: Todo, onChange: (todo: Todo)
 
     if (isEditing) {
         todoContent = (
-            <div>
+            <>
                 <input
                     value={todo.title}
                     onChange={(e) => onChange({ ...todo, title: e.target.value })}
@@ -48,15 +48,15 @@ const Task = ({ todo, onChange, OnDelete }: { todo: Todo, onChange: (todo: Todo)
                 />
 
                 <button onClick={() => setIsEditing(false)}>Save</button>
-            </div>
+            </>
         );
     } else {
         todoContent = (
-            <div>
+            <>
                 {todo.title}
                 <button onClick={() => setIsEditing(true)}>Edit</button>
 
-            </div>
+            </>
         );
     }
     return (
@@ -90,8 +90,6 @@ const TaskList = ({ todos, onChange, OnDelete }: { todos: Todo[], onChange: (tas
 }
 
 
-
-//let nextId = 3;
 const Example = () => {
     const initialTodos: Todo[] = [
         { id: 0, title: 'Learn React', done: false },
@@ -114,14 +112,7 @@ const Example = () => {
     }
 
     const handleChangeTodo = (updatedTodo: Todo) => {
-        //setTodos(todos.map(todo => todo.id === updatedTodo.id ? updatedTodo : todo));
-        setTodos(todos.map(t => {
-            if (t.id === updatedTodo.id) {
-                return updatedTodo;
-            } else {
-                return t;
-            }
-        }));
+        setTodos(todos.map(todo => todo.id === updatedTodo.id ? updatedTodo : todo));
     }
 
     const handleDeleteTodo = (id: number) => {
