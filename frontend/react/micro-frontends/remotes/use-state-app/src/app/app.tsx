@@ -16,6 +16,7 @@ import { Menu } from './components/Menu';
 import { Messages } from './components/Messages';
 import Text from './components/Text';
 import FormArray from './components/FormArray';
+import FormMutationArray from './components/FormMutationArray';
 
 export const App = () => {
   
@@ -36,6 +37,7 @@ export const App = () => {
           <Route path="simple-form-object" element={<FormObject />} />
           <Route path="simple-form-nested-object" element={<FormNestedObject />} />
           <Route path="simple-form-array-object" element={<FormArray />} />
+          <Route path="simple-form-array-object-updater-immer" element={<FormMutationArray />} />
         </Routes>
       </div>
    
