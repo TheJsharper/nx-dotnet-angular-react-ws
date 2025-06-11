@@ -101,17 +101,30 @@ const Task = ({ todo, onChange }: { todo: Todo, onChange: (fn: DraftFunction<Tod
 
 
     return (
-        <li className="list-group-item d-flex justify-content-between align-items-center">
-            <div>
-                <input
-                    type="checkbox"
-                    checked={todo.done}
-                    onChange={() => toggleTodo(todo.id)}
-                />
-                {getContent()}
-            </div>
+
+        <div className="list-group-item d-flex justify-content-between align-items-center">
+            <input
+                type="checkbox"
+                checked={todo.done}
+                onChange={() => toggleTodo(todo.id)}
+            />
+            {getContent()}
             <button className="btn btn-danger btn-sm" onClick={() => removeTodo(todo.id)}>Remove</button>
-        </li>
+        </div>
+
+    );
+}
+
+const TaskList = ({ todos, onChange }: { todos: Todo[], onChange: (fn: DraftFunction<Todo[]>) => void }) => {
+
+    return (
+        <ul className="list-group">
+            {todos.map(todo => (
+                <li className="list-group-item" key={todo.id}>
+                    <Task key={todo.id} todo={todo} onChange={onChange} />
+                </li>
+            ))}
+        </ul>
     );
 }
 
@@ -124,16 +137,16 @@ const initialTodos: Todo[] = [
 const Example = () => {
     const [todos, updateTodos] = useImmer<Todo[]>(initialTodos);
     return (
-        <div>
-            <h2>Todo List</h2>
-            <AddTodo addFnc={updateTodos} />
-            <ul>
-                {todos.map(todo => (
-                    <li key={todo.id}>
-                        <Task todo={todo} onChange={updateTodos} />
-                    </li>
-                ))}
-            </ul>
+        <div className="d-flex gap-5">
+            <div className="d-flex flex-column gap-2">
+                <AddTodo addFnc={updateTodos} />
+                <TaskList todos={todos} onChange={updateTodos} />
+            </div>
+            <pre className="flex-fill">
+                <code style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}           >
+                    {JSON.stringify(todos, null, 2)}
+                </code>
+            </pre>
         </div>
     );
 }
