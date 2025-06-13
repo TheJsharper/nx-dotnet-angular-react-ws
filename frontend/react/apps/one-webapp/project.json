@@ -1,5 +1,5 @@
 {
-  "name": "frontend-react-apps--one-webapp",
+  "name": "one-webapp",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "./frontend/react/apps//one-webapp/src",
   "projectType": "application",
@@ -25,15 +25,15 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "frontend-react-apps--one-webapp:build"
+        "buildTarget": "one-webapp:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "frontend-react-apps--one-webapp:build:development",
+          "buildTarget": "one-webapp:build:development",
           "hmr": true
         },
         "production": {
-          "buildTarget": "frontend-react-apps--one-webapp:build:production",
+          "buildTarget": "one-webapp:build:production",
           "hmr": false
         }
       }
@@ -42,14 +42,14 @@
       "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "frontend-react-apps--one-webapp:build"
+        "buildTarget": "one-webapp:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "frontend-react-apps--one-webapp:build:development"
+          "buildTarget": "one-webapp:build:development"
         },
         "production": {
-          "buildTarget": "frontend-react-apps--one-webapp:build:production"
+          "buildTarget": "one-webapp:build:production"
         }
       }
     },
