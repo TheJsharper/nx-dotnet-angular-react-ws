@@ -401,3 +401,6 @@ secrets.yml
 .sts4-cache
 .cursor\rules\nx-rules.mdc
 .github\instructions\nx.instructions.md
+
+vite.config.*.timestamp*
+vitest.config.*.timestamp*

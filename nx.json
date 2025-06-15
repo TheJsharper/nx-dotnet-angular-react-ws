@@ -24,6 +24,17 @@
       "options": {
         "targetName": "e2e"
       }
+    },
+    {
+      "plugin": "@nx/react/router-plugin",
+      "options": {
+        "buildTargetName": "build",
+        "devTargetName": "dev",
+        "startTargetName": "start",
+        "watchDepsTargetName": "watch-deps",
+        "buildDepsTargetName": "build-deps",
+        "typecheckTargetName": "typecheck"
+      }
     }
   ],
   "generators": {
@@ -153,14 +164,18 @@
       ],
       "dependsOn": ["^build"],
       "cache": true
-      
     }
   },
   "nxCloudAccessToken": "MTMxYzM1YWMtNzBiNS00YTZjLWEzNGMtNzUzODhlNWFmOWEwfHJlYWQtd3JpdGU=",
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "sharedGlobals": [],
-    "production": ["default"]
+    "production": [
+      "default",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/src/test-setup.[jt]s"
+    ]
   },
   "tasksRunnerOptions": {
     "default": {
@@ -169,6 +184,6 @@
         "accessToken": "YzM1MGMwMDEtYTNjYS00MmE5LTk3OWUtZTc1NmRhNjFmMmRmfHJlYWQtd3JpdGU="
       }
     }
-  }, 
+  },
   "neverConnectToCloud": true
 }

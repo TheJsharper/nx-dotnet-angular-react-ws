@@ -1,8 +1,9 @@
 {
- "name": "webapp-react",
+  "name": "webapp-react",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "./frontend/react/apps/webapp-react/src",
-  "// targets": "to see all targets run: nx show project webapp-react --web",
+  "projectType": "application",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
