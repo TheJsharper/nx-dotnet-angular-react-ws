@@ -19,4 +19,11 @@ describe('AppController', () => {
       expect(appController.getData()).toEqual({ message: 'Hello API' });
     });
   });
+  describe('getCars', () => {
+    it('should return "list of cars"', () => {
+      const appController = app.get<AppController>(AppController);
+      const cars = appController.getCars();
+      expect(cars.length).toBeGreaterThan(0);
+    });
+  });
 });
