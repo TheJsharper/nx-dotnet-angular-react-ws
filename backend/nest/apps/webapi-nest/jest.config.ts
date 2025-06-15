@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'backend-nest-apps-webapi-nest',
+  displayName: 'webapi-nest',
   preset: '../../../../jest.preset.js',
   testEnvironment: 'node',
   transform: {

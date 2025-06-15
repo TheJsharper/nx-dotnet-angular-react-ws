@@ -18,4 +18,10 @@ describe('AppService', () => {
       expect(service.getData()).toEqual({ message: 'Hello API' });
     });
   });
+  describe('Cars', () => {
+    it('should return list of cars', () => {
+      const cars =service.cars;
+      expect(cars.length).toEqual(5);
+    });
+  });
 });
