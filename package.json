@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "simple frontend and backend workspace",
   "main": "index.js",
-  "type": "commonjs",
   "scripts": {
     "generated-spring-start-up-app": "openapi-generator-cli generate -i http://localhost:8080/v3/api-docs -g typescript-fetch -o generated/spring-start-up-app-openapi",
     "start": " nx run start-up-app:serve && generated-spring-start-up-app",

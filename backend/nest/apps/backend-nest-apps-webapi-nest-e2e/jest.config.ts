@@ -15,6 +15,5 @@ export default {
     ],
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory:
-    '../../../../coverage/backend-nest-apps-backend-nest-apps-webapi-nest-e2e',
+  coverageDirectory:  '../../../../coverage/backend-nest-apps-backend-nest-apps-webapi-nest-e2e',
 };
