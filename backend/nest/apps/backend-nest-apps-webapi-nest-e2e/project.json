@@ -1,5 +1,5 @@
 {
-  "name": "backend-nest-apps-backend-nest-apps-webapi-nest-e2e",
+  "name": "webappi-nest-e2e",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "implicitDependencies": ["webapi-nest"],
   "targets": {
