@@ -1,5 +1,5 @@
 {
-  "name": "backend-nest-apps-webapi-nest",
+  "name": "webapi-nest",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "backend/nest/apps/webapi-nest/src",
   "projectType": "application",
@@ -28,14 +28,14 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "backend-nest-apps-webapi-nest:build"
+        "buildTarget": "webapi-nest:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "backend-nest-apps-webapi-nest:build:development"
+          "buildTarget": "webapi-nest:build:development"
         },
         "production": {
-          "buildTarget": "backend-nest-apps-webapi-nest:build:production"
+          "buildTarget": "webapi-nest:build:production"
         }
       }
     },
