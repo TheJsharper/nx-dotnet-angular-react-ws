@@ -13,7 +13,7 @@ describe('AppController', () => {
     }).compile();
   });
 
-  
+
   describe('getCars', () => {
     it('should return "list of cars"', async () => {
       const appController = app.get<CarsController>(CarsController);
@@ -21,4 +21,14 @@ describe('AppController', () => {
       expect(cars.length).toBeGreaterThan(0);
     });
   });
+  describe('getCarById', () => {
+    it('should return a car by ID', async () => {
+      const appController = app.get<CarsController>(CarsController);
+      const car = await appController.getCarById(1);
+      expect(car).toBeDefined();
+
+    });
+  });
+
+
 });

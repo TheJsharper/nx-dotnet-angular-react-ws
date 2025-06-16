@@ -1,4 +1,4 @@
-import { Controller } from "@nestjs/common";
+import { Controller, Get, Post, Put, Delete } from "@nestjs/common";
 import { Car } from "../models/cars.models";
 import { CarsService } from "../services/cars.service";
 
@@ -7,6 +7,7 @@ export class CarsController {
 
   constructor(private readonly carsService: CarsService) {
   }
+  @Get("/")
   getAllCars(): Promise<Car[]> {
     return new Promise<Car[]>(
       (resolve, reject) => {
@@ -20,11 +21,12 @@ export class CarsController {
     );
   }
 
-  getCarById(id: string): Promise<Car | undefined> {
+  @Get("/:id")
+  getCarById(id: number): Promise<Car> {
     return new Promise<Car | undefined>(
       (resolve, reject) => {
         try {
-          const car = this.carsService.getCarById(Number(id));
+          const car = this.carsService.getCarById(id);
           resolve(car);
         } catch (error) {
           reject(error);
@@ -33,6 +35,7 @@ export class CarsController {
     );
   }
 
+  @Post("/")
   createCar(carData: Omit<Car, "id">): Promise<Car> {
     return new Promise<Car>(
       (resolve, reject) => {
@@ -46,4 +49,31 @@ export class CarsController {
     );
 
   }
+  @Put("/:id")
+  updateCar(id: string, carData: Partial<Car>): Promise<Car> {
+    return new Promise<Car>(
+      (resolve, reject) => {
+        try {
+          const updatedCar = this.carsService.updateCar(Number(id), carData);
+          resolve(updatedCar);
+        } catch (error) {
+          reject(error);
+        }
+      }
+    );
+  }
+  @Delete("/:id")
+  deleteCar(id: string): Promise<void> {
+    return new Promise<void>(
+      (resolve, reject) => {
+        try {
+          this.carsService.deleteCar(Number(id));
+          resolve();
+        } catch (error) {
+          reject(error);
+        }
+      }
+    );
+  }
+
 }   
