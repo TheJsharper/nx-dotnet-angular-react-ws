@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Car } from '../models/cars.models';
+import { th } from '@faker-js/faker';
 
 @Injectable()
 export class CarsService {
@@ -19,6 +20,9 @@ export class CarsService {
         return this.cars.find(car => car.id === id);
     }
     createCar(carData: Omit<Car, "id">): Car {
+        if(!carData.make || !carData.model || !carData.year || !carData.color) {
+            throw new Error('Invalid car data');
+        }
         const newCar: Car = {
             ...carData,
             id: this.cars.length ? Math.max(...this.cars.map(car => car.id)) + 1 : 1
@@ -27,9 +31,28 @@ export class CarsService {
         return newCar;
     }
     updateCar(id: number, carData: Partial<Car>): Car | undefined {
+        if (typeof id !== 'number' || id <= 0) {
+            throw new Error('Invalid car ID');
+        }
+        
+        
+        Object.values(carData).filter(value => value === undefined || value === null).some( (value) => {
+            if (value === undefined || value === null) {
+                throw new Error('Invalid car data') ;
+            }
+        });
+
+        if (!carData || Object.keys(carData).length === 0) {
+            throw new Error('Invalid car data');
+        }
         const carIndex = this.cars.findIndex(car => car.id === id);
+        
         if (carIndex === -1) {
-            return undefined;
+            throw new Error('Car not found');
+        }
+
+        if (carData.id && carData.id !== id) {
+            throw new Error('Cannot change car ID');
         }
         const updatedCar = { ...this.cars[carIndex], ...carData };
         this.cars[carIndex] = updatedCar;
