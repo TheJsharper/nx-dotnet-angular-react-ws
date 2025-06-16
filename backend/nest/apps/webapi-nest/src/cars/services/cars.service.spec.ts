@@ -51,11 +51,6 @@ describe('CarsService', () => {
     const car = service.getCarById(999);
     expect(car).toBeUndefined();
   });
-  it('should return undefined when updating a non-existing car', () => {
-    const updatedCar = service.updateCar(999, { color: 'Blue' });
-    expect(updatedCar).toBeUndefined();
-  }
-  );
   it('should return false when deleting a non-existing car', () => {
     const deleteResult = service.deleteCar(999);
     expect(deleteResult).toBe(false);
@@ -83,6 +78,11 @@ describe('CarsService', () => {
       service.createCar({ make: 'Missing Model', model: undefined , year: 2023, color: 'Green' }); 
     }).toThrow('Invalid car data');
   })
+  it('should not create a car with invalid data', () => {
+    expect(() => {
+      service.createCar({ make: 'Invalid Car', model: 'Model', year: undefined, color: 'Blue' }); // Invalid year
+    }).toThrow('Invalid car data');
+  });
 
   it('should not update a car with invalid data', () => {
     const car = service.getCarById(1);
@@ -97,6 +97,6 @@ describe('CarsService', () => {
       service.updateCar(999, { color: 'Blue' }); // Non-existing car
     }).toThrow('Car not found');
   });
-  
+
 
 });

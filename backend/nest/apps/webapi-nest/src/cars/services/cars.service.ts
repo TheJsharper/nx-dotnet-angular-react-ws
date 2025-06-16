@@ -1,16 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { Car } from '../models/cars.models';
-import { th } from '@faker-js/faker';
 
 @Injectable()
 export class CarsService {
-     cars: Car[] = [
-    { id: 1, make: 'Toyota', model: 'Corolla', year: 2020, color: 'Blue' },
-    { id: 2, make: 'Honda', model: 'Civic', year: 2019, color: 'Red' },
-    { id: 3, make: 'Ford', model: 'Mustang', year: 2021, color: 'Black' },
-    { id: 4, make: 'Chevrolet', model: 'Malibu', year: 2018, color: 'White' },
-    { id: 5, make: 'Nissan', model: 'Altima', year: 2022, color: 'Silver' },
-  ]
+    cars: Car[] = [
+        { id: 1, make: 'Toyota', model: 'Corolla', year: 2020, color: 'Blue' },
+        { id: 2, make: 'Honda', model: 'Civic', year: 2019, color: 'Red' },
+        { id: 3, make: 'Ford', model: 'Mustang', year: 2021, color: 'Black' },
+        { id: 4, make: 'Chevrolet', model: 'Malibu', year: 2018, color: 'White' },
+        { id: 5, make: 'Nissan', model: 'Altima', year: 2022, color: 'Silver' },
+    ]
 
 
     getAllCars(): Car[] {
@@ -20,9 +19,16 @@ export class CarsService {
         return this.cars.find(car => car.id === id);
     }
     createCar(carData: Omit<Car, "id">): Car {
-        if(!carData.make || !carData.model || !carData.year || !carData.color) {
+        if (!carData.make || !carData.model || !carData.year || !carData.color) {
             throw new Error('Invalid car data');
         }
+
+        Object.values(carData).filter(value => value === undefined || value === null).some((value) => {
+            if (value === undefined || value === null) {
+                throw new Error('Invalid car data');
+            }
+        });
+
         const newCar: Car = {
             ...carData,
             id: this.cars.length ? Math.max(...this.cars.map(car => car.id)) + 1 : 1
@@ -34,11 +40,11 @@ export class CarsService {
         if (typeof id !== 'number' || id <= 0) {
             throw new Error('Invalid car ID');
         }
-        
-        
-        Object.values(carData).filter(value => value === undefined || value === null).some( (value) => {
+
+
+        Object.values(carData).filter(value => value === undefined || value === null).some((value) => {
             if (value === undefined || value === null) {
-                throw new Error('Invalid car data') ;
+                throw new Error('Invalid car data');
             }
         });
 
@@ -46,7 +52,7 @@ export class CarsService {
             throw new Error('Invalid car data');
         }
         const carIndex = this.cars.findIndex(car => car.id === id);
-        
+
         if (carIndex === -1) {
             throw new Error('Car not found');
         }
