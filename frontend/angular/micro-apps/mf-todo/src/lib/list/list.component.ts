@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Store, select } from "@ngrx/store";
 import { Observable, of } from 'rxjs';
@@ -10,7 +10,7 @@ import { Todo } from "../models/todo.model";
 
 @Component({
     selector: 'lib-app-list',
-    imports: [ItemComponent, FilterPipe, AsyncPipe, NgFor],
+    imports: [ItemComponent, FilterPipe, AsyncPipe],
     templateUrl: './list.component.html',
     styleUrls: ['./list.component.scss']
 })

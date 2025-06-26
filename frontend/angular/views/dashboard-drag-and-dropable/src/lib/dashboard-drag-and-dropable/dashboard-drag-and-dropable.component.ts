@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,7 +17,7 @@ interface Safe extends GridsterConfig {
 @Component({
   selector: 'lib-dashboard-drag-and-dropable',
   standalone: true,
-  imports: [CommonModule, GridsterComponent, GridsterItemComponent, MatCheckboxModule, MatIconModule, MatMenuModule, FormsModule, MatFormFieldModule, MatSelectModule, MatButtonModule, RouterModule],
+  imports: [GridsterComponent, GridsterItemComponent, MatCheckboxModule, MatIconModule, MatMenuModule, FormsModule, MatFormFieldModule, MatSelectModule, MatButtonModule, RouterModule],
   templateUrl: './dashboard-drag-and-dropable.component.html',
   styleUrl: './dashboard-drag-and-dropable.component.scss',
 })

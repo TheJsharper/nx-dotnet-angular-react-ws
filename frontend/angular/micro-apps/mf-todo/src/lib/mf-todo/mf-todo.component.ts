@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AddComponent } from '../add';
@@ -9,7 +9,7 @@ import { TodosState } from './store/todo.reducer';
 
 @Component({
   selector: 'lib-mf-todo',
-  imports: [CommonModule, ListComponent, FooterComponent, AddComponent],
+  imports: [ListComponent, FooterComponent, AddComponent],
   providers:[],
   templateUrl: './mf-todo.component.html',
   styleUrl: './mf-todo.component.scss',

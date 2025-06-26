@@ -4,13 +4,13 @@ import { PlotModel, Selection, initialPlotModel } from '../store/ngrx-create-api
 import { Store } from '@ngrx/store';
 import { SelectedPlotDataAction } from '../store/ngrx-create-api-plot.actions';
 import { Subject, first, takeUntil, tap } from 'rxjs';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
     selector: 'app-ngrx-create-api-plot-nav',
     templateUrl: './ngrx-create-api-plot-nav.component.html',
     standalone: true,
-    imports: [CommonModule]
+    imports: []
 })
 
 export class NgrxCreateApiPlotNavComponent implements OnInit, OnDestroy {

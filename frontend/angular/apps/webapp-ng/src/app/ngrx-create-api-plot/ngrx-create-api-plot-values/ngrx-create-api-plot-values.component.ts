@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -12,7 +12,7 @@ import { NgrxCreateApiPlotSelector } from '../store/nrx-create-api-plot.selector
 @Component({
     selector: 'app-nrgx-create-api-plot-values',
     templateUrl: 'ngrx-create-api-plot-values.component.html',
-    imports: [CommonModule, ReactiveFormsModule],
+    imports: [ReactiveFormsModule],
     standalone: true
 })
 

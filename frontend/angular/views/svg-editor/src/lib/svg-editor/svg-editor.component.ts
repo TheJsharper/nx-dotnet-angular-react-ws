@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -9,7 +9,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 @Component({
   selector: 'lib-svg-editor',
   standalone: true,
-  imports: [CommonModule, NzMenuModule, NzButtonModule, NzSelectModule, FormsModule, NzRadioModule],
+  imports: [NzMenuModule, NzButtonModule, NzSelectModule, FormsModule, NzRadioModule],
   templateUrl: './svg-editor.component.html',
   styleUrl: './svg-editor.component.scss',
 })

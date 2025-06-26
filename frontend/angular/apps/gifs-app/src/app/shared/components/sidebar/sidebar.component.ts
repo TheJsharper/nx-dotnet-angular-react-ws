@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
 import { GifsService } from "../../../gifs/services/gifs.service";
-import { NgFor } from "@angular/common";
+
 
 @Component({
     selector:'app-shared-sidebar',
-    imports:[NgFor],
+    imports: [],
     templateUrl:'./sidebar.component.html',
     styleUrls:['./sidebar.component.scss']
 })

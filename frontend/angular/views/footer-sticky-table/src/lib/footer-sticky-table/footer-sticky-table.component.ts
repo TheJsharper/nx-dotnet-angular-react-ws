@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { BehaviorSubject } from 'rxjs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
@@ -27,7 +27,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'lib-footer-sticky-table',
   standalone: true,
-  imports: [CommonModule, MatExpansionModule, MatTableModule, ],
+  imports: [MatExpansionModule, MatTableModule],
   templateUrl: './footer-sticky-table.component.html',
   styleUrl: './footer-sticky-table.component.scss',
 })

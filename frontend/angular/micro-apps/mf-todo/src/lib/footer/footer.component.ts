@@ -1,4 +1,4 @@
-import { AsyncPipe, NgClass, NgFor } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
@@ -10,7 +10,7 @@ import { selectFilter, selectPendingTodos } from '../mf-todo/store/todo.selector
 @Component({
     selector: 'lib-app-footer',
     templateUrl: './footer.component.html',
-    imports: [AsyncPipe, NgClass, NgFor],
+    imports: [AsyncPipe, NgClass],
     styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
