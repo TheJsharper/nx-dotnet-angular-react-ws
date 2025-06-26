@@ -1,12 +1,19 @@
 import { Controller, Get, Post, Put, Delete } from "@nestjs/common";
 import { Car } from "../models/cars.models";
 import { CarsService } from "../services/cars.service";
-
-@Controller('cars')
+import { ApiExcludeController, ApiResponse, ApiTags } from "@nestjs/swagger";
+@ApiTags('Cars')
+@Controller('api/cars')
+@ApiExcludeController(false)
 export class CarsController {
 
   constructor(private readonly carsService: CarsService) {
   }
+  @ApiResponse({
+    status: 200,  
+    description: 'Get all cars',
+    type: Array<Car>,
+  })
   @Get("/")
   getAllCars(): Promise<Car[]> {
     return new Promise<Car[]>(
