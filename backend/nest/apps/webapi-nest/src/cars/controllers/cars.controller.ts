@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete } from "@nestjs/common";
+import { Controller, Get, Post, Put, Delete, Body } from "@nestjs/common";
 import { Car } from "../models/cars.models";
 import { CarsService } from "../services/cars.service";
 import { ApiExcludeController, ApiResponse, ApiTags } from "@nestjs/swagger";
@@ -43,7 +43,13 @@ export class CarsController {
   }
 
   @Post("/")
-  createCar(carData: Omit<Car, "id">): Promise<Car> {
+  @ApiResponse({
+    status: 201,
+    description: 'Create a new car',
+    type: Car
+  })
+
+  createCar(@Body() carData: Car): Promise<Car> {
     return new Promise<Car>(
       (resolve, reject) => {
         try {
