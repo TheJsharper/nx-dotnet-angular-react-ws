@@ -7,7 +7,7 @@ export class Car {
     example: 1,
     required: false
   })
-  id: number;
+  id?: number;
   @ApiProperty({
     type: 'string',
     description: 'Make of the car',

@@ -29,11 +29,11 @@ export class CarsController {
   }
 
   @Get("/:id")
-  getCarById(id: number): Promise<Car> {
-    return new Promise<Car | undefined>(
-      (resolve, reject) => {
+  async getCarById(id: number): Promise<Car> {
+    return await new Promise<Car | undefined>(
+        (resolve, reject) => {
         try {
-          const car = this.carsService.getCarById(id);
+          const car =  this.carsService.getCarById(id);
           resolve(car);
         } catch (error) {
           reject(error);
@@ -49,13 +49,14 @@ export class CarsController {
     type: Car
   })
 
-  createCar(@Body() carData: Car): Promise<Car> {
-    return new Promise<Car>(
+ async  createCar(@Body() carData: Car): Promise<Car> {
+    return await new Promise<Car>(
       (resolve, reject) => {
         try {
           const updateNewCar = this.carsService.createCar(carData);
           resolve(updateNewCar);
         } catch (error) {
+       //   console.error('Error creating car:=======>x', error);
           reject(error);
         }
       }

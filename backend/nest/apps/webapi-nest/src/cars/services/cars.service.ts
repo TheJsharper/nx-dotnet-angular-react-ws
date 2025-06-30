@@ -18,23 +18,27 @@ export class CarsService {
     getCarById(id: number): Car | undefined {
         return this.cars.find(car => car.id === id);
     }
-    createCar(carData: Omit<Car, "id">): Car {
+    createCar(carData: Omit<Car, "id">): Promise<Car> {
+        
         if (!carData.make || !carData.model || !carData.year || !carData.color) {
-            throw new Error('Invalid car data');
+            //  console.error('Invalid car data:', carData);
+            return Promise.reject(new Error('Invalid car data'));
         }
-
+        
         Object.values(carData).filter(value => value === undefined || value === null).some((value) => {
             if (value === undefined || value === null) {
-                throw new Error('Invalid car data');
+                ///console.error('Invalid car data:', value);
+                throw new Error('Invalid car data !!!');
             }
         });
+        console.log('Creating car with data:', carData);
 
         const newCar: Car = {
             ...carData,
             id: this.cars.length ? Math.max(...this.cars.map(car => car.id)) + 1 : 1
         };
         this.cars.push(newCar);
-        return newCar;
+        return Promise.resolve(newCar);
     }
     updateCar(id: number, carData: Partial<Car>): Car | undefined {
         if (typeof id !== 'number' || id <= 0) {
