@@ -19,19 +19,24 @@ export class CarsService {
         return this.cars.find(car => car.id === id);
     }
     createCar(carData: Omit<Car, "id">): Promise<Car> {
-        
-        if (!carData.make || !carData.model || !carData.year || !carData.color) {
-            //  console.error('Invalid car data:', carData);
+
+        if (!carData.make || !carData.model || !carData.year || !carData.color || !carData.year
+            ) {
+
             return Promise.reject(new Error('Invalid car data'));
         }
+
+        if (typeof carData.year !== 'number' || carData.year <= 1885 || carData.year > 5000) {
+
+            return Promise.reject(new Error('Invalid year'));
+        }
+
+        if(typeof carData.year !== 'number' || typeof carData.make !== 'string' || typeof carData.model !== 'string' || typeof carData.color !== 'string'){
+            return Promise.reject(new Error('Invalid car data types'));
+        }
+ 
         
-        Object.values(carData).filter(value => value === undefined || value === null).some((value) => {
-            if (value === undefined || value === null) {
-                ///console.error('Invalid car data:', value);
-                throw new Error('Invalid car data !!!');
-            }
-        });
-        console.log('Creating car with data:', carData);
+
 
         const newCar: Car = {
             ...carData,
