@@ -88,21 +88,26 @@ export class CarsService {
         return Promise.resolve(updatedCar);
     }
     async deleteCar(id: number): Promise<boolean> {
-        if (typeof id !== 'number' ) {
-            return Promise.reject(new Error('Invalid car ID'));
-        }
+        if (typeof id !== 'number') {
 
-        if(id <= 0) {
+            return Promise.reject(new Error('Invalid car ID'));
+
+        }
+        if (id <= 0) {
+
             return Promise.reject(new Error('Invalid car ID - must be a positive number'));
+
         }
         const carIndex = this.cars.findIndex(car => car.id === id);
 
         if (carIndex === -1) {
-            return Promise.reject( new Error( "it does NOT exist id"));
+
+            return Promise.reject(new Error("it does NOT exist id"));
+            
         }
 
         this.cars.splice(carIndex, 1);
-        
+
         return Promise.resolve(true);
     }
 }
