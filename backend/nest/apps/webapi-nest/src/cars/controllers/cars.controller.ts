@@ -76,17 +76,12 @@ export class CarsController {
     );
   }
   @Delete("/:id")
-  deleteCar(id: string): Promise<void> {
-    return new Promise<void>(
-      (resolve, reject) => {
-        try {
-          this.carsService.deleteCar(Number(id));
-          resolve();
-        } catch (error) {
-          reject(error);
-        }
-      }
-    );
+  async deleteCar(id: number): Promise<boolean> {
+    return await new Promise<boolean>((resolve, reject) => {
+      this.carsService.deleteCar(id)
+        .then((value: boolean) =>resolve(value) )
+        .catch((error) => reject(error.message));
+    });
   }
 
 }   

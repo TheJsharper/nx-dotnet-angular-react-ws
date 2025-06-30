@@ -224,7 +224,7 @@ describe('CarsController', () => {
     it('should throw an error when updating a car with a different ID', async () => {
 
       const invalidUpdate: Partial<Car> = { id: 2, make: 'Honda', model: 'Civic', year: 2020, color: 'Red' }; // Trying to change ID
-      
+
       const carId = 1;
 
       await expect(async () => {
@@ -240,5 +240,48 @@ describe('CarsController', () => {
     });
   })
 
+  describe('deleteCar', () => {
+    it('should delete a car by ID', async () => {
+      const carId = 1;
+      const result = await carsController.deleteCar(carId);
+      expect(result).toBeDefined();
+      expect(result).toBe(true);
+    });
+
+    it('should throw an error when deleting a car with an invalid ID', async () => {
+      const invalidCarId = 'invalid';
+
+      await expect(async () => {
+        try {
+          await carsController.deleteCar(invalidCarId as unknown as number);
+        } catch (error) {
+          throw new Error(error);
+        }
+      }).rejects.toThrow('Invalid car ID');
+    });
+    it('should throw an error when deleting a car that does not exist', async () => {
+      const nonExistentCarId = 9999; // Assuming this ID does not exist
+
+      await expect(async () => {
+        try {
+          await carsController.deleteCar(nonExistentCarId);
+        } catch (error) {
+          throw new Error(error);
+        }
+      }).rejects.toThrow('it does NOT exist id');
+    });
+
+    it('should throw an error when deleting a car with a negative ID', async () => {
+      const negativeCarId = -1;
+
+      await expect(async () => {
+        try {
+          await carsController.deleteCar(negativeCarId);
+        } catch (error) {
+          throw new Error(error);
+        }
+      }).rejects.toThrow('Invalid car ID - must be a positive number');
+    });
+  });
 
 });
