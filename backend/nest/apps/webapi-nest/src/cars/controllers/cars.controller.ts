@@ -10,7 +10,7 @@ export class CarsController {
   constructor(private readonly carsService: CarsService) {
   }
   @ApiResponse({
-    status: 200,  
+    status: 200,
     description: 'Get all cars',
     type: Array<Car>,
   })
@@ -31,9 +31,9 @@ export class CarsController {
   @Get("/:id")
   async getCarById(id: number): Promise<Car> {
     return await new Promise<Car | undefined>(
-        (resolve, reject) => {
+      (resolve, reject) => {
         try {
-          const car =  this.carsService.getCarById(id);
+          const car = this.carsService.getCarById(id);
           resolve(car);
         } catch (error) {
           reject(error);
@@ -49,14 +49,13 @@ export class CarsController {
     type: Car
   })
 
- async  createCar(@Body() carData: Car): Promise<Car> {
+  async createCar(@Body() carData: Car): Promise<Car> {
     return await new Promise<Car>(
       (resolve, reject) => {
         try {
           const updateNewCar = this.carsService.createCar(carData);
           resolve(updateNewCar);
         } catch (error) {
-       //   console.error('Error creating car:=======>x', error);
           reject(error);
         }
       }
@@ -64,8 +63,8 @@ export class CarsController {
 
   }
   @Put("/:id")
-  updateCar(id: string, carData: Partial<Car>): Promise<Car> {
-    return new Promise<Car>(
+  async updateCar(id: string, carData: Partial<Car>): Promise<Car> {
+    return await new Promise<Car>(
       (resolve, reject) => {
         try {
           const updatedCar = this.carsService.updateCar(Number(id), carData);

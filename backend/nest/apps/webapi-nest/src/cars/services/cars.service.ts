@@ -18,25 +18,36 @@ export class CarsService {
     getCarById(id: number): Car | undefined {
         return this.cars.find(car => car.id === id);
     }
-    createCar(carData: Omit<Car, "id">): Promise<Car> {
+
+    private validateCarData(carData: Omit<Car, "id">): { key: string, status: boolean, message: string } {
+
 
         if (!carData.make || !carData.model || !carData.year || !carData.color || !carData.year
-            ) {
-
-            return Promise.reject(new Error('Invalid car data'));
+        ) {
+            return { key: 'properties', status: false, message: 'Invalid car data' };
         }
 
         if (typeof carData.year !== 'number' || carData.year <= 1885 || carData.year > 5000) {
-
-            return Promise.reject(new Error('Invalid year'));
+            return { key: 'year', status: false, message: 'Invalid year' };
         }
 
-        if(typeof carData.year !== 'number' || typeof carData.make !== 'string' || typeof carData.model !== 'string' || typeof carData.color !== 'string'){
-            return Promise.reject(new Error('Invalid car data types'));
+        if (typeof carData.make !== 'string' || typeof carData.model !== 'string' || typeof carData.color !== 'string') {
+            return { key: 'type', status: false, message: 'Invalid car data types' };
         }
- 
-        
 
+        return { key: 'valid', status: true, message: 'Valid car data' };
+    }
+
+
+    createCar(carData: Omit<Car, "id">): Promise<Car> {
+
+        const validation = this.validateCarData(carData);
+
+
+        if (!validation.status) {
+
+            return Promise.reject(new Error(validation.message));
+        }
 
         const newCar: Car = {
             ...carData,
@@ -44,34 +55,37 @@ export class CarsService {
         };
         this.cars.push(newCar);
         return Promise.resolve(newCar);
+
     }
-    updateCar(id: number, carData: Partial<Car>): Car | undefined {
+    updateCar(id: number, carData: Partial<Car>): Promise<Car> {
         if (typeof id !== 'number' || id <= 0) {
-            throw new Error('Invalid car ID');
+            return Promise.reject(new Error('Invalid car ID'));
         }
 
 
-        Object.values(carData).filter(value => value === undefined || value === null).some((value) => {
-            if (value === undefined || value === null) {
-                throw new Error('Invalid car data');
-            }
-        });
 
-        if (!carData || Object.keys(carData).length === 0) {
-            throw new Error('Invalid car data');
+        const validation = this.validateCarData(carData as Omit<Car, "id">);
+
+        if (!validation.status) {
+            return Promise.reject(new Error(validation.message));
         }
+
         const carIndex = this.cars.findIndex(car => car.id === id);
 
-        if (carIndex === -1) {
-            throw new Error('Car not found');
-        }
 
         if (carData.id && carData.id !== id) {
-            throw new Error('Cannot change car ID');
+            return Promise.reject(new Error('Cannot change car ID'));
         }
+
+        if (carIndex === -1) {
+            return Promise.reject(new Error('Car not found'));
+        }
+
         const updatedCar = { ...this.cars[carIndex], ...carData };
+        
         this.cars[carIndex] = updatedCar;
-        return updatedCar;
+
+        return Promise.resolve(updatedCar);
     }
     deleteCar(id: number): boolean {
         const carIndex = this.cars.findIndex(car => car.id === id);
