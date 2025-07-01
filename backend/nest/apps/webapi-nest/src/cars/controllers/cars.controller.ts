@@ -29,8 +29,8 @@ export class CarsController {
   }
 
   @Get("/:id")
-  async getCarById(id: number): Promise<Car> {
-    return await new Promise<Car | undefined>(
+  async getCarById(@Param('id')id: string): Promise<Car> {
+    return await new Promise<Car>(
       (resolve, reject) => {
         try {
           const car = this.carsService.getCarById(id);
@@ -63,7 +63,7 @@ export class CarsController {
 
   }
   @Put("/:id")
-  async updateCar(id: string, carData: Partial<Car>): Promise<Car> {
+  async updateCar(@Param('id') id: string, @Body()  carData: Car): Promise<Car> {
     return await new Promise<Car>(
       (resolve, reject) => {
         try {
@@ -85,7 +85,7 @@ export class CarsController {
     },
   })
   async deleteCar(@Param('id') id: string ): Promise<boolean> {
-    
+
     return await new Promise<boolean>((resolve, reject) => {
       this.carsService.deleteCar(Number(id))
         .then((value: boolean) =>resolve(value) )

@@ -25,7 +25,7 @@ describe('CarsController', () => {
 
   describe('getCarById', () => {
     it('should return a car by ID', async () => {
-      const car = await carsController.getCarById(1);
+      const car = await carsController.getCarById("1");
       expect(car).toBeDefined();
     });
   });
@@ -128,7 +128,7 @@ describe('CarsController', () => {
 
 
     it('should update a car by ID', async () => {
-      const updatedCar: Partial<Car> = { make: 'Toyota', model: 'Camry', year: 2021, color: 'Black' };
+      const updatedCar: Car = { id: 1, make: 'Toyota', model: 'Camry', year: 2021, color: 'Black' };
 
       const carId = 1;
 
@@ -143,7 +143,7 @@ describe('CarsController', () => {
     });
 
     it('should throw an error when updating a car with invalid data', async () => {
-      const invalidUpdate: Partial<Car> = { make: null, model: 'Civic', year: 2019, color: 'Red' }; // make is null
+      const invalidUpdate: Car = { make: null, model: 'Civic', year: 2019, color: 'Red' }; // make is null
       const carId = 1;
 
       await expect(async () => {
@@ -164,7 +164,7 @@ describe('CarsController', () => {
 
       await expect(async () => {
         try {
-          const result = await carsController.updateCar(carId.toString(), invalidUpdate);
+          const result = await carsController.updateCar(carId.toString(), invalidUpdate as Car);
 
           return result;
 
@@ -180,7 +180,7 @@ describe('CarsController', () => {
 
       await expect(async () => {
         try {
-          const result = await carsController.updateCar(carId.toString(), invalidUpdate);
+          const result = await carsController.updateCar(carId.toString(), invalidUpdate as Car);
 
           return result;
 
@@ -196,7 +196,7 @@ describe('CarsController', () => {
 
       await expect(async () => {
         try {
-          const result = await carsController.updateCar(carId.toString(), invalidUpdate);
+          const result = await carsController.updateCar(carId.toString(), invalidUpdate as Car);
 
           return result;
 
@@ -211,7 +211,7 @@ describe('CarsController', () => {
 
       await expect(async () => {
         try {
-          const result = await carsController.updateCar(carId.toString(), invalidUpdate);
+          const result = await carsController.updateCar(carId.toString(), invalidUpdate as Car);
 
           return result;
 
@@ -229,7 +229,7 @@ describe('CarsController', () => {
 
       await expect(async () => {
         try {
-          const result = await carsController.updateCar(carId.toString(), invalidUpdate);
+          const result = await carsController.updateCar(carId.toString(), invalidUpdate as Car);
 
           return result;
 

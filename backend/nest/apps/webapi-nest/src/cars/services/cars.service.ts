@@ -15,8 +15,23 @@ export class CarsService {
     getAllCars(): Car[] {
         return this.cars;
     }
-    getCarById(id: number): Car | undefined {
-        return this.cars.find(car => car.id === id);
+    getCarById(id: string): Promise<Car> {
+
+        if (typeof id !== 'string' || isNaN(Number(id))) {
+            return Promise.reject(new Error('Invalid car ID'));
+        }
+        const idNumber = Number(id);
+        if (idNumber <= 0) {
+            return Promise.reject(new Error('Invalid car ID - must be a positive number'));
+        }
+
+        const found = this.cars.find(car => car.id === idNumber);
+        if (!found) {
+            return Promise.reject(new Error('Car not found'));
+        }
+
+
+        return Promise.resolve(found);
     }
 
     private validateCarData(carData: Omit<Car, "id">): { key: string, status: boolean, message: string } {
@@ -90,7 +105,7 @@ export class CarsService {
     async deleteCar(id: number): Promise<boolean> {
 
         if (typeof id !== 'number' || isNaN(id)) {
-            
+
             return Promise.reject(new Error('Invalid car ID'));
 
         }
@@ -104,7 +119,7 @@ export class CarsService {
         if (carIndex === -1) {
 
             return Promise.reject(new Error("it does NOT exist id"));
-            
+
         }
 
         this.cars.splice(carIndex, 1);
