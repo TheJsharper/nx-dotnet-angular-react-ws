@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Put, Delete, Body, Param } from "@nestjs/common";
+import { Controller, Get, Post, Put, Delete, Body, Param, Res } from "@nestjs/common";
 import { Car } from "../models/cars.models";
 import { CarsService } from "../services/cars.service";
 import { ApiExcludeController, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { Response } from 'express';
 @ApiTags('Cars')
 @Controller('api/cars')
 @ApiExcludeController(false)
@@ -29,15 +30,14 @@ export class CarsController {
   }
 
   @Get("/:id")
-  async getCarById(@Param('id')id: string): Promise<Car> {
-    return await new Promise<Car>(
-      (resolve, reject) => {
-        try {
-          const car = this.carsService.getCarById(id);
-          resolve(car);
-        } catch (error) {
-          reject(error);
-        }
+  async getCarById(@Param('id') id: string, @Res() res: Response): Promise<Response> {
+    return await new Promise<Response>(
+      (resolve) => {
+        
+        const car = this.carsService.getCarById(id, res);
+
+        resolve(car);
+
       }
     );
   }
@@ -63,7 +63,7 @@ export class CarsController {
 
   }
   @Put("/:id")
-  async updateCar(@Param('id') id: string, @Body()  carData: Car): Promise<Car> {
+  async updateCar(@Param('id') id: string, @Body() carData: Car): Promise<Car> {
     return await new Promise<Car>(
       (resolve, reject) => {
         try {
@@ -84,11 +84,11 @@ export class CarsController {
       example: true,
     },
   })
-  async deleteCar(@Param('id') id: string ): Promise<boolean> {
+  async deleteCar(@Param('id') id: string): Promise<boolean> {
 
     return await new Promise<boolean>((resolve, reject) => {
       this.carsService.deleteCar(Number(id))
-        .then((value: boolean) =>resolve(value) )
+        .then((value: boolean) => resolve(value))
         .catch((error) => reject(error.message));
     });
   }

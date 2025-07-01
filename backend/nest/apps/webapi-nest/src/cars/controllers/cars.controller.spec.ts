@@ -3,6 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { CarsController } from './cars.controller';
 import { CarsService } from '../services/cars.service';
 import { Car } from '../models/cars.models';
+import { Response } from 'express';
 
 describe('CarsController', () => {
   let carsController: CarsController;
@@ -25,7 +26,12 @@ describe('CarsController', () => {
 
   describe('getCarById', () => {
     it('should return a car by ID', async () => {
-      const car = await carsController.getCarById("1");
+
+
+      const res = {} as unknown as Response;
+      res.json = jest.fn();
+      res.status = jest.fn(() => res);
+      const car = await carsController.getCarById("1", res);
       expect(car).toBeDefined();
     });
   });

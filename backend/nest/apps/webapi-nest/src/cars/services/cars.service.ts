@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { Response } from 'express';
 import { Car } from '../models/cars.models';
-
 @Injectable()
 export class CarsService {
     cars: Car[] = [
@@ -15,23 +15,27 @@ export class CarsService {
     getAllCars(): Car[] {
         return this.cars;
     }
-    getCarById(id: string): Promise<Car> {
+    async getCarById(id: string, res: Response): Promise<Response> {
 
         if (typeof id !== 'string' || isNaN(Number(id))) {
-            return Promise.reject(new Error('Invalid car ID'));
+
+            throw new BadRequestException({ message: `Invalid car ID- Car ID must be a number` });
+
         }
         const idNumber = Number(id);
+
         if (idNumber <= 0) {
-            return Promise.reject(new Error('Invalid car ID - must be a positive number'));
+            throw new BadRequestException({ message: `Invalid car ID ${idNumber} - must be a positive number` });
         }
 
         const found = this.cars.find(car => car.id === idNumber);
+
         if (!found) {
-            return Promise.reject(new Error('Car not found'));
+            throw new BadRequestException({ message: `Car not found with ID: ${id}` });
         }
 
 
-        return Promise.resolve(found);
+        return Promise.resolve(res.status(200).json(found));
     }
 
     private validateCarData(carData: Omit<Car, "id">): { key: string, status: boolean, message: string } {
