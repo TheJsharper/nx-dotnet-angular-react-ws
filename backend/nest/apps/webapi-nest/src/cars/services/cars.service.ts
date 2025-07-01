@@ -88,8 +88,9 @@ export class CarsService {
         return Promise.resolve(updatedCar);
     }
     async deleteCar(id: number): Promise<boolean> {
-        if (typeof id !== 'number') {
 
+        if (typeof id !== 'number' || isNaN(id)) {
+            
             return Promise.reject(new Error('Invalid car ID'));
 
         }

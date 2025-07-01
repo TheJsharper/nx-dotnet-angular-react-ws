@@ -242,8 +242,13 @@ describe('CarsController', () => {
 
   describe('deleteCar', () => {
     it('should delete a car by ID', async () => {
-      const carId = 1;
-      const result = await carsController.deleteCar(carId);
+
+
+      const newCar = await carsController.createCar({ make: 'Toyota', model: 'Corolla', year: 2020, color: 'Blue' });
+      expect(newCar).toBeDefined();
+
+      const carId = newCar.id;
+      const result = await carsController.deleteCar(carId.toString());
       expect(result).toBeDefined();
       expect(result).toBe(true);
     });
@@ -253,7 +258,7 @@ describe('CarsController', () => {
 
       await expect(async () => {
         try {
-          await carsController.deleteCar(invalidCarId as unknown as number);
+          await carsController.deleteCar(invalidCarId as unknown as string);
         } catch (error) {
           throw new Error(error);
         }
@@ -264,7 +269,7 @@ describe('CarsController', () => {
 
       await expect(async () => {
         try {
-          await carsController.deleteCar(nonExistentCarId);
+          await carsController.deleteCar(nonExistentCarId.toString());
         } catch (error) {
           throw new Error(error);
         }
@@ -276,7 +281,7 @@ describe('CarsController', () => {
 
       await expect(async () => {
         try {
-          await carsController.deleteCar(negativeCarId);
+          await carsController.deleteCar(negativeCarId.toString());
         } catch (error) {
           throw new Error(error);
         }

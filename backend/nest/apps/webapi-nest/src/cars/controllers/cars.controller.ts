@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Body } from "@nestjs/common";
+import { Controller, Get, Post, Put, Delete, Body, Param } from "@nestjs/common";
 import { Car } from "../models/cars.models";
 import { CarsService } from "../services/cars.service";
 import { ApiExcludeController, ApiResponse, ApiTags } from "@nestjs/swagger";
@@ -76,9 +76,18 @@ export class CarsController {
     );
   }
   @Delete("/:id")
-  async deleteCar(id: number): Promise<boolean> {
+  @ApiResponse({
+    status: 200,
+    description: 'Delete a car by ID',
+    schema: {
+      type: 'boolean',
+      example: true,
+    },
+  })
+  async deleteCar(@Param('id') id: string ): Promise<boolean> {
+    
     return await new Promise<boolean>((resolve, reject) => {
-      this.carsService.deleteCar(id)
+      this.carsService.deleteCar(Number(id))
         .then((value: boolean) =>resolve(value) )
         .catch((error) => reject(error.message));
     });
