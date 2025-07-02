@@ -43,15 +43,7 @@ export class CarsController {
   })
   
   async getCarById(@Param('id') id: string, @Res() res: Response): Promise<Response> {
-    return await new Promise<Response>(
-      (resolve) => {
-
-        const car = this.carsService.getCarById(id, res);
-
-        resolve(car);
-
-      }
-    );
+    return await Promise.resolve<Response>(this.carsService.getCarById(id, res)) ;
   }
 
   @Post("/")
