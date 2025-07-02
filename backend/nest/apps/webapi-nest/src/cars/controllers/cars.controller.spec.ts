@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { CarsController } from './cars.controller';
-import { CarsService } from '../services/cars.service';
+import { createResponse, MockResponse } from 'node-mocks-http';
 import { Car } from '../models/cars.models';
+import { CarsService } from '../services/cars.service';
+import { CarsController } from './cars.controller';
 import { Response } from 'express';
-
 describe('CarsController', () => {
   let carsController: CarsController;
 
@@ -28,12 +28,72 @@ describe('CarsController', () => {
     it('should return a car by ID', async () => {
 
 
-      const res = {} as unknown as Response;
-      res.json = jest.fn();
-      res.status = jest.fn(() => res);
-      const car = await carsController.getCarById("1", res);
-      expect(car).toBeDefined();
+      const res = createResponse();
+
+      const newCar = await carsController.createCar({ make: 'Toyota', model: 'Corolla', year: 2020, color: 'Blue' });
+
+      expect(newCar).toBeDefined();
+
+      expect(newCar.id).toBeDefined();
+
+      const response: MockResponse<Response<unknown, Record<string, unknown>>> = (await carsController.getCarById(newCar.id.toString(), res)) as MockResponse<Response<unknown, Record<string, unknown>>>;
+      
+      expect(response).toBeDefined();
+
+      expect(response.statusCode).toBe(200);
+
+      expect(response.getHeader('Content-Type')).toBe('application/json');
+
+      expect(response._isJSON()).toBe(true);
+
+      expect(response._getJSONData()).toStrictEqual(newCar);
+
     });
+
+    it('should throw an error when car ID is invalid', async () => {
+      const invalidCarId = 'invalid';
+
+      await expect(async () => {
+        try {
+          const res = createResponse();
+
+          await carsController.getCarById(invalidCarId, res);
+
+        } catch (error) {
+          throw new Error(error.message);
+        }
+      }).rejects.toThrow('Invalid car ID- Car ID must be a number');
+    });
+
+    it('should throw an error when car ID does not exist', async () => {
+      const nonExistentCarId = '9999'; // Assuming this ID does not exist
+
+      await expect(async () => {
+        try {
+          const res = createResponse();
+
+          await carsController.getCarById(nonExistentCarId, res);
+
+        } catch (error) {
+
+          throw new Error(error.message);
+        }
+      }).rejects.toThrow('Car not found with ID: 9999');
+    });
+    it('should throw an error when car ID is negative', async () => {
+      const negativeCarId = '-1';
+
+      await expect(async () => {
+        try {
+          const res = createResponse();
+
+          await carsController.getCarById(negativeCarId, res);
+
+        } catch (error) {
+          throw new Error(error.message);
+        }
+      }).rejects.toThrow(`Invalid car ID ${negativeCarId} - must be a positive number`);
+    }); 
   });
 
   describe('createCar', () => {
