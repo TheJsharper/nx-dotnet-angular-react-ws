@@ -28,11 +28,13 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "webapi-nest:build"
+        "buildTarget": "webapi-nest:build",
+        "watch": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "webapi-nest:build:development"
+          "buildTarget": "webapi-nest:build:development",
+          "watch": true
         },
         "production": {
           "buildTarget": "webapi-nest:build:production"

@@ -3,6 +3,7 @@ import { Car } from "../models/cars.models";
 import { CarsService } from "../services/cars.service";
 import { ApiExcludeController, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { Response } from 'express';
+import { CarsBadRequestExceptionData } from "../models/cars-bad-request.exception";
 @ApiTags('Cars')
 @Controller('api/cars')
 @ApiExcludeController(false)
@@ -30,10 +31,21 @@ export class CarsController {
   }
 
   @Get("/:id")
+  @ApiResponse({
+    status: 200,
+    description: 'Get a car by ID',
+    type: Car,
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Car not found | invalid ID | bad request parameter not integer',
+    type: CarsBadRequestExceptionData
+  })
+  
   async getCarById(@Param('id') id: string, @Res() res: Response): Promise<Response> {
     return await new Promise<Response>(
       (resolve) => {
-        
+
         const car = this.carsService.getCarById(id, res);
 
         resolve(car);

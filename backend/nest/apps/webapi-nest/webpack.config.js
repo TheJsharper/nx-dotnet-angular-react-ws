@@ -21,5 +21,6 @@ export const plugins = [
     optimization: false,
     outputHashing: 'none',
     generatePackageJson: true,
+    
   }),
 ];
