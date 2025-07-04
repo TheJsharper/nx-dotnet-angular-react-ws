@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
+import { Response } from 'express';
 import { createResponse, MockResponse } from 'node-mocks-http';
 import { Car } from '../models/cars.models';
 import { CarsService } from '../services/cars.service';
 import { CarsController } from './cars.controller';
-import { Response } from 'express';
 describe('CarsController', () => {
   let carsController: CarsController;
 
@@ -30,14 +30,20 @@ describe('CarsController', () => {
 
       const res = createResponse();
 
-      const newCar = await carsController.createCar({ make: 'Toyota', model: 'Corolla', year: 2020, color: 'Blue' });
+      const newLocal = { make: 'Toyota', model: 'Corolla', year: 2020, color: 'Blue' };
 
-      expect(newCar).toBeDefined();
+      const returnValueRes = await carsController.createCar(newLocal, res);
 
-      expect(newCar.id).toBeDefined();
+      const dataCars = (returnValueRes as MockResponse<Response<Car, Record<string, unknown>>>)._getJSONData();
 
-      const response: MockResponse<Response<unknown, Record<string, unknown>>> = (await carsController.getCarById(newCar.id.toString(), res)) as MockResponse<Response<unknown, Record<string, unknown>>>;
-      
+      expect(returnValueRes).toBeDefined();
+
+      expect(dataCars.id).toBeDefined();
+
+      expect(dataCars).toStrictEqual({...newLocal, id: dataCars.id});
+
+      const response: MockResponse<Response<unknown, Record<string, unknown>>> = (await carsController.getCarById(dataCars.id.toString(), res)) as MockResponse<Response<unknown, Record<string, unknown>>>;
+
       expect(response).toBeDefined();
 
       expect(response.statusCode).toBe(200);
@@ -45,8 +51,6 @@ describe('CarsController', () => {
       expect(response.getHeader('Content-Type')).toBe('application/json');
 
       expect(response._isJSON()).toBe(true);
-
-      expect(response._getJSONData()).toStrictEqual(newCar);
 
     });
 
@@ -93,30 +97,38 @@ describe('CarsController', () => {
           throw new Error(error.message);
         }
       }).rejects.toThrow(`Invalid car ID ${negativeCarId} - must be a positive number`);
-    }); 
+    });
   });
 
   describe('createCar', () => {
     it('should create a new car Omiding Id', async () => {
       const newCar: Omit<Car, "id"> = { make: 'Toyota', model: 'Corolla', year: 2020, color: 'Blue' };
 
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
+
       expect(newCar).toBeDefined();
 
-      const createdCar = await carsController.createCar(newCar);
+      const carResponse: MockResponse<Response<Car, Record<string, unknown>>> = await carsController.createCar(newCar, res) as MockResponse<Response<Car, Record<string, unknown>>>;
 
-      expect(createdCar).toBeDefined();
+      expect(carResponse).toBeDefined();
 
-      expect(createdCar.id).toBeDefined();
+      const dataCars = carResponse._getJSONData();
 
-      expect(createdCar).toStrictEqual({ ...newCar, id: createdCar.id });
+      expect(dataCars).toBeDefined();
+
+      expect(dataCars.id).toBeDefined();
+
+      expect(dataCars).toStrictEqual({ ...newCar, id: dataCars.id });
     });
 
     it('should throw an error when creating a car with invalid data', async () => {
       const invalidCar: Omit<Car, "id" | "make"> = { model: 'Civic', year: 2019, color: 'Red' };
 
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
+
       await expect(async () => {
         try {
-          const result = await carsController.createCar(invalidCar as Omit<Car, 'id'>);
+          const result = await carsController.createCar(invalidCar as Omit<Car, 'id'>, res);
 
           return result;
 
@@ -129,9 +141,11 @@ describe('CarsController', () => {
     it('should throw an error when creating a car with missing properties', async () => {
       const invalidCar: Omit<Car, "id" | 'color'> = { make: 'Honda', model: 'Civic', year: 2019 }; // Missing color
 
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
+
       await expect(async () => {
         try {
-          const result = await carsController.createCar(invalidCar as Omit<Car, 'id'>);
+          const result = await carsController.createCar(invalidCar as Omit<Car, 'id'>, res);
 
           return result;
 
@@ -144,9 +158,11 @@ describe('CarsController', () => {
     it('should throw an error when creating a car with null properties', async () => {
       const invalidCar: Omit<Car, "id"> = { make: null, model: 'Civic', year: 2019, color: 'Red' }; // make is null
 
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
+
       await expect(async () => {
         try {
-          const result = await carsController.createCar(invalidCar as Omit<Car, 'id'>);
+          const result = await carsController.createCar(invalidCar as Omit<Car, 'id'>, res);
 
           return result;
 
@@ -159,9 +175,11 @@ describe('CarsController', () => {
     it('should throw an error when creating a car with invalid year', async () => {
       const invalidCar: Omit<Car, "id"> = { make: 'Honda', model: 'Civic', year: 1800, color: 'Red' }; // Invalid year
 
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
+
       await expect(async () => {
         try {
-          const result = await carsController.createCar(invalidCar as Omit<Car, 'id'>);
+          const result = await carsController.createCar(invalidCar as Omit<Car, 'id'>, res);
 
           return result;
 
@@ -175,10 +193,11 @@ describe('CarsController', () => {
 
       const invalidCar: Omit<Car, "id"> = { make: 'Honda', model: 'Civic', year: 2020, color: 1 as unknown as string }; // Invalid color type
 
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
 
       await expect(async () => {
         try {
-          const result = await carsController.createCar(invalidCar as Omit<Car, 'id'>);
+          const result = await carsController.createCar(invalidCar as Omit<Car, 'id'>, res);
 
           return result;
 
@@ -310,12 +329,20 @@ describe('CarsController', () => {
     it('should delete a car by ID', async () => {
 
 
-      const newCar = await carsController.createCar({ make: 'Toyota', model: 'Corolla', year: 2020, color: 'Blue' });
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
+
+      const newCar = await carsController.createCar({ make: 'Toyota', model: 'Corolla', year: 2020, color: 'Blue' }, res);
+
       expect(newCar).toBeDefined();
 
-      const carId = newCar.id;
+      const dataCars = (newCar as MockResponse<Response<Car, Record<string, unknown>>>)._getJSONData();
+
+      const carId = dataCars.id;
+
       const result = await carsController.deleteCar(carId.toString());
+
       expect(result).toBeDefined();
+
       expect(result).toBe(true);
     });
 

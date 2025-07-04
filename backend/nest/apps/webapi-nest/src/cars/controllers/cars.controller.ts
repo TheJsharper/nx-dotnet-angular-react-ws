@@ -41,29 +41,26 @@ export class CarsController {
     description: 'Car not found | invalid ID | bad request parameter not integer',
     type: CarsBadRequestExceptionData
   })
-  
+
   async getCarById(@Param('id') id: string, @Res() res: Response): Promise<Response> {
-    return await Promise.resolve<Response>(this.carsService.getCarById(id, res)) ;
+    return await Promise.resolve<Response>(this.carsService.getCarById(id, res));
   }
 
   @Post("/")
+  @ApiResponse({
+    status: 400,
+    description: 'new car data is invalid',
+    type: CarsBadRequestExceptionData
+  })
   @ApiResponse({
     status: 201,
     description: 'Create a new car',
     type: Car
   })
 
-  async createCar(@Body() carData: Car): Promise<Car> {
-    return await new Promise<Car>(
-      (resolve, reject) => {
-        try {
-          const updateNewCar = this.carsService.createCar(carData);
-          resolve(updateNewCar);
-        } catch (error) {
-          reject(error);
-        }
-      }
-    );
+  async createCar(@Body() carData: Car, @Res() res: Response): Promise<Response> {
+    const data = await this.carsService.createCar(carData);
+    return Promise.resolve<Response>(res.status(201).json(data))
 
   }
   @Put("/:id")

@@ -58,14 +58,14 @@ export class CarsService {
     }
 
 
-    createCar(carData: Omit<Car, "id">): Promise<Car> {
+    async createCar(carData: Omit<Car, "id">): Promise<Car> {
 
         const validation = this.validateCarData(carData);
 
 
         if (!validation.status) {
 
-            return Promise.reject(new Error(validation.message));
+            throw new BadRequestException({ message: validation.message });
         }
 
         const newCar: Car = {
@@ -73,7 +73,7 @@ export class CarsService {
             id: this.cars.length ? Math.max(...this.cars.map(car => car.id)) + 1 : 1
         };
         this.cars.push(newCar);
-        return Promise.resolve(newCar);
+        return await Promise.resolve(newCar);
 
     }
     updateCar(id: number, carData: Partial<Car>): Promise<Car> {
