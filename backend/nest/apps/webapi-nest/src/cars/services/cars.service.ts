@@ -114,19 +114,22 @@ export class CarsService {
 
         if (typeof id !== 'number' || isNaN(id)) {
 
-            return Promise.reject(new Error('Invalid car ID'));
+           // return Promise.reject(new Error('Invalid car ID'));
+            throw new BadRequestException({ message: 'Invalid car ID' });
 
         }
         if (id <= 0) {
 
-            return Promise.reject(new Error('Invalid car ID - must be a positive number'));
+           // return Promise.reject(new Error('Invalid car ID - must be a positive number'));
+            throw new BadRequestException({ message: 'Invalid car ID - must be a positive number' });
 
         }
         const carIndex = this.cars.findIndex(car => car.id === id);
 
         if (carIndex === -1) {
 
-            return Promise.reject(new Error("it does NOT exist id"));
+            //return Promise.reject(new Error("it does NOT exist id"));
+            throw new BadRequestException({ message: 'it does NOT exist id' });
 
         }
 

@@ -91,13 +91,18 @@ export class CarsController {
       example: true,
     },
   })
-  async deleteCar(@Param('id') id: string): Promise<boolean> {
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: 'Car not found | invalid ID | bad request parameter not integer',
+    type: CarsBadRequestExceptionData
+  })
+  async deleteCar(@Param('id') id: string, @Res() res: Response): Promise<Response<boolean>> {
 
-    return await new Promise<boolean>((resolve, reject) => {
-      this.carsService.deleteCar(Number(id))
-        .then((value: boolean) => resolve(value))
-        .catch((error) => reject(error.message));
-    });
+    const result = await this.carsService.deleteCar(Number(id));
+
+    return Promise.resolve(res.status(HttpStatus.OK).json(result));
+
+
   }
 
 }   
