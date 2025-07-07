@@ -77,8 +77,9 @@ export class CarsService {
 
     }
     updateCar(id: number, carData: Partial<Car>): Promise<Car> {
-        if (typeof id !== 'number' || id <= 0) {
-            return Promise.reject(new Error('Invalid car ID'));
+        if (typeof id !== 'number' || id <= 0 || isNaN(id)) {
+          //  return Promise.reject(new Error('Invalid car ID'));
+            throw new BadRequestException({ message: 'Invalid car ID - must be a positive number' });
         }
 
 
@@ -86,18 +87,21 @@ export class CarsService {
         const validation = this.validateCarData(carData as Omit<Car, "id">);
 
         if (!validation.status) {
-            return Promise.reject(new Error(validation.message));
+            //return Promise.reject(new Error(validation.message));
+            throw new BadRequestException({ message: validation.message });
         }
 
         const carIndex = this.cars.findIndex(car => car.id === id);
 
 
         if (carData.id && carData.id !== id) {
-            return Promise.reject(new Error('Cannot change car ID'));
+           // return Promise.reject(new Error('Cannot change car ID'));
+            throw new BadRequestException({ message: 'Cannot change car ID' });
         }
 
         if (carIndex === -1) {
-            return Promise.reject(new Error('Car not found'));
+            //return Promise.reject(new Error('Car not found'));
+            throw new BadRequestException({ message: 'Car not found' });
         }
 
         const updatedCar = { ...this.cars[carIndex], ...carData };
