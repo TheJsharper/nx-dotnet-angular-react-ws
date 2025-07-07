@@ -78,7 +78,6 @@ export class CarsService {
     }
     updateCar(id: number, carData: Partial<Car>): Promise<Car> {
         if (typeof id !== 'number' || id <= 0 || isNaN(id)) {
-          //  return Promise.reject(new Error('Invalid car ID'));
             throw new BadRequestException({ message: 'Invalid car ID - must be a positive number' });
         }
 
@@ -87,7 +86,6 @@ export class CarsService {
         const validation = this.validateCarData(carData as Omit<Car, "id">);
 
         if (!validation.status) {
-            //return Promise.reject(new Error(validation.message));
             throw new BadRequestException({ message: validation.message });
         }
 
@@ -95,12 +93,10 @@ export class CarsService {
 
 
         if (carData.id && carData.id !== id) {
-           // return Promise.reject(new Error('Cannot change car ID'));
             throw new BadRequestException({ message: 'Cannot change car ID' });
         }
 
         if (carIndex === -1) {
-            //return Promise.reject(new Error('Car not found'));
             throw new BadRequestException({ message: 'Car not found' });
         }
 
@@ -114,13 +110,11 @@ export class CarsService {
 
         if (typeof id !== 'number' || isNaN(id)) {
 
-           // return Promise.reject(new Error('Invalid car ID'));
             throw new BadRequestException({ message: 'Invalid car ID' });
 
         }
         if (id <= 0) {
 
-           // return Promise.reject(new Error('Invalid car ID - must be a positive number'));
             throw new BadRequestException({ message: 'Invalid car ID - must be a positive number' });
 
         }
@@ -128,9 +122,7 @@ export class CarsService {
 
         if (carIndex === -1) {
 
-            //return Promise.reject(new Error("it does NOT exist id"));
             throw new BadRequestException({ message: 'it does NOT exist id' });
-
         }
 
         this.cars.splice(carIndex, 1);
