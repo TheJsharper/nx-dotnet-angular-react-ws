@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CarsService } from '../../../src/cars/services/cars.service';
 import { createResponse } from 'node-mocks-http';
+import { CarsService } from '../../../src/cars/services/cars.service';
 
 describe('CarsService.get-car-by-id', () => {
     let service: CarsService;
@@ -29,10 +29,18 @@ describe('CarsService.get-car-by-id', () => {
 
 
 
-    it('should return undefined for a non-existing car', () => {
+    it('should return undefined for a non-existing car', async () => {
         const res = createResponse();
-        const car = service.getCarById("999", res);
-        expect(car).toBeUndefined();
+        expect(async () => {
+            try {
+                await service.getCarById("999", res);
+            }
+            catch (error) {
+                expect(error).toBeDefined();
+                expect(error.message).toBe('Car not found with ID: 999');
+                throw new Error(error.message);
+            }
+        }).rejects.toThrow('Car not found with ID: 999');
     });
 
 
