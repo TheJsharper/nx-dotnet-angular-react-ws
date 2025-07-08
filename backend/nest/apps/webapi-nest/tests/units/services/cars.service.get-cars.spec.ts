@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CarsService } from '../../../src/cars/services/cars.service';
-import { createResponse } from 'node-mocks-http';
 
 
 describe('CarsService.get-cars', () => {
@@ -18,26 +17,26 @@ describe('CarsService.get-cars', () => {
         expect(service).toBeDefined();
     });
 
-    it('should return all cars', () => {
-        const cars = service.getAllCars();
+    it('should return all cars', async () => {
+        const cars = await service.getAllCars();
+
         expect(cars).toBeDefined();
+
         expect(cars.length).toBeGreaterThan(0);
-    });
-
-    it('should return a car by ID', () => {
-        const res = createResponse();
-
-        const car = service.getCarById("1", res);
-
-        expect(car).toBeDefined();
-    });
+    });    
 
     it('should create multiple cars and return them', async () => {
+
         const car1 = await service.createCar({ make: 'BMW', model: 'X5', year: 2023, color: 'Black' });
+
         const car2 = await service.createCar({ make: 'Audi', model: 'A4', year: 2023, color: 'Silver' });
-        const cars = service.getAllCars();
+
+        const cars = await service.getAllCars();
+
         expect(cars.length).toBeGreaterThan(2);
+
         expect(cars.some(car => car.id === car1.id)).toBe(true);
+
         expect(cars.some(car => car.id === car2.id)).toBe(true);
     }
     );

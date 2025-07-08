@@ -12,7 +12,7 @@ export class CarsController {
   constructor(private readonly carsService: CarsService) {
   }
   @ApiResponse({
-    status: 200,
+    status: HttpStatus.OK,
     description: 'Get all cars',
     type: Array<Car>,
   })

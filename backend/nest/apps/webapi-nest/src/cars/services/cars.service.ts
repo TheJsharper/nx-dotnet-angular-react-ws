@@ -12,8 +12,8 @@ export class CarsService {
     ]
 
 
-    getAllCars(): Car[] {
-        return this.cars;
+    async getAllCars(): Promise<Car[]> {
+        return Promise.resolve(this.cars);
     }
     async getCarById(id: string, res: Response): Promise<Response> {
 
@@ -82,7 +82,7 @@ export class CarsService {
             throw new BadRequestException({ message: 'Invalid car ID - must be a positive number' });
         }
 
-        if(id !== carData.id && carData.id !== undefined) {
+        if (id !== carData.id && carData.id !== undefined) {
             throw new BadRequestException({ message: 'Cannot change car ID' });
         }
 
