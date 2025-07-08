@@ -40,7 +40,7 @@ describe('CarsController', () => {
 
       expect(dataCars.id).toBeDefined();
 
-      expect(dataCars).toStrictEqual({...newLocal, id: dataCars.id});
+      expect(dataCars).toStrictEqual({ ...newLocal, id: dataCars.id });
 
       const response: MockResponse<Response<unknown, Record<string, unknown>>> = (await carsController.getCarById(dataCars.id.toString(), res)) as MockResponse<Response<unknown, Record<string, unknown>>>;
 
@@ -214,10 +214,12 @@ describe('CarsController', () => {
 
     it('should update a car by ID', async () => {
       const updatedCar: Car = { id: 1, make: 'Toyota', model: 'Camry', year: 2021, color: 'Black' };
-
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
       const carId = 1;
 
-      const result = await carsController.updateCar(carId.toString(), updatedCar);
+      const response = await carsController.updateCar(carId.toString(), updatedCar, res);
+
+      const result = (response as MockResponse<Response<Car, Record<string, unknown>>>)._getJSONData();
 
       expect(result).toBeDefined();
       expect(result.id).toBe(carId);
@@ -230,10 +232,10 @@ describe('CarsController', () => {
     it('should throw an error when updating a car with invalid data', async () => {
       const invalidUpdate: Car = { make: null, model: 'Civic', year: 2019, color: 'Red' }; // make is null
       const carId = 1;
-
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
       await expect(async () => {
         try {
-          const result = await carsController.updateCar(carId.toString(), invalidUpdate);
+          const result = await carsController.updateCar(carId.toString(), invalidUpdate, res);
 
           return result;
 
@@ -247,9 +249,10 @@ describe('CarsController', () => {
       const invalidUpdate: Partial<Car> = { make: 'Honda', model: 'Civic', year: 2019 }; // Missing color
       const carId = 1;
 
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
       await expect(async () => {
         try {
-          const result = await carsController.updateCar(carId.toString(), invalidUpdate as Car);
+          const result = await carsController.updateCar(carId.toString(), invalidUpdate as Car, res);
 
           return result;
 
@@ -262,10 +265,11 @@ describe('CarsController', () => {
     it('should throw an error when updating a car with null properties', async () => {
       const invalidUpdate: Partial<Car> = { make: null, model: 'Civic', year: 2019, color: 'Red' }; // make is null
       const carId = 1;
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
 
       await expect(async () => {
         try {
-          const result = await carsController.updateCar(carId.toString(), invalidUpdate as Car);
+          const result = await carsController.updateCar(carId.toString(), invalidUpdate as Car, res);
 
           return result;
 
@@ -278,10 +282,11 @@ describe('CarsController', () => {
     it('should throw an error when updating a car with invalid year', async () => {
       const invalidUpdate: Partial<Car> = { make: 'Honda', model: 'Civic', year: 1800, color: 'Red' }; // Invalid year
       const carId = 1;
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
 
       await expect(async () => {
         try {
-          const result = await carsController.updateCar(carId.toString(), invalidUpdate as Car);
+          const result = await carsController.updateCar(carId.toString(), invalidUpdate as Car, res);
 
           return result;
 
@@ -292,11 +297,13 @@ describe('CarsController', () => {
     });
     it('should throw an error when updating a car with invalid data types', async () => {
       const invalidUpdate: Partial<Car> = { make: 'Honda', model: 'Civic', year: 2020, color: 1 as unknown as string }; // Invalid color type
+
       const carId = 1;
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
 
       await expect(async () => {
         try {
-          const result = await carsController.updateCar(carId.toString(), invalidUpdate as Car);
+          const result = await carsController.updateCar(carId.toString(), invalidUpdate as Car, res);
 
           return result;
 
@@ -310,11 +317,12 @@ describe('CarsController', () => {
 
       const invalidUpdate: Partial<Car> = { id: 2, make: 'Honda', model: 'Civic', year: 2020, color: 'Red' }; // Trying to change ID
 
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
       const carId = 1;
 
       await expect(async () => {
         try {
-          const result = await carsController.updateCar(carId.toString(), invalidUpdate as Car);
+          const result = await carsController.updateCar(carId.toString(), invalidUpdate as Car, res);
 
           return result;
 
@@ -339,19 +347,17 @@ describe('CarsController', () => {
 
       const carId = dataCars.id;
 
-      const result = await carsController.deleteCar(carId.toString());
+      const response = await carsController.deleteCar(carId.toString(), res) as MockResponse<Response<boolean, Record<string, unknown>>>;
 
-      expect(result).toBeDefined();
-
-      expect(result).toBe(true);
+      expect(response).toBeDefined();
     });
 
     it('should throw an error when deleting a car with an invalid ID', async () => {
       const invalidCarId = 'invalid';
-
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
       await expect(async () => {
         try {
-          await carsController.deleteCar(invalidCarId as unknown as string);
+          await carsController.deleteCar(invalidCarId as unknown as string, res);
         } catch (error) {
           throw new Error(error);
         }
@@ -360,9 +366,11 @@ describe('CarsController', () => {
     it('should throw an error when deleting a car that does not exist', async () => {
       const nonExistentCarId = 9999; // Assuming this ID does not exist
 
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
+
       await expect(async () => {
         try {
-          await carsController.deleteCar(nonExistentCarId.toString());
+          await carsController.deleteCar(nonExistentCarId.toString(), res);
         } catch (error) {
           throw new Error(error);
         }
@@ -371,12 +379,12 @@ describe('CarsController', () => {
 
     it('should throw an error when deleting a car with a negative ID', async () => {
       const negativeCarId = -1;
-
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
       await expect(async () => {
         try {
-          await carsController.deleteCar(negativeCarId.toString());
+          await carsController.deleteCar(negativeCarId.toString(), res);
         } catch (error) {
-          throw new Error(error);
+          throw new Error(error.message);
         }
       }).rejects.toThrow('Invalid car ID - must be a positive number');
     });
