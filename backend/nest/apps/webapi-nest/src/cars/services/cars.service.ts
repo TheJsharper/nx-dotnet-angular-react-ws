@@ -75,13 +75,16 @@ export class CarsService {
         return await Promise.resolve(newCar);
 
     }
-    
-    updateCar(id: number, carData: Partial<Car>): Promise<Car> {
+
+    async updateCar(id: number, carData: Partial<Car>): Promise<Car> {
+
         if (typeof id !== 'number' || id <= 0 || isNaN(id)) {
             throw new BadRequestException({ message: 'Invalid car ID - must be a positive number' });
         }
 
-
+        if(id !== carData.id && carData.id !== undefined) {
+            throw new BadRequestException({ message: 'Cannot change car ID' });
+        }
 
         const validation = this.validateCarData(carData as Omit<Car, "id">);
 
@@ -97,7 +100,7 @@ export class CarsService {
         }
 
         if (carIndex === -1) {
-            throw new BadRequestException({ message: 'Car not found' });
+            throw new BadRequestException({ message: `Car not found with ID: ${id}` });
         }
 
         const updatedCar = { ...this.cars[carIndex], ...carData };
