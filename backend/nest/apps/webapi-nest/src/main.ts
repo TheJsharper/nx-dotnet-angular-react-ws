@@ -21,10 +21,12 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('webapi-nest')
     .build();
-    const documentFactory = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('/api/', app, documentFactory);
+  const documentFactory = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('/api/', app, documentFactory, {
+    customSiteTitle: 'Web API Nest', jsonDocumentUrl: '/api-json'
+  })
 
- // const globalPrefix = 'api';
+  // const globalPrefix = 'api';
 
   //app.setGlobalPrefix(globalPrefix);
 
