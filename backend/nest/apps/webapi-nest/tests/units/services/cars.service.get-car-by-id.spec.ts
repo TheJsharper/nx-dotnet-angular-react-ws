@@ -18,12 +18,23 @@ describe('CarsService.get-car-by-id', () => {
     });
 
 
-    it('should return a car by ID', () => {
+    it('should return a car by ID', async () => {
         const res = createResponse();
 
-        const car = service.getCarById("1", res);
+        const newCar = await service.createCar({ make: 'BMW', model: 'X5', year: 2023, color: 'Black' });
+
+        expect(newCar).toBeDefined();
+
+        expect(newCar.id).toBeDefined();
+
+        const car = await service.getCarById(String(newCar.id), res);
 
         expect(car).toBeDefined();
+
+        const data = res._getJSONData();
+
+        expect(data).toStrictEqual({ ...newCar, id: newCar.id });
+
 
     });
 
@@ -43,5 +54,60 @@ describe('CarsService.get-car-by-id', () => {
         }).rejects.toThrow('Car not found with ID: 999');
     });
 
+    it('should throw an error for invalid ID', async () => {
+        const res = createResponse();
+        expect(async () => {
+            try {
+                await service.getCarById("invalid-id", res);
+            }
+            catch (error) {
+                expect(error).toBeDefined();
+                expect(error.message).toBe('Invalid car ID- Car ID must be a number');
+                throw new Error(error.message);
+            }
+        }).rejects.toThrow('Invalid car ID- Car ID must be a number');
+    });
+
+    it('should throw an error for negative ID', async () => {
+        const res = createResponse();
+        expect(async () => {
+            try {
+                await service.getCarById("-1", res);
+            }
+            catch (error) {
+                expect(error).toBeDefined();
+                expect(error.message).toBe('Invalid car ID - must be a positive number');
+                throw new Error(error.message);
+            }
+        }).rejects.toThrow('Invalid car ID - must be a positive number');
+    });
+
+    it('should throw an error for zero ID', async () => {
+        const res = createResponse();
+        expect(async () => {
+            try {
+                await service.getCarById("0", res);
+            }
+            catch (error) {
+                expect(error).toBeDefined();
+                expect(error.message).toBe('Invalid car ID - must be a positive number');
+                throw new Error(error.message);
+            }
+        }).rejects.toThrow('Invalid car ID - must be a positive number');
+    });
+
+    it('should throw an error for non-integer ID', async () => {
+        const res = createResponse();
+        expect(async () => {
+            try {
+                await service.getCarById("1.5", res);
+            }
+            catch (error) {
+                expect(error).toBeDefined();
+                expect(error.message).toBe('Invalid car ID- Car ID must be a number');
+                throw new Error(error.message);
+            }
+        }).rejects.toThrow('Invalid car ID- Car ID must be a number');
+    });
 
 })
