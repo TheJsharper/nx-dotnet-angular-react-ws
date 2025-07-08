@@ -125,6 +125,24 @@ describe('CarsController.create', () => {
       }).rejects.toThrow('Invalid car data types');
     });
 
+    it('should throw an error when creating a car with empty string properties', async () => {
+      const invalidCar: Omit<Car, "id"> = { make: '', model: 'Civic', year: 2020, color: 'Red' }; // Empty make
+
+      const res: MockResponse<Response<Car, Record<string, unknown>>> = createResponse();
+
+      await expect(async () => {
+        try {
+          const result = await carsController.createCar(invalidCar as Omit<Car, 'id'>, res);
+
+          return result;
+
+        } catch (error) {
+          throw new Error(error);
+
+        }
+      }).rejects.toThrow('Invalid car data');
+    } );
+
   });
 
 })
