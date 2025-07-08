@@ -122,6 +122,12 @@ export class CarsService {
             throw new BadRequestException({ message: 'Invalid car ID - must be a positive number' });
 
         }
+
+        if (!Number.isInteger(id)) {
+
+            throw new BadRequestException({ message: 'Invalid car ID - must be an integer' });
+
+        }
         const carIndex = this.cars.findIndex(car => car.id === id);
 
         if (carIndex === -1) {
