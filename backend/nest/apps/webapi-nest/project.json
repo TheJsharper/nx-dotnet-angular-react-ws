@@ -52,9 +52,23 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "backend/nest/apps/webapi-nest/jest.config.ts",
+        "verbose": true
+      }
+    },
+     "test:watched": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "backend/nest/apps/webapi-nest/jest.config.ts",
         "watch": true,
         "codeCoverage": true,
-        "verbose": true
+        "verbose": true,
+        "coverageReporters": [
+          "json",
+          "lcov",
+          "text",
+          "clover"
+        ]
       }
     }
   }

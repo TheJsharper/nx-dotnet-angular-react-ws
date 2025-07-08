@@ -137,7 +137,7 @@ describe('CarsController.create', () => {
           return result;
 
         } catch (error) {
-          throw new Error(error);
+          throw new Error(error.message);
 
         }
       }).rejects.toThrow('Invalid car data');
