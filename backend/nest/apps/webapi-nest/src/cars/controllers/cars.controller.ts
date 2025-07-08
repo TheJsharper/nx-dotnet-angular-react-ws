@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Res } from "@nestjs/common";
-import { ApiExcludeController, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiExcludeController, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { Response } from 'express';
 import { CarsBadRequestExceptionData } from "../models/cars-bad-request.exception";
 import { Car } from "../models/cars.models";
@@ -15,6 +15,28 @@ export class CarsController {
     status: HttpStatus.OK,
     description: 'Get all cars',
     type: Array<Car>,
+    isArray: true,
+  })
+  @ApiOperation({
+    summary: 'Get all cars',
+    description: 'Retrieves a list of all cars available in the system.',
+    responses: {
+      200: {
+        description: 'List of cars retrieved successfully.',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'array',
+              items: {
+                $ref: '#/components/schemas/Car'
+              }
+            }
+          }
+        }
+      }
+
+    },
+    tags: ['Cars']
   })
   @Get("/")
   async getAllCars(): Promise<Car[]> {
