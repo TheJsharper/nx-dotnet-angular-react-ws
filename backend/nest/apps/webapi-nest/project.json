@@ -19,8 +19,18 @@
         "isolatedConfig": true,
         "webpackConfig": "backend/nest/apps/webapi-nest/webpack.config.js"
       },
-      "configurations": {
-        "development": {},
+      "configurations": { 
+        "development": {
+          "outputPath": "dist/backend/nest/apps/webapi-nest",
+          "main": "backend/nest/apps/webapi-nest/src/main.ts",
+          "tsConfig": "backend/nest/apps/webapi-nest/tsconfig.app.json",
+          "assets": ["backend/nest/apps/webapi-nest/src/assets"],
+          "webpackConfig": "backend/nest/apps/webapi-nest/webpack.config.js",
+          "sourceMap": true,
+          "optimization": false,
+          "extractLicenses": false,
+          "inspect": true
+        },
         "production": {}
       }
     },
@@ -35,6 +45,7 @@
         "development": {
           "buildTarget": "webapi-nest:build:development",
           "watch": true
+          
         },
         "production": {
           "buildTarget": "webapi-nest:build:production"

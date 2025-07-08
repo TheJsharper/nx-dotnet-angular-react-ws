@@ -17,17 +17,9 @@ export class CarsController {
     type: Array<Car>,
   })
   @Get("/")
-  getAllCars(): Promise<Car[]> {
-    return new Promise<Car[]>(
-      (resolve, reject) => {
-        try {
-          const cars = this.carsService.getAllCars();
-          resolve(cars);
-        } catch (error) {
-          reject(error);
-        }
-      }
-    );
+  async getAllCars(): Promise<Car[]> {
+
+    return await this.carsService.getAllCars();
   }
 
   @Get("/:id")
