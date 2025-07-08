@@ -57,7 +57,6 @@ export class CarsService {
         return { key: 'valid', status: true, message: 'Valid car data' };
     }
 
-
     async createCar(carData: Omit<Car, "id">): Promise<Car> {
 
         const validation = this.validateCarData(carData);
@@ -76,6 +75,7 @@ export class CarsService {
         return await Promise.resolve(newCar);
 
     }
+    
     updateCar(id: number, carData: Partial<Car>): Promise<Car> {
         if (typeof id !== 'number' || id <= 0 || isNaN(id)) {
             throw new BadRequestException({ message: 'Invalid car ID - must be a positive number' });
@@ -106,6 +106,7 @@ export class CarsService {
 
         return Promise.resolve(updatedCar);
     }
+
     async deleteCar(id: number): Promise<boolean> {
 
         if (typeof id !== 'number' || isNaN(id)) {
