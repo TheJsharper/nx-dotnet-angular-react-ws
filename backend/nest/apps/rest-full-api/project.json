@@ -1,0 +1,87 @@
+{
+  "name": "rest-full-api",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "backend/nest/apps/rest-full-api/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/backend/nest/apps/rest-full-api",
+        "main": "backend/nest/apps/rest-full-api/src/main.ts",
+        "tsConfig": "backend/nest/apps/rest-full-api/tsconfig.app.json",
+        "assets": ["backend/nest/apps/rest-full-api/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "backend/nest/apps/rest-full-api/webpack.config.js"
+      },
+      "configurations": { 
+        "development": {
+          "outputPath": "dist/backend/nest/apps/rest-full-api",
+          "main": "backend/nest/apps/rest-full-api/src/main.ts",
+          "tsConfig": "backend/nest/apps/rest-full-api/tsconfig.app.json",
+          "assets": ["backend/nest/apps/rest-full-api/src/assets"],
+          "webpackConfig": "backend/nest/apps/rest-full-api/webpack.config.js",
+          "sourceMap": true,
+          "optimization": false,
+          "extractLicenses": false,
+          "inspect": true,
+          "watch": true
+        },
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "rest-full-api:build",
+        "watch": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "rest-full-api:build:development",
+          "watch": true
+          
+        },
+        "production": {
+          "buildTarget": "rest-full-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["{projectRoot}/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "backend/nest/apps/rest-full-api/jest.config.ts",
+        "verbose": true
+      }
+    },
+     "test:watched": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "backend/nest/apps/rest-full-api/jest.config.ts",
+        "watch": true,
+        "codeCoverage": true,
+        "verbose": true,
+        "coverageReporters": [
+          "json",
+          "lcov",
+          "text",
+          "clover"
+        ]
+      }
+    }
+  }
+}
