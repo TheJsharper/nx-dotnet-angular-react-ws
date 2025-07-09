@@ -22,13 +22,12 @@
             "input": "frontend/angular/views/test-lib/public"
           }
         ],
-        "styles": ["frontend/angular/views/test-lib/src/styles.scss", 
-       "node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "node_modules/bootstrap-icons/font/bootstrap-icons.css"
-      ],
-        "scripts": [
-          "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+        "styles": [
+          "frontend/angular/views/test-lib/src/styles.scss",
+          "node_modules/bootstrap/dist/css/bootstrap.min.css",
+          "node_modules/bootstrap-icons/font/bootstrap-icons.css"
         ],
+        "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],
         "customWebpackConfig": {
           "path": "frontend/angular/views/test-lib/webpack.config.ts"
         }
@@ -77,7 +76,8 @@
           "buildTarget": "test-lib:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "continuous": true
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
