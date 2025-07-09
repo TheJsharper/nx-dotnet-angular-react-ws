@@ -9,6 +9,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app/app.module';
 import { HttpExceptionFilter } from './cars/exceptions/http-exception.filter';
+import { writeFileSync } from 'fs';
+import path from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -25,7 +27,11 @@ async function bootstrap() {
   SwaggerModule.setup('/api/', app, documentFactory, {
     customSiteTitle: 'Web API Nest', jsonDocumentUrl: '/api-json'
   })
+  const data = JSON.stringify(documentFactory, null, 2);
 
+  const swaggerPath = path.join(__dirname, "documents", 'swagger.json');
+  
+  writeFileSync(swaggerPath, data, 'utf8');
   // const globalPrefix = 'api';
 
   //app.setGlobalPrefix(globalPrefix);

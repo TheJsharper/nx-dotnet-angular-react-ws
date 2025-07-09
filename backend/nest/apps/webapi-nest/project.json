@@ -24,7 +24,9 @@
           "outputPath": "dist/backend/nest/apps/webapi-nest",
           "main": "backend/nest/apps/webapi-nest/src/main.ts",
           "tsConfig": "backend/nest/apps/webapi-nest/tsconfig.app.json",
-          "assets": ["backend/nest/apps/webapi-nest/src/assets"],
+          "assets": ["backend/nest/apps/webapi-nest/src/assets",
+            "backend/nest/apps/webapi-nest/src/documents/swagger.json"
+          ],
           "webpackConfig": "backend/nest/apps/webapi-nest/webpack.config.js",
           "sourceMap": true,
           "optimization": false,

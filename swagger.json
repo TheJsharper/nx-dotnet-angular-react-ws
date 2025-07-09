@@ -1,0 +1,315 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/app/message": {
+      "get": {
+        "operationId": "AppController_getData",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "App"
+        ]
+      }
+    },
+    "/api/app/cars": {
+      "get": {
+        "operationId": "AppController_getCars",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "App"
+        ]
+      }
+    },
+    "/api/cars": {
+      "get": {
+        "description": "Retrieves a list of all cars available in the system.",
+        "operationId": "CarsController_getAllCars",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of cars retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Car"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get all cars",
+        "tags": [
+          "Cars"
+        ]
+      },
+      "post": {
+        "operationId": "CarsController_createCar",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Car"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Create a new car",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Car"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "new car data is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CarsBadRequestExceptionData"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Cars"
+        ]
+      }
+    },
+    "/api/cars/{id}": {
+      "get": {
+        "operationId": "CarsController_getCarById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get a car by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Car"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Car not found | invalid ID | bad request parameter not integer",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CarsBadRequestExceptionData"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Cars"
+        ]
+      },
+      "put": {
+        "operationId": "CarsController_updateCar",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Car"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update a car by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Car"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Car data is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CarsBadRequestExceptionData"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Cars"
+        ]
+      },
+      "delete": {
+        "operationId": "CarsController_deleteCar",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete a car by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean",
+                  "example": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Car not found | invalid ID | bad request parameter not integer",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CarsBadRequestExceptionData"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Cars"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Web API Nest",
+    "description": "The Web API Nest API description",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [
+    {
+      "name": "webapi-nest",
+      "description": ""
+    }
+  ],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "Car": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "Unique identifier for the car",
+            "example": 1
+          },
+          "make": {
+            "type": "string",
+            "description": "Make of the car",
+            "example": "Toyota"
+          },
+          "model": {
+            "type": "string",
+            "description": "Model of the car",
+            "example": "Camry"
+          },
+          "year": {
+            "type": "number",
+            "description": "Year of manufacture",
+            "example": 2020
+          },
+          "color": {
+            "type": "string",
+            "description": "Price of the car",
+            "example": "red | blue | green| black | white | yellow | silver | gray"
+          }
+        },
+        "required": [
+          "make",
+          "model",
+          "year",
+          "color"
+        ]
+      },
+      "CarsBadRequestExceptionData": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Error message describing the bad request",
+            "example": "Invalid car data provided"
+          },
+          "error": {
+            "type": "string",
+            "description": "Error code for the bad request",
+            "example": "BAD_REQUEST"
+          },
+          "statusCode": {
+            "type": "string",
+            "description": "status of the HTTP request",
+            "example": "400 Bad Request"
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Timestamp of when the error occurred",
+            "example": "2023-10-01T12:00:00Z"
+          },
+          "path": {
+            "type": "string",
+            "description": "Path of the request that caused the error",
+            "example": "/cars/123"
+          }
+        },
+        "required": [
+          "message",
+          "error",
+          "statusCode",
+          "timestamp",
+          "path"
+        ]
+      }
+    }
+  }
+}
