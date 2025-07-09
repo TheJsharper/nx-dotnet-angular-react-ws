@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'backend-nest-apps-backend-nest-apps-webapi-nest-e2e',
+  displayName: 'webapi-nest-e2e',
   preset: '../../../../jest.preset.js',
   globalSetup: '<rootDir>/src/support/global-setup.ts',
   globalTeardown: '<rootDir>/src/support/global-teardown.ts',
@@ -15,5 +15,5 @@ export default {
     ],
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory:  '../../../../coverage/backend-nest-apps-backend-nest-apps-webapi-nest-e2e',
+  coverageDirectory:  '../../../../coverage/webapi-nest-e2e',
 };

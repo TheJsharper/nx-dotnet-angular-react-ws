@@ -5,6 +5,7 @@ describe('GET /api', () => {
     const res = await axios.get(`/api/app/message`);
 
     expect(res.status).toBe(200);
+    
     expect(res.data).toEqual({ message: 'Hello API' });
   });
   it('should return list of cars', async () => {
