@@ -1,6 +1,7 @@
-import { Controller, Get, Param, Post, Body, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Put, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { PersonService } from '../services/person.service';
 import { PersonDto } from '../dtos/person.request.dto';
+import { EnhancedParseUUIDPipe } from '../../exceptions/exance-parseUUIDPipe';
 
 @Controller('persons  ')
 export class PersonController {
@@ -13,18 +14,18 @@ export class PersonController {
 
     // findOne(@Param('id') id: string):  PersonD{
     @Get(':id')
-    getClassName_singular(@Param('id') id: string): PersonDto {
+    getPersonById(@Param('id', new EnhancedParseUUIDPipe()) id: string): PersonDto {
         return this.personsService.getPersonById(id);
     }
 
     @Post()
-    createClassName_singular(@Body() className_singular: PersonDto) {
-        this.personsService.createPerson(className_singular);
+    createClassName_singular(@Body() personDto: PersonDto) {
+        this.personsService.createPerson(personDto);
     }
 
     @Put()
-    updateClassName_singular(@Body() className_singular: PersonDto) {
-        this.personsService.updatePerson(className_singular);
+    updateClassName_singular(@Body() personDto: PersonDto) {
+        this.personsService.updatePerson(personDto);
     }
 
     /**
@@ -32,7 +33,7 @@ export class PersonController {
       * @param id
       */
     @Delete()
-    deleteClassName_singular(@Param('id') id: string) {
+    deleteClassName_singular(@Param('id', new EnhancedParseUUIDPipe()) id: string) {
         this.personsService.deletePerson(id);
     }
 }
