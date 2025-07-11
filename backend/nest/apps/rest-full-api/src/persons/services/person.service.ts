@@ -1,12 +1,13 @@
 import { PersonDto } from '../dtos/person.request.dto';
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class PersonService {
 
     persons: PersonDto[] = [
         {
-            id: '1',
+            id: uuidv4(),
             fistName: 'John',
             lastName: 'Doe',
             email: 'john.doe@example.com',
@@ -21,7 +22,7 @@ export class PersonService {
             isActive: true
         },
         {
-            id: '2',
+            id: uuidv4(),
             fistName: 'Jane',
             lastName: 'Smith',
             email: '',
@@ -43,7 +44,11 @@ export class PersonService {
     }
 
     getPersonById(id: string): PersonDto {
-        return this.getPerson().find(p => p.id === id);
+        const found = this.persons.find(p => p.id === id);
+        if (!found) {
+            throw new BadRequestException({ message: `no found with ${id} any Person ` });
+        }
+        return found;
     }
 
     createPerson(person) {
