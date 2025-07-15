@@ -1,9 +1,9 @@
 import { Controller, Get, Param, Post, Body, Put, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { PersonService } from '../services/person.service';
 import { PersonDto } from '../dtos/person.request.dto';
-import { EnhancedParseUUIDPipe } from '../../exceptions/exance-parseUUIDPipe';
+import { EnhancedParseUUIDPipe } from '../../exceptions/enhanced-parseUUIDPipe';
 
-@Controller('persons  ')
+@Controller('persons')
 export class PersonController {
     constructor(private personsService: PersonService) { }
 
